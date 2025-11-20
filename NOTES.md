@@ -7,3 +7,4 @@
 - 2025-11-17 11:45  notes: add entry
 - 2025-11-18 10:09  docs: addendum
 - 2025-11-18 14:38  wip: progress note
+- 2025-11-20 19:34  docs: clarify note
