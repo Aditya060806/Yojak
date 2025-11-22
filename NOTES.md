@@ -9,3 +9,4 @@
 - 2025-11-18 14:38  wip: progress note
 - 2025-11-20 19:34  docs: clarify note
 - 2025-11-21 11:39  notes: progress
+- 2025-11-22 09:25  chore: housekeeping
