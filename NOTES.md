@@ -13,3 +13,4 @@
 - 2025-11-24 23:13  wip: progress note
 - 2025-11-25 09:51  docs: clarify note
 - 2025-11-25 11:16  notes: tracking
+- 2025-11-26 12:39  chore: notes update
