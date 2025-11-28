@@ -19,3 +19,4 @@
 - 2025-11-27 11:18  chore: tweak
 - 2025-11-27 16:58  chore: housekeeping
 - 2025-11-27 20:18  chore: tidy up
+- 2025-11-28 13:08  docs: progress log
