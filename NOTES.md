@@ -33,3 +33,4 @@
 - 2025-12-12 20:43  chore: bookkeeping
 - 2025-12-12 21:27  chore: progress
 - 2025-12-14 10:56  docs: minor update
+- 2025-12-15 15:50  wip: scratch note
