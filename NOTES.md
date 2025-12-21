@@ -42,3 +42,4 @@
 - 2025-12-20 10:23  notes: add entry
 - 2025-12-20 15:22  wip: iteration
 - 2025-12-21 18:08  chore: bookkeeping
+- 2025-12-21 19:54  wip: scratch note
