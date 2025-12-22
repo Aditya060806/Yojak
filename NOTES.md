@@ -44,3 +44,4 @@
 - 2025-12-21 18:08  chore: bookkeeping
 - 2025-12-21 19:54  wip: scratch note
 - 2025-12-21 23:16  chore: log update
+- 2025-12-22 11:59  refactor: minor cleanup
