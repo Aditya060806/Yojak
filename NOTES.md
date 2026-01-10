@@ -64,3 +64,4 @@
 - 2026-01-05 21:00  wip: iteration
 - 2026-01-06 22:45  chore: log update
 - 2026-01-08 17:37  chore: tidy up
+- 2026-01-10 19:01  chore: notes update
