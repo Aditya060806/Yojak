@@ -66,3 +66,4 @@
 - 2026-01-08 17:37  chore: tidy up
 - 2026-01-10 19:01  chore: notes update
 - 2026-01-12 13:58  wip: scratch note
+- 2026-01-13 20:51  refactor: minor cleanup
