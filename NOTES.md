@@ -72,3 +72,4 @@
 - 2026-01-17 11:51  notes: daily log
 - 2026-01-17 17:23  wip: scratch note
 - 2026-01-17 20:41  notes: tracking
+- 2026-01-19 21:59  docs: progress log
