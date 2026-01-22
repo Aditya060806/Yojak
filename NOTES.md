@@ -76,3 +76,4 @@
 - 2026-01-21 18:36  notes: daily log
 - 2026-01-22 09:27  chore: housekeeping
 - 2026-01-22 17:50  chore: notes update
+- 2026-01-22 20:14  docs: clarify note
