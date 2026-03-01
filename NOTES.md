@@ -120,3 +120,4 @@
 - 2026-02-27 21:45  chore: tidy up
 - 2026-03-01 09:04  notes: progress
 - 2026-03-01 11:59  notes: tracking
+- 2026-03-01 17:35  docs: addendum
