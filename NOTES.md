@@ -123,3 +123,4 @@
 - 2026-03-01 17:35  docs: addendum
 - 2026-03-02 13:35  wip: progress note
 - 2026-03-03 18:54  chore: tidy up
+- 2026-03-04 17:07  notes: tracking
