@@ -131,3 +131,4 @@
 - 2026-03-13 12:41  notes: daily log
 - 2026-03-14 19:10  chore: tidy up
 - 2026-03-16 22:12  refactor: minor cleanup
+- 2026-03-20 19:26  notes: progress
