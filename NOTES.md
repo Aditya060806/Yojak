@@ -154,3 +154,4 @@
 - 2026-04-03 21:47  notes: progress
 - 2026-04-03 22:37  chore: housekeeping
 - 2026-04-05 10:40  chore: housekeeping
+- 2026-04-05 13:33  docs: clarify note
