@@ -177,3 +177,4 @@
 - 2026-04-23 23:14  wip: scratch note
 - 2026-04-24 20:14  chore: tweak
 - 2026-04-25 11:17  docs: clarify note
+- 2026-04-25 12:56  notes: tracking
