@@ -178,3 +178,4 @@
 - 2026-04-24 20:14  chore: tweak
 - 2026-04-25 11:17  docs: clarify note
 - 2026-04-25 12:56  notes: tracking
+- 2026-04-25 19:43  docs: addendum
