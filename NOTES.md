@@ -183,3 +183,4 @@
 - 2026-04-26 22:18  notes: daily log
 - 2026-04-28 20:23  chore: progress
 - 2026-04-30 19:49  docs: minor update
+- 2026-05-01 10:05  docs: clarify note
