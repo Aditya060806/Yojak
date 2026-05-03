@@ -186,3 +186,4 @@
 - 2026-05-01 10:05  docs: clarify note
 - 2026-05-01 15:12  chore: housekeeping
 - 2026-05-02 15:16  wip: progress note
+- 2026-05-03 17:02  chore: tidy up
