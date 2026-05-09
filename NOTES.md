@@ -188,3 +188,4 @@
 - 2026-05-02 15:16  wip: progress note
 - 2026-05-03 17:02  chore: tidy up
 - 2026-05-04 21:32  notes: tracking
+- 2026-05-09 09:21  notes: add entry
