@@ -190,3 +190,4 @@
 - 2026-05-04 21:32  notes: tracking
 - 2026-05-09 09:21  notes: add entry
 - 2026-05-09 22:09  wip: scratch note
+- 2026-05-10 11:38  docs: minor update
