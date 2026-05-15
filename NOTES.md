@@ -195,3 +195,4 @@
 - 2026-05-13 17:26  chore: tidy up
 - 2026-05-14 12:34  chore: bookkeeping
 - 2026-05-14 15:05  wip: progress note
+- 2026-05-15 15:12  notes: add entry
