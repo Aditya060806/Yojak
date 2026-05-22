@@ -204,3 +204,4 @@
 - 2026-05-19 15:18  wip: iteration
 - 2026-05-19 17:55  notes: tracking
 - 2026-05-20 14:47  docs: clarify note
+- 2026-05-22 15:56  wip: scratch note
