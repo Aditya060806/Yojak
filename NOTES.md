@@ -207,3 +207,4 @@
 - 2026-05-22 15:56  wip: scratch note
 - 2026-05-23 20:36  notes: tracking
 - 2026-05-24 09:04  chore: bookkeeping
+- 2026-05-25 22:47  chore: housekeeping
