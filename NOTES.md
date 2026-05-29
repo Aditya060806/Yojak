@@ -211,3 +211,4 @@
 - 2026-05-26 20:46  notes: tracking
 - 2026-05-27 14:08  chore: housekeeping
 - 2026-05-27 19:41  chore: progress
+- 2026-05-29 16:58  docs: progress log
