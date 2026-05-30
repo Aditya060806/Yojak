@@ -212,3 +212,4 @@
 - 2026-05-27 14:08  chore: housekeeping
 - 2026-05-27 19:41  chore: progress
 - 2026-05-29 16:58  docs: progress log
+- 2026-05-30 22:03  chore: tidy up
