@@ -220,3 +220,4 @@
 - 2026-06-01 13:00  docs: minor update
 - 2026-06-01 18:55  chore: log update
 - 2026-06-02 10:40  chore: bookkeeping
+- 2026-06-02 14:37  chore: tweak
