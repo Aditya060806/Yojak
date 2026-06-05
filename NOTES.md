@@ -223,3 +223,4 @@
 - 2026-06-02 14:37  chore: tweak
 - 2026-06-03 12:34  wip: scratch note
 - 2026-06-03 16:19  chore: bookkeeping
+- 2026-06-05 09:07  docs: clarify note
