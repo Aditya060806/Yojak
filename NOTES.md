@@ -241,3 +241,4 @@
 - 2026-06-19 21:32  chore: tweak
 - 2026-06-20 12:50  chore: tidy up
 - 2026-06-20 19:00  docs: clarify note
+- 2026-06-25 21:28  wip: progress note
