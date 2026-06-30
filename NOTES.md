@@ -247,3 +247,4 @@
 - 2026-06-29 13:47  notes: add entry
 - 2026-06-30 14:08  chore: bookkeeping
 - 2026-06-30 19:33  chore: tidy up
+- 2026-06-30 21:59  docs: update notes
