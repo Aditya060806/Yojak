@@ -246,3 +246,4 @@
 - 2026-06-28 10:24  notes: progress
 - 2026-06-29 13:47  notes: add entry
 - 2026-06-30 14:08  chore: bookkeeping
+- 2026-06-30 19:33  chore: tidy up
