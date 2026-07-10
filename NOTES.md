@@ -254,3 +254,4 @@
 - 2026-07-06 18:51  notes: add entry
 - 2026-07-07 23:17  docs: clarify note
 - 2026-07-10 11:45  notes: add entry
+- 2026-07-10 13:57  chore: tidy up
