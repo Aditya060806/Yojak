@@ -276,3 +276,4 @@
 - 2026-07-30 18:18  chore: progress
 - 2026-07-31 22:01  chore: progress
 - 2026-08-02 15:06  docs: minor update
+- 2026-08-02 19:34  docs: clarify note
