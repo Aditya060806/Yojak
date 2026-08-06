@@ -279,3 +279,4 @@
 - 2026-08-02 19:34  docs: clarify note
 - 2026-08-03 12:57  refactor: minor cleanup
 - 2026-08-04 22:53  docs: minor update
+- 2026-08-06 21:55  docs: update notes
