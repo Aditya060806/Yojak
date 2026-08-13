@@ -285,3 +285,4 @@
 - 2026-08-09 17:27  chore: bookkeeping
 - 2026-08-10 22:38  notes: progress
 - 2026-08-12 15:23  wip: scratch note
+- 2026-08-13 17:57  docs: addendum
