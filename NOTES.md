@@ -288,3 +288,4 @@
 - 2026-08-13 17:57  docs: addendum
 - 2026-08-15 17:41  chore: housekeeping
 - 2026-08-15 21:55  notes: add entry
+- 2026-08-18 13:00  chore: tweak
