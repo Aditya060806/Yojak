@@ -294,3 +294,4 @@
 - 2026-08-20 10:32  wip: scratch note
 - 2026-08-20 15:28  wip: progress note
 - 2026-08-20 22:04  chore: tweak
+- 2026-08-22 16:37  docs: progress log
