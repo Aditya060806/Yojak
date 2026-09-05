@@ -304,3 +304,4 @@
 - 2026-09-02 13:08  wip: scratch note
 - 2026-09-04 09:49  chore: notes update
 - 2026-09-05 15:31  docs: progress log
+- 2026-09-05 17:44  docs: addendum
