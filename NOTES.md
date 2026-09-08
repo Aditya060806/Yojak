@@ -306,3 +306,4 @@
 - 2026-09-05 15:31  docs: progress log
 - 2026-09-05 17:44  docs: addendum
 - 2026-09-07 17:18  chore: bookkeeping
+- 2026-09-08 21:49  chore: tidy up
