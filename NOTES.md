@@ -315,3 +315,4 @@
 - 2026-09-13 22:26  refactor: minor cleanup
 - 2026-09-14 19:03  wip: iteration
 - 2026-09-15 12:07  wip: iteration
+- 2026-09-15 14:14  chore: tidy up
