@@ -321,3 +321,4 @@
 - 2026-09-16 15:58  chore: progress
 - 2026-09-17 16:28  refactor: minor cleanup
 - 2026-09-17 18:10  chore: log update
+- 2026-09-18 13:25  docs: clarify note
