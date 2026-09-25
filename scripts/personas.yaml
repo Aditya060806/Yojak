@@ -1,0 +1,54 @@
+# Demo personas for scripts/demo.py.
+# These are ILLUSTRATIVE people written by the Yojak team to exercise each view; they are
+# not real users. Their outputs come from the real pipeline artifacts.
+
+- id: tier3-fresher
+  name: "Tier-3 fresher (Hindi input)"
+  view: student
+  story: >
+    A commerce graduate in a Tier-3 town in Uttar Pradesh types her skills in Hindi and wants
+    to know which roles fit and which 3 skills would open the most fresher postings near home.
+  request:
+    text: "मुझे एक्सेल, टैली, डेटा एंट्री और अकाउंटिंग आती है। थोड़ी अंग्रेज़ी में बात कर सकती हूँ, ग्राहक सेवा का अनुभव है।"
+    tiers: [2, 3]
+    exp_bands: ["0-1"]
+    limit: 10
+  plan:
+    k: 3
+    tau: 0.6
+    budget: 3.0
+
+- id: career-switcher
+  name: "Mid-career switcher (English input)"
+  view: student
+  story: >
+    A mechanical engineer with 6 years in manufacturing quality wants to move into data
+    analysis and asks for the smallest set of skills that opens the most analyst postings.
+  request:
+    text: >
+      Quality engineering, root cause analysis, Six Sigma, statistical process control,
+      Microsoft Excel, AutoCAD, supplier audits, ISO 9001, lean manufacturing, team leadership
+    exp_bands: ["3-6", "6-10"]
+    limit: 10
+  plan:
+    target_isco2: "25"
+    k: 3
+    tau: 0.6
+
+- id: placement-cell
+  name: "College placement cell (syllabus coverage)"
+  view: institution
+  story: >
+    A BCA placement officer pastes the course list of their programme and asks how much of
+    what ICT employers in Tier-2/3 cities ask for is taught, and what is missing.
+  syllabus_note: >
+    Course titles typical of an Indian BCA programme, written for this demo. Not an official
+    AICTE or university document: replace with your own syllabus PDF in the Institution view.
+  request:
+    text: >
+      Programming in C; Data Structures; Object Oriented Programming using Java;
+      Database Management Systems; SQL; Operating Systems; Computer Networks;
+      Software Engineering; Web Technologies: HTML, CSS, JavaScript; Python Programming;
+      Discrete Mathematics; Computer Organisation; Business Communication; Statistics
+    isco2: "25"
+    tiers: [2, 3]

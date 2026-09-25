@@ -1,0 +1,337 @@
+conceptType,conceptUri,code,preferredLabel,status,altLabels,inScheme,description
+ISCOGroup,http://data.europa.eu/esco/isco/C2,2,Professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Professionals increase the existing stock of knowledge; apply scientific or artistic concepts and theories; teach about the foregoing in a systematic manner; or engage in any combination of these activities. Competent performance in most occupations in this major group requires skills at the fourth ISCO skill level.
+Tasks performed by professionals usually include: conducting analysis and research, and developing concepts, theories and operational methods; advising on or applying existing knowledge related to physical sciences, mathematics, engineering and technology, life sciences, medical and health services, social sciences and humanities; teaching the theory and practice of one or more disciplines at different educational levels; teaching and educating persons with learning difficulties or special needs; providing various business, legal and social services; creating and performing works of art; providing spiritual guidance; preparing scientific papers and reports. Supervision of other workers may be included.
+Occupations in this major group are classified into the following sub-major groups:
+21 Science and Engineering Professionals
+22 Health Professionals
+23 Teaching Professionals
+24 Business and Administration Professionals
+25 Information and Communications Technology Professionals
+26 Legal, Social and Cultural Professionals."
+ISCOGroup,http://data.europa.eu/esco/isco/C21,21,Science and engineering professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Science and engineering professionals conduct research; improve or develop concepts, theories and operational methods; or apply scientific knowledge relating to fields such as physics, astronomy, meteorology, chemistry, geophysics, geology, biology, ecology, pharmacology, medicine, mathematics, statistics, architecture, engineering, design and technology. Competent performance in most occupations in this sub-major group requires skills at the fourth ISCO skill level.
+Tasks performed by workers in this sub-major group usually include: conducting research, enlarging, advising on or applying scientific knowledge obtained through the study of structures and properties of physical matter and phenomena, chemical characteristics and processes of various substances, materials and products, all forms of human, animal and plant life and of mathematical and statistical concepts and methods; advising on, designing and directing construction of buildings, towns and traffic systems, or civil engineering and industrial structures, as well as machines and other equipment; advising on and applying mining methods and ensuring their optimum use; surveying land and sea and making maps; studying and advising on technological aspects of particular materials, products and processes, and on efficiency of production and work organization; preparing scientific papers and reports. Supervision of other workers may be included.
+Occupations in this sub-major group are classified into the following minor groups:
+211 Physical and Earth Science Professionals
+212 Mathematicians, Actuaries and Statisticians
+213 Life Science Professionals 214 Engineering Professionals (excluding Electrotechnology)
+215 Electrotechnology Engineers
+216 Architects, Planners, Surveyors and Designers."
+ISCOGroup,http://data.europa.eu/esco/isco/C214,214,Engineering professionals (excluding electrotechnology),released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Engineering professionals (excluding electrotechnology) design, plan and organize the testing, construction, installation and maintenance of structures, machines and their components, and production systems and plants; and plan production schedules and work procedures to ensure that engineering projects are undertaken safely, efficiently and in a cost-effective manner.
+Tasks performed usually include: planning and designing chemical process systems, civil engineering projects, mechanical equipment and systems, mining and drilling operations, and other engineering projects; specifying and interpreting drawings and plans, and determining construction methods; supervising the construction of structures, water and gas supply and transportation systems, and the manufacture, installation, operation and maintenance of equipment, machines and plant; organizing and managing project labour and the delivery of materials, plant and equipment; estimating total costs and preparing detailed cost plans and estimates as tools for budgetary control; resolving design and operational problems in the various fields of engineering through the application of engineering technology.
+Occupations in this minor group are classified into the following unit groups: 2141 Industrial and Production Engineers
+2142 Civil Engineers
+2143 Environmental Engineers
+2144 Mechanical Engineers
+2145 Chemical Engineers
+2146 Mining Engineers, Metallurgists and Related Professionals
+2149 Engineering Professionals Not Elsewhere Classified."
+ISCOGroup,http://data.europa.eu/esco/isco/C2142,2142,Civil engineers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Civil engineers conduct research, advise on, design, and direct construction; manage the operation and maintenance of civil engineering structures; or study and advise on technological aspects of particular materials.
+Tasks include -
+(a) conducting research and developing new or improved theories and methods related to civil engineering;
+(b) advising on and designing structures such as bridges, dams, docks, roads, airports, railways, canals, pipelines, waste-disposal and flood-control systems, and industrial and other large buildings;
+(c) determining and specifying construction methods, materials and quality standards, and directing construction work;
+(d) establishing control systems to ensure efficient functioning of structures as well as safety and environmental protection;
+(e) organizing and directing maintenance and repair of existing civil engineering structures;
+(f) analysing the behaviour of soil and rock when placed under pressure by proposed structures and designing structural foundations;
+(g) analysing the stability of structures and testing the behaviour and durability of materials used in their construction.
+Examples of the occupations classified here:
+- Civil engineer
+- Geotechnical engineer - Structural engineer
+Some related occupations classified elsewhere:
+- Civil engineering project manager - 1323
+- Geoscientist - 2114
+- Metallurgist - 2146
+- Mining engineer - 2146
+- Town and traffic planners - 2164."
+ISCOGroup,http://data.europa.eu/esco/isco/C22,22,Health professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Health professionals conduct research,; improve or develop concepts, theories and operational methods; and apply scientific knowledge relating to medicine, nursing, dentistry, veterinary medicine, pharmacy, and promotion of health. Competent performance in most occupations in this sub-major group requires skills at the fourth ISCO skill level.
+Tasks performed by workers in this sub-major group usually include: conducting research and obtaining scientific knowledge through the study of human and animal disorders and illnesses and ways of treating them; advising on or applying preventive and curative measures, or promoting health; preparing scientific papers and reports. Supervision of other workers may be included.
+Occupations in this sub-major group are classified into the following minor groups:
+221 Medical Doctors
+222 Nursing and Midwifery Professionals
+223 Traditional and Complementary Medicine Professionals
+224 Paramedical Practitioners
+225 Veterinarians
+226 Other Health Professionals
+Note
+In using ISCO in applications that seek to identify, describe or measure the health workforce, it should be noted that a number of professions considered to be a part of the health workforce are classified in groups other than Sub-major Group 22: Health Professionals. Such occupations include but are not restricted to: addictions counsellors, biomedical engineers, clinical psychologists and medical physicists."
+ISCOGroup,http://data.europa.eu/esco/isco/C222,222,Nursing and midwifery professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Nursing and midwifery professionals provide treatment and care services for people who are physically or mentally ill, disabled or infirm, and others in need of care due to potential risks to health including before, during and after childbirth. They assume responsibility for the planning, management and evaluation of the care of patients, including the supervision of other health care workers, working autonomously or in teams with medical doctors and others in the practical application of preventive and curative measures.
+Tasks performed usually include: assessing, planning, providing and evaluating nursing and midwifery care for patients according to the practice and standards of modern nursing and midwifery; coordinating the care of patients in consultation with other health professionals and members of health teams; developing and implementing care plans, treatments and therapies, including administering medications; monitoring and alleviating pain and discomfort experienced by patients using a variety of therapies, including the use of painkilling drugs; monitoring patients’ health condition, including progress of pregnancy and responses to curative treatment; providing information to patients, families and communities about a range of health issues, including prevention of illness, treatment and care, pregnancy and childbirth and other topics; supervising and coordinating the work of other health care workers; conducting research on nursing and midwifery practice and preparing scientific papers and reports.
+Occupations in this minor group are classified into the following unit groups:
+2221 Nursing Professionals
+2222 Midwifery Professionals
+Note
+The distinctions between nursing and midwifery professionals and associate professionals should be made on the basis of the nature of the work performed in relation to the tasks specified in this definition and in the relevant unit group definitions. The qualifications held by individuals or that predominate in the country are not the main factor in making this distinction, as training arrangements for nurses and midwives vary widely between countries and have varied over time within countries."
+ISCOGroup,http://data.europa.eu/esco/isco/C2221,2221,Nursing professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Nursing professionals provide treatment, support and care services for people who are in need of nursing care due to the effects of ageing, injury, illness or other physical or mental impairment, or potential risks to health. They assume responsibility for the planning and management of the care of patients, including the supervision of other health care workers, working autonomously or in teams with medical doctors and others in the practical application of preventive and curative measures.
+Tasks include -
+(a) planning, providing and evaluating nursing care for patients according to the practice and standards of modern nursing; (b) coordinating the care of patients in consultation with other health professionals and members of health teams; (c) developing and implementing care plans for the biological, social and psychological treatment of patients in collaboration with other health professionals; (d) planning and providing personal care, treatments and therapies including administering medications, and monitoring responses to treatment or care plan;
+(e) cleaning wounds and applying surgical dressings and bandages;
+(f) monitoring pain and discomfort experienced by patients and alleviating pain using a variety of therapies, including the use of painkilling drugs; (g) planning and participating in health education programmes, health promotion and nurse education activities in clinical and community settings; (h) answering questions from patients and families and providing information about prevention of ill-health, treatment and care; (i) supervising and coordinating the work of other nursing, health and personal care workers; (j) conducting research on nursing practices and procedures and disseminating findings such as through scientific papers and reports.
+Examples of the occupations classified here:
+- Clinical nurse consultant
+- District nurse
+- Nurse anaesthetist
+- Nurse educator
+- Nurse practitioner
+- Operating theatre nurse
+- Professional nurse
+- Public health nurse
+- Specialist nurse
+Some related occupations classified elsewhere:
+- Professional midwife - 2222
+- Paramedical practitioners - 2240
+- University lecturer - 2310
+- Vocational education teacher - 2320
+- Associate professional nurse - 3221
+- Associate professional midwife - 3222
+- Nursing aide (clinic or hospital) - 5321
+Notes
+The distinction between professional and associate professional nurses should be made on the basis of the nature of the work performed in relation to the tasks specified in this definition. The qualifications held by individuals or that predominate in the country are not the main factor in making this distinction, as training arrangements for nurses vary widely between countries and have varied over time within countries.
+Nurses who combine nursing education or research with clinical nursing practice are classified in Unit Group 2221: Nursing Professionals. Nursing researchers who participate in biomedical research using living organisms and do not undertake clinical nursing practice are classified in Unit Group 2131: Biologists, Botanists, Zoologists and Related Professionals."
+ISCOGroup,http://data.europa.eu/esco/isco/C23,23,Teaching professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Teaching professionals teach the theory and practice of one or more disciplines at different educational levels; conduct research; improve or develop concepts, theories and operational methods pertaining to their particular discipline; and prepare scholarly papers and books. Competent performance in most occupations in this sub-major group requires skills at the fourth ISCO skill level.
+Tasks performed by workers in this sub-major group usually include: conducting classes, courses, or tutorials at a particular educational level for educational and vocational purposes, including private lessons; conducting adult literacy programmes; teaching and educating persons with learning difficulties or special needs; designing and modifying curricula; inspecting and advising on teaching methods and aids; participating in decisions concerning the organization of teaching and related activities at schools and universities; conducting research in particular subjects to improve or develop concepts, theories or operational methods for application in industrial and other fields; preparing scholarly papers and books. Supervision of other workers may be included.
+Occupations in this sub-major group are classified into the following minor group:
+231 University and Higher Education Teachers
+232 Vocational Education Teachers
+233 Secondary Education Teachers 234 Primary School and Early Childhood Teachers
+235 Other Teaching Professionals."
+ISCOGroup,http://data.europa.eu/esco/isco/C234,234,Primary school and early childhood teachers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Primary school and early childhood teachers teach a range of subjects at the primary level of education and organize educational activities for children below primary school age.
+Tasks performed usually include: preparing programmes of learning and giving instruction in a range of subjects at the primary education level, planning and organizing activities designed to facilitate children’s development of language, physical and social skills; preparing reports. Supervision of other workers may be included.
+Occupations in this minor group are classified into the following unit groups:
+2341 Primary School Teachers
+2342 Early Childhood Educators."
+ISCOGroup,http://data.europa.eu/esco/isco/C2341,2341,Primary school teachers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Primary school teachers teach a range of subjects at the primary education level.
+Tasks include -
+(a) preparing daily and longer term lesson plans in accordance with curriculum guidelines;
+(b) instructing children individually and in groups, using various teaching methods and materials (e.g. computers, books, games), adapting to children’s varying needs;
+(c) maintaining discipline and good working habits in the classroom;
+(d) planning and conducting activities with the children such as sporting activities, concerts and excursions;
+(e) assigning and grading class work and homework;
+(f) preparing, administering and grading tests and assignments to evaluate children’s progress;
+(g) observing and evaluating children’s performance and behaviour;
+(h) supervising children during classes and at other times in the school day, including the playground during breaks;
+(i) participating in staff meetings and other sessions, and conferring with other teachers concerning educational issues;
+(j) preparing for and attending parent meetings to discuss children’s progress and problems.
+Example of the occupations classified here:
+- Primary school teacher
+Some related occupations classified elsewhere:
+- Head teacher - 1345
+- School principal - 1345
+- Schools inspector - 2351."
+ISCOGroup,http://data.europa.eu/esco/isco/C24,24,Business and administration professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Business and administration professionals perform analytical, conceptual and practical tasks to provide services in financial matters, human resource development, public relations, marketing and sales in the technical, medical, information and communications technology areas; and conduct reviews of organizational structures, methods and systems as well as quantitative analyses of information affecting investment programmes. Competent performance in most occupations in this sub-major group requires skills at the fourth ISCO skill level.
+Tasks performed by workers in this sub-major group usually include: collecting, analysing and interpreting information on the financial viability, cost structures and trading effectiveness of organizations; conducting audits, preparing financial statements and controlling treasury systems for organizations; developing and reviewing financial plans and strategies, executing buy and sell orders, and negotiating the purchase and sale of commodities; developing, implementing and evaluating staff recruitment, training and development programmes; researching, developing and implementing marketing and public relations campaigns; studying and developing methods and policies to improve and promote government and business operations and effectiveness; acquiring and updating knowledge of employers’ and competitors’ goods and services, and of market conditions; assessing customers’ needs and explaining and demonstrating goods and services to them.
+Occupations in this sub-major group are classified into the following minor group:
+241 Finance Professionals
+242 Administration Professionals
+243 Sales, Marketing and Public Relations Professionals."
+ISCOGroup,http://data.europa.eu/esco/isco/C241,241,Finance professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Finance professionals plan, develop, organize, administer, invest, manage and conduct quantitative analyses of either financial accounting systems or funds for individuals, establishments and public or private institutions.
+Tasks performed usually include: preparing and organizing financial statements for an organization; reviewing financial materials of an organization; providing financial advice to individuals and organizations; preparing analytic reports concerning segments of the economy and the economy as a whole.
+Occupations in this minor group are classified into the following unit groups:
+2411 Accountants
+2412 Financial and Investment Advisers
+2413 Financial Analysts."
+ISCOGroup,http://data.europa.eu/esco/isco/C2411,2411,Accountants,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Accountants plan, organize and administer accounting systems for individuals and establishments. Some occupations classified here examine and analyse the accounting and financial records of individuals and establishments to ensure accuracy and compliance with established accounting standards and procedures.
+Tasks include -
+(a) advising on, planning and installing budgetary, accounts controlling and other accounting policies and systems;
+(b) preparing and certifying financial statements for presentation to management, shareholders and statutory or other bodies;
+(c) preparing tax returns, advising on taxation problems and contesting disputed claims before tax officials;
+(d) preparing or reporting on profit forecasts and budgets;
+(e) conducting financial investigations in such matters as suspected fraud, insolvency and bankruptcy;
+(f) auditing accounts and bookkeeping records;
+(g) conducting investigations and advising management on financial aspects of productivity, stockholdings, sales, new products, etc.;
+(h) devising and controlling systems to determine unit cost of products and services.
+Examples of the occupations classified here: - Accountant
+- Auditor
+- Certified accountant - Chartered accountant
+- Financial controller
+- Insolvency trustee
+- Management accountant
+- Tax accountant
+Some related occupations classified elsewhere:
+- Finance manager - 1211
+- Accounting assistant - 3313
+- Bookkeeper - 3313."
+ISCOGroup,http://data.europa.eu/esco/isco/C25,25,Information and communications technology professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Information and communications technology professionals conduct research; plan, design, write, test, provide advice and improve information technology systems, hardware, software and related concepts for specific applications; develop associated documentation including principles, policies and procedures; and design, develop, control, maintain and support databases and other information systems to ensure optimal performance and data integrity and security.
+Tasks performed by workers in this sub-major group usually include: researching information technology use in business functions; identifying areas for improvement and researching the theoretical aspects and operational methods for the use of computers; evaluating, planning and designing hardware or software configurations for specific applications including for Internet, Intranet and multimedia systems; designing, writing, testing and maintaining computer programs; designing and developing database architecture and database management systems; developing and implementing security plans and data administration policy, and administering computer networks and related computing environments; analysing, developing, interpreting and evaluating complex system design and architecture specifications, data models and diagrams in the development, configuration and integration of computer systems.
+Occupations in this sub-major group are classified into the following minor groups:
+251 Software and Applications Developers and Analysts
+252 Database and Network Professionals."
+ISCOGroup,http://data.europa.eu/esco/isco/C251,251,Software and applications developers and analysts,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Software and applications developers and analysts conduct research; plan, design, write, test, provide advice on and improve information technology systems such as hardware, software and other applications to meet specific requirements. Competent performance in most occupations in this sub-major group requires skills at the fourth ISCO skill level.
+Tasks performed usually include: researching information technology use in business functions and identifying areas in which improvements could be made to maximize effectiveness and efficiency; conducting research into the theoretical aspects of and operational methods for the use of computers; evaluating, planning and designing hardware or software configurations for specific applications; designing, writing, testing and maintaining computer programs for specific requirements; evaluating, planning and designing Internet, Intranet and multimedia systems.
+Occupations in this minor group are classified into the following unit groups:
+2511 Systems Analysts 2512 Software Developers
+2513 Web and Multimedia Developers 2514 Applications Programmers
+2519 Software and Applications Developers and Analysts Not Elsewhere Classified."
+ISCOGroup,http://data.europa.eu/esco/isco/C2511,2511,Systems analysts,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Systems analysts conduct research, analyse and evaluate client information technology requirements, procedures or problems, and develop and implement proposals, recommendations, and plans to improve current or future information systems.
+Tasks include -
+(a) consulting with users to formulate document requirements and with management to ensure agreement on systems principles;
+(b) identifying and analysing business processes, procedures and work practices;
+(c) identifying and evaluating inefficiencies and recommending optimal business practices and system functionality and behaviour;
+(d) taking responsibility for deploying functional solutions, such as creating, adopting and implementing system test plans;
+(e) developing functional specifications for use by systems developers;
+(f) expanding or modifying systems to improve workflow or serve new purposes;
+(g) coordinating and linking the computer systems within an organization to increase compatibility.
+Examples of the occupations classified here: - Business analyst (IT)
+- Computer scientist
+- Information systems analyst
+- Systems consultant
+- Systems designer (IT)
+Some related occupations classified elsewhere:
+- Systems administrator (computers) - 2522
+- Communications analyst (computers) - 2523
+- Network analyst - 2523."
+ISCOGroup,http://data.europa.eu/esco/isco/C2512,2512,Software developers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Software developers research, analyse and evaluate requirements for existing or new software applications and operating systems, and design, develop, test and maintain software solutions to meet these requirements.
+Tasks include -
+(a) researching, analysing and evaluating requirements for software applications and operating systems;
+(b) researching, designing and developing computer software systems;
+(c) consulting with engineering staff to evaluate interfaces between hardware and software;
+(d) developing and directing software testing and validation procedures;
+(e) modifying existing software to correct errors, to adapt it to new hardware or to upgrade interfaces and improve performance;
+(f) directing software programming and development of documentation;
+(g) assessing, developing, upgrading and documenting maintenance procedures for operating systems, communications environments and applications software;
+(h) consulting with customers concerning maintenance of software systems.
+Examples of the occupations classified here:
+- Programmer analyst
+- Software designer - Software developer
+- Software engineer
+Some related occupations classified elsewhere:
+- Applications programmers - 2514."
+ISCOGroup,http://data.europa.eu/esco/isco/C2513,2513,Web and multimedia developers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Web and multimedia development professionals combine design and technical knowledge to research, analyse, evaluate, design, program and modify websites and applications that draw together text, graphics, animations, imaging, audio and video displays and other interactive media.
+Tasks include -
+(a) analysing, designing and developing Internet sites by applying a mixture of artistry and creativity with software programming and scripting languages and interfacing with operating environments;
+(b) designing and developing digital animations, imaging, presentations, games, audio and video clips and Internet applications using multimedia software, tools and utilities, interactive graphics and programming languages;
+(c) communicating with network specialists regarding web-related issues such as security and hosting websites, to control and enforce Internet and web server security, space allocation, user access, business continuity, website backup and disaster recovery planning; (d) designing, developing and integrating computer code with other specialized inputs such as image files, audio files and scripting languages, to produce, maintain and support websites;
+(e) assisting in analysing, specifying and developing Internet strategies, web-based methodologies and development plans.
+Examples of the occupations classified here:
+- Animation programmer
+- Computer games programmer
+- Internet developer - Multimedia programmer
+- Website architect
+- Website developer
+Some related occupations classified elsewhere:
+- Website designer - 2166 - Webmaster - 3514
+- Website administrator - 3514
+- Website technician - 3514."
+ISCOGroup,http://data.europa.eu/esco/isco/C252,252,Database and network professionals,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Database and network professionals design, develop, control, maintain and support the optimal performance and security of information technology systems and infrastructure, including databases, hardware and software, networks and operating systems.
+Tasks performed usually include: designing and developing database architecture, data structures, dictionaries and naming conventions for information systems projects; designing, constructing, modifying, integrating, implementing and testing database management systems; developing and implementing security plans, data administration policy, documentation and standards; maintaining and administering computer networks and related computing environments; analysing, developing, interpreting and evaluating complex system design and architecture specifications, data models and diagrams in the development, configuration and integration of computer systems.
+Occupations in this minor group are classified into the following unit groups:
+2521 Database Designers and Administrators
+2522 Systems Administrators
+2523 Computer Network Professionals
+2529 Database and Network Professionals Not Elsewhere Classified."
+ISCOGroup,http://data.europa.eu/esco/isco/C2521,2521,Database designers and administrators,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Database designers and administrators design, develop, control, maintain and support the optimal performance and security of databases.
+Tasks include -
+(a) designing and developing database architecture, data structures, tables, dictionaries and naming conventions for information systems projects;
+(b) designing, constructing, modifying, integrating, implementing and testing database management systems;
+(c) conducting research and providing advice on the selection, application and implementation of database management tools;
+(d) developing and implementing data administration policy, documentation, standards and models;
+(e) developing policies and procedures for database access and usage and for the backup and recovery of data;
+(f) performing the operational establishment and preventive maintenance of backups, recovery procedures, and enforcing security and integrity controls.
+Examples of the occupations classified here:
+- Data administrator - Database administrator - Database analyst
+- Database architect
+Some related occupations classified elsewhere:
+- Network administrator - 2522
+- Systems administrator (computers) - 2522
+- Webmaster - 3514
+- Website administrator - 3514."
+ISCOGroup,http://data.europa.eu/esco/isco/C5,5,Service and sales workers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Services and sales workers provide personal and protective services related to travel, housekeeping, catering, personal care, protection against fire and unlawful acts; or demonstrate and sell goods in wholesale or retail shops and similar establishments, as well as at stalls and on markets. Competent performance in most occupations in this major group requires skills at the second ISCO skill level.
+Tasks performed by services and sales workers usually include: organizing and providing services during travel; housekeeping; preparing and serving of food and beverages; caring for children; providing personal and basic health care at homes or in institutions, as well as hairdressing, beauty treatment and companionship; telling fortunes; embalming and arranging funerals; providing security services and protecting individuals and property against fire and unlawful acts; enforcing of law and order; posing as models for advertising, artistic creation and display of goods; selling goods in wholesale or retail establishments, as well as at stalls and on markets; and demonstrating goods to potential customers. Supervision of other workers may be included.
+Occupations in this major group are classified into the following sub-major groups:
+51 Personal Services Workers
+52 Sales Workers
+53 Personal Care Workers
+54 Protective Services Workers."
+ISCOGroup,http://data.europa.eu/esco/isco/C52,52,Sales workers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Sales workers sell and demonstrate goods in wholesale or retail shops, at stalls and markets, door-to-door, via telephone or customer contact centres. They may record and accept payment for goods and services purchased, and may operate small retail outlets. Competent performance in most occupations in this sub-major group requires skills at the second ISCO skill level.
+Tasks performed by workers in this sub-major group usually include: selling goods in wholesale or retail establishments, at street or market stalls, door-to-door, via telephone or customer contact centres; demonstrating and displaying goods to potential customers; selling and serving food for immediate consumption at counters and in the street; buying or contracting a regular supply of products to be sold; stacking and displaying goods for sale and wrapping or packing goods sold; determining product mix, stock and price levels for goods to be sold; operating cash registers, optical price scanners, computers or other equipment to record and accept payment for the purchase of goods and services. Supervision of other workers may be required in some occupations classified here.
+Occupations in this sub-major group are classified into the following minor groups:
+521 Street and Market Salespersons
+522 Shop Salespersons
+523 Cashiers and Ticket Clerks
+524 Other Sales Workers
+Note
+Shop managers and sales managers are classified in Major Group 1: Managers. Technical, medical and information and communications technology sales professionals are classified in Major Group 2: Professionals. Commercial sales and insurance representatives, finance and trade brokers, are classified in Major Group 3: Technicians and Associate Professionals. Street vendors (excluding food) are classified in Major Group 9: Elementary Occupations."
+ISCOGroup,http://data.europa.eu/esco/isco/C522,522,Shop salespersons,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Shop salespersons sell a range of goods and services directly to the public or on behalf of retail and wholesale establishments. They explain the functions and qualities of these goods and services, and may operate small shops or supervise the activities of shop sales assistants and cashiers.
+Tasks performed usually include: determining customer requirements and advising on product range, price, delivery, warranties and product use and care; demonstrating, explaining and selling goods and services to customers; accepting payment for good and services by a variety of payment methods, and preparing sales invoices; undertaking or assisting with the ongoing management of stock such as product inventories, and participating in stock takes; stacking and displaying goods for sale, and wrapping and packing goods sold; determining product mix, stock and price levels for goods to be sold; supervising and coordinating the activities of shop sales assistants, checkout operators and other workers in supermarkets and department stores.
+Occupations in this minor group are classified into the following unit groups:
+5221 Shopkeepers
+5222 Shop Supervisors
+5223 Shop Sales Assistants."
+ISCOGroup,http://data.europa.eu/esco/isco/C5223,5223,Shop sales assistants,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Shop sales assistants sell a range of goods and services directly to the public or on behalf of retail and wholesale establishments, and explain the functions and qualities of these goods and services.
+Tasks include -
+(a) determining customer requirements and advising on product range, price, delivery, warranties and product use and care; (b) demonstrating and explaining to customers the establishment’s goods and services; (c) selling goods and services, accepting payment by a variety of payment methods, preparing sales invoices and recording sales using cash registers; (d) assisting with the ongoing management of stock such as product inventories, and participating in stock takes; (e) stacking and displaying goods for sale, and wrapping and packing goods sold.
+Examples of the occupations classified here:
+- Salesperson (retail establishment)
+- Salesperson (wholesale establishment)
+- Shop assistant
+Some related occupations classified elsewhere:
+- Shop manager - 1420
+- Kiosk salesperson - 5211
+- Market salesperson - 5211
+- Street stall salesperson - 5211
+- Street food vendor - 5212
+- Shopkeeper - 5221
+- Checkout operator - 5230
+- Food service counter attendant - 5246."
+ISCOGroup,http://data.europa.eu/esco/isco/C7,7,Craft and related trades workers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Craft and related trades workers apply specific technical and practical knowledge and skills to construct and maintain buildings; form metal; erect metal structures; set machine tools or make, fit, maintain and repair machinery, equipment or tools; carry out printing work; and produce or process foodstuffs, textiles, wooden, metal and other articles, including handicraft goods. Competent performance in most occupations in this major group requires skills at the second ISCO skill level.
+The work is carried out by hand and by hand-powered and other tools which are used to reduce the amount of physical effort and time required for specific tasks, as well as to improve the quality of the products. The tasks call for an understanding of all stages of the production process, the materials and tools used, and the nature and purpose of the final product. Tasks performed by craft and related trades workers usually include: constructing, maintaining and repairing buildings and other structures; casting, welding and shaping metal; installing and erecting heavy metal structures, tackle and related equipment; making machinery, tools, equipment and other metal articles; setting for operators, or setting and operating various machine tools; fitting, maintaining and repairing industrial machinery, engines, vehicles, electrical and electronic instruments and other equipment; making precision instruments, jewellery, household and other precious metal articles, pottery, glass and related products; producing handicrafts; executing printing work; producing and processing foodstuffs and various articles made of wood, textiles, leather and related materials. Supervision of other workers may be included. Self-employed craft and related trades workers, who operate their own businesses either independently or with assistance from a small number of others, may also perform a range of tasks associated with management of the business, account and record keeping and client service, although such tasks would not normally comprise the major component of the work.
+Occupations in this major group are classified into the following sub-major groups:
+71 Building and Related Trades Workers (excluding electricians)
+72 Metal, Machinery and Related Trades Workers
+73 Handicraft and Printing Workers
+74 Electrical and Electronics Trades Workers
+75 Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers."
+ISCOGroup,http://data.europa.eu/esco/isco/C74,74,Electrical and electronic trades workers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Electrical and electronics trades workers install, fit and maintain electrical wiring systems and machinery and other electrical apparatus, electrical transmission and supply lines and cables, and electronic and telecommunications equipment and systems. Competent performance in most occupations in this sub-major group requires skills at the second ISCO skill level.
+The work is carried out by hand and by hand-powered and other tools which are used to reduce the amount of physical effort and time required for specific tasks, as well as to improve the quality of the products. The tasks call for an understanding of the work organization, materials and tools used, and the nature and purpose of the final product.
+Tasks performed by workers in this sub-major group usually include: installing, maintaining, fitting and adjusting electrical and electronic wiring systems, machinery and equipment; examining blueprints, wiring diagrams and specifications to determine sequences and methods of operation; inspecting and testing electrical and electronic systems, equipment, cables and machinery to identify hazards, defects and the need for adjustment or repair; installing, maintaining and repairing electrical and telecommunications transmission lines; joining electrical, telecommunications and data cables; maintaining, troubleshooting, fitting, adjusting, testing and repairing electronic equipment such as commercial and office machines, electronic instruments and control systems, computers, and telecommunications and data transmission equipment.
+Occupations in this sub-major group are classified into the following minor groups:
+741 Electrical Equipment Installers and Repairers
+742 Electronics and Telecommunications Installers and Repairers."
+ISCOGroup,http://data.europa.eu/esco/isco/C741,741,Electrical equipment installers and repairers,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Electrical equipment installers and repairers install, fit and maintain electrical wiring systems and related equipment, electrical machinery and other electrical apparatus and electrical transmission and supply lines and cables.
+Tasks performed usually include: installing, maintaining, fitting and adjusting electrical wiring systems, machinery and equipment; examining blueprints, wiring diagrams and specifications to determine sequences and methods of operation; inspecting and testing electrical systems, equipment, cables and machinery to identify hazards, defects and the need for adjustment or repair; installing, maintaining and repairing electrical transmission lines; joining electrical cables.
+Occupations in this minor group are classified into the following unit groups: 7411 Building and Related Electricians
+7412 Electrical Mechanics and Fitters
+7413 Electrical Line Installers and Repairers."
+ISCOGroup,http://data.europa.eu/esco/isco/C7411,7411,Building and related electricians,released,,"http://data.europa.eu/esco/concept-scheme/occupations,
+http://data.europa.eu/esco/concept-scheme/isco","Building and related electricians install, maintain and repair electrical wiring systems and related equipment and fixtures.
+Tasks include -
+(a) installing, maintaining and repairing electrical wiring systems and related equipment in various buildings such as schools, hospitals, commercial establishments, residential buildings and other structures;
+(b) examining blueprints, wiring diagrams and specifications to determine sequences and methods of operation;
+(c) planning layout and installation of electrical wiring, equipment and fixtures, based on job specifications and relevant standards; (d) inspecting electrical systems, equipment, and components to identify hazards, defects, and the need for adjustment or repair;
+(e) selecting, cutting and connecting wire and cable to terminals and connectors;
+(f) measuring and laying out installation reference points;
+(g) positioning and installing electrical switchboards;
+(h) testing continuity of circuits.
+Examples of the occupations classified here:
+- Building repairs electrician
+- Electrician
+Some related occupations classified elsewhere:
+- Electrical fitter - 7412
+- Electrical mechanic - 7412
+- Electrical line installer - 7413."

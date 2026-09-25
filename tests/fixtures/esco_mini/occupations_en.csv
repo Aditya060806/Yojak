@@ -1,0 +1,143 @@
+conceptType,conceptUri,iscoGroup,preferredLabel,altLabels,hiddenLabels,status,modifiedDate,regulatedProfessionNote,scopeNote,definition,inScheme,description,code,naceCode
+Occupation,http://data.europa.eu/esco/occupation/03d79393-7b30-4159-945b-01963eddd302,2341,primary school teacher,"teacher in a primary school
+primary school music teacher
+teacher in primary education
+primary education teacher
+primary education professional
+music teacher primary school
+elementary school teacher
+educator in primary education
+primary school educator
+educator in primary school",,released,2024-01-16T13:49:51.515Z,http://data.europa.eu/esco/regulated-professions/unregulated,,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Primary school teachers instruct students on a primary school level. They develop lesson plans in line with curriculum objectives for the variety of subjects they teach, including mathematics, languages, nature studies and music. They monitor the students' learning development and evaluate their knowledge and skills on the subjects taught through tests. They build their course content on the students' knowledge of previous learnings and encourage them to deepen their understanding on the subjects they are interested in. They use class resources and teaching methods to create an inspiring learning environment. Primary school teachers also contribute to school events and communicate with parents and administrative staff.",2341.1,http://data.europa.eu/ux2/nace2.1/852
+Occupation,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,2511,data scientist,"data expert
+research data scientist
+data research scientist
+electromobility data scientist",,released,2025-04-11T11:38:25.534Z,http://data.europa.eu/esco/regulated-professions/unregulated,Excludes people performing engineering and programming activities. Excludes people performing managerial and general focus research activities.,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/8ae4b9f3-507e-4057-a145-2f96f0132613,
+http://data.europa.eu/esco/concept-scheme/occupations","Data scientists find and interpret rich data sources, manage large amounts of data, merge data sources, ensure consistency of data-sets, and create visualisations to aid in understanding data. They build mathematical models using data, present and communicate data insights and findings to specialists and scientists in their team and if required, to a non-expert audience, and recommend ways to apply the data.",2511.4,"http://data.europa.eu/ux2/nace2.1/621,
+http://data.europa.eu/ux2/nace2.1/622"
+Occupation,http://data.europa.eu/esco/occupation/4910419f-b4af-4f59-b544-9dbebc8a74f0,7411,electrician,"wirewoman
+installation electrician
+maintenance electrician
+electrical maintenance technician
+electrical systems installer
+electrical installer
+electrical services installer
+electrical worker
+electrical maintenance worker
+wireman
+large solar systems electrician",,released,2025-04-11T13:56:47.405Z,http://data.europa.eu/esco/regulated-professions/unregulated,,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Electricians fit and repair electrical circuits and wiring systems. They also install and maintain electrical equipment and machinery. This work can be performed indoors as well as outdoors, in nearly every type of facility.",7411.1,http://data.europa.eu/ux2/nace2.1/3314
+Occupation,http://data.europa.eu/esco/occupation/8c57af09-719c-42b3-be40-6ed4946236cc,2521,database administrator,"data base administrators
+database administrators
+data administrator
+DBA
+database configurator
+data base administrator
+data manager
+database manager",,released,2024-01-26T11:25:34.264Z,http://data.europa.eu/esco/regulated-professions/unregulated,Includes people performing managerial activities.,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Database administrators test, implement and administer computer databases. They use their expertise in database management systems to plan, coordinate and implement security measures to safeguard computer databases. They also use scripts and configuration files to tailor a database to users' needs.",2521.1,"http://data.europa.eu/ux2/nace2.1/621,
+http://data.europa.eu/ux2/nace2.1/631"
+Occupation,http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50,2221,nurse responsible for general care,"healthcare nurse
+district nurse
+learning disability nurse
+practice nurse
+mental health nurse
+adult nurse
+healthcarer
+ward sister
+ward nurse
+community staff nurse",,released,2024-01-22T12:16:31.411Z,http://data.europa.eu/esco/regulated-professions/regulated,,A nurse responsible for general care is a health care professional qualified to practise nursing both individually and in cooperation with others.,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Nurses responsible for general care are in charge of promoting and restoring patients` health by providing physical and psychological support to patients, friends, and families. They also supervise assigned team members.",2221.2,"http://data.europa.eu/ux2/nace2.1/8699,
+http://data.europa.eu/ux2/nace2.1/8692,
+http://data.europa.eu/ux2/nace2.1/861,
+http://data.europa.eu/ux2/nace2.1/8693,
+http://data.europa.eu/ux2/nace2.1/8696,
+http://data.europa.eu/ux2/nace2.1/871,
+http://data.europa.eu/ux2/nace2.1/8691,
+http://data.europa.eu/ux2/nace2.1/8695,
+http://data.europa.eu/ux2/nace2.1/8694"
+Occupation,http://data.europa.eu/esco/occupation/9ba74e8a-c40c-4228-9998-eb3c7a5c11df,5223,sales assistant,"department store sales assistant
+hypermarket sales assistant
+senior sales assistant
+supermarket sales assistant
+filling station sales assistant
+counter assistant
+seller
+outlet centre sales assistant
+saleswoman
+trainee sales assistant
+garden centre sales assistant",,released,2024-01-16T15:50:17.956Z,http://data.europa.eu/esco/regulated-professions/unregulated,,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations",Sales assistants represent the direct contact with clients. They provide general advice to customers.,5223.4,"http://data.europa.eu/ux2/nace2.1/471,
+http://data.europa.eu/ux2/nace2.1/474,
+http://data.europa.eu/ux2/nace2.1/472,
+http://data.europa.eu/ux2/nace2.1/475,
+http://data.europa.eu/ux2/nace2.1/477,
+http://data.europa.eu/ux2/nace2.1/476,
+http://data.europa.eu/ux2/nace2.1/473"
+Occupation,http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d,2513,web developer,"web application developer
+web developers
+web engineer
+web specialist
+web programmer",,released,2024-02-06T13:41:54.202Z,http://data.europa.eu/esco/regulated-professions/unregulated,,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Web developers develop, implement and document web-accessible software based on the designs provided. They align the client's web presence with its business strategy, troubleshoot software problems and issues and look for ways to improve the application.",2513.5,"http://data.europa.eu/ux2/nace2.1/621,
+http://data.europa.eu/ux2/nace2.1/622"
+Occupation,http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2,2511,data analyst,"battery data analyst
+mine electrification data analyst
+data warehouse analyst
+data warehousing analyst
+battery materials data analyst
+battery module performance data analyst
+business data analyst
+data storage analyst",,released,2025-04-11T11:27:25.66Z,http://data.europa.eu/esco/regulated-professions/unregulated,"Excludes people performing managerial, engineering, and programming activities.",,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Data analysts import, inspect, clean, transform, validate, model, or interpret collections of data with regard to the business goals of the company. They ensure that the data sources and repositories provide consistent and reliable data. Data analysts use different algorithms and IT tools as demanded by the situation and the current data. They might prepare reports in the form of visualisations such as graphs, charts, and dashboards.",2511.3,"http://data.europa.eu/ux2/nace2.1/621,
+http://data.europa.eu/ux2/nace2.1/622"
+Occupation,http://data.europa.eu/esco/occupation/d7d986e1-7333-431b-9719-0c5c6939e360,2142,civil engineer,"civil engineering adviser
+civil engineering specialist
+director of infrastructure projects
+harbour civil engineer
+civil engineering expert
+quality assurance civil engineer
+civil engineering researcher
+infrastructure project manager
+civil engineering consultant
+investments civil enginee",,released,2025-03-18T15:30:28.579Z,http://data.europa.eu/esco/regulated-professions/unregulated,,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/8ae4b9f3-507e-4057-a145-2f96f0132613,
+http://data.europa.eu/esco/concept-scheme/occupations","Civil engineers design, plan, and develop technical and engineering specifications for infrastructure and construction projects. They apply engineering knowledge in a vast array of projects, from the construction of infrastructure for transportation, housing projects, and luxury buildings, to the construction of natural sites. They design plans that seek to optimise materials and integrate specifications and resource allocation within the time constraints.",2142.1,"http://data.europa.eu/ux2/nace2.1/7112,
+http://data.europa.eu/ux2/nace2.1/F"
+Occupation,http://data.europa.eu/esco/occupation/eda0d957-3c3c-4139-b89a-a18bc9e18897,2411,accountant,"accounting technician
+bookkeeper
+accounting supervisor
+accounting officer
+certified public accountant
+financial accountant
+cost accountant
+auditor
+account auditor
+register accountant
+head financial accountant
+financial reporting accountant
+production accountant",,released,2023-12-01T16:16:58.018Z,http://data.europa.eu/esco/regulated-professions/unregulated,,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Accountants review and analyse financial statements, budgets, financial reports, and business plans in order to check for irregularities resulting from error or fraud, and provide their clients with financial advice in matters such as financial forecasting and risk analysis. They may audit financial data, resolve insolvency cases, prepare tax returns and provide other tax-related advice in reference to current legislation.",2411.1,http://data.europa.eu/ux2/nace2.1/692
+Occupation,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,2512,software developer,"application developer
+solutions developer
+electric vehicle software development engineer
+programmer
+application programmer
+software specialist
+application software developer
+software engineer
+applications engineer
+soft developer
+battery software developer
+software developers
+developer of software",,released,2025-04-11T12:22:06.198Z,http://data.europa.eu/esco/regulated-professions/unregulated,Includes people performing software design.,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","Software developers implement or program all kinds of software systems based on specifications and designs by using programming languages, tools, and platforms.",2512.4,"http://data.europa.eu/ux2/nace2.1/621,
+http://data.europa.eu/ux2/nace2.1/622"
+Occupation,http://data.europa.eu/esco/occupation/fe0fa514-b48d-4a53-9757-a283c0baacf0,2511,ICT business analyst,"requirement engineer
+business process specialist
+IT business analyst
+ICT business analysts",,released,2025-02-27T12:25:01.531Z,http://data.europa.eu/esco/regulated-professions/unregulated,Excludes people performing development activities.,,"http://data.europa.eu/esco/concept-scheme/member-occupations,
+http://data.europa.eu/esco/concept-scheme/occupations","ICT business analysts are in charge of analysing and designing an organisation's processes and systems, assessing the business model and its integration with technology. They also identify change needs, assess the impact of the change, capture and document requirements and then ensure that these requirements are delivered whilst supporting the business through the implementation process.",2511.9,"http://data.europa.eu/ux2/nace2.1/702,
+http://data.europa.eu/ux2/nace2.1/6392"

@@ -1,0 +1,38 @@
+conceptType,conceptUri,conceptLabel,broaderType,broaderUri,broaderLabel
+ISCOGroup,http://data.europa.eu/esco/isco/C21,Science and engineering professionals,ISCOGroup,http://data.europa.eu/esco/isco/C2,Professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C214,Engineering professionals (excluding electrotechnology),ISCOGroup,http://data.europa.eu/esco/isco/C21,Science and engineering professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C2142,Civil engineers,ISCOGroup,http://data.europa.eu/esco/isco/C214,Engineering professionals (excluding electrotechnology)
+ISCOGroup,http://data.europa.eu/esco/isco/C22,Health professionals,ISCOGroup,http://data.europa.eu/esco/isco/C2,Professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C222,Nursing and midwifery professionals,ISCOGroup,http://data.europa.eu/esco/isco/C22,Health professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C2221,Nursing professionals,ISCOGroup,http://data.europa.eu/esco/isco/C222,Nursing and midwifery professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C23,Teaching professionals,ISCOGroup,http://data.europa.eu/esco/isco/C2,Professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C234,Primary school and early childhood teachers,ISCOGroup,http://data.europa.eu/esco/isco/C23,Teaching professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C2341,Primary school teachers,ISCOGroup,http://data.europa.eu/esco/isco/C234,Primary school and early childhood teachers
+ISCOGroup,http://data.europa.eu/esco/isco/C24,Business and administration professionals,ISCOGroup,http://data.europa.eu/esco/isco/C2,Professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C241,Finance professionals,ISCOGroup,http://data.europa.eu/esco/isco/C24,Business and administration professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C2411,Accountants,ISCOGroup,http://data.europa.eu/esco/isco/C241,Finance professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C25,Information and communications technology professionals,ISCOGroup,http://data.europa.eu/esco/isco/C2,Professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C251,Software and applications developers and analysts,ISCOGroup,http://data.europa.eu/esco/isco/C25,Information and communications technology professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C2511,Systems analysts,ISCOGroup,http://data.europa.eu/esco/isco/C251,Software and applications developers and analysts
+ISCOGroup,http://data.europa.eu/esco/isco/C2512,Software developers,ISCOGroup,http://data.europa.eu/esco/isco/C251,Software and applications developers and analysts
+ISCOGroup,http://data.europa.eu/esco/isco/C2513,Web and multimedia developers,ISCOGroup,http://data.europa.eu/esco/isco/C251,Software and applications developers and analysts
+ISCOGroup,http://data.europa.eu/esco/isco/C252,Database and network professionals,ISCOGroup,http://data.europa.eu/esco/isco/C25,Information and communications technology professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C2521,Database designers and administrators,ISCOGroup,http://data.europa.eu/esco/isco/C252,Database and network professionals
+ISCOGroup,http://data.europa.eu/esco/isco/C52,Sales workers,ISCOGroup,http://data.europa.eu/esco/isco/C5,Service and sales workers
+ISCOGroup,http://data.europa.eu/esco/isco/C522,Shop salespersons,ISCOGroup,http://data.europa.eu/esco/isco/C52,Sales workers
+ISCOGroup,http://data.europa.eu/esco/isco/C5223,Shop sales assistants,ISCOGroup,http://data.europa.eu/esco/isco/C522,Shop salespersons
+ISCOGroup,http://data.europa.eu/esco/isco/C74,Electrical and electronic trades workers,ISCOGroup,http://data.europa.eu/esco/isco/C7,Craft and related trades workers
+ISCOGroup,http://data.europa.eu/esco/isco/C741,Electrical equipment installers and repairers,ISCOGroup,http://data.europa.eu/esco/isco/C74,Electrical and electronic trades workers
+ISCOGroup,http://data.europa.eu/esco/isco/C7411,Building and related electricians,ISCOGroup,http://data.europa.eu/esco/isco/C741,Electrical equipment installers and repairers
+Occupation,http://data.europa.eu/esco/occupation/03d79393-7b30-4159-945b-01963eddd302,primary school teacher,ISCOGroup,http://data.europa.eu/esco/isco/C2341,Primary school teachers
+Occupation,http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30,data scientist,ISCOGroup,http://data.europa.eu/esco/isco/C2511,Systems analysts
+Occupation,http://data.europa.eu/esco/occupation/4910419f-b4af-4f59-b544-9dbebc8a74f0,electrician,ISCOGroup,http://data.europa.eu/esco/isco/C7411,Building and related electricians
+Occupation,http://data.europa.eu/esco/occupation/8c57af09-719c-42b3-be40-6ed4946236cc,database administrator,ISCOGroup,http://data.europa.eu/esco/isco/C2521,Database designers and administrators
+Occupation,http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50,nurse responsible for general care,ISCOGroup,http://data.europa.eu/esco/isco/C2221,Nursing professionals
+Occupation,http://data.europa.eu/esco/occupation/9ba74e8a-c40c-4228-9998-eb3c7a5c11df,sales assistant,ISCOGroup,http://data.europa.eu/esco/isco/C5223,Shop sales assistants
+Occupation,http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d,web developer,ISCOGroup,http://data.europa.eu/esco/isco/C2513,Web and multimedia developers
+Occupation,http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2,data analyst,ISCOGroup,http://data.europa.eu/esco/isco/C2511,Systems analysts
+Occupation,http://data.europa.eu/esco/occupation/d7d986e1-7333-431b-9719-0c5c6939e360,civil engineer,ISCOGroup,http://data.europa.eu/esco/isco/C2142,Civil engineers
+Occupation,http://data.europa.eu/esco/occupation/eda0d957-3c3c-4139-b89a-a18bc9e18897,accountant,ISCOGroup,http://data.europa.eu/esco/isco/C2411,Accountants
+Occupation,http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1,software developer,ISCOGroup,http://data.europa.eu/esco/isco/C2512,Software developers
+Occupation,http://data.europa.eu/esco/occupation/fe0fa514-b48d-4a53-9757-a283c0baacf0,ICT business analyst,ISCOGroup,http://data.europa.eu/esco/isco/C2511,Systems analysts

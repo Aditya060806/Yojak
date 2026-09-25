@@ -1,0 +1,66 @@
+# Common alternative spellings / old names -> canonical city name used by Yojak.
+# Curated by hand (Claude, 2026-09-25); TEAM TO VERIFY. Keys are lower-case.
+# lookup = GeoNames place used for state/coordinates when the canonical city name is not a GeoNames name.
+alias,city,lookup
+bangalore,Bengaluru,
+bengaluru rural,Bengaluru,
+bangalore rural,Bengaluru,
+gurgaon,Gurugram,
+gurugram,Gurugram,
+bombay,Mumbai,
+mumbai suburban,Mumbai,
+mumbai city,Mumbai,
+navi mumbai,Navi Mumbai,
+new mumbai,Navi Mumbai,
+madras,Chennai,
+calcutta,Kolkata,
+new delhi,Delhi,
+delhi ncr,Delhi,
+delhi / ncr,Delhi,
+delhi/ncr,Delhi,
+ncr,Delhi,
+trivandrum,Thiruvananthapuram,
+cochin,Kochi,
+ernakulam,Kochi,
+vizag,Visakhapatnam,
+allahabad,Prayagraj,
+mysore,Mysuru,
+mangalore,Mangaluru,
+belgaum,Belagavi,
+hubli,Hubballi-Dharwad,Hubballi
+dharwad,Hubballi-Dharwad,Hubballi
+hubballi,Hubballi-Dharwad,Hubballi
+gulbarga,Kalaburagi,
+bijapur,Vijayapura,
+bellary,Ballari,
+ballari,Ballari,
+pondicherry,Puducherry,
+baroda,Vadodara,
+poona,Pune,
+pimpri chinchwad,Pimpri-Chinchwad,
+pimpri,Pimpri-Chinchwad,
+chinchwad,Pimpri-Chinchwad,
+rajahmundry,Rajamahendravaram,
+trichy,Tiruchirappalli,
+tiruchirapalli,Tiruchirappalli,
+calicut,Kozhikode,
+simla,Shimla,
+vasai,Vasai-Virar,Virar
+virar,Vasai-Virar,Virar
+kalyan,Kalyan-Dombivli,Kalyan
+dombivli,Kalyan-Dombivli,Kalyan
+greater noida,Greater Noida,
+noida,Noida,
+secunderabad,Hyderabad,
+gandhinagar,Gandhinagar,
+thane,Thane,
+bhubaneshwar,Bhubaneswar,
+ahmadabad,Ahmedabad,
+kolkata,Kolkata,
+vadodara,Vadodara,
+burdwan,Bardhaman,
+bokaro,Bokaro Steel City,Bokaro
+tuticorin,Thoothukudi,
+kanchipuram,Kanchipuram,Kanchipuram
+aurangabad,Chhatrapati Sambhajinagar,Aurangabad
+chhatrapati sambhajinagar,Chhatrapati Sambhajinagar,Aurangabad

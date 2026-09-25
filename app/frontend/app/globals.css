@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Yojak design tokens.
+  One neutral family (zinc) + one accent (peacock teal). Light and dark follow the
+  system setting (next-themes, class strategy). Colours are HSL triplets so Tailwind
+  can apply opacity (bg-primary/10).
+*/
+@layer base {
+  :root {
+    --background: 60 9% 98%;
+    --foreground: 240 10% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
+    --muted: 240 5% 95%;
+    --muted-foreground: 240 4% 38%;
+    --border: 240 6% 89%;
+    --input: 240 6% 84%;
+    --ring: 184 72% 30%;
+
+    /* accent: peacock teal */
+    --primary: 184 72% 27%;
+    --primary-foreground: 0 0% 99%;
+    --accent: 184 45% 93%;
+    --accent-foreground: 184 72% 20%;
+
+    --secondary: 240 5% 94%;
+    --secondary-foreground: 240 10% 12%;
+
+    /* semantic states, used sparingly: errors and "proxy / caution" labels */
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 99%;
+    --caution: 38 92% 38%;
+    --caution-foreground: 38 90% 18%;
+    --caution-muted: 45 90% 94%;
+
+    /* data-viz ramp (sequential teal) */
+    --viz-1: 184 40% 88%;
+    --viz-2: 184 45% 72%;
+    --viz-3: 184 55% 52%;
+    --viz-4: 184 72% 34%;
+    --viz-5: 188 80% 20%;
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 240 8% 5%;
+    --foreground: 0 0% 95%;
+    --card: 240 7% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 240 7% 9%;
+    --popover-foreground: 0 0% 95%;
+    --muted: 240 6% 12%;
+    --muted-foreground: 240 5% 64%;
+    --border: 240 5% 17%;
+    --input: 240 5% 22%;
+    --ring: 180 55% 52%;
+
+    --primary: 180 55% 52%;
+    --primary-foreground: 240 10% 6%;
+    --accent: 184 35% 14%;
+    --accent-foreground: 180 60% 75%;
+
+    --secondary: 240 6% 13%;
+    --secondary-foreground: 0 0% 92%;
+
+    --destructive: 0 65% 58%;
+    --destructive-foreground: 240 10% 6%;
+    --caution: 40 90% 60%;
+    --caution-foreground: 42 95% 78%;
+    --caution-muted: 38 45% 13%;
+
+    --viz-1: 184 30% 18%;
+    --viz-2: 184 40% 28%;
+    --viz-3: 182 50% 40%;
+    --viz-4: 180 55% 52%;
+    --viz-5: 178 70% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  :lang(hi), :lang(pa) {
+    font-family: var(--font-deva), var(--font-guru), var(--font-geist-sans), sans-serif;
+  }
+  ::selection {
+    @apply bg-primary/20;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

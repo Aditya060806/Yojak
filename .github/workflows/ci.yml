@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "phase-*"]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (ruff + pytest)
+    runs-on: ubuntu-latest
+    env:
+      PYTHONWARNINGS: ignore
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install (CPU torch)
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-dev.txt
+      - name: Lint
+        run: ruff check app ml_pipeline tests scripts
+      - name: Unit + API tests (no database)
+        run: pytest
+      - name: README and EVALUATION.md match reports/*.json
+        run: |
+          python scripts/render_readme.py --check
+          python scripts/build_evaluation.py --check
+      - name: Shell scripts parse
+        run: for f in scripts/*.sh; do bash -n "$f"; done
+
+  integration:
+    name: Integration (live Neo4j, no Docker)
+    runs-on: ubuntu-latest
+    needs: backend
+    env:
+      PYTHONWARNINGS: ignore
+      NEO4J_VERSION: "5.26.31"
+      NEO4J_TEST_URI: neo4j://127.0.0.1:7687
+      NEO4J_TEST_USER: neo4j
+      NEO4J_TEST_PASSWORD: ci-test-password
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-dev.txt
+      - name: Install and start Neo4j Community (tarball)
+        run: |
+          curl -sSL -o neo4j.tar.gz "https://dist.neo4j.org/neo4j-community-${NEO4J_VERSION}-unix.tar.gz"
+          tar -xzf neo4j.tar.gz
+          NEO4J_HOME="$PWD/neo4j-community-${NEO4J_VERSION}"
+          "$NEO4J_HOME/bin/neo4j-admin" dbms set-initial-password "$NEO4J_TEST_PASSWORD"
+          "$NEO4J_HOME/bin/neo4j" start
+          for i in $(seq 1 60); do (echo > /dev/tcp/127.0.0.1/7687) 2>/dev/null && break; sleep 2; done
+      - name: Integration tests
+        run: pytest -m neo4j
+
+  frontend:
+    name: Frontend (typecheck + lint + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: app/frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run build

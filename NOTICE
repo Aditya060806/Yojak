@@ -1,0 +1,53 @@
+THIRD-PARTY NOTICES
+Yojak (a fork of SkillAlign). See CREDITS.md for what came from where.
+
+===============================================================================
+SkillAlign (source code)
+===============================================================================
+Yojak is a fork of SkillAlign by Yasser Khattach (github.com/Y4SSERk/SkillAlign),
+released under the MIT License. The original copyright notice is kept in LICENSE.
+
+===============================================================================
+ESCO Data (European Skills, Competences, Qualifications and Occupations)
+===============================================================================
+This project uses ESCO classification data provided by the European Commission.
+
+ESCO content owned by the European Union is licensed under:
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Source: https://esco.ec.europa.eu/
+Attribution: "This service uses the ESCO classification of the European Commission."
+Changes made: filtered, processed, embedded and loaded into a Neo4j graph; linked
+to Indian job postings.
+No endorsement: use of ESCO does not imply endorsement by the European Union or
+the European Commission.
+
+===============================================================================
+Indian Job Market Dataset 2025 (Naukri.com postings)
+===============================================================================
+Source: https://www.kaggle.com/datasets/shivamshrivastava21/indian-job-market-dataset-2025-2026
+Licence: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0)
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+The raw data is not redistributed in this repository. Any derived data or model
+outputs built from it are shared only under the same NC-SA terms and only for
+non-commercial use.
+
+===============================================================================
+GeoNames (India gazetteer)
+===============================================================================
+Source: https://download.geonames.org/export/dump/ (IN.zip, admin1CodesASCII.txt)
+Licence: Creative Commons Attribution 4.0 (CC BY 4.0). Data by GeoNames (geonames.org).
+
+===============================================================================
+India state boundaries
+===============================================================================
+Source: DataMeet, Survey-of-India index maps (github.com/datameet/maps)
+Boundaries follow the Survey of India. Licensed per the DataMeet maps repository.
+
+===============================================================================
+Government of India publications
+===============================================================================
+AISHE (Ministry of Education), PLFS (MoSPI) and NCO-2015 (Ministry of Labour &
+Employment) are used as published reference data. See data/SOURCES.md for URLs
+and retrieval dates.

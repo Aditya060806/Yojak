@@ -1,0 +1,1741 @@
+conceptType,conceptUri,preferredLabel,altLabels,hiddenLabels,status,modifiedDate,scopeNote,inScheme,description,code
+SkillGroup,http://data.europa.eu/esco/isced-f/00,generic programmes and qualifications,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Generic programmes and qualifications are those providing fundamental and personal skills education which cover a broad range of subjects and do not emphasise or specialise in a particular broad or narrow field.
+This broad field should not be used as a residual category. Programmes and qualifications with a specific subject emphasis should be classified in broad fields 01 to 10. In particular, education at the tertiary level should only by way of exception be classified here.",00
+SkillGroup,http://data.europa.eu/esco/isced-f/003,personal skills and development,,,released,2023-07-04T13:43:35.384Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,003
+SkillGroup,http://data.europa.eu/esco/isced-f/0031,personal skills and development,,,released,2024-07-03T13:25:01.639Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Personal skills are defined by reference to the effects on the individual's capacity (mental, social etc.). This detailed field covers personal skills programmes not included in 0011 'Basic programmes and qualifications' or 0021 'Literacy and numeracy', giving key competencies and transferable skills.
+Programmes and qualifications with the following main content are classified here:
+Argumentation and presentation
+Assertiveness training
+Communication skills
+Co-operation
+Development of behavioural capacities
+Development of mental skills
+Job-seeking programmes
+Parenting courses
+Public speaking
+Self-esteem skills
+Social competence
+Time management === Inclusions
+Education and training in leadership in the context of personal development is included here.
+Education and training related to the work place or to work assignments is included in this detailed field if it has more to do with personal development than work development. Personal skills courses can be taught at the workplace, but still be classified here based on their content.
+Programmes for people with special needs on how to cope with their daily life are included here === Exclusions
+Study of leadership in the context of management is excluded from this group and included in detailed field 0413 'Management and administration'.",0031
+SkillGroup,http://data.europa.eu/esco/isced-f/009,generic programmes and qualifications not elsewhere classified,,,released,2023-10-30T10:21:59.843Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,009
+SkillGroup,http://data.europa.eu/esco/isced-f/01,education,,,released,2022-01-13T14:57:09.082Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,01
+SkillGroup,http://data.europa.eu/esco/isced-f/011,education,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,011
+SkillGroup,http://data.europa.eu/esco/isced-f/0111,education science,,,released,2023-07-04T13:29:46.06Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Education science is the study of the learning process and the theories, methods and techniques of imparting knowledge to others.
+Programmes and qualifications with the following main content are classified here:
+Curriculum studies
+Didactics
+Educational assessment, testing and measurement
+Educational evaluation and research
+Paedagogical sciences === Exclusions
+Teacher training programmes which combine education science with the practice of teaching are excluded from this detailed field and included in one of the detailed fields for teacher training (0112-0114).",0111
+SkillGroup,http://data.europa.eu/esco/isced-f/0113,teacher training without subject specialisation,,,released,2023-07-04T10:20:46.297Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Training for teachers without subject specialisation is the study of the theories, methods and practice of providing children between approximately 5 and 15 years of age with the fundamental skills in reading, writing and mathematics along with an elementary understanding of other subjects such as history, geography, social science etc. and laying the foundation for lifelong learning. Subject specialisation is stressed less than in detailed field 0114 'Teacher training with subject specialisation'. The study of teaching children with special needs is included in this detailed field, likewise the study of teaching adults fundamental reading and writing skills and teaching immigrants these types of skills in their home or first language.
+Programmes and qualifications with the following main content are classified here:
+Class teacher training
+Indigenous teacher training
+Primary teaching
+Teacher training for children with special needs === Inclusions
+The study of teaching adults basic literacy and numeracy skills is included here. Teacher's aide (teaching assistant) is also included here. === Exclusions
+Teacher training with subject specialisation even if intended for the teaching of children in primary or lower secondary education is excluded from this detailed field and included in detailed field 0114 'Teacher training with subject specialisation'.",0113
+SkillGroup,http://data.europa.eu/esco/isced-f/02,arts and humanities,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,02
+SkillGroup,http://data.europa.eu/esco/isced-f/021,arts,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,021
+SkillGroup,http://data.europa.eu/esco/isced-f/0211,audio-visual techniques and media production,,,released,2023-07-11T10:40:32.985Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Audio-visual techniques and media production is the study of techniques and skills to produce books or newspapers, radio or TV production, film or video production, recorded music production and graphic reproduction. It includes programmes and qualifications in methods of colour reproduction, photography and computer graphics. Study of combining pictures, words and decorations in the production of books, magazines, posters, adverts etc. is also included.
+Programmes and qualifications with the following main content are classified here:
+Animation
+Bookbinding
+Camera operating
+Compositing (printing)
+Computer game production
+Computer type-setting
+Film and video production
+Graphic design
+Graphic reproduction
+Illustration
+Interactive media design
+Media techniques
+Multimedia production
+Photography
+Pre-press operations
+Print finishing and binding
+Printing
+Publishing design, lay-out
+Radio and TV production
+Recorded music production
+Sound techniques
+Type-setting === Inclusions
+Desktop publishing and lay-out are included here. === Exclusions
+Programmes and qualifications in the use of specific software applications for desktop publishing and website development are excluded from this detailed field and included in detailed field 0611 'Computer use'.
+Study of journalism (wording and content of messages) is excluded from this detailed field and included in detailed field 0321 'Journalism and reporting'.",0211
+SkillGroup,http://data.europa.eu/esco/isced-f/0212,"fashion, interior and industrial design",,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Fashion, interior and industrial design is the study of creatively combining line, form and fabric in designing and constructing e.g. fashion garments, industrial products and interiors.
+Programmes and qualifications with the following main content are classified here:
+Costume design
+Design of industrial products
+Fashion design
+Interior architecture
+Interior design
+Stage designing
+Window dressing === Exclusions
+Study of Building design is excluded from this detailed field and included in detailed field 0731 'Architecture and town planning'.
+Study of Industrial design is excluded from this detailed field if emphasis is given to technical subjects and not to artistic design, and included in the appropriate detailed field under 071 'Engineering and engineering trades'.
+Publishing design and graphic design are excluded from this detailed field and included in detailed field 0211 'Audio-visual techniques and media production'.",0212
+SkillGroup,http://data.europa.eu/esco/isced-f/0215,music and performing arts,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Music and performing arts is the study of the principles and techniques associated with performance involving music, speech, movement, mime, characterisation, improvisation and stage craft.
+Programmes and qualifications with the following main content are classified here:
+Acting and directing
+Ballet
+Choreography
+Circus
+Composition (music)
+Conducting (music)
+Creative and performance art
+Dance
+Drama
+History of film and theatre
+History of music
+Music
+Music conducting
+Musicology
+Theatre/Theatre sciences === Inclusions
+Study of music and performing arts history and theory is included here. === Exclusions
+Teacher training in music and other performing arts is excluded from this detailed field and included in detailed field 0114 'Teacher training with subject specialisation'.
+022 Humanities (except languages).",0215
+SkillGroup,http://data.europa.eu/esco/isced-f/022,humanities (except languages),,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,022
+SkillGroup,http://data.europa.eu/esco/isced-f/0223,philosophy and ethics,,,released,2023-07-03T08:51:02.496Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Philosophy and ethics is the study of philosophy, ethics and related subjects dealing with the conception of life.
+Programmes and qualifications with the following main content are classified here:
+Ethics
+Logic
+Morals
+Philosophy === Exclusions
+Study of religion is excluded from this detailed field and included in detailed field 0221 'Religion'.
+Study of Philosophy of arts is excluded from this detailed field and is included in detailed field 0213 'Fine arts'.",0223
+SkillGroup,http://data.europa.eu/esco/isced-f/03,"social sciences, journalism and information",,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,03
+SkillGroup,http://data.europa.eu/esco/isced-f/031,social and behavioural sciences,,,released,2023-06-30T10:03:57.744Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,031
+SkillGroup,http://data.europa.eu/esco/isced-f/0313,psychology,,,released,2023-07-03T12:46:46.382Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Psychology is the study of the human mind and behaviour as a result of individual differences, experience and environment.
+Programmes and qualifications with the following main content are classified here:
+Cognitive science
+Psychoanalysis
+Psychology
+Psychotherapy.",0313
+SkillGroup,http://data.europa.eu/esco/isced-f/0314,sociology and cultural studies,,,released,2023-07-04T12:56:24.33Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Sociology and cultural studies is the study of human beings and the way they behave in groups and in relation to society. The study of ethnology and social anthropology are included here, likewise the study of human and social geography.
+Programmes and qualifications with the following main content are classified here:
+Criminology
+Cultural geography
+Cultural studies
+Demography/population studies
+Ethnology
+Gender studies
+Social anthropology
+Sociology === Exclusions
+Social welfare where emphasis is given to practical social work is excluded from this detailed field and included in detailed field 0923 'Social work and counselling'.
+Physical geography is excluded from this detailed field and included in detailed field 0532 'Earth science'.",0314
+SkillGroup,http://data.europa.eu/esco/isced-f/032,journalism and information,,,released,2023-07-03T07:24:08.118Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,032
+SkillGroup,http://data.europa.eu/esco/isced-f/0322,"library, information and archival studies",,,released,2023-10-27T15:38:41.87Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Library, information and archival studies is the study of the methods of selecting, acquiring, organizing and storing collections of information, and facilitating the use of information. Museum and library studies are included here.
+Programmes and qualifications with the following main content are classified here:
+Archival sciences
+Curatorial studies
+Documentation
+Information science
+Library studies
+Museum documentation
+Museum studies
+Museology === Exclusions
+Restoration and preservation of artistic heritage are excluded from this field and included in field 0222 'History and archaeology'.",0322
+SkillGroup,http://data.europa.eu/esco/isced-f/038,"inter-disciplinary programmes and qualifications involving social sciences, journalism and information",,,released,2023-06-29T13:50:39.809Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,038
+SkillGroup,http://data.europa.eu/esco/isced-f/0388,"inter-disciplinary programmes and qualifications involving social sciences, journalism and information",,,released,2023-07-04T08:43:11.281Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Inter-disciplinary programmes and qualifications to which the greatest intended learning time is devoted to social sciences, journalism and information are classified here.",0388
+SkillGroup,http://data.europa.eu/esco/isced-f/04,"business, administration and law",,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,04
+SkillGroup,http://data.europa.eu/esco/isced-f/041,business and administration,,,released,2023-07-05T08:34:34.635Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,041
+SkillGroup,http://data.europa.eu/esco/isced-f/0411,accounting and taxation,,,released,2023-02-17T13:32:34.671Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Accounting and taxation is the study of maintaining, auditing and recording financial transactions.
+Programmes and qualifications with the following main content are classified here:
+Accounting
+Auditing
+Bookkeeping
+Tax accounting
+Tax management === Exclusions
+Study of tax laws is excluded from this detailed field and included in detailed field 0421 'Law'.",0411
+SkillGroup,http://data.europa.eu/esco/isced-f/0412,"finance, banking and insurance",,,released,2023-07-04T12:47:27.353Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Finance, banking and insurance is the study of planning, directing, organizing and controlling financial activities and services. It includes the control and monitoring of the financial resources of organizations, institutions and individuals, and the provision of financial services at the corporate and individual level.
+Programmes and qualifications with the following main content are classified here:
+Bank teller studies
+Banking and finance
+Finance theory
+Insurance
+Investment analysis
+Investments and securities
+Pension insurance
+Social insurance
+Stock-broking === Exclusions
+Study of actuarial science is excluded from this detailed field and included in detailed field 0542 'Statistics'.",0412
+SkillGroup,http://data.europa.eu/esco/isced-f/0413,management and administration,,,released,2023-07-04T08:25:45.675Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Management and administration is the study of planning, directing and operating the functions and activities of organizations and institutions. Programmes in management also including administration, economics, finance etc. are included here if emphasis is given to management and administration.
+Programmes and qualifications with the following main content are classified here:
+Administration
+Educational management
+Employment management
+Entrepreneurship
+Health administration
+Logistic management
+Management science
+Office management
+Organizational theory and behaviour
+Personnel administration
+Personnel management
+'Start your own business' courses
+Supply change management
+Training management === Inclusions:
+Study of leadership in the context of management is included here. === Exclusions:
+Training in leadership in the context of personal development is excluded from this detailed field and included in detailed field 0031 'Personal skills'.
+Study of administration in the meaning of office work is excluded from this detailed field and included in detailed field 0415 'Secretarial and office work'.",0413
+SkillGroup,http://data.europa.eu/esco/isced-f/0414,marketing and advertising,,,released,2023-07-04T06:58:16.398Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Marketing and advertising is the study of promoting the exchange processes of goods and services between organizations and/or individuals, and the study of consumer behaviour and requirements. It includes the study of the role of product development, pricing, distribution, promotion and sales in order to maximise business performance.
+Programmes and qualifications with the following main content are classified here:
+Advertising
+Consumer behaviour
+Market research
+Marketing
+Merchandising
+Public relations.",0414
+SkillGroup,http://data.europa.eu/esco/isced-f/0416,wholesale and retail sales,,,released,2023-07-04T10:39:53.648Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Wholesale and retail sales is the study of buying and selling goods and services, including stock management, pricing practices, loss prevention, sales systems and procedures. It includes the study of the workings and current trends of the wholesale and retail industries. Selling of buildings and properties is also included.
+Programmes and qualifications with the following main content are classified here:
+Auctioneering
+Consumer services
+Demonstration techniques
+Purchasing
+Real-estate business
+Retailing
+Stock-keeping
+Ware-housing
+Wholesaling === Inclusions
+Study of buying and selling buildings and properties is included here.",0416
+SkillGroup,http://data.europa.eu/esco/isced-f/0417,work skills,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Work skills is the study of the structure and function of working life. It comprises programmes, mainly given as staff training, related to the working place and to work assignments.
+Programmes and qualifications with the following main content are classified here:
+Clients' needs
+Company knowledge
+Customer service training
+'Introduction to work' courses
+Organization at work
+Quality assurance
+Trade union courses (general)
+Work development === Inclusions
+Staff training related to the work place or work assignments is included here. === Exclusions
+Training related to the work place or work assignments is excluded from this detailed field if it has more to do with personal development than work development and is included in detailed field 0031 'Personal skills'.
+Staff training which can be classified to any other field is excluded from this detailed field and included in the appropriate field (e.g. quality courses should, if technical, be included in the detailed fields under 071 'Engineering and engineering trades'.)
+Programmes in work environment should be included in detailed field 1022 'Occupational health and safety'.
+Programmes, mostly at tertiary level, dealing with working life in general in terms of the labour market, the social partners, industrial psychology etc. are excluded from this detailed field and included in the detailed fields under 031 'Social and behaviour sciences'.",0417
+SkillGroup,http://data.europa.eu/esco/isced-f/042,law,,,released,2023-07-05T16:08:11.463Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,042
+SkillGroup,http://data.europa.eu/esco/isced-f/0421,law,,,released,2023-07-05T07:04:55.853Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Law is the study of the principles and procedures for formally maintaining social order, including training for legal professions such as advocate or training for the judicial bench.
+Programmes and qualifications with the following main content are classified here:
+Commercial law
+Criminal justice studies
+History of law
+Indigenous law
+Jurisprudence
+Labour law
+Legal practice
+Notary/Notary's practise
+Paralegal studies === Exclusions
+Court reporting programmes and legal secretary programmes are excluded from this detailed field and included in detailed field 0415 'Secretarial and office work'.
+Police studies are excluded from this detailed field and included in detailed field 1032 'Protection of persons and property'.",0421
+SkillGroup,http://data.europa.eu/esco/isced-f/05,"natural sciences, mathematics and statistics",,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,05
+SkillGroup,http://data.europa.eu/esco/isced-f/051,biological and related sciences,,,released,2023-06-30T12:14:05.574Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,051
+SkillGroup,http://data.europa.eu/esco/isced-f/0512,biochemistry,,,released,2023-06-30T09:19:04.893Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Biochemistry, sometimes called Biological chemistry, is the study of the chemistry of living organisms, including but not limited to, living matter.
+Programmes and qualifications with the following main content are classified here:
+Biological chemistry
+Cell technology
+Forensic sciences
+Genetic code (DNA, RNA) studies
+Genetic engineering
+Pharmacology
+Tissue culture technology
+Toxicology
+Virology === Inclusions
+Biotechnology is included here.",0512
+SkillGroup,http://data.europa.eu/esco/isced-f/052,environment,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,052
+SkillGroup,http://data.europa.eu/esco/isced-f/0521,environmental sciences,,,released,2023-07-04T07:18:15.885Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Environmental sciences are the study of organisms in relation to one another and to the environment.
+Programmes and qualifications with the following main content are classified here:
+Ecology
+Environmental science === Exclusions
+The study of biology and toxicology are excluded from this detailed field and included under narrow field 051 'Biological and related sciences'.",0521
+SkillGroup,http://data.europa.eu/esco/isced-f/053,physical sciences,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,053
+SkillGroup,http://data.europa.eu/esco/isced-f/0531,chemistry,,,released,2023-07-03T08:37:32.521Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Chemistry is the study of substances and their elements and how they react when combined.
+Programmes and qualifications with the following main content are classified here:
+Inorganic chemistry
+Organic chemistry
+Physical chemistry === Exclusions
+Biochemistry is excluded from this detailed field and included in detailed field 0512 'Biochemistry'.",0531
+SkillGroup,http://data.europa.eu/esco/isced-f/0532,earth sciences,,,released,2023-07-05T08:44:07.574Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Earth sciences is the study of the composition and structure of earth including the hydrosphere and the atmosphere.
+Programmes and qualifications with the following main content are classified here:
+Climate research
+Earth science
+Geodesy
+Geography (physical)
+Geology
+Geomatics
+Geospatial technology
+Meteorology
+Oceanography
+Seismology === Exclusions
+Social geography is excluded from this detailed field and included in detailed field 0314 'Sociology and cultural studies'. Soil science is excluded from this detailed field and included in detailed field 0811 'Crop and livestock production'.",0532
+SkillGroup,http://data.europa.eu/esco/isced-f/054,mathematics and statistics,,,released,2023-07-06T08:50:16.696Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,054
+SkillGroup,http://data.europa.eu/esco/isced-f/0541,mathematics,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Mathematics is the study of abstract deductive systems. It includes algebra, arithmetic, geometry, real and complex analysis and pure and applied mathematics.
+Programmes and qualifications with the following main content are classified here:
+Algebra
+Geometry
+Mathematics
+Numerical analysis
+Operational research.",0541
+SkillGroup,http://data.europa.eu/esco/isced-f/0542,statistics,,,released,2023-10-30T10:14:10.981Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Statistics is the study of collecting, describing, arranging and analysing numerical data. The study of probability theory and actuarial science is included.
+Programmes and qualifications with the following main content are classified here:
+Actuarial science
+Probability theory
+Statistics, applied
+Survey design
+Survey sampling === Inclusions
+Study of mathematical (theoretical) statistics is included here. === Exclusions
+Demography/population studies is excluded from this detailed field and included in detailed field 0314 'Sociology and cultural studies'.",0542
+SkillGroup,http://data.europa.eu/esco/isced-f/06,information and communication technologies (icts),,,released,2021-08-30T14:57:56.832Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,06
+SkillGroup,http://data.europa.eu/esco/isced-f/061,information and communication technologies (icts),,,released,2021-08-30T14:53:01.939Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,061
+SkillGroup,http://data.europa.eu/esco/isced-f/0611,computer use,,,released,2023-07-06T09:57:34.775Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Computer use is the study of using computers and computer software and applications for different purposes. These programmes are generally of short duration.
+Programmes and qualifications with the following main content are classified here:
+Computer use
+Use of software for calculating (spread sheets)
+Use of software for data processing
+Use of software for desk top publishing
+Use of software for word processing
+Use of Internet.",0611
+SkillGroup,http://data.europa.eu/esco/isced-f/0612,database and network design and administration,,,released,2023-10-20T09:49:49.879Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Database and network design and administration is the study of the design, maintenance and integration of software applications. Computer media applications are included.
+Programmes and qualifications with the following main content are classified here:
+Computer administration and management
+Computer media applications
+Computer network installation and maintenance
+Database administrator studies
+Information technology administration
+Information technology security
+Network administration
+Network design
+Web design.",0612
+SkillGroup,http://data.europa.eu/esco/isced-f/0613,software and applications development and analysis,,,released,2023-07-11T10:47:11.805Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Software and applications development and analysis is the study of the design and development of computer systems and computing environments.
+Programmes and qualifications with the following main content are classified here:
+Computer programming
+Computer science
+Computer systems analysis
+Computer systems design
+Informatics
+Operating systems
+Programming languages development
+Software development
+Software programming === Exclusions
+Computer engineering (hardware) is excluded from this detailed field and included in detailed field 0714 'Electronics and automation'.
+Programmes and qualifications in using computer applications are excluded from this detailed field and included in detailed field 0611 'Computer use'. Database and network design and administration is excluded from this detailed field and included in detailed field 0612 'Database and network design and administration'.",0613
+SkillGroup,http://data.europa.eu/esco/isced-f/0619,information and communication technologies not elsewhere classified,,,released,2023-10-20T10:01:42.693Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Information technology studies not fitting in the detailed fields are classified here:
+Artificial intelligence.",0619
+SkillGroup,http://data.europa.eu/esco/isced-f/068,inter-disciplinary programmes and qualifications involving information and communication technologies (icts),,,released,2023-07-06T09:54:36.209Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,068
+SkillGroup,http://data.europa.eu/esco/isced-f/0688,inter-disciplinary programmes and qualifications involving information and communication technologies (icts),,,released,2023-07-03T14:47:33.378Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",Inter-disciplinary programmes and qualifications to which the greatest intended learning time is devoted to information and communication technologies (ICTs) are classified here.,0688
+SkillGroup,http://data.europa.eu/esco/isced-f/07,"engineering, manufacturing and construction",,,released,2022-01-13T15:06:40.148Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,07
+SkillGroup,http://data.europa.eu/esco/isced-f/071,engineering and engineering trades,,,released,2023-07-05T08:57:22.584Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,071
+SkillGroup,http://data.europa.eu/esco/isced-f/0710,engineering and engineering trades not further defined,,,released,2024-01-29T16:12:44.504Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,0710
+SkillGroup,http://data.europa.eu/esco/isced-f/0713,electricity and energy,,,released,2024-01-30T15:25:24.149Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Electricity and energy is the study of installing, maintaining, repairing and diagnosing faults in electrical wiring and related equipment in domestic, commercial and industrial establishments. Installation and maintenance of overhead and underground electrical power distribution networks is included. Energy is the study of energy generation.
+Programmes and qualifications with the following main content are classified here:
+Air-conditioning trades
+Climate engineering
+Electrical appliances repairing
+Electrical engineering
+Electrical fitting
+Electrical power generation
+Electrical trades
+Energy studies
+Gas distribution
+Heating trades
+Nuclear, hydraulic and thermal energy
+Power line installation and maintenance
+Power production
+Refrigeration
+Solar power
+Wind turbines === Inclusions
+The study of installing, diagnosing faults in and repairing heating, air-conditioning and refrigeration equipment is included here. === Exclusions
+Study of vehicle electrical systems is excluded from this detailed field and included in detailed field 0716 'Motor vehicles, ships and aircraft'.",0713
+SkillGroup,http://data.europa.eu/esco/isced-f/0714,electronics and automation,,,released,2023-07-05T15:43:39.362Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Electronics and automation is the study of planning, designing, developing maintaining and monitoring electronic equipment, machinery and systems. It includes designing computers and equipment for communication.
+Programmes and qualifications with the following main content are classified here:
+Broadcasting electronics
+Communication systems
+Communications equipment installation
+Communications equipment maintenance
+Computer engineering
+Computer repairing
+Control engineering
+Data processing technology
+Digital technology
+Electronic engineering
+Electronic equipment servicing
+Network technology
+Robotics
+Telecommunications technology
+Television and radio repairing === Exclusions
+Computer science (Software and applications development) is excluded from this detailed field and included under 0613 'Software and applications development and analysis'.",0714
+SkillGroup,http://data.europa.eu/esco/isced-f/0715,mechanics and metal trades,,,released,2024-01-29T16:22:28.909Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Mechanics and metal trades is the study of planning, designing, developing, producing, maintaining and monitoring machines, mechanical plants and systems and metal products. It includes designing and maintaining machines which produce goods and services. The focus of study in this detailed field is machines, mechanical systems and metal products.
+Programmes and qualifications with the following main content are classified here:
+Gunsmithing
+Hydraulics
+Locksmithing and safe repairing
+Mechanical engineering
+Mechanical trades
+Metal casting and patternmaking
+Metal fitting, turning and machining
+Metallurgical engineering
+Precision mechanics
+Sheet metal working
+Steel production
+Tool and die making
+Welding === Exclusions
+The study of motor vehicle mechanics and engineering is excluded from this detailed field and included in detailed field 0716 'Motor vehicles, ships and aircraft'.",0715
+SkillGroup,http://data.europa.eu/esco/isced-f/072,manufacturing and processing,,,released,2023-07-05T15:26:59.847Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,072
+SkillGroup,http://data.europa.eu/esco/isced-f/0722,"materials (glass, paper, plastic and wood)",,,released,2023-01-24T18:49:48.26Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,0722
+SkillGroup,http://data.europa.eu/esco/isced-f/073,architecture and construction,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,073
+SkillGroup,http://data.europa.eu/esco/isced-f/0731,architecture and town planning,,,released,2024-01-29T16:17:36.811Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Architecture is the study of the art, science and techniques of building design. It encompasses both utilitarian ends - such as the soundness of the structure and the functional and economic efficiency of the building - and aesthetic considerations. Town planning is the study of the regulated growth and improvement of towns in both functional and aesthetical points of view.
+Programmes and qualifications with the following main content are classified here:
+Architectural urban design and planning
+Architecture
+Building design
+Cartography/Land surveying
+City planning
+Community development
+Landscape architecture
+Structural architecture
+Surveying
+Town and country planning
+Urban planning === Exclusions
+Study of interior design is excluded from this detailed field and included in detailed field 0212 'Fashion, interior and industrial design'. Geomatics is excluded from this detailed field and included in detailed field 0532 'Earth science'.
+The laying out and construction of parks and gardens is excluded from this detailed field and included in detailed field 0812 'Horticulture'.",0731
+SkillGroup,http://data.europa.eu/esco/isced-f/0732,building and civil engineering,,,released,2024-01-29T17:05:50.79Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Building is the study of the science, technology and techniques of assembling, erecting and maintaining public, commercial, industrial and residential structures and their fittings. Civil engineering is the study of planning, designing, testing and directing the construction of large scale buildings and structures, including systems for transport, water supply, sewage etc.
+Programmes and qualifications with the following main content are classified here:
+Bricklaying
+Bridge construction
+Building construction
+Building engineering
+Building technology
+Carpentry and joinery (building)
+Civil engineering
+Construction equipment
+Constructional metalwork (building)
+Dock and harbour engineering
+Floor and wall tiling
+Floor covering
+House building
+Industrial abseiling (commercial)
+Masonry and tile setting
+Painting and wall covering
+Plastering
+Plumbing and pipefitting
+Road building
+Water engineering and technology
+Water supply and sewerage engineering
+Ventilation === Exclusions
+Installation of electricity is excluded from this detailed field and included in detailed field 0713 'Electricity and energy'. Similarly, installing and repairing of heating, air-conditioning and refrigeration equipment is excluded from this detailed field and included in detailed field 0713 'Electricity and energy'.",0732
+SkillGroup,http://data.europa.eu/esco/isced-f/08,"agriculture, forestry, fisheries and veterinary",,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,08
+SkillGroup,http://data.europa.eu/esco/isced-f/084,veterinary,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,084
+SkillGroup,http://data.europa.eu/esco/isced-f/0841,veterinary,,,released,2023-02-22T20:03:53.109Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Veterinary is the study of preventing, diagnosing and treating diseases and injuries in animals, and their general care. The study of caring for sick, injured and infirm animals undergoing treatment in veterinary clinics is included. It also includes the study of providing assistance to veterinary scientists.
+Programmes and qualifications with the following main content are classified here:
+Animal health care
+Animal reproduction (science)
+Artificial insemination (of animals)
+Veterinary assisting
+Veterinary medicine
+Veterinary nursing
+Veterinary science === Inclusions
+The science of animal reproduction is included here. === Exclusions
+Study of animal breeding is excluded from this detailed field and included in detailed field 0811 'Crop and livestock production'.",0841
+SkillGroup,http://data.europa.eu/esco/isced-f/09,health and welfare,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,09
+SkillGroup,http://data.europa.eu/esco/isced-f/091,health,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,091
+SkillGroup,http://data.europa.eu/esco/isced-f/0912,medicine,,,released,2023-07-05T15:39:12.407Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Medicine is the study of the principles and procedures used in preventing, diagnosing, caring for and treating illness, disease and injury in humans and the maintenance of general health. Principally, this detailed field consists of training of physicians/doctors.
+Programmes and qualifications with the following main content are classified here:
+Anaesthetics
+Forensic medicine
+Forensic pathology
+General medicine
+Gerontology
+Gynaecology
+Medical science
+Medical training
+Medicine
+Paediatrics
+Psychiatry
+Surgery
+Training of physicians/doctors.",0912
+SkillGroup,http://data.europa.eu/esco/isced-f/0913,nursing and midwifery,,,released,2021-09-20T12:26:36.821Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Nursing is the study of providing health care for the sick, disabled or infirm and assisting physicians and other medical and health professionals diagnose and treat patients. The focus of qualifications in nursing is maintaining and caring for the health of patients during illness and rehabilitation. It includes health care of old people and health care of the disabled. Midwifery is the study of providing care to childbearing women during pregnancy, labour and birth and during the postpartum period. It also includes caring for the new born and assisting the mother with breast feeding.
+Programmes and qualifications with the following main content are classified here:
+Assistant nursing
+Basic nursing
+General nursing
+Health care of old people
+Heath care of the disabled
+Health care programmes
+Infant hygiene (nursing)
+Midwifery
+Nursing aide/Orderly
+Psychiatric nursing
+Specialised nursing === Inclusions
+Care programmes comprising both health care and social care e.g. for old people, are included here. === Exclusions
+Veterinary nursing is excluded from this detailed field and is included in detailed field 0841 'Veterinary'.
+Dental nursing is excluded from this detailed field and is included in detailed field 0911 'Dental studies'.
+Non-medical care of children (not health care) is excluded from this detailed field and included in detailed field 0922 'Child care and youth services'.
+Non-medical care of the elderly (not health care) is excluded from this detailed field and included in detailed field 0921 'Care of the elderly and disabled adults'.",0913
+SkillGroup,http://data.europa.eu/esco/isced-f/0915,therapy and rehabilitation,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Therapy and rehabilitation is the study of restoring normal physical conditions to those incapacitated by temporary or permanent disability.
+Programmes and qualifications with the following main content are classified here:
+Dietician programmes
+Medical massage
+Nutrition/Dietetics
+Occupational therapy
+Physiotherapy
+Rehabilitation
+Speech therapy === Exclusions
+Study of psychotherapy is excluded from this detailed field and included in detailed field 0313 'Psychology'.
+Study of nutrition science is excluded from this detailed field and included in narrow field 051 'Biological and related sciences'.",0915
+SkillGroup,http://data.europa.eu/esco/isced-f/092,welfare,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,092
+SkillGroup,http://data.europa.eu/esco/isced-f/0921,care of the elderly and of disabled adults,,,released,2021-10-04T20:14:30.53Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Care of the elderly and of disabled adults is the study of non-medical care of the elderly and disabled.
+Programmes and qualifications with the following main content are classified here:
+Care of the elderly
+Non-medical care of disabled adults
+Personal care of adults === Exclusions
+Study of health care of the elderly and disabled is excluded from this detailed field and included in detailed field 0913 'Nursing and midwifery'.",0921
+SkillGroup,http://data.europa.eu/esco/isced-f/0922,child care and youth services,,,released,2023-07-04T07:50:56.183Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Child care and youth services are the study of the development and non-medical care of children and youths. It includes the study of recreation and leisure activities as a social service for school children and young adults.
+Programmes and qualifications with the following main content are classified here:
+Child care
+Child recreation programmes
+Day care
+Non-medical care of disabled children
+Youth services
+Youth worker programmes === Exclusions
+Study of early childhood education in pre-schools is excluded from this detailed field and included in detailed field 0112 'Training for pre-school teachers'.
+Study of health care of children is excluded from this detailed field and included in detailed field 0913 'Nursing and midwifery'.",0922
+SkillGroup,http://data.europa.eu/esco/isced-f/0923,social work and counselling,,,released,2023-06-30T14:28:45.421Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Social work and counselling is the study of the welfare needs of communities, specific groups and individuals and the appropriate ways of meeting these needs. The focus is on social welfare with emphasis on social policy and practice.
+Programmes and qualifications with the following main content are classified here:
+Alcohol and drug abuse counselling
+Alcohol, tobacco, drugs (knowledge about)
+Crisis support
+Family and marriage counselling
+Mobbing and maltreatment (knowledge about)
+Parole officer training
+Probation officer training
+Social policy
+Social practice
+Social theory (applied)
+Social work (welfare)
+Vocational counselling
+Vocational guidance === Exclusions
+Study of sociology and social science is excluded from this detailed field and included in detailed field 0314 'Sociology and cultural studies'.
+Studies combining health care and social care (e.g. for old people) are excluded from this detailed field and included in detailed field 0913 'Nursing and midwifery'.",0923
+SkillGroup,http://data.europa.eu/esco/isced-f/098,inter-disciplinary programmes and qualifications involving health and welfare,,,released,2023-06-29T13:38:13.156Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,098
+SkillGroup,http://data.europa.eu/esco/isced-f/0988,inter-disciplinary programmes and qualifications involving health and welfare,,,released,2023-07-03T14:59:07.647Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",Inter-disciplinary or broad programmes and qualifications to which the greatest intended learning time is devoted to health and welfare are classified here.,0988
+SkillGroup,http://data.europa.eu/esco/isced-f/10,services,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,10
+SkillGroup,http://data.europa.eu/esco/isced-f/102,hygiene and occupational health services,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,102
+SkillGroup,http://data.europa.eu/esco/isced-f/1021,community sanitation,,,released,2020-12-07T11:59:16.586Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Community sanitation is the study of community services dealing with items that affect public health such as hygienic standards in food, water supply, disposal of sewage and garbage and street cleaning.
+Programmes and qualifications with the following main content are classified here:
+Hygiene, community
+Hygienic standards
+Refuse collection
+Refuse/sewage disposal
+Street cleaning
+Water supply (service)
+Waste management.",1021
+SkillGroup,http://data.europa.eu/esco/isced-f/1022,occupational health and safety,,,released,2023-06-30T08:19:29.191Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Occupational health and safety is the study of recognising, evaluating and controlling environmental factors associated with the workplace.
+Programmes and qualifications with the following main content are classified here:
+Ergonomics (occupational health and safety)
+Health and safety in the workplace
+Industrial welfare
+Labour protection
+Labour security
+Labour welfare (safety)
+Occupational health and industrial hygiene
+Occupational safety
+Stress management
+Work environment === Exclusions
+Study of vocational rehabilitation and occupational therapy is excluded from this detailed field and included in detailed field 0915 'Therapy and rehabilitation'.
+Study of labour law is excluded from this detailed field and included in 0421 'Law'.
+Study of ergonomics is excluded from this detailed field if emphasis is given to technical aspects and is included in the appropriate detailed field under 071 'Engineering and engineering trades'.",1022
+SkillGroup,http://data.europa.eu/esco/isced-f/103,security services,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f",,103
+SkillGroup,http://data.europa.eu/esco/isced-f/1031,military and defence,,,released,2020-12-10T13:06:54.77Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Military and defence is the study of services to the community connected with war and defence, designed to provide training in the principles and practice of military science.
+Programmes and qualifications with the following main content are classified here:
+Air force training
+Army training
+Defence studies
+Military science
+Navy training
+War theory === Exclusions
+Military personnel participating in non-military programmes should be classified according to the subject content of the training programme.",1031
+SkillGroup,http://data.europa.eu/esco/isced-f/1032,protection of persons and property,,,released,2023-06-20T08:55:20.116Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/isced-f","Protection of persons and property is the study of services to the community concerning protection of property and persons. It comprises training in police work, public security, fire protection and fire-fighting.
+Programmes and qualifications with the following main content are classified here:
+Civil security
+Customs programmes
+Fire-protection (fire-fighting)
+Fire technology
+Life guarding
+Police work
+Policing studies
+Prison work
+Public security
+Security and loss prevention services
+Security guarding === Exclusions
+Study of law is excluded from this detailed field and included in 0421 'Law'.
+Study of criminology is excluded from this detailed field and included in detailed field 0314 'Sociology and cultural studies'.",1032
+SkillGroup,http://data.europa.eu/esco/skill/00d5d1d2-c521-4c58-9df5-2939c0ce9adb,accompanying and welcoming people,,,released,2022-07-15T14:44:44.924Z,"Examples:
+- escort students on a field trip
+- supervise special visitors Excludes:
+- assist clients with special needs.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Welcoming, accompanying or supporting clients, patrons, visitors and others by helping them to feel at ease, and assisting them with activities such as finding seats, making reservations and using facilities at social events, outings, or trips.",S3.4.2
+SkillGroup,http://data.europa.eu/esco/skill/0101f8a4-4243-4e67-813b-3e2a6274f7e2,monitoring developments in area of expertise,,,released,,"Examples:
+- Follow trends in sporting equipment
+- Keep up to date with diagnostic innovations
+- Monitor legislation developments
+- Monitor technology trends.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Monitoring and keeping knowledge up-to-date concerning new research, methodologies, regulations, policies technological developments and other significant changes relevant to a particular field of specialisation.",S2.9
+SkillGroup,http://data.europa.eu/esco/skill/021a23e1-907e-4627-b05a-555f889cbb65,self-management skills and competences,"self-discipline
+self-management
+self-control
+self-regulation
+professional attitude","professional orientation and perfection
+demonstrate self-management
+professional way of working
+self-discipline
+self-conquest",released,2021-08-30T08:11:14.03Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Skills and competences requiring individuals to understand and control their own capabilities and limitations and use this self-awareness to manage activities in a variety of contexts. They include the ability to act reflectively and responsibly, to accept feedback, adapting to change and to seek opportunities for personal and professional development.",T3
+SkillGroup,http://data.europa.eu/esco/skill/036afa6e-cdde-4b38-a53a-8e7910a840e1,collaborating in teams and networks,"working with others
+acting with others to achieve aims",,released,2021-09-14T07:57:53.667Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups",Support or develop a group to work towards a common goal in a way which shows understanding and respect of others’ roles and competencies.,T4.3
+SkillGroup,http://data.europa.eu/esco/skill/03961960-e729-4768-ab0a-49886132f17a,using foreign languages,,,released,2021-04-14T10:04:10.228Z,"Examples:
+- employ foreign languages in care
+- communicate commercial and technical issues in foreign languages
+- speak dialect Excludes:
+- skills and knowledge related to a specific language or dialect.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Communicating with others in one or more foreign languages or dialects, in spoken or written forms.",S1.15.1
+SkillGroup,http://data.europa.eu/esco/skill/03e0b95b-67d1-457a-b3f7-06c407cf6bec,handling and moving,handling goods or animals,,released,,"Excludes:
+- Specific skills involving interaction with people.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Sorting, arranging, moving, transforming, fabricating and cleaning goods and materials by hand or using handheld tools and equipment. Tending plants, crops and animals.",S6
+SkillGroup,http://data.europa.eu/esco/skill/048812ba-45ff-4801-b04f-b20c03432809,protecting and enforcing,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Responding to public and personal safety and security needs and ensuring compliance to rules, standards, guidelines or laws.",S3.3
+SkillGroup,http://data.europa.eu/esco/skill/04a13491-b58c-4d33-8b59-8fad0d55fe9e,transversal skills and competences,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",,T
+SkillGroup,http://data.europa.eu/esco/skill/06fdd94c-292d-49e3-9c78-bbcbc2088232,maintaining operational records,,,released,2023-11-06T15:22:30.261Z,"Examples:
+- keep personal records
+- keep stock records
+- prepare production reports Excludes:
+- write reports or documents requiring drafting of original text.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Keeping records required for operational purposes such as those related to staff, clients, production and stock inventories.",S2.2.5
+SkillGroup,http://data.europa.eu/esco/skill/0779d482-4154-4fbb-9a22-d9fd89c39d67,"organising, planning and scheduling work and activities",organising and planning,,released,2020-12-11T09:16:01.788Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Directing activities and tasks, establishing schedules and co-ordinating the activities of groups and individuals to complete objectives on time and within budget.",S4.2.0
+SkillGroup,http://data.europa.eu/esco/skill/0a295163-3e17-47ad-99ac-2b507ce30adb,designing systems and products,,,released,2022-12-15T10:20:53.743Z,"Excludes:
+- Styling hair
+- Creating artistic, visual or instructive materials.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating a plan or specification for the construction of an object, system or structure based on aesthetic and/or functional design concepts.",S1.11
+SkillGroup,http://data.europa.eu/esco/skill/0a2d70ee-d435-4965-9e96-702b2fb65740,information skills,working with information,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Collecting, storing, monitoring, and using information; Conducting studies, investigations and tests; maintaining records; managing, evaluating, processing, analysing and monitoring information and projecting outcomes.",S2
+SkillGroup,http://data.europa.eu/esco/skill/0a400212-8693-4b1f-b0ca-d1f82c321916,providing health care or medical treatments,healthcare,,released,2022-07-15T14:44:44.924Z,"Excludes:
+- Veterinary care
+- Diagnosing health conditions.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Treating injuries and health conditions through the provision of health care and medical treatments to people.,S3.2.0
+SkillGroup,http://data.europa.eu/esco/skill/0a4c5823-8b09-4e6b-95b4-8036ef3b9c4c,advocating for individual or community needs,,,released,2022-06-19T12:25:44.633Z,"Excludes:
+- Promoting goods and services
+- Representing clients in legal proceeding Examples:
+- Advocate for healthcare users' needs
+- Promote service users' rights
+- Influence legislators.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Delivering arguments in favour of something, such as a cause, idea, or policy, to benefit another person or a community.",S1.2.4
+SkillGroup,http://data.europa.eu/esco/skill/0b9968af-72de-470a-98e1-2d19577443fb,resolving computer problems,,,released,2021-09-16T17:48:22.348Z,"Excludes:
+- Installing, maintaining and repairing computer hardware Examples:
+- Troubleshoot website
+- Implement ICT recovery system.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Identifying technical problems with ICT systems and devices and performing actions to solve the problems.,S5.2.3
+SkillGroup,http://data.europa.eu/esco/skill/0d80a782-99ff-4f49-abbe-c72524c6f390,negotiating and managing contracts and agreements,,,released,2020-12-11T13:14:15.065Z,"Examples include: - conclude business agreements
+- manage contracts
+- negotiate price.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Negotiating and managing contracts and agreements with others concerning matters such as prices, terms of service, employment conditions, access to land and facilities.",S1.1.1
+SkillGroup,http://data.europa.eu/esco/skill/103af23e-d56c-47ab-b991-55c94dcdef50,advising and consulting,,,released,2023-10-27T14:03:21.216Z,"Excludes:
+- Psychological, behavioural and social counselling; see S3.1.1.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing guidance and advice to enable decision-making about tasks, situations, and processes.",S1.5.0
+SkillGroup,http://data.europa.eu/esco/skill/119a2f5c-3c3e-4b0d-9813-06a553c8860c,providing general assistance to people,,,released,2022-08-24T13:46:54.315Z,"Examples:
+- guarantee customer satisfaction
+- assist pool users Excludes:
+- escort passengers
+- provide social guidance over the phone.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing practical assistance and service to clients and the public in using services and facilities, such as assisting with paperwork or supporting their special needs.",S3.4.4
+SkillGroup,http://data.europa.eu/esco/skill/12022223-8c30-418a-8f83-658396c9fec2,physical and manual skills and competences,"physical fitness
+psychomotor abilities
+manual dexterity
+physical flexibility and coordination","good sense of pressure and touch
+good sense of taste
+speed
+good sense of touch
+athletic performance
+climb
+good sense of hearing
+reaction time
+dynamic flexibility
+olfactory skills
+good sense of smell
+good eyesight
+coordination
+color sense",released,2021-08-30T09:17:04.357Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Skills and competences relating to the ability to perform tasks and activities requiring manual dexterity, agility and/or bodily strength. This is demonstrated by carrying out tasks and activities in demanding or hazardous environments requiring endurance or stamina. These tasks and activities may be carried out by hand, with other direct physical intervention, or by using equipment, tools or technology (such as ICT devices, machinery, craft or musical instruments) which requires guidance, movement or force.",T5
+SkillGroup,http://data.europa.eu/esco/skill/13d301d0-98cb-414f-a8f9-a3f059228133,dealing with problems,"problem solving skills
+addressing problems and issues","solution-oriented approach
+solution and process-oriented thinking",released,2021-08-30T15:44:01.988Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Develop and implement solutions to practical, operational or conceptual problems which arise in the execution of work, in a wide range of contexts.",T2.3
+SkillGroup,http://data.europa.eu/esco/skill/14c41899-0224-4cbc-bd8c-e946ada2da87,working efficiently,"time-efficient work
+responding to the requirements of tasks and responsibilities
+efficiency
+efficient working style",good time management,released,2021-08-30T16:07:41.362Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Achieve objectives independently using optimal amount of time, effort, or cost.",T3.1
+SkillGroup,http://data.europa.eu/esco/skill/15fa3879-ac0e-46e6-ae36-609bae9c19c3,monitoring operational activities,,,released,2021-01-20T14:32:12.736Z,"Excludes:
+- Testing and analysing substances Examples:
+- Detect bottlenecks
+- Monitor mine production
+- Manage project metrics.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Monitoring the operations of a business or organisation to ensure adequate performance and compliance with regulatory requirements.,S2.8.2
+SkillGroup,http://data.europa.eu/esco/skill/185c56ee-098f-46a1-af87-56337085da6f,protecting ict devices,,,released,2021-09-24T16:34:47.664Z,"Examples:
+- Remove computer virus or malware form a computer - Implement a firewall - Use back-up and recovery tools.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Making use of tools and methods to protect and maximize security of ICT devices and information by controlling access, such as by requiring passwords, digital signatures, and biometric identification, and by protecting systems through the use of software.",S5.2.2
+SkillGroup,http://data.europa.eu/esco/skill/18da3b88-1cd5-4ef3-83d6-664e52afdaba,building and repairing structures,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Forming, shaping and joining materials to form structures such as buildings, bridges, or underground mines according to specifications and plans.",S7.1
+SkillGroup,http://data.europa.eu/esco/skill/190f64e1-b7b6-4c53-b20b-80f9215ef6ca,"directing, supervising and coordinating projects",,,released,2022-06-21T15:19:54.98Z,"Examples:
+- manage ICT project - supervise advocacy work Excludes:
+- supervise site maintenance
+- translate strategy into operation.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Directing, supervising and coordinating workflow of projects and programmes such as research and development projects.",S4.2.3
+SkillGroup,http://data.europa.eu/esco/skill/193af349-b20e-4277-94bf-b184e92b8d6a,managing budgets or finances,,,released,2022-06-19T15:45:14.266Z,"Examples:
+- Control financial resources
+- Manage revenue
+- Handle external financing.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Determining the distribution and availability financial assets and putting in place financial and administrative controls.,S4.3.1
+SkillGroup,http://data.europa.eu/esco/skill/1bc1cf2a-a7f6-4769-a13b-cc26a2214498,"preparing documentation for contracts, applications, or permits",,,released,2022-06-22T10:53:34.19Z,"Examples:
+- prepare building permit applications
+- issue permits
+- arrange customs documents Excludes:
+- write reports or documents requiring drafting of original text.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Preparing applications and maintaining standardized documentation for the issuance of contracts, licences or permits.",S2.2.3
+SkillGroup,http://data.europa.eu/esco/skill/1cc5ff0b-afaa-4993-9de7-ab0d77b6cca2,moving and lifting,,,released,,"Excludes:
+- Specific skills involving lifting and moving people and animals
+- Operation of machinery other than hand-held equipment.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Performing physical activities to move, load, unload or store objects, position workpieces or equipment for assembly, or to climb structures, by hand or with the aid of equipment.",S6.2
+SkillGroup,http://data.europa.eu/esco/skill/1d4be2e3-ac64-426f-838d-1e7cb8600927,management skills,,,released,2023-06-29T13:45:28.167Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Managing people, activities, resources, and organisation; developing objectives and strategies, organising work activities, allocating and controlling resources and leading, motivating, recruiting and supervising people and teams.",S4.0.0
+SkillGroup,http://data.europa.eu/esco/skill/1e95cef2-9c35-4f9f-b6a9-cb458c3e5379,"monitoring, inspecting and testing",,,released,2023-03-16T15:20:07.475Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Examining and investigating problems, sites or objects to assess functioning or compliance with standards, laws or regulations.",S2.8
+SkillGroup,http://data.europa.eu/esco/skill/1f2950c0-ef1e-44b4-9a55-125ccd7b78af,analysing and evaluating information and data,analysing information,,released,2023-02-17T16:35:11.868Z,"Excludes:
+- Using ICT tools to analyse and process data.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Examining data or facts to determine appropriate actions or recommendations; comparing and critically evaluating the credibility and reliability of sources of data; making and defending judgements based on internal evidence and external criteria.,S2.7.0
+SkillGroup,http://data.europa.eu/esco/skill/23cfb269-eec1-4011-8e57-c86203ce9fd7,giving feedback,,,released,2020-12-11T12:31:47.977Z,"Examples:
+- provide feedback on job performance
+- give constructive feedback.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing founded feedback on the performance of subordinates, co-workers and students through both criticism and praise in a respectful, clear, and consistent manner. Highlighting achievements as well as mistakes and set up methods of formative assessment.",S1.8.3
+SkillGroup,http://data.europa.eu/esco/skill/23d7bd85-d8d5-4455-b64d-3b0998f2425d,measuring dimensions and related properties,,,released,2021-03-16T14:41:08.752Z,"Examples:
+- measure interior space
+- measure the human body for wearing apparel
+- measure water depth.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Measuring the dimensions, density and other physical properties of objects, materials, people, and spaces.",S2.5.1
+SkillGroup,http://data.europa.eu/esco/skill/243eb885-07c7-4b77-ab9c-827551d83dc4,working with computers,digital skills,,released,,"Excludes:
+- Systems analysis
+- Installing, maintaining and repairing computer hardware.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using computers and other digital tools to develop, install and maintain ICT software and infrastructure and to browse, search, filter, organise, store, retrieve, and analyse data, to collaborate and communicate with others, to create and edit new content.",S5
+SkillGroup,http://data.europa.eu/esco/skill/2486154b-e3fd-4938-8316-029f62afdcb9,assisting and caring,providing services,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing assistance, nurturing, care, service and support to people, and ensuring compliance to rules, standards, guidelines or laws.",S3.0
+SkillGroup,http://data.europa.eu/esco/skill/24a39c1b-b8cc-4210-8b74-b388a90e8f59,"joining parts using soldering, welding or brazing techniques",,,released,,"Examples:
+- Apply arc welding techniques
+- Operate brazing equipment
+- Weld underwater
+- Solder components onto electronic board.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Joining together pieces of metal by applying heat using soldering, welding or brazing techniques.",S7.1.6
+SkillGroup,http://data.europa.eu/esco/skill/24ad2ffb-dece-4704-8155-63ea9428d038,advising and consulting,,,released,,"Excludes:
+- Psychological, behavioural and social counselling; see S3.1.1.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing guidance and advice to enable decision-making about tasks, situations, and processes.",S1.5
+SkillGroup,http://data.europa.eu/esco/skill/28d2ab6c-38a2-476e-85fe-7982fd242943,accessing and analysing digital data,managing digital information,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using digital tools to browse, search, filter, organise, store, retrieve, and analyse data, information and digital content, to collaborate and communicate with others, and create and edit new content.",S5.5
+SkillGroup,http://data.europa.eu/esco/skill/29dcc31e-a8d6-4a62-b3c1-2de81e966e39,gathering information from physical or electronic sources,,,released,2022-06-19T14:48:30.73Z,"Examples:
+- collect customer data
+- gather reference materials
+- obtain financial information Excludes:
+- Skills in the use of specific ICT tools to process data.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Collecting, compiling or gathering information from digital, paper or other sources.",S2.4.1
+SkillGroup,http://data.europa.eu/esco/skill/2ae39fc8-0f1b-4284-9e73-3f2739471f63,constructing,,,released,2024-01-25T10:28:05.972Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Building, repairing, installing and finishing interior and exterior structures.",S7
+SkillGroup,http://data.europa.eu/esco/skill/2b2c3254-7f6c-47e2-84f1-aece946fbfae,maintaining a positive attitude,"managing negative factors in life and work
+demonstrating resilience",,released,2021-08-30T16:03:19.52Z,Excludes coping with physical adversity.,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Withstand adversity, demonstrate resilience and find ways to resolve or manage the effects of difficult life events.",T3.3
+SkillGroup,http://data.europa.eu/esco/skill/2d02d98c-20c4-4b46-bf44-e5f85a3f03ed,building and developing teams,managing teams,,released,,"Excludes:
+- Training
+- Recruiting and hiring Examples:
+- Facilitate teamwork between students
+- Encourage teambuilding.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Encouraging team members and building a relationship of mutual trust, respect and cooperation. Stimulating teambuilding activities.",S4.6
+SkillGroup,http://data.europa.eu/esco/skill/2f661409-3e56-46ab-95d7-6ec7786fc1c0,writing and composing,,,released,,"Excludes:
+- general writing abilities/literacy
+- writing computer programmes/coding.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Writing text or composing music, creating original work with regard to format, style and content.",S1.13
+SkillGroup,http://data.europa.eu/esco/skill/316df5b7-31c4-4f4e-ae69-aad1b873b995,interpreting technical documentation and diagrams,,,released,2023-02-23T20:39:54.748Z,"Examples:
+- read blueprints - interpret electrical diagrams.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Reading and interpreting documentation such as blueprints, electrical wiring diagrams, architectural plans.",S2.1.3
+SkillGroup,http://data.europa.eu/esco/skill/323b3684-86ec-40fa-81b4-bc52694ef168,negotiating,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Exchanging ideas while analysing issues and interests at stake, enabling opposing sides to resolve disputes and reach agreement, or making decisions to resolve disputes or impose justice.",S1.1
+SkillGroup,http://data.europa.eu/esco/skill/325a3d29-a235-4182-9128-782c0f4b2dcc,documenting and recording information,,,released,,"Excludes:
+- Writing reports or documents requiring drafting of original text.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Maintaining records of information, transactions and activities in digital, paper or other forms.",S2.2
+SkillGroup,http://data.europa.eu/esco/skill/32c017fd-28ab-4051-bf68-74de952c2f77,managing information,,,released,2023-02-23T21:14:33.038Z,"Examples:
+- Manage digital archives
+- Oversee record management
+- Organise information.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Setting up and managing manual or electronic systems for storing , selecting, organizing, retrieving, distributing and safeguarding information.",S2.3.0
+SkillGroup,http://data.europa.eu/esco/skill/335228d2-297d-4e0e-a6ee-bc6a8dc110d9,skills,skills,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",,S
+SkillGroup,http://data.europa.eu/esco/skill/335be43a-3267-400e-b5cb-c9e234dc7544,teaching academic or vocational subjects,,,released,2023-12-20T15:16:40.141Z,"Examples:
+- give theory lessons to pilots
+- teach biology
+- teach basic numeracy skills
+- teach industrial arts principles.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Instruct students in the theory and practice of academic or vocational subjects.,S1.3.1
+SkillGroup,http://data.europa.eu/esco/skill/347aa7ee-b640-41cc-ae7c-3c5eafda9fda,measuring physical properties,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Measuring the dimensions, weight, density and other physical properties of objects, materials and spaces.",S2.5.0
+SkillGroup,http://data.europa.eu/esco/skill/35045957-e9e4-44b1-801a-9a49f6efaece,marking materials or objects for identification,,,released,2023-10-27T13:47:25.299Z,"Examples:
+- Assign codes to product items
+- Change shelf labels - Label samples.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Marking or labelling objects or materials for identification by type or individually.,S6.1.2
+SkillGroup,http://data.europa.eu/esco/skill/35dc2a23-cdc3-4291-930f-927ba2911949,ensuring compliance with legislation,,,released,2023-02-23T21:03:05.744Z,"Examples:
+- apply immigration law
+- ensure customs compliance
+- meet building regulations Excludes:
+- adhere to organisational guidelines
+- protect biodiversity.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Ensuring compliance with national or international laws and legislation.,S3.3.7
+SkillGroup,http://data.europa.eu/esco/skill/37272760-957a-4c34-b4f3-780ee285334d,"developing financial, business or marketing plans",,,released,2020-12-07T11:46:34.47Z,"Examples:
+- Develop business case
+- Draw up marketing and sales plan
+- Create a financial plan.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Envision and develop strategies and plans for companies and organisations aimed at purposes such as establishing new markets, refurbishing the equipment and machinery of a company, implementing pricing strategies, and restoring or maintaining financial viability.",S4.1.2
+SkillGroup,http://data.europa.eu/esco/skill/3753e796-121e-46a3-9c27-dee31ce92c80,analysing and evaluating information and data,analysing information,,released,2023-06-30T07:35:32.811Z,"Excludes:
+- Using ICT tools to analyse and process data.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Examining data or facts to determine appropriate actions or recommendations; comparing and critically evaluating the credibility and reliability of sources of data; making and defending judgements based on internal evidence and external criteria.,S2.7
+SkillGroup,http://data.europa.eu/esco/skill/39499028-35bf-4d69-9275-fb98902ed88b,working with computers,digital skills,,released,2021-09-16T17:48:30.49Z,"Excludes:
+- Systems analysis
+- Installing, maintaining and repairing computer hardware.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using computers and other digital tools to develop, install and maintain ICT software and infrastructure and to browse, search, filter, organise, store, retrieve, and analyse data, to collaborate and communicate with others, to create and edit new content.",S5.0.0
+SkillGroup,http://data.europa.eu/esco/skill/3d54fec5-d9cb-45a0-bf8d-ffaf3790a5bb,applying health-related skills and competences,"maintaining safety, health and welfare",,released,2021-09-13T12:45:19.726Z,The skills and competences under this heading address the ability to care for own and others’ mental and physical well-being.,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Care for own and others’ mental and physical well-being and apply basic health standards, including hygiene. Obtain and use health information, and identify and access services and agencies that offer healthcare and guidance. Manage the negative effects of chronic health conditions.",T6.1
+SkillGroup,http://data.europa.eu/esco/skill/3f641516-9846-4a7f-a7f4-e1274eef6688,presenting information,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Presenting oral or visual material to an audience in order to provide or interpret information.,S1.4
+SkillGroup,http://data.europa.eu/esco/skill/424cce4d-71c9-47d9-93d6-4068403139f0,shaping materials to create products,,,released,2022-06-19T15:45:14.266Z,"Examples:
+- Shape clay
+- Shape sheet metal objects
+- Use wood chisel.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Altering the shape of various types of materials by hand or using hand tools.,S6.7.2
+SkillGroup,http://data.europa.eu/esco/skill/44ff6716-7d71-4a16-821b-61d10e9e290d,applying general knowledge,"general education
+general knoweldge",,released,2021-08-30T16:55:23.01Z,Skills and competences includes under this heading can be acquired either as part of a formal qualification or in non-formal and informal settings.,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Access and apply basic knowledge related to science, technology and engineering, to social sciences and humanities and to philosophy, ethics and religion.",T6.6
+SkillGroup,http://data.europa.eu/esco/skill/485b2e3b-f883-46d8-901f-ab521d4f8e58,sorting materials or products,,,released,2023-01-24T18:49:41.387Z,"Examples:
+- Differentiate types of packages
+- Sort waste.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Arranging materials into predetermined categories or groups, according to established patterns of procedures.",S6.1.1
+SkillGroup,http://data.europa.eu/esco/skill/4d6a48ae-352e-4823-bc3a-3f3e9e2cae86,accessing and analysing digital data,managing digital information,,released,2021-09-24T16:38:38.771Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using digital tools to browse, search, filter, organise, store, retrieve, and analyse data, information and digital content, to collaborate and communicate with others, and create and edit new content.",S5.5.0
+SkillGroup,http://data.europa.eu/esco/skill/4d7fb3eb-554a-4cf1-a576-bf6e153bdba2,using precision instrumentation and equipment,,,released,,"Excludes:
+- Installing and setting up precision equipment.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Controlling, monitoring, and adjusting precision instrumentation and equipment for a wide range of purposes.",S8.6
+SkillGroup,http://data.europa.eu/esco/skill/4ef78abc-e983-4cc7-84a1-52532a0159dc,life skills and competences,active citizenship,,released,2021-08-30T09:47:58.442Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Skills and competences relating to the ability to process and use knowledge and information which has transversal significance and facilitates active citizenship. They comprise the areas of health, environment, civic engagement, culture, finance and the application of general knowledge.",T6
+SkillGroup,http://data.europa.eu/esco/skill/4feed491-dc09-4218-814a-0146e13ef4fe,solving problems,problem solving,,released,,"Excludes:
+- Repairing and resolving technical problems with machinery and equipment
+- Using ICT tools for problem solving.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing and implementing solutions to practical, operational or conceptual problems which arise in the execution of work in a wide range of contexts.",S1.9.0
+SkillGroup,http://data.europa.eu/esco/skill/51ffd92f-7ff4-4c38-83d4-7350fcfd6968,smoothing surfaces of objects or equipment,,,released,,"Examples:
+- Smooth burred surfaces
+- Polish furniture.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating smooth surfaces on various types of materials and employing techniques such as grinding, planing, sanding and polishing, using handheld tools.",S6.7.3
+SkillGroup,http://data.europa.eu/esco/skill/548c3fbe-9eb1-4035-bc54-027fd5bc5315,working with others,,,released,2021-04-15T08:15:36.624Z,"Excludes:
+- Management, supervision and coordination of teams.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Working with other people, understanding and respecting the roles and competencies of others.",S1.8
+SkillGroup,http://data.europa.eu/esco/skill/552c4f35-a2d1-49c2-8fda-afe26695c44a,social and communication skills and competences,"interpersonal skills
+social interaction
+social interactions
+interpersonal abilities
+social skills","enjoy dealing with people
+well-groomed manners
+enjoy interacting with people
+perfect manners
+friendly being
+neat apperance
+interaction with people
+ability to relate
+sympathetic demeanour
+sociability
+relationship orientation
+interact and present
+friendliness
+warm personality
+show respect and positive regard for others
+neat look
+respectful interaction with people
+customer service
+ability to establish contact
+contact ability
+be outgoing
+ability to interact
+polite manners
+socially competent
+support and cooperate
+pay attention to netiquette
+charismatic appearance
+excellent social skills
+pleasant manners",released,2021-08-30T09:00:34.189Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Skills and competences relating to the ability to interact positively and productively with others. This is demonstrated by communicating ideas effectively and empathetically, coordinating one’s own objectives and actions with those of others and acting in ways which are structured according to values, ensuring the well-being and progress of others, and offering leadership.",T4
+SkillGroup,http://data.europa.eu/esco/skill/57216e88-a0d3-4b8c-af6c-b8232b4f48c2,using precision hand tools,,,released,,"Examples:
+- Use watchmaker's tools
+- Use jewellery equipment.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using hand-held electronic, mechanical, electric, or optical tools for precision work.",S6.7.4
+SkillGroup,http://data.europa.eu/esco/skill/5770f630-9b25-49f3-9d37-e93ec1799749,teaching and training,,,released,,"Excludes:
+- Training animals.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Facilitating the acquisition of new knowledge and skills. Leading and guiding individuals and groups through a process in which they are taught the necessary skills and knowledge for life, future learning or for a particular job or set of jobs.",S1.3
+SkillGroup,http://data.europa.eu/esco/skill/587e1cd6-a376-4c8f-8369-187c128d72a3,processing information,,,released,,"Excludes:
+- Skills in the use of specific ICT tools to process data.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Inputting, recording, transcribing and updating data using electronic or manual information systems.",S2.4
+SkillGroup,http://data.europa.eu/esco/skill/58bd927f-e4cc-4b61-a679-cb91b3f8075a,following instructions and procedures,,,released,2022-06-19T15:45:14.266Z,"Examples:
+- follow a brief
+- follow signalling instructions
+- read job ticket instructions.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Following instructions given verbally or in writing and following standard or agreed procedures.,S1.8.5
+SkillGroup,http://data.europa.eu/esco/skill/58edb789-d085-4e7d-8b6e-b70913bebfca,installing and assembling building fixtures,,,released,,"Examples:
+- Install handrail
+- Place drywall
+- Install drop ceilings.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Installing, assembling or constructing building fixtures such as drywall, doors, windows and staircases.",S7.1.7
+SkillGroup,http://data.europa.eu/esco/skill/5bcec244-3efe-45ac-8891-0ab4a91e9c48,complying with health and safety procedures,,,released,2023-02-21T20:59:45.769Z,"Examples:
+- follow hygienic work practices
+- use personal protection equipment
+- protect health and well-being while using digital technologies Excludes:
+- attend to personal hygiene.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Ensuring compliance to rules, standards, guidelines laws or good practices relating to the health and safety of oneself, co-workers, employees and the public.",S3.3.1
+SkillGroup,http://data.europa.eu/esco/skill/5c26881e-2759-4a38-b136-5e0f6071b524,"organising, planning and scheduling work and activities",organising and planning,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Directing activities and tasks, establishing schedules and co-ordinating the activities of groups and individuals to complete objectives on time and within budget.",S4.2
+SkillGroup,http://data.europa.eu/esco/skill/5c2d5780-23ed-4372-bb8d-c1846ee404ae,monitoring financial and economic resources and activity,,,released,,"Excludes:
+- Testing and analysing substances Examples:
+- Monitor production costs
+- Monitor financial accounts
+- Monitor bond markets.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Monitor parameters to maintain awareness of levels of financial resources and expenditure, stocks, and the economic environment.",S2.8.3
+SkillGroup,http://data.europa.eu/esco/skill/62afcfdd-a2a6-4143-bafb-59c77e15a01c,advising on products and services,,,released,2023-01-24T19:03:05.231Z,"Examples:
+- advise customers on new equipment
+- provide advice on travel destinations.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Advising others on products or services explaining technical details.,S1.5.3
+SkillGroup,http://data.europa.eu/esco/skill/663e753c-2fc4-4bf6-9a06-a6ab2d705238,purchasing goods or services,,,released,2022-06-19T15:06:42.666Z,"Excludes:
+- Performing financial transactions Examples:
+- Buy advertising space
+- Order construction supplies
+- Procure electrical machinery
+- Purchase fruits and vegetables.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Buying and ordering goods, services and supplies.",S1.6.3
+SkillGroup,http://data.europa.eu/esco/skill/66fdc34c-2326-4baa-b8ff-7a1d1015fe3a,planning and organising,"organisational skills
+work planning
+planning skills
+planning activities
+planning abilities",planning thinking,released,2021-08-30T14:01:57.38Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Direct activities and tasks, establish schedules and coordinate the activities of groups and individuals to complete objectives on time and within budget.",T2.2
+SkillGroup,http://data.europa.eu/esco/skill/6889a21c-837b-49a2-be61-bb6010ab63f4,obtaining information verbally,verbal interaction,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Asking questions and listening to others to obtain information.,S1.7
+SkillGroup,http://data.europa.eu/esco/skill/6a7fc30d-af16-4cc5-a957-29d174bdb61c,"managing, gathering and storing digital data",,,released,2023-10-27T16:10:20.781Z,"Examples:
+- Create digital files - Digitise documents
+- Use spreadsheet software
+- Perform data cleansing.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using digital tools to organise, gather, store, retrieve, and archive data, information and digital content.",S5.5.2
+SkillGroup,http://data.europa.eu/esco/skill/6c4fa8c8-e9e1-49b5-897f-6b61fe649488,training on operational procedures,,,released,2023-06-20T13:39:25.098Z,"Examples:
+- teach air cabin crew procedures
+- train operators in using mine machinery
+- demonstrate functionality of software products Excludes:
+- teaching vocational subjects as part of formal learning
+- teaching safety procedures and standards
+- coaching.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Training employees, students or clients on operational procedures in the work place or and demonstrating the use of equipment or products.",S1.3.3
+SkillGroup,http://data.europa.eu/esco/skill/6d0cad66-82dd-4854-a03a-68232942c68d,installing wooden and metal components,,,released,2023-03-16T15:33:50.175Z,"Examples:
+- Assemble truss constructions
+- Reinforce concrete Excludes:
+- Installing metal roofing.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Installing, assembling and repairing structural timber or metal parts.",S7.1.2
+SkillGroup,http://data.europa.eu/esco/skill/6e62e776-fbfa-486c-a6df-58cd239c86fe,technical or academic writing,,,released,2022-06-19T15:45:14.266Z,"Examples:
+- write manuals
+- draft legislation
+- provide user documentation Excludes:
+- revise translations
+- write computer programmes / coding.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Writing original text of a primarily functional, technical or academic nature; editing text.",S1.13.3
+SkillGroup,http://data.europa.eu/esco/skill/6ee936b0-4e0c-4e04-97c7-1f4ee9230d67,developing objectives and strategies,strategic planning,,released,2020-12-11T09:19:59.825Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Envisioning a future state and developing strategies, goals, objectives and action plans to achieve it.",S4.1.0
+SkillGroup,http://data.europa.eu/esco/skill/6f142deb-03a9-4cd7-94ce-e0f023ae2169,communicating,"communication
+using language, symbols and text effectively
+communication skills
+verbal skils
+argumentation skills
+writing skills
+conversational skills","able to communicate
+communicate ideas and information effectively in writing
+communications Style
+lead conversations confidently
+written expression
+written communication",released,2021-08-30T16:23:39.992Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Express and exchange information, ideas, concepts, thoughts, and feelings, and resolve disagreements in formal and informal contexts, through the use of shared systems of words, signs, and rules.",T4.1
+SkillGroup,http://data.europa.eu/esco/skill/6f89dcbe-4315-4533-8801-3aadf9190b86,developing objectives and strategies,strategic planning,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Envisioning a future state and developing strategies, goals, objectives and action plans to achieve it.",S4.1
+SkillGroup,http://data.europa.eu/esco/skill/73e602a0-f80f-4f56-8e21-3db4fd08709d,"providing medical, dental and nursing care",,,released,2023-11-06T13:40:22.277Z,"Examples:
+- provide professional care in nursing
+- administer prescribed medication
+- carry out wound care
+- manage acute pain
+- rehabilitate worn dentition Excludes:
+- veterinary care
+- performing surgery
+- physiotherapy
+- occupational therapy
+- psychotherapy.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Treating injuries and health conditions among humans, through administering medication and providing other medical treatments and nursing care.",S3.2.1
+SkillGroup,http://data.europa.eu/esco/skill/75c1ab73-5b00-48a0-818e-93487ebdd7e1,setting up and protecting computer systems,installing and managing it safety,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Setting up, protecting and resolving problems with computer systems, networks, or similar information systems.",S5.2
+SkillGroup,http://data.europa.eu/esco/skill/77ee8fad-188f-44cf-88ba-4e495a52d604,assisting with personal needs,,,released,,"Excludes:
+- Administration of medical treatments and therapies
+- Therapeutic massage
+- Caring for children Examples:
+- Provide basic support to patients
+- Give non-therapeutic massages
+- Provide domestic care.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Assisting others with personal needs and care such as bathing, dressing, feeding, relaxation and comfort.",S3.6.2
+SkillGroup,http://data.europa.eu/esco/skill/7a00c77c-4a1c-4fd6-a83f-004bda65d81a,supervising people,,,released,,"Excludes:
+- Define roles of team members
+- Supervise children.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Assigning responsibilities to others and directing and monitoring their performance.,S4.8
+SkillGroup,http://data.europa.eu/esco/skill/7a163630-7536-4748-a259-aa820d3be44b,providing health care or medical treatments,healthcare,,released,,"Excludes:
+- Veterinary care
+- Diagnosing health conditions.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Treating injuries and health conditions through the provision of health care and medical treatments to people.,S3.2
+SkillGroup,http://data.europa.eu/esco/skill/7b942071-f688-4600-8d9f-ad4c0306abc7,"installing, maintaining and repairing electrical, electronic and precision equipment","installing and maintaining electrical, electronic and precision equipment",,released,,"Excludes:
+- Installing computer software, and configuring computer networks.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Installing, setting-up, maintaining and repairing electrical and electronic equipment, and control systems, scientific devices, instrumentation and precision equipment.",S8.8
+SkillGroup,http://data.europa.eu/esco/skill/7de7e3f6-d222-4f08-b3f0-e2deff7ef798,providing information and support to the public and clients,providing information and support,,released,2022-06-19T15:20:39.399Z,"Excludes:
+- Provide high quality client service
+- Satisfy customers.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Assisting the public by answering questions, making recommendations, and providing information or support in response to requests.",S3.4.0
+SkillGroup,http://data.europa.eu/esco/skill/7e0b93e0-0de7-4607-b07f-27a6828d3ff0,developing educational programmes,,,released,,"Examples:
+- develop curriculum
+- construct individual learning plans
+- develop training programmes.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing education and training programs, plans, or procedures for society in general, specific groups or tailored to an individual's learning needs.",S4.1.6
+SkillGroup,http://data.europa.eu/esco/skill/7e153e1d-2b12-43ad-89f3-0cf82ebc4a30,performing risk analysis and management,,,released,2023-07-06T10:08:28.9Z,"Excludes:
+- Using ICT tools to analyse and process data. Examples:
+- Draw up risk assessment
+- Apply risk management processes.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Identify and assess factors that may have negative financial consequences, jeopardise the success of a project or activity, expose individuals to danger, cause damage to property and equipment or threaten an organisation's functioning. Implement procedures to avoid or minimise their impact.",S2.7.5
+SkillGroup,http://data.europa.eu/esco/skill/7eafec38-621a-4b6e-9298-bfe70ec0b253,conducting academic or market research,,,released,2024-07-03T13:25:14.076Z,"Examples:
+- Conduct public surveys
+- Conduct literature research Excludes:
+- Detect financial crime
+- Investigate road accidents.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Conducting research studies, investigations or surveys to increase knowledge and understanding within the academic or business field.",S2.1.1
+SkillGroup,http://data.europa.eu/esco/skill/802deca0-b880-4d1a-b366-e13b27621baf,complying with operational procedures,,,released,2023-10-26T09:08:06.707Z,"Examples:
+- adhere to organisational guidelines
+- apply socially just working principles Excludes:
+- comply with legislation in social services
+- ensure compliance with gaming laws
+- follow hygienic practices in fishery operations.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Ensuring compliance with operational procedures, standards or guidelines at company level related to matters other than health, safety and the environment.",S3.3.3
+SkillGroup,http://data.europa.eu/esco/skill/8064ae65-5d1b-44e1-9aaf-246a4285a9a6,complying with environmental protection laws and standards,,,released,2023-07-05T15:35:28.89Z,"Examples:
+- follow environmentally-sustainable work practices
+- implement environmental protection measures
+- protect biodiversity Excludes: - ensure customs compliance.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Ensuring compliance with regulations, standards, guidelines, laws or practices relating to the protection of the environment.",S3.3.2
+SkillGroup,http://data.europa.eu/esco/skill/80cf002a-6586-4db7-9c9a-88325a9a5e1b,applying environmental skills and competences,adopting environmentally-friendly practices,,released,2021-09-13T17:37:26.558Z,The skills and competences under this heading address the different modes and activities relevant for a greener working and living.,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups",Reflect on the short and long-term impact of individual behaviours on the physical and social environment and adopt a sustainable work and lifestyle. Recognize the individual and collective responsibility for the protection and restoration of the local and global environment and inspire others.,T6.2
+SkillGroup,http://data.europa.eu/esco/skill/821ecf8f-3c2a-4b89-a9f1-b2aa7fb0b625,cleaning,,,released,,"Excludes:
+- Cleaning, laundering and maintaining textiles
+- Cleaning live animals.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Cleaning buildings, work areas, equipment, machinery and vehicles.",S6.11
+SkillGroup,http://data.europa.eu/esco/skill/82463bb1-85d1-4e99-a4ce-08508fc3b2a3,supporting others,"helpfulness
+support others
+providing support to others","selflessness
+kindness
+courteous behaviour
+caring",released,2023-10-26T08:00:39.789Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Guide or help less experienced or less knowledgeable people, and provide support to distressed people.",T4.2
+SkillGroup,http://data.europa.eu/esco/skill/8267ecb5-c976-4b6a-809b-4ceecb954967,thinking skills and competences,"use of reason and logic
+cognitive skills and competences",,released,2021-08-30T08:20:35.122Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Skills and competences relating to the ability to apply the mental processes of gathering, conceptualizing, analysing, synthesizing, and/or evaluating information gathered from, or generated by, observation, experience, reflection, reasoning, or communication. They include the ability to evaluate and use information of different kinds to plan activities, achieve goals, solve problems, deal with issues and perform complex tasks in routine and novel ways.",T2
+SkillGroup,http://data.europa.eu/esco/skill/8369011d-de43-4800-bcce-be12e19828a5,accepting feedback,,,released,2022-06-19T14:48:30.73Z,"Examples:
+- accept constructive criticism.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",React to valid and well-reasoned opinions and directions about one's work in a positive manner.,S1.8.4
+SkillGroup,http://data.europa.eu/esco/skill/85b379e7-e0b7-48b8-baa7-631f50a7cdd5,"communication, collaboration and creativity",communication and creativity,,released,,"Excludes:
+- Communication or interaction with animals.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Communicating, collaborating, liaising, and negotiating with other people, developing solutions to problems, creating plans or specifications for the design of objects and systems, composing text or music, performing to entertain an audience, and imparting knowledge to others.",S1.0
+SkillGroup,http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2,management skills,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Managing people, activities, resources, and organisation; developing objectives and strategies, organising work activities, allocating and controlling resources and leading, motivating, recruiting and supervising people and teams.",S4
+SkillGroup,http://data.europa.eu/esco/skill/872c0ddb-f056-4f51-afac-fc3d6fae0f5b,operating medical equipment,,,released,,"Excludes:
+- Installing and setting up precision equipment
+- Operating equipment used in laboratory tests, including pathology Examples:
+- Operate medical imaging equipment
+- Operate heart-lung machines.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Controlling, monitoring, and adjusting precision instrumentation and equipment used for diagnosing and treatment of medical conditions.",S8.6.1
+SkillGroup,http://data.europa.eu/esco/skill/87dff904-fb74-4d59-972e-1c2387579d94,directing operational activities,,,released,2023-01-27T11:28:14.096Z,"Examples:
+- coordinate rescue missions
+- coordinate operational activities
+- oversee pre-assembly operations Excludes:
+- coordinate dock operations
+- forecast workload
+- manage ICT project.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Directing, supervising and coordinating operational activities, projects and tasks in an organisation.",S4.2.1
+SkillGroup,http://data.europa.eu/esco/skill/883eab8c-d8a6-4e8b-9b11-7d9001e172ab,designing systems and products,,,released,2020-12-02T16:09:56.551Z,"Excludes:
+- Styling hair
+- Creating artistic, visual or instructive materials.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating a plan or specification for the construction of an object, system or structure based on aesthetic and/or functional design concepts.",S1.11.0
+SkillGroup,http://data.europa.eu/esco/skill/8a3b45dc-8299-4b67-99db-6542daf79ac3,developing professional relationships or networks,,,released,2023-02-17T16:29:39.797Z,"Examples: - develop communication networks with shipping sites
+- develop professional network
+- maintain relationship with suppliers.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing alliances, contacts or partnerships with colleagues, clients and stakeholders.",S1.2.3
+SkillGroup,http://data.europa.eu/esco/skill/8a57f720-70b3-41de-877c-7d723977dc88,measuring physical properties,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Measuring the dimensions, weight, density and other physical properties of objects, materials and spaces.",S2.5
+SkillGroup,http://data.europa.eu/esco/skill/8bbdf1f1-e943-45fc-af2f-1446cbd88245,using more than one language,working with different languages,,released,,"Excludes:
+- skills and knowledge related to a specific language or dialect.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using more than one language or dialect to communicate verbally or in written form, or to translate from one language to another.",S1.15
+SkillGroup,http://data.europa.eu/esco/skill/8da6cd59-61e1-43c4-8dfc-bc69d283ccc7,packaging objects,,,released,,"Examples:
+- Pack merchandise for gifts
+- Fill sacks
+- Package fish.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Enclosing or protecting products for distribution or storage according to a coordinated system of preparing goods for transport, warehousing, logistics, sale, and use.",S6.1.3
+SkillGroup,http://data.europa.eu/esco/skill/8f9f8b20-ff26-4392-b04f-695dcde5b90a,presenting research or technical information,,,released,2022-06-19T15:45:14.266Z,"Examples:
+- present legislation proposal
+- present detailed design proposal
+- perform lectures
+- deliver visual presentation of data.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Presenting information of a technical or academic nature to an audience, including presenting the results of research.",S1.4.2
+SkillGroup,http://data.europa.eu/esco/skill/8fde007e-ea4c-48c2-84c5-752834acd31d,"conducting studies, investigations and examinations",,,released,2023-02-21T15:14:24.011Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Conducting studies, investigations, and examinations to increase knowledge and understanding, diagnose problems or identify needs and requirements.",S2.1.0
+SkillGroup,http://data.europa.eu/esco/skill/906211b3-afed-4a2b-b5e1-33f2885fee85,performing general clerical and administrative tasks,,,released,,"Examples:
+- perform clerical duties.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Performing general clerical and administrative tasks such as collecting mail and organising documents, not involving administration of human resources, execution of financial transactions, or processing and transforming information or data.",S4.4.3
+SkillGroup,http://data.europa.eu/esco/skill/91860993-1a8b-4473-91f3-600aa1924bd0,taking a proactive approach,"identify opportunities
+proactive personality
+be proactive
+recognise opportunities
+recognising opportunities","forward-thinking
+forward-looking thinking
+proactive",released,2021-08-30T16:01:08.179Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups",Accept responsibilities for managing activities and adopt a forward-looking approach to anticipate problems but also identify opportunities.,T3.2
+SkillGroup,http://data.europa.eu/esco/skill/91b0b918-942e-4661-b88c-70b9396529e5,working with others,,,released,2021-12-17T12:53:52.273Z,"Excludes:
+- Management, supervision and coordination of teams.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Working with other people, understanding and respecting the roles and competencies of others.",S1.8.0
+SkillGroup,http://data.europa.eu/esco/skill/925af2b5-2f4d-4cce-92cc-79e1ff887c7d,following ethical code of conduct,"values
+handling of values
+morals
+value orientation
+ethics
+scruples
+beliefs","sense of justice
+idealism
+good manners
+justice
+good behaviour",released,2021-09-03T15:52:21.316Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Carry out workplace activities according to accepted principles of right and wrong, including fairness, transparency and impartiality in work practices and conduct towards other people.",T4.5
+SkillGroup,http://data.europa.eu/esco/skill/95bf4552-6d5b-41dc-b990-53ace372f705,"documenting technical designs, procedures, problems or activities",,,released,,"Examples:
+- create documented procedures
+- maintain food specifications
+- provide manufacturing documentation Excludes:
+- write reports or documents requiring drafting of original text.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Preparing and maintaining documentation and specifications of designs, equipment and operating procedures.",S2.2.6
+SkillGroup,http://data.europa.eu/esco/skill/969845ce-6895-44a8-a3d2-b8c2d8b5de21,caring for children,,,released,,"Examples:
+- attend to children's basic physical needs
+- play with children Excludes:
+- administration of medical treatments and therapies
+- counsel and provide support to children to resolve personal, psychological or social problems.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Providing care for and assistance to children.,S3.6.3
+SkillGroup,http://data.europa.eu/esco/skill/9827c329-3492-4e8d-852c-da0894228ff6,allocating and controlling resources,managing resources,,released,,"Excludes:
+- Delegate activities.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Determining the distribution and availability of people, assets, materials or capital to accomplish organizational goals and putting in place financial and administrative controls.",S4.3
+SkillGroup,http://data.europa.eu/esco/skill/98fb499f-9155-412d-a8a0-95ba97126fec,using digital tools for collaboration and productivity,,,released,2023-06-30T08:18:14.318Z,"Excludes:
+- Computer programming
+- Resolving computer problems Examples:
+- Use email software and services
+- Operate GPS systems
+- Use personal organisation software.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Using ICT software and hardware to collaborate and communicate with others and to improve productivity.,S5.6.1
+SkillGroup,http://data.europa.eu/esco/skill/9b8bb484-dcba-49af-8ae0-cfe8b6e9ed45,working with machinery and specialised equipment,"machinery, equipment, vehicles",,released,,"Excludes:
+- Interacting with computers.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Controlling, operating and monitoring vehicles, stationary and mobile machinery and precision instrumentation and equipment.",S8
+SkillGroup,http://data.europa.eu/esco/skill/9bdf8a77-8524-43da-bac6-d15d22e1b7ed,entering and transforming information,,,released,,"Examples:
+- format documents
+- transcribe data
+- input data into computers Excludes:
+- skills in the use of specific ICT tools to process data
+- perform mathematical calculations.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Entering and transforming information in electronic or other information systems.,S2.4.2
+SkillGroup,http://data.europa.eu/esco/skill/a19c5139-1250-4a60-9c31-a3243cca06cc,communicating with colleagues and clients,,,released,2022-07-15T14:44:44.924Z,"Examples:
+- Brainstorm ideas
+- Contact customers Excludes:
+- Cooperate with professionals
+- Liaise with politicians.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Communicating with colleagues, clients and other outside groups to disseminate information on operational matters, problems and activities.",S1.2.1
+SkillGroup,http://data.europa.eu/esco/skill/a556a3db-cd48-42a5-825c-f95f6f5ccbfe,creating visual displays and decorations,,,released,2020-12-07T15:05:05.027Z,"Examples:
+- create flower arrangements
+- set up merchandise displays
+- decorate indoor or outdoor spaces
+- display merchandise
+- design customised maps Excludes:
+- create artistic designs.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating, designing and arranging graphics, visual representations, displays, exhibits or decorations.",S1.12.1
+SkillGroup,http://data.europa.eu/esco/skill/a6c3bda0-c759-495e-b2c5-062b3abe2097,implementing new procedures or processes,,,released,2020-12-07T11:25:11.191Z,"Examples:
+- implement transport strategy
+- apply crisis intervention Excludes:
+- repair and resolve technical problems with machinery and equipment
+- use ICT tools for problem solving.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Implementing new business procedures or processes to resolve practical, operational or conceptual problems which arise in the execution of work in a wide range of contexts.",S1.9.2
+SkillGroup,http://data.europa.eu/esco/skill/a7065828-10aa-4aba-b7d4-f23a30df5060,"installing and repairing electrical, electronic and precision equipment",,,released,2020-12-10T10:29:22.935Z,"Excludes:
+- Installing computer software, and configuring computer networks
+- Setting up audio-visual equipment Examples:
+- Configure electronic equipment
+- Install electric switches
+- Install low voltage wiring
+- Repair household appliances
+- Repair vehicle electrical systems.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Installing, setting-up, and repairing electrical, electronic, mechatronic and precision equipment, and control systems, scientific and medical devices, instrumentation and precision equipment.",S8.8.1
+SkillGroup,http://data.europa.eu/esco/skill/a8c3186b-c791-4d57-8f4f-4d12c7a5c6a7,programming computer systems,programming,,released,2023-07-06T10:23:05.54Z,"Excludes:
+- Systems analysis
+- Issuing commands to computer controlled machines and equipment Examples:
+- Write computer programming code
+- Use query languages
+- Debug software.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Writing and submitting instructions, specifications and programmes for computers.",S5.1.0
+SkillGroup,http://data.europa.eu/esco/skill/aab9f44d-fe0e-46d8-a470-11ce82a64846,supervising a team or group,,,released,2022-12-05T13:39:47.179Z,"Examples:
+- lead a team
+- manage sales teams
+- supervise crew Excludes:
+- supervise children.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Managing, leading or supervising the activities a team or group of workers or students.",S4.8.1
+SkillGroup,http://data.europa.eu/esco/skill/ab877a24-335d-4676-b366-c5c06651481a,"communication, collaboration and creativity",communication and creativity,,released,2021-12-17T12:50:41.929Z,"Excludes:
+- Communication or interaction with animals.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Communicating, collaborating, liaising, and negotiating with other people, developing solutions to problems, creating plans or specifications for the design of objects and systems, composing text or music, performing to entertain an audience, and imparting knowledge to others.",S1.0.0
+SkillGroup,http://data.europa.eu/esco/skill/ab99d9a7-62eb-407b-92f2-bf7992a82004,creating artistic designs or performances,,,released,2022-06-21T09:05:08.279Z,"Examples:
+- devise choreography
+- create sculptures
+- design a music show.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating original works of art such as pictures and sculptures, or creating artistic performances such as dance and drama for live or recorded performance.",S1.12.3
+SkillGroup,http://data.europa.eu/esco/skill/aca5081a-ceb0-4028-9cc5-1daafd4f86f9,developing solutions,,,released,2023-06-29T15:54:08.629Z,"Examples:
+- troubleshoot
+- identify improvement actions
+- create solutions to problems Excludes:
+- repair and resolve technical problems with machinery and equipment
+- use ICT tools for problem solving.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing solutions to practical, operational or conceptual problems which arise in the execution of work in a wide range of contexts.",S1.9.1
+SkillGroup,http://data.europa.eu/esco/skill/af84405b-896d-4ed3-9462-077ea9a2a188,collaborating and liaising,,,released,2024-01-25T10:32:26.775Z,"Examples: - contact event speakers
+- liaise with auditors.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Reaching out to outside agencies, clients and other organisational units to facilitate exchange of information. Collaborating and engaging with external and internal agencies and departments to adapt the timing and nature of the activities.",S1.2.5
+SkillGroup,http://data.europa.eu/esco/skill/afe3d82e-4a40-4aa4-a4e9-a6097c4a391e,writing and composing,,,released,,"Excludes:
+- General writing abilities/literacy
+- Writing computer programmes/coding.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Writing text or composing music, creating original work with regard to format, style and content.",S1.13.0
+SkillGroup,http://data.europa.eu/esco/skill/b1115b14-fa16-4c1e-be6c-91fd49a1808b,using computer aided design and drawing tools,,,released,2022-06-22T14:11:44.883Z,"Excludes:
+- Computer programming
+- Resolving computer problems Examples:
+- Use CAD software.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using ICT software and hardware to collaborate and communicate with others, creating and editing new content (from word processing to images and video) and solving conceptual, technical and practical problems.",S5.6.3
+SkillGroup,http://data.europa.eu/esco/skill/b32ef8a5-e3f7-40ef-8b40-913c003e1f4e,"preparing financial documents, records, reports, or budgets",,,released,2020-12-10T22:08:37.954Z,"Examples:
+- prepare financial auditing reports
+- maintain financial records Excludes:
+- write reports or documents requiring drafting of original text.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Preparing and maintaining records and standardized reports on transactions, sales, financial information and budgets.",S2.2.1
+SkillGroup,http://data.europa.eu/esco/skill/b590d4e5-7c62-4b4a-abc2-c270b482e0ce,designing ict systems or applications,,,released,2023-07-06T12:54:51.284Z,"Excludes:
+- style hair
+- create artistic, visual or instructive materials.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating a plan or specification for the design of information systems, computer games, databases and computer networks, systems and applications.",S1.11.1
+SkillGroup,http://data.europa.eu/esco/skill/b76cd1e5-d5e7-464a-b7bb-4164d3616452,liaising and networking,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing alliances, contacts or partnerships, and exchanging information with others.",S1.2
+SkillGroup,http://data.europa.eu/esco/skill/b7e752ec-7b2e-46e6-ac24-8b1233609c31,leading and motivating,leadership,,released,2022-07-15T14:44:44.924Z,"Excludes:
+- Managing, leading or supervising a team or its members. Examples:
+- Motivate employees
+- Provide leadership
+- Lead board meetings.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Reinforcing an organization's vision, inspiring and enthusing others to achieve positive outcomes. The focus of this group is on skills in motivating and inspiring others, rather than on managing and supervising a team.",S4.5.0
+SkillGroup,http://data.europa.eu/esco/skill/b84813aa-6c44-4d58-a240-556c2060fb4e,assisting and caring,providing services,,released,2021-09-30T13:20:52.1Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing assistance, nurturing, care, service and support to people, and ensuring compliance to rules, standards, guidelines or laws.",S3.0.0
+SkillGroup,http://data.europa.eu/esco/skill/b88bddd4-210e-405f-bbdf-729bb66605a0,"prescribing and ordering medical tests, treatments or devices",,,released,,"Examples:
+- prescribe medication
+- prescribe psychotherapeutic treatment Excludes:
+- veterinary care.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Ordering medical tests such as blood tests or medical imaging, planning courses of treatment and prescribing medication, or medical and prosthetic devices.",S3.2.5
+SkillGroup,http://data.europa.eu/esco/skill/b94686e3-cce5-47a2-a8d8-402a0d0ed44e,core skills and competences,basic skills and competences,"literacy
+digital literacy
+numeracy
+multilinguism
+reading
+foundation skills
+digital competence",released,2021-08-30T09:44:37.419Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Skills and competences representing the foundation for interacting with others and for developing and learning as an individual. They comprise the ability to understand, speak, read and write language(s), to work with numbers and measures and to use digital devices and applications.",T1
+SkillGroup,http://data.europa.eu/esco/skill/b99283cd-b908-4100-baa5-112692ac22b8,"promoting, selling and purchasing",,,released,,"Excludes:
+- Trading and other skills involving buying and selling.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using communication strategies or techniques to encourage acceptance of goods, services, or ideas, and to sell or buy and goods or services.",S1.6
+SkillGroup,http://data.europa.eu/esco/skill/bb99a123-88be-42a2-8758-f5a18e06ccc6,making decisions,,,released,2022-08-02T10:46:51.743Z,"Examples:
+- Decide on loan applications
+- Make legal decisions
+- Decide on products to be stocked.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Making a choice from several alternative possibilities.,S4.9
+SkillGroup,http://data.europa.eu/esco/skill/be7443ff-0747-43b8-8720-8e87fd34e692,solving problems,problem solving,,released,,"Excludes:
+- Repairing and resolving technical problems with machinery and equipment
+- Using ICT tools for problem solving.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing and implementing solutions to practical, operational or conceptual problems which arise in the execution of work in a wide range of contexts.",S1.9
+SkillGroup,http://data.europa.eu/esco/skill/bffa732b-12ab-4214-a4b3-498598820b1c,assigning work to others,,,released,2021-12-17T12:57:57.543Z,"Examples:
+- assign duties to employees
+- assign class work to students
+- delegate tasks.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Assigning specific tasks to workers or students.,S4.8.2
+SkillGroup,http://data.europa.eu/esco/skill/c1a13ee0-b00d-4cfa-a22c-20d284e398b0,management skills,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Managing people, activities, resources, and organisation; developing objectives and strategies, organising work activities, allocating and controlling resources and leading, motivating, recruiting and supervising people and teams.",S4.0
+SkillGroup,http://data.europa.eu/esco/skill/c206d301-14b0-4bea-8028-a3749303a512,monitoring and evaluating the performance of individuals,,,released,2023-10-26T08:00:53.455Z,"Examples:
+- monitor the quality of work - perform classroom management
+- evaluate employees work
+- perform self-assessment Excludes:
+- supervise children.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Monitoring the behaviour or performance of workers, students or oneself to ensure that work is completed satisfactorily and to evaluate performance, capabilities and training needs.",S4.8.3
+SkillGroup,http://data.europa.eu/esco/skill/c20ac175-3aab-4aaa-9b9e-784c2dfb59cd,executing financial transactions,,,released,,"Examples:
+- issue sales invoices
+- operate cash register
+- issue purchase order.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Executing financial or commercial transactions such as issuing invoices for sales or issuing purchase orders.,S4.4.2
+SkillGroup,http://data.europa.eu/esco/skill/c23e0a2f-f04b-45bc-b0dd-20571f6b502c,developing operational policies and procedures,,,released,2022-06-21T15:59:58.885Z,"Examples:
+- define organisational standards
+- establish an ICT customer support process Excludes: - define geographic sales areas
+- develop business case - develop environmental policy.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Developing organisational and operational methods, policies, procedures or standards on company level to ensure streamlining of its operational processes.",S4.1.3
+SkillGroup,http://data.europa.eu/esco/skill/c34b06c4-d164-4e49-a784-89d47de42ec2,"designing industrial materials, systems or products",,,released,2020-12-07T15:23:03.877Z,"Examples:
+- design infrastructure for surface mines
+- design woven fabrics
+- create new enamels Excludes:
+- design electrical or electronic systems or equipment.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating or executing a plan or specification for the design of industrial, materials, products, or production systems, based on aesthetic and/or functional design concepts.",S1.11.5
+SkillGroup,http://data.europa.eu/esco/skill/c46fcb45-5c14-4ffa-abed-5a43f104bb22,knowledge,knowledge,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",,K
+SkillGroup,http://data.europa.eu/esco/skill/c5b71c57-6f78-4c54-b332-ec75848f1095,"conducting studies, investigations and examinations",,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Conducting studies, investigations, and examinations to increase knowledge and understanding, diagnose problems or identify needs and requirements.",S2.1
+SkillGroup,http://data.europa.eu/esco/skill/c73521be-c039-4e22-b037-3b01b3f6f9d9,assisting and caring,providing services,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Providing assistance, nurturing, care, service and support to people, and ensuring compliance to rules, standards, guidelines or laws.",S3
+SkillGroup,http://data.europa.eu/esco/skill/c75655c3-ed29-441e-b403-4dd65bc891a5,providing medical advice,,,released,2023-10-27T14:03:02.868Z,"Examples:
+- advise on rehabilitation exercises
+- advise on medical device features
+- offer advice on diet related concerns
+- explain the molecular basis of a disease to patients Excludes:
+- provide advice on animal health.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Explaining medical and healthcare information to patients or family members and/or advising them on medical, health or wellness issues.",S1.5.4
+SkillGroup,http://data.europa.eu/esco/skill/c7f96545-46c4-451a-b284-014f4baed5ed,making decisions,,,released,2021-12-17T12:52:46.944Z,"Examples:
+- Decide on loan applications
+- Make legal decisions
+- Decide on products to be stocked.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Making a choice from several alternative possibilities.,S4.9.0
+SkillGroup,http://data.europa.eu/esco/skill/c85f95ae-34fb-487b-b3d5-10803eee619d,"creating artistic, visual or instructive materials",creating artistic and visual materials,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating and developing visual representations and displays, instructional or promotional materials, or artistic designs or performances.",S1.12
+SkillGroup,http://data.europa.eu/esco/skill/c8f4aad2-ea23-49a2-9708-a6049c2d28ce,using precision measuring equipment,,,released,2020-12-10T17:46:15.65Z,"Excludes:
+- Installing and setting up precision equipment Examples:
+- Read electricity meter
+- Operate surveying instruments
+- Use lensometer.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using, reading and monitoring instruments and equipment for precise measurement.",S8.6.6
+SkillGroup,http://data.europa.eu/esco/skill/cacc62f3-2df4-4cc3-9d5d-0d014db56bd9,"using digital tools for collaboration, content creation and problem solving",using digital tools for collaboration and creativity,,released,,"Excludes:
+- Computer programming
+- Resolving computer problems.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using ICT software and hardware to collaborate and communicate with others, creating and editing new content (from word processing to images and video) and solving conceptual, technical and practical problems.",S5.6
+SkillGroup,http://data.europa.eu/esco/skill/caede8f1-6658-4d78-9eb4-2ad2c7ebf09b,teaching and training,,,released,2021-09-30T15:58:04.159Z,"Examples:
+- provide teacher support Excludes:
+- training animals.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Facilitating the acquisition of new knowledge and skills. Leading and guiding individuals and groups through a process in which they are taught the necessary skills and knowledge for life, future learning or for a particular job or set of jobs.",S1.3.0
+SkillGroup,http://data.europa.eu/esco/skill/ccb6db6a-8538-431c-b740-5f241bdb71cf,manipulating and controlling objects and equipment,"performing physical tasks and activities
+lifting, moving and placing objects",,released,2021-08-30T16:48:17.42Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Move or lift objects, or use equipment, tools or technology with precision.",T5.1
+SkillGroup,http://data.europa.eu/esco/skill/cdb2aecd-9dca-48fd-8d56-f0aace3ab5a9,presenting general information,,,released,2021-12-17T12:55:43.975Z,"Examples:
+- give live presentation
+- deliver presentations on tourism - present reports Excludes:
+- present information in legal proceedings
+- present research or technical information.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Presenting information of a non-technical nature to an audience.,S1.4.1
+SkillGroup,http://data.europa.eu/esco/skill/ce17a874-b476-491d-a7a7-5f05d32ad542,leading and motivating,leadership,,released,,"Excludes:
+- Managing, leading or supervising a team or its members. Examples:
+- Motivate employees
+- Provide leadership
+- Lead board meetings.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Reinforcing an organization's vision, inspiring and enthusing others to achieve positive outcomes. The focus of this group is on skills in motivating and inspiring others, rather than on managing and supervising a team.",S4.5
+SkillGroup,http://data.europa.eu/esco/skill/cfd5ab8f-ef8a-4877-8243-ddf17ac74604,planning events and programmes,,,released,2024-01-25T10:26:05.635Z,"Examples:
+- control financial resources
+- manage revenue
+- handle external financing.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Planning workflow and content for projects, events or programmes.",S4.2.2
+SkillGroup,http://data.europa.eu/esco/skill/d1815c8a-7755-4fe3-bacf-68bb0b6a0b55,developing instructive or promotional materials,,,released,,"Examples:
+- design materials for multimedia campaigns
+- prepare lesson content
+- prepare presentation material.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Creating and developing materials for instructional, educational, advertising or promotional purposes.",S1.12.2
+SkillGroup,http://data.europa.eu/esco/skill/d23b21ca-2ef5-4b5e-b37e-a5311dc2e292,using hand tools,,,released,,"Excludes:
+- Fabricating products by hand
+- Operating a lawn-mower.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using the hands and tools that can be held in the hands, including power tools.",S6.7
+SkillGroup,http://data.europa.eu/esco/skill/d46193e0-be7d-4a90-91cc-4caba78e19d0,engaging with others to identify needs,,,released,,"Examples:
+- identify customer objectives
+- interact with users to gather requirements.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Engaging in discussions in order to identify expectations, requirements, desires, needs and problems of clients, co-workers, students and others.",S1.7.2
+SkillGroup,http://data.europa.eu/esco/skill/d69e45d3-1f3f-4e6a-8933-82e949277811,cleaning interior and exterior of buildings,,,released,2022-06-19T15:45:14.266Z,"Excludes:
+- Specialised cleaning of equipment in buildings, such as sweeping chimneys Examples:
+- Clean rooms - Clean train interiors
+- Maintain work area cleanliness.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Cleaning interior spaces and furnishings and the exterior of buildings and similar structures.,S6.11.2
+SkillGroup,http://data.europa.eu/esco/skill/d6e4373a-ef2c-4b64-9dc6-4140846f6609,programming computer systems,programming,,released,2021-07-09T16:07:23.426Z,"Excludes:
+- Systems analysis
+- Issuing commands to computer controlled machines and equipment Examples:
+- Write computer programming code
+- Use query languages
+- Debug software.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Writing and submitting instructions, specifications and programmes for computers.",S5.1
+SkillGroup,http://data.europa.eu/esco/skill/d6e97b91-b75d-45f5-8566-667798957b0f,applying civic skills and competences,seeking opportunities for self-empowerment and participatory involvement,,released,2021-09-06T09:49:10.132Z,The skills and competences referred to under this heading address the ability to actively interact with fellow citizens and engage in communities.,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Interact with citizens and engage in communities, by evaluating information and its sources, reflecting on own ideas, values and roles and recognizing and respecting the ideas, values and roles of others.",T6.3
+SkillGroup,http://data.europa.eu/esco/skill/d700aa7a-0ed8-4967-a32c-4cb6075ab3b9,diagnosing health conditions,,,released,2023-11-06T08:02:23.35Z,"Examples:
+- diagnose heart conditions
+- diagnose mental disorders - interpret medical images
+- diagnose nursing care
+- assess fish health conditions Excludes:
+- analyse and interpret medical test results.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Examining patients, deceased persons or animals to diagnose physical and mental illnesses, injuries and medical conditions.",S2.1.2
+SkillGroup,http://data.europa.eu/esco/skill/d7d2a468-587b-4a03-a305-e0a399ba69e6,listening and asking questions,,,released,2021-10-05T15:39:39.123Z,"Examples:
+- use questioning techniques
+- listen actively.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Listen carefully to what other people say, patiently understanding points being made, formulating and asking appropriate questions, without interrupting at inappropriate times.",S1.7.3
+SkillGroup,http://data.europa.eu/esco/skill/d94e1143-3a3a-4f6a-a881-df93bf56cf23,analysing financial and economic data,,,released,2020-12-09T12:11:28.514Z,"Excludes:
+- Risk analysis
+- Using ICT tools to analyse and process data. Examples:
+- Forecast economic trends
+- Prepare financial projections
+- Consult credit scores.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Analysing and evaluating information and data on finances and on economic and market trends.,S2.7.3
+SkillGroup,http://data.europa.eu/esco/skill/db54693e-bcb0-4dae-8885-a43d510fb71f,developing health programmes,,,released,,"Examples:
+- develop advanced health promotion strategies
+- promote sport activities in public health.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Developing plans for the promotion and protection of public and community health and the provision of health services.,S4.1.5
+SkillGroup,http://data.europa.eu/esco/skill/dc06de9f-dd3a-4f28-b58f-b01b5ae72ab8,"communication, collaboration and creativity",communication and creativity,,released,,"Excludes:
+- communication or interaction with animals.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Communicating, collaborating, liaising, and negotiating with other people, developing solutions to problems, creating plans or specifications for the design of objects and systems, composing text or music, performing to entertain an audience, and imparting knowledge to others.",S1
+SkillGroup,http://data.europa.eu/esco/skill/dddd229b-61e1-480d-80d6-d9d9ee9b5f54,managing information,,,released,2022-06-07T12:34:37.336Z,"Examples:
+- Manage digital archives
+- Oversee record management
+- Organise information.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Setting up and managing manual or electronic systems for storing , selecting, organizing, retrieving, distributing and safeguarding information.",S2.3
+SkillGroup,http://data.europa.eu/esco/skill/dfae80db-cf29-41e1-a48c-2bee901afff1,building and developing teams,managing teams,,released,,"Excludes:
+- Training
+- Recruiting and hiring Examples:
+- Facilitate teamwork between students
+- Encourage teambuilding.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Encouraging team members and building a relationship of mutual trust, respect and cooperation. Stimulating teambuilding activities.",S4.6.0
+SkillGroup,http://data.europa.eu/esco/skill/e06f2d35-a160-46c2-89f1-9cae9c93c8b8,selling products or services,,,released,2022-06-19T15:23:46.929Z,"Examples:
+- sell office equipment
+- take room service orders
+- deliver a sales pitch
+- sell products Excludes:
+- perform financial transactions.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Taking orders for and selling goods or services to individuals, households or enterprises.",S1.6.1
+SkillGroup,http://data.europa.eu/esco/skill/e173eaf8-c99b-405a-b0ac-0e02ce3c268d,calculating and estimating,,,released,,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Performing mathematical calculations and estimating the results of an action or a series of actions.,S2.6
+SkillGroup,http://data.europa.eu/esco/skill/e1746275-6d4e-4b02-b526-eeebf3052b6d,providing information and support to the public and clients,providing information and support,,released,,"Excludes:
+- Provide high quality client service
+- Satisfy customers.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Assisting the public by answering questions, making recommendations, and providing information or support in response to requests.",S3.4
+SkillGroup,http://data.europa.eu/esco/skill/e2a5e046-3357-493e-bbdc-8d0ef82005cc,monitoring developments in area of expertise,,,released,2023-02-21T21:13:00.764Z,"Examples:
+- Follow trends in sporting equipment
+- Keep up to date with diagnostic innovations
+- Monitor legislation developments
+- Monitor technology trends.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Monitoring and keeping knowledge up-to-date concerning new research, methodologies, regulations, policies technological developments and other significant changes relevant to a particular field of specialisation.",S2.9.0
+SkillGroup,http://data.europa.eu/esco/skill/e2bdf081-333a-414f-b8ac-93c76290f167,coaching and mentoring,,,released,2020-12-08T11:37:17.207Z,"Examples:
+- Coach during a sports competition
+- Assist clients with personal development
+- Mentor individual employees.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Actively helping individuals or groups to improve their strengths, life skills, performance, learning skills and confidence and to optimise specific methods, skills or abilities.",S1.3.5
+SkillGroup,http://data.europa.eu/esco/skill/e4da156d-a6c4-4b29-935b-eff9c9553cf1,working in teams,,,released,2022-06-21T15:57:17.113Z,"Examples:
+- work in multidisciplinary teams - work in assembly line teams
+- collaborate with designers
+- cooperate with colleagues
+- work in a forestry team
+- work in shifts Excludes:
+- management, supervision and coordination of teams.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Working confidently within a group with each doing their part in the service of the whole. Understanding and respecting the roles and competencies of other team members.,S1.8.1
+SkillGroup,http://data.europa.eu/esco/skill/e6eeb84c-ad99-42e2-b883-e6ce338aef59,planning production processes,,,released,2022-06-21T15:25:51.729Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Preparing production plan for successful manufacture of a product or service.,S4.2.5
+SkillGroup,http://data.europa.eu/esco/skill/e7a48651-3f68-4762-bf93-57cc1af47016,providing general personal care,personal care,,released,,"Excludes:
+- Administration of medical treatments and therapies, therapeutic massage.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Responding to the daily and occasional personal care needs of people.,S3.6
+SkillGroup,http://data.europa.eu/esco/skill/e84d080a-ff6d-41a7-b7b9-133e97c7bf00,thinking creatively and innovatively,"creating new information, concepts, ideas, products, processes
+carrying out activities in innovative and creative ways",creative solutions,released,2021-08-30T15:44:33.322Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Generate new ideas or combine existing ones to develop innovative, novel solutions.",T2.4
+SkillGroup,http://data.europa.eu/esco/skill/e963cf1f-dc3c-48b2-a0fa-274f5e7f50f6,storing goods and materials,,,released,2022-06-19T15:45:14.266Z,"Excludes:
+- Operation of machinery other than hand-held equipment - Storing hazardous material Examples:
+- Stock shelves
+- Store film reels.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Placing goods and materials in storage by hand, or with the aid of hand-held or manually operated equipment.",S6.2.3
+SkillGroup,http://data.europa.eu/esco/skill/e9eb9c23-c1f4-4ce9-83c9-2f6a211cc536,maintaining and enforcing physical security,,,released,2022-06-21T08:58:51.033Z,"Examples:
+- extinguish fires - conduct security screenings
+- detain offenders
+- rescue bathers.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Ensuring safety and security of persons and property through physical actions.,S3.3.5
+SkillGroup,http://data.europa.eu/esco/skill/ec0401f1-f690-46be-934b-f6f5611085f5,"maintaining electrical, electronic and precision equipment",,,released,2021-03-16T14:31:22.011Z,"Examples:
+- Adjust voltage
+- Maintain automated lighting equipment
+- Maintain medical devices.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Maintaining electrical and electronic and mechatronic equipment, control systems, scientific and medical devices, instrumentation and precision equipment to ensure continued or optimal functioning.",S8.8.2
+SkillGroup,http://data.europa.eu/esco/skill/ec528c47-65f4-4187-9dc1-5a8889f84a06,analysing business operations,,,released,2023-01-25T20:36:32.417Z,"Excludes:
+- Using ICT tools to analyse and process data. Examples:
+- Perform business analysis
+- Conduct feasibility studies.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Analysing and evaluating information and data on production and business operations.,S2.7.4
+SkillGroup,http://data.europa.eu/esco/skill/edc72cfe-78a8-4531-b00f-92992a0bb8cb,working with numbers and measures,"carrying out measurements
+numeracy and mathematics
+ability to understand and work with numbers","mathematics
+calculations
+affinity for numbers
+basic mathematical knowledge",released,2021-08-30T13:51:58.932Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Apply numerical and mathematical content, information, ideas and processes to meet basic demands of learning and work. This includes an understanding of numbers, patterns, shape and space, the mathematical language, symbols and procedures, and ways of thinking used to achieve concrete goals.",T1.2
+SkillGroup,http://data.europa.eu/esco/skill/ee2576c0-1af5-44b5-8c0c-2002541d1ccc,training on health or medical topics,,,released,2020-12-10T09:59:32.486Z,"Examples:
+- teach first aid principles
+- train medical staff on nutrition
+- educate patient's relations on care Excludes:
+- teaching medicine or nursing as part of a formal education programme.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Training patients, health providers, or carers on health or hygiene practices, medical procedures or physcial fitness.",S1.3.4
+SkillGroup,http://data.europa.eu/esco/skill/efb60300-0d55-4b2c-8038-8409587a4727,"promoting products, services, or programs",,,released,2023-10-26T09:07:51.421Z,"Examples:
+- perform public relations
+- advertise new book releases
+- conduct mobile marketing
+- offer free samples
+- promote education programmes.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Promoting, advertising and marketing goods, services, programs or policies.",S1.6.2
+SkillGroup,http://data.europa.eu/esco/skill/efbb3d3b-a41c-4e0a-90a8-8e611eb1db9f,"advising on legal, regulatory or procedural matters",,,released,2022-06-19T14:55:09.783Z,"Examples:
+- advise on social service process
+- provide legal advice.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Discussing legal matters with clients, disputants, or legal professionals or staff. Explaining and providing advice to others on legal matters, regulations, policies or procedures.",S1.5.1
+SkillGroup,http://data.europa.eu/esco/skill/f2840c73-9693-4cc0-8dc1-c44942263d5d,sorting and packaging goods and materials,sorting and packaging,,released,2022-06-22T14:13:00.023Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Sorting, packaging, separating or arranging materials, according to established patterns or procedures.",S6.1
+SkillGroup,http://data.europa.eu/esco/skill/f2cf57fe-d4cb-4b4a-831d-73171cc73909,"evaluating systems, programmes, equipment and products",,,released,2023-02-20T20:14:09.976Z,"Excludes:
+- Using ICT tools to analyse and process data.
+- Testing equipment and products Examples:
+- Evaluate education programmes
+- Evaluate nursing care
+- Execute ICT audits.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Evaluating and analysing information on the performance of systems, processes, practices, programmes, equipment or products.",S2.7.6
+SkillGroup,http://data.europa.eu/esco/skill/f306bf2a-271d-4059-ba7b-e83849cb8960,performing administrative activities,administration,,released,,"Excludes:
+- Record and process information.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Performing administrative tasks such as typing up reports, ordering supplies, maintaining mail correspondence, and ensuring administrative systems, processes and databases are efficient.",S4.4
+SkillGroup,http://data.europa.eu/esco/skill/f5328159-dfe9-4f25-b8e7-a03fb0d3a991,working with computers,digital skills,,released,2022-08-02T10:45:01.039Z,"Excludes:
+- Systems analysis
+- Installing, maintaining and repairing computer hardware.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Using computers and other digital tools to develop, install and maintain ICT software and infrastructure and to browse, search, filter, organise, store, retrieve, and analyse data, to collaborate and communicate with others, to create and edit new content.",S5.0
+SkillGroup,http://data.europa.eu/esco/skill/f5c9eef3-0495-4747-9519-d71a58d252bd,demonstrating willingness to learn,demonstrating self-management and self-reflection,,released,2021-09-13T13:32:34.13Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups",Show a positive attitude towards new and challenging demands and take steps to learn from difficulties.,T3.4
+SkillGroup,http://data.europa.eu/esco/skill/f5f15f9c-6334-4728-8dc5-3a20a00dfc37,performing calculations,,,released,2021-12-17T12:46:53.307Z,"Examples:
+- calculate dividends
+- calculate wages
+- estimate consumption of water.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Performing mathematical calculations on financial, spatial, scientific or other data with or without the used of electronic tools.",S2.6.1
+SkillGroup,http://data.europa.eu/esco/skill/f73c2c9e-b097-4fcb-95d1-659ea0bd54a3,allocating and controlling physical resources,,,released,2022-06-19T15:45:14.266Z,"Examples:
+- manage rail yard resources
+- ensure equipment availability
+- manage space utilisation.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy",Determining and controlling the distribution and availability of physical assets such as tools and equipment.,S4.3.3
+SkillGroup,http://data.europa.eu/esco/skill/f839b1da-78b6-4466-86f4-a5798821ea20,setting up computer systems,,,released,2023-07-06T10:33:34.176Z,"Excludes:
+- Installing, maintaining and repairing computer hardware Examples:
+- Align software with system architectures
+- Install software
+- Install operating system.","http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy","Setting up computers, networks, or similar information systems. Installing computer software, and configuring computer networks.",S5.2.1
+SkillGroup,http://data.europa.eu/esco/skill/fe5eabaa-63f6-4c44-b405-fc3ded8d56cb,leading others,demonstrating leadership,leadership,released,2021-08-30T16:33:15.592Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Guide, direct and motivate others.",T4.4
+SkillGroup,http://data.europa.eu/esco/skill/fff1d675-c36a-4c12-9cd4-407f21ccd06a,"processing information, ideas and concepts","processing of information
+processing qualitative information
+analysing and interpreting information
+processing quantitative information",using knowledge and information,released,2021-08-30T13:39:50.945Z,,"http://data.europa.eu/esco/concept-scheme/skills
+http://data.europa.eu/esco/concept-scheme/skills-hierarchy
+http://data.europa.eu/esco/concept-scheme/skill-transversal-groups","Evaluate, input, record, transcribe and update data using electronic or manual information systems.",T2.1

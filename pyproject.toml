@@ -1,0 +1,28 @@
+[project]
+name = "yojak"
+version = "1.0.0"
+description = "Talent and workforce intelligence for India (Build for Bharat 2.0)"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+markers = [
+    "neo4j: needs a live, disposable Neo4j (set NEO4J_TEST_URI/USER/PASSWORD)",
+    "slow: loads real embedding models or large data",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+    "ignore::UserWarning",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+extend-exclude = ["app/frontend", "tools", "data", "artifacts", "ml_pipeline/graph/hgt/hgt.py", "ml_pipeline/graph/hgt/temporal_encoder.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "UP007", "UP006", "UP035", "UP045", "B904"]

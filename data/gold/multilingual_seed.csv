@@ -1,0 +1,63 @@
+# 60 common ESCO skills in Indian postings (high-confidence links only), for the team to translate into
+# Hindi (Devanagari), Punjabi (Gurmukhi) and romanised Hindi in /admin/labelling. Drawn by ml_pipeline (2026-09-25).
+skill_uri,english_label,naukri_mentions
+http://data.europa.eu/esco/skill/15a33d76-4640-438d-ae64-fdc0c1d3eebc,customer service,8927
+http://data.europa.eu/esco/skill/7111b95d-0ce3-441a-9d92-4c75d05c4388,project management,5563
+http://data.europa.eu/esco/skill/bec4359e-cb92-468f-a997-8fb28e32fba9,ICT project management methodologies,3233
+http://data.europa.eu/esco/skill/ecc18804-a466-40d9-98b4-fba5cd67dd4b,accounting,2679
+http://data.europa.eu/esco/skill/334e3e49-fb02-4051-809a-f06adfdc1c40,troubleshoot,2478
+http://data.europa.eu/esco/skill/7ee4c2ea-b349-4bd2-81a3-ec31475d4833,statistics,2477
+http://data.europa.eu/esco/skill/88af9294-b697-4687-ae19-aefbb6234dfa,economics,2406
+http://data.europa.eu/esco/skill/cb668e89-6ef5-4ff3-ab4a-506010e7e70b,manage a team,2294
+http://data.europa.eu/esco/skill/dc9a236c-c640-43c3-812f-269403591edb,customer relationship management,1883
+http://data.europa.eu/esco/skill/6eff134b-e34f-4d6e-a6e8-5e47cf2228d0,risk management,1703
+http://data.europa.eu/esco/skill/7b5cce4d-c7fe-4119-b48f-70aa05391787,computer science,1208
+http://data.europa.eu/esco/skill/e437eba1-3e22-41f2-8703-741e94785cba,human resource management,1191
+http://data.europa.eu/esco/skill/3a2d5b45-56e4-4f5a-a55a-4a4a65afdc43,machine learning,1168
+http://data.europa.eu/esco/skill/633a3637-2c6b-40ae-ac38-289eb2a62aa6,business analysis,1153
+http://data.europa.eu/esco/skill/a727b46f-880a-4acb-9138-b7531b9d4121,mortgage loans,1135
+http://data.europa.eu/esco/skill/16132f2b-cf61-4c53-ae8d-9023a8bab90b,telemarketing,1092
+http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97,computer programming,1046
+http://data.europa.eu/esco/skill/8770350e-746f-4adb-9556-18ca68104be6,market research,1018
+http://data.europa.eu/esco/skill/4e8ad2b8-d80c-4701-91aa-cd874142ef2d,network marketing,1013
+http://data.europa.eu/esco/skill/fecf8a0d-62c4-4e71-9b03-0f4fc2ad7bf5,data models,991
+http://data.europa.eu/esco/skill/9ff9db9d-d14b-426e-83f3-e7449af6c79f,manage data,953
+http://data.europa.eu/esco/skill/2d140a3a-45a6-4248-80dd-b3760ebc9cc6,operations management,902
+http://data.europa.eu/esco/skill/6cb9c23b-e3bc-4917-b588-26c4cef9d920,maintenance operations,853
+http://data.europa.eu/esco/skill/99571e68-801f-49af-a897-5f75996642e1,financial analysis,832
+http://data.europa.eu/esco/skill/c624c6a3-b0ba-4a31-a296-0d433fe47e41,think creatively,829
+http://data.europa.eu/esco/skill/8088750d-8388-4170-a76f-48354c469c44,cyber security,813
+http://data.europa.eu/esco/skill/55514865-3066-4abd-86a9-dbe45a440882,root cause analysis,742
+http://data.europa.eu/esco/skill/fd6d2981-3d4a-4ce2-9741-cfc98c5b74bd,implement data warehousing techniques,736
+http://data.europa.eu/esco/skill/5d34adde-0b78-42b4-9d3d-69e9388d8398,oversee quality control,727
+http://data.europa.eu/esco/skill/143769cb-b61e-47d8-a61e-eedfbec1016c,business intelligence,723
+http://data.europa.eu/esco/skill/d6e800ae-bbbb-453f-8ac6-19973a8ecea9,sell insurance,721
+http://data.europa.eu/esco/skill/3c03ee71-4a23-448f-b79e-81fd75d27dca,apply change management,710
+http://data.europa.eu/esco/skill/7954861c-86d4-4529-afbb-2c23dab9ac74,negotiate compromises,701
+http://data.europa.eu/esco/skill/e843973c-23dd-416a-8a9c-9e89512542fb,logistics,663
+http://data.europa.eu/esco/skill/54924a2c-daca-40d3-9716-4b38ceb04f38,algorithms,657
+http://data.europa.eu/esco/skill/97bd1c21-66b2-4b7e-ad0f-e3cda590e378,data analytics,655
+http://data.europa.eu/esco/skill/4c58528e-bdaa-43ad-8f5a-8ad0b8cd4bbb,design principles,646
+http://data.europa.eu/esco/skill/06d09f70-6ca8-4078-be72-4c2c2a11ee61,program management,641
+http://data.europa.eu/esco/skill/75b30aeb-34c0-40f4-b77d-271d75a98b14,improve business processes,635
+http://data.europa.eu/esco/skill/29fb886c-6be0-4e93-9ea1-232881f2092a,plan product management,619
+http://data.europa.eu/esco/skill/74688c5d-2af1-4f7a-9d1c-00e808eaa1e6,budgetary principles,595
+http://data.europa.eu/esco/skill/0550431f-9c8b-4204-9c45-59bc5feacf06,continuous improvement philosophies,586
+http://data.europa.eu/esco/skill/ddc3119d-1d6e-4324-9125-a3380d299ac5,computer technology,573
+http://data.europa.eu/esco/skill/e7219848-a27a-4bf4-8775-d367707be7c9,sales strategies,565
+http://data.europa.eu/esco/skill/dba46f87-0831-49cd-a1c7-340a653c0221,Agile development,556
+http://data.europa.eu/esco/skill/82fea746-853f-4f1b-8ab7-55de8619cccd,lean manufacturing,542
+http://data.europa.eu/esco/skill/fae27053-8924-4bfd-b565-c9fe502044c9,system design,521
+http://data.europa.eu/esco/skill/9e9a4209-c7cf-4f6e-973e-dc2ffadccc74,perform procurement processes,519
+http://data.europa.eu/esco/skill/953c0b65-537a-42fe-a90b-26cd36c64361,manage logistics,518
+http://data.europa.eu/esco/skill/ab6265f2-a9bf-49e8-a9a5-67cbab4de38b,manage inventory,514
+http://data.europa.eu/esco/skill/fff0e2cd-d0bd-4b02-9daf-158b79d9688a,natural language processing,514
+http://data.europa.eu/esco/skill/2a778aeb-f246-4f03-9a96-c60183001037,schedule production,513
+http://data.europa.eu/esco/skill/dd7c9dfd-6e2c-46fd-aefc-369402d0200c,create a financial report,502
+http://data.europa.eu/esco/skill/b02b38c4-d46d-44da-9479-1310060bd74d,asset management,495
+http://data.europa.eu/esco/skill/d9fe85a8-d69f-40bc-9a1f-57c23ec273cf,utilise cross-selling,488
+http://data.europa.eu/esco/skill/29fb0fb5-dfc4-4098-ac9b-3a712000f48f,manage database,486
+http://data.europa.eu/esco/skill/48db96bf-3314-45c6-bad8-fdb6e20e5639,data engineering,483
+http://data.europa.eu/esco/skill/49047409-9307-4b41-9b04-a9615f049044,investment banking,470
+http://data.europa.eu/esco/skill/7961413f-61d0-4722-9cd9-20a050a29899,perform software unit testing,465
+http://data.europa.eu/esco/skill/7b0d5000-00da-4864-b776-6de49a87a669,computer vision,463

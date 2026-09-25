@@ -1,0 +1,38 @@
+# Yojak runtime dependencies (pinned; tested on Python 3.11).
+# torch is not pinned here: install the CUDA or CPU wheel that fits the machine
+# (scripts/setup.ps1 handles this). Tested with torch 2.5.1.
+
+# API
+fastapi==0.115.6
+starlette==0.41.3
+uvicorn==0.34.0
+pydantic==2.12.5
+pydantic-settings==2.1.0
+python-dotenv==1.0.1
+python-multipart==0.0.20
+
+# Graph database
+neo4j==6.3.1
+
+# Data + ML
+numpy==2.2.1
+pandas==2.2.3
+openpyxl==3.1.5
+scipy==1.15.2
+scikit-learn==1.5.2
+faiss-cpu==1.13.2
+sentence-transformers==5.2.0
+transformers==4.57.3
+lightgbm==4.6.0
+ortools==9.12.4544
+joblib==1.4.2
+pyarrow==23.0.0
+psutil==7.2.2
+PyYAML==6.0.3
+
+# India data layer: fuzzy place names, document parsing, government PDFs, map boundaries
+rapidfuzz==3.14.1
+pdfplumber==0.11.4
+python-docx==1.1.2
+pyshp==2.3.1
+shapely==2.0.6
