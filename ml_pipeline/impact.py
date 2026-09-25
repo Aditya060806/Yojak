@@ -29,32 +29,34 @@ from ml_pipeline.upskilling.engine import exact_ilp, frequency, greedy_F
 from ml_pipeline.upskilling.market import load_market
 
 K, TAU, SEED, N_USERS = 3, 0.6, 31, 300
+MIN_POOL, MIN_SKILLS = 30, 4
 
 
-def main() -> int:
+def estimate(m, n_users: int = N_USERS, min_pool: int = MIN_POOL, min_skills: int = MIN_SKILLS,
+             ilp_seconds: float = 3.0) -> dict:
+    """The impact estimate on a market (see the module docstring); returns the report body."""
     t0 = time.time()
     rng = np.random.default_rng(SEED)
-    m = load_market()
     j = m.jobs
     tier23 = j["primary_tier"].isin([2, 3])
     fresher = j["exp_band"].eq("0-1")
     src = j[tier23 & fresher & j["isco_code"].notna() & (j["dup_group_id"].map(split_of) == "test")
-            & (j["skill_uris"].map(len) >= 4)]
+            & (j["skill_uris"].map(len) >= min_skills)]
     order = sorted(src.index, key=lambda i: hashlib.sha256(f"imp{SEED}:{j.at[i, 'jobId']}".encode()).hexdigest())
     rows = []
     for i in order:
-        if len(rows) >= N_USERS:
+        if len(rows) >= n_users:
             break
         own = np.array([m.skill_index[u] for u in j.at[i, "skill_uris"]])
         have = rng.choice(own, size=max(2, len(own) // 2), replace=False)
         pool = m.pool(isco2=str(j.at[i, "isco_code"])[:2], exp_bands=["0-1"], tiers=[2, 3],
                       exclude_group=j.at[i, "dup_group_id"])
-        if len(pool) < 30:
+        if len(pool) < min_pool:
             continue
         p = m.problem(pool, have, TAU)
         cands = p.candidates()
         gf = greedy_F(p, K, cands)
-        ilp = exact_ilp(p, K, cands=cands, time_limit=3, hint=gf.skills)
+        ilp = exact_ilp(p, K, cands=cands, time_limit=ilp_seconds, hint=gf.skills)
         best = ilp if ilp.F >= gf.F else gf
         fq = frequency(p, K)
         before = float(p.v[p.eligible(p.base)].sum())
@@ -87,6 +89,7 @@ def main() -> int:
             "eligibility": "a posting is reachable when the person covers >= 60% of its ESCO skills, weighted by rarity (IDF)",
             "eligibility_is_not_hiring": True,
             "person": "a random half of a real held-out fresher posting's skills (pseudo-user, not a real student)",
+            "minimum_pool": min_pool,
             "pool": "fresher (0-1 yrs) postings in Tier-2/3 cities in the same ISCO sub-major group",
             "data": "Naukri postings over about two weeks around 2025-10-03; formal-sector and urban-skewed",
             "learning": "each recommended skill is assumed learnable; effort and time are not modelled here",
@@ -99,6 +102,11 @@ def main() -> int:
         },
         "seconds": round(time.time() - t0, 1),
     }
+    return body
+
+
+def main() -> int:
+    body = estimate(load_market())
     print(write_report("impact", body, provenance("ml_pipeline/impact.py", seed=SEED)))
     print({k: body[k] for k in ("users", "extra_postings_vs_frequency", "share_users_with_more_postings")})
     return 0

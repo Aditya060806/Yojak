@@ -72,6 +72,14 @@ class FakeEffort:
 
 
 class FakeSalaryModel:
+    support = {"2512|1": 15, "2512|2": 10}
+
+    @staticmethod
+    def support_key(isco_code, tier):
+        from ml_pipeline.salary.model import SalaryModel
+
+        return SalaryModel.support_key(isco_code, tier)
+
     def predict(self, df):
         return pd.DataFrame({"p10": [250000.0] * len(df), "p50": [400000.0] * len(df), "p90": [650000.0] * len(df),
                              "n_support": [42] * len(df), "sufficient": [True] * len(df)})
@@ -107,7 +115,7 @@ class FakeServing:
                                          "postings": [20, 10, 10, 50], "demand_share_of_field": [0.67, 0.33, 0.17, 0.83],
                                          "graduate_share": [0.4, 0.6, 0.4, 0.6],
                                          "shortage_index": [1.67, 0.55, 0.42, 1.38]}),
-            "tier": pd.DataFrame({"tier": ["Tier 1", "Tier 2"], "postings": [30, 60]}),
+            "tier": pd.DataFrame({"tier_label": ["Tier 1", "Tier 2"], "postings": [30, 60]}),
             "top_skills_state": pd.DataFrame({"state": states, "skill_uris": ["u:python", "u:excel"],
                                               "label": ["Python", "use spreadsheets software"], "postings": [20, 40]}),
             "top_skills_tier": pd.DataFrame({"tier": [1, 2], "skill_uris": ["u:python", "u:excel"],
@@ -240,6 +248,11 @@ def test_salary_estimate_always_has_interval(yojak_client):
     s = r.json()["salary"]
     assert s["p10"] <= s["p50"] <= s["p90"] and s["n_support"] == 42
     assert r.json()["basis"]["isco_code"] == "2512"
+
+
+def test_salary_estimate_without_tier_pools_support_over_tiers(yojak_client):
+    s = yojak_client.get("/salary/estimate", params={"occupation_uri": "o:dev"}).json()["salary"]
+    assert s["n_support"] == 25 and s["sufficient"] is True
 
 
 def test_extract_skills_and_file(yojak_client):

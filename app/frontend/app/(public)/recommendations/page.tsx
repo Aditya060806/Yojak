@@ -1,250 +1,129 @@
 'use client';
 
 import { useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { motion } from 'motion/react';
+import { CircleNotch, Compass, Sparkle, X } from '@phosphor-icons/react';
 import { recommendationService } from '@/services/recommendations';
 import { catalogService } from '@/services/catalog';
-import { Button } from '@/components/ui/button';
-import { SkillAutocomplete } from '@/components/features/recommendations/skill-autocomplete';
-import { Loader2, AlertCircle, Filter, X } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import type { RecommendationResponse } from '@/types';
 import { FilterDropdown } from '@/components/ui/filter-dropdown';
-import { cn } from '@/lib/utils';
 import { OccupationDetail } from '@/components/features/occupations/occupation-detail';
+import { SkillInput } from '@/components/yojak/skill-input';
+import { EmptyState, ErrorState, Hint, PageIntro, Panel, ResultSkeleton, SkillChip } from '@/components/yojak/bits';
+import { Button } from '@/components/ui/button';
+import type { SkillRef } from '@/services/yojak';
+import type { OccupationRecommendation } from '@/types';
 
-// Extracted sub-components
-import { SelectedSkillBadge } from '@/components/features/recommendations/selected-skill-badge';
-import { RecommendationCard } from '@/components/features/recommendations/recommendation-card';
-import { LoadingState, InitialState, NoResultsState } from '@/components/features/recommendations/empty-state';
-
-interface SelectedSkill {
-    uri: string;
-    label: string;
-}
-
+/**
+ * SkillAlign's original matcher, kept working: your skills -> ESCO occupations by
+ * embedding similarity (all-mpnet-base-v2 + FAISS) and skill overlap. Yojak's Student view
+ * ranks real Indian postings instead; this page stays as the taxonomy-only baseline (B2).
+ */
 export default function RecommendationsPage() {
-    const [skillInput, setSkillInput] = useState('');
-    const [skills, setSkills] = useState<SelectedSkill[]>([]);
-    const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
-    const [selectedSchemes, setSelectedSchemes] = useState<string[]>([]);
-    const [showFilters, setShowFilters] = useState(false);
-    const [expandedOccupationUri, setExpandedOccupationUri] = useState<string | null>(null);
+    const [skills, setSkills] = useState<SkillRef[]>([]);
+    const [groups, setGroups] = useState<string[]>([]);
+    const [schemes, setSchemes] = useState<string[]>([]);
+    const [open, setOpen] = useState<OccupationRecommendation | null>(null);
 
-    // Fetch filter options
-    const { data: occupationGroups } = useQuery({
-        queryKey: ['occupation-groups'],
-        queryFn: () => catalogService.getOccupationGroups()
+    const { data: occupationGroups } = useQuery({ queryKey: ['occupation-groups'], queryFn: () => catalogService.getOccupationGroups() });
+    const { data: conceptSchemes } = useQuery({ queryKey: ['concept-schemes'], queryFn: () => catalogService.getConceptSchemes() });
+    const run = useMutation({
+        mutationFn: () => recommendationService.getRecommendations({
+            skills: skills.map((s) => s.uri),
+            occupation_groups: groups.length ? groups : undefined,
+            schemes: schemes.length ? schemes : undefined,
+            limit: 10,
+        }),
     });
-
-    const { data: conceptSchemes } = useQuery({
-        queryKey: ['concept-schemes'],
-        queryFn: () => catalogService.getConceptSchemes()
-    });
-
-    const { mutate: getRecommendations, isPending, data: response, error } = useMutation<
-        RecommendationResponse,
-        Error,
-        { skills: string[]; occupation_groups?: string[]; schemes?: string[]; limit: number }
-    >({
-        mutationFn: recommendationService.getRecommendations
-    });
-
-    const handleAddSkill = (skill: { uri: string; label: string }) => {
-        if (!skills.find(s => s.uri === skill.uri)) {
-            setSkills([...skills, skill]);
-        }
-    };
-
-    const handleRemoveSkill = (skillUri: string) => {
-        setSkills(skills.filter(s => s.uri !== skillUri));
-    };
-
-    const toggleGroup = (uri: string) => {
-        setSelectedGroups(prev =>
-            prev.includes(uri) ? prev.filter(g => g !== uri) : [...prev, uri]
-        );
-    };
-
-    const toggleScheme = (uri: string) => {
-        setSelectedSchemes(prev =>
-            prev.includes(uri) ? prev.filter(s => s !== uri) : [...prev, uri]
-        );
-    };
-
-    const handleSearch = () => {
-        setExpandedOccupationUri(null);
-        getRecommendations({
-            skills: skills.map(s => s.uri),
-            occupation_groups: selectedGroups.length > 0 ? selectedGroups : undefined,
-            schemes: selectedSchemes.length > 0 ? selectedSchemes : undefined,
-            limit: 10
-        });
-    };
+    const toggle = (set: (f: (p: string[]) => string[]) => void) => (u: string) => set((p) => (p.includes(u) ? p.filter((x) => x !== u) : [...p, u]));
 
     return (
-        <div className="min-h-screen pb-32 max-w-screen-xl mx-auto px-6 pt-12 md:pt-20 space-y-16">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-                {/* Left Panel: Input */}
-                <div className="lg:col-span-5 space-y-8">
-                    <div className="space-y-4">
-                        <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-primary">Match Skills</h1>
-                        <p className="text-lg text-muted-foreground font-light">
-                            Curate your skill profile to generate intelligent occupation matches.
-                        </p>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 rounded-none p-6 md:p-8 space-y-6 backdrop-blur-sm">
-                        <div className="space-y-6">
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Add Skills</label>
-                                <SkillAutocomplete
-                                    value={skillInput}
-                                    onChange={setSkillInput}
-                                    onSelect={handleAddSkill}
-                                    placeholder="Search skill set..."
-                                />
-                            </div>
-
-                            <div className="min-h-[100px]">
-                                {skills.length === 0 ? (
-                                    <div className="text-sm text-muted-foreground/40 italic py-4">No skills selected...</div>
-                                ) : (
-                                    <div className="flex flex-wrap gap-2">
-                                        {skills.map((skill) => (
-                                            <SelectedSkillBadge
-                                                key={skill.uri}
-                                                uri={skill.uri}
-                                                label={skill.label}
-                                                onRemove={handleRemoveSkill}
-                                            />
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className="pt-6 border-t border-white/10">
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => setShowFilters(!showFilters)}
-                                className="text-muted-foreground hover:text-primary w-full justify-between"
-                            >
-                                <span className="flex items-center gap-2">
-                                    <Filter className="h-4 w-4" />
-                                    Advanced Filters
-                                </span>
-                                <span className="text-xs">{showFilters ? '-' : '+'}</span>
-                            </Button>
-
-                            <div className={cn(
-                                "grid gap-6 overflow-hidden transition-all duration-300 ease-in-out",
-                                showFilters ? "grid-rows-[1fr] opacity-100 mt-6" : "grid-rows-[0fr] opacity-0"
-                            )}>
-                                <div className="min-h-0 space-y-6">
-                                    <FilterDropdown
-                                        title="Occupation Groups"
-                                        options={occupationGroups?.map(g => ({ uri: g.uri, label: g.label, code: g.code })) || []}
-                                        selectedUris={selectedGroups}
-                                        onToggle={toggleGroup}
-                                        onClear={() => setSelectedGroups([])}
-                                        placeholder="Select groups"
-                                    />
-
-                                    <FilterDropdown
-                                        title="Concept Schemes"
-                                        options={conceptSchemes?.map(s => ({ uri: s.uri, label: s.label })) || []}
-                                        selectedUris={selectedSchemes}
-                                        onToggle={toggleScheme}
-                                        onClear={() => setSelectedSchemes([])}
-                                        placeholder="Select schemes"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <Button
-                            onClick={handleSearch}
-                            disabled={isPending || skills.length === 0}
-                            className="w-full h-12 text-base font-medium rounded-sm"
-                            size="lg"
-                        >
-                            {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Analyze Matches"}
-                        </Button>
-                    </div>
-                    {error && (
-                        <Alert variant="destructive" className="bg-destructive/10 border-destructive/20 text-destructive">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>Error</AlertTitle>
-                            <AlertDescription>
-                                {error.message}
-                            </AlertDescription>
-                        </Alert>
-                    )}
-                </div>
-
-                {/* Right Panel: Results */}
-                <div className="lg:col-span-7 space-y-6">
-                    {response && (
-                        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
-                            <div className="flex items-end justify-between border-b border-white/10 pb-4">
-                                <h2 className="text-2xl font-serif text-primary">Intelligence Results</h2>
-                                <span className="text-sm text-muted-foreground font-mono">{response.total || 0} MATCHES FOUND</span>
-                            </div>
-
-                            <div className="space-y-4">
-                                {response.recommendations && response.recommendations.length > 0 ? (
-                                    response.recommendations.map((rec, index) => (
-                                        <RecommendationCard
-                                            key={rec.uri}
-                                            rec={rec}
-                                            index={index}
-                                            onClick={() => setExpandedOccupationUri(rec.uri)}
-                                        />
-                                    ))
-                                ) : (
-                                    <NoResultsState />
-                                )}
-                            </div>
-                        </div>
-                    )}
-
-                    {isPending && <LoadingState />}
-
-                    {!response && !isPending && <InitialState />}
-                </div>
-            </div>
-
-            {/* Modal Overlay for Expanded View */}
-            {expandedOccupationUri && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 sm:p-6 animate-in fade-in duration-300" onClick={() => setExpandedOccupationUri(null)}>
-                    <div
-                        className="relative w-full max-w-5xl h-[90vh] bg-[#0a0a0a] border border-white/10 rounded-sm shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 slide-in-from-bottom-4 duration-300"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="absolute right-6 top-6 z-10">
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => setExpandedOccupationUri(null)}
-                                className="h-8 w-8 rounded-full bg-white/5 hover:bg-white/10 hover:text-white"
-                            >
-                                <X className="h-4 w-4" />
-                                <span className="sr-only">Close</span>
-                            </Button>
-                        </div>
-                        <div className="flex-1 overflow-y-auto p-0">
-                            <OccupationDetail
-                                occupationUri={expandedOccupationUri}
-                                onClose={() => setExpandedOccupationUri(null)}
-                                className="max-w-4xl mx-auto py-12 px-8"
+        <div className="container">
+            <PageIntro
+                title="Match skills to ESCO occupations"
+                lead="The original SkillAlign matcher: your skills are compared with every ESCO occupation profile by meaning (sentence embeddings) and by overlap. It reads the European taxonomy, not Indian postings; for jobs in India, use the Students page."
+            />
+            <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
+                <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+                    <Panel className="space-y-6">
+                        <SkillInput value={skills} onChange={setSkills} allowFile={false} />
+                        <div className="space-y-3 border-t pt-5">
+                            <p className="text-sm font-medium">Limit to</p>
+                            <FilterDropdown
+                                title="ISCO groups"
+                                options={occupationGroups?.map((g) => ({ uri: g.uri, label: g.label, code: g.code })) ?? []}
+                                selectedUris={groups}
+                                onToggle={toggle(setGroups)}
+                                onClear={() => setGroups([])}
+                                placeholder="ISCO groups"
+                            />
+                            <FilterDropdown
+                                title="Schemes"
+                                options={conceptSchemes?.map((s) => ({ uri: s.uri, label: s.label })) ?? []}
+                                selectedUris={schemes}
+                                onToggle={toggle(setSchemes)}
+                                onClear={() => setSchemes([])}
+                                placeholder="Concept schemes"
                             />
                         </div>
-                    </div>
-                </div>
-            )}
+                        <Button size="lg" className="w-full" disabled={!skills.length || run.isPending} onClick={() => run.mutate()}>
+                            {run.isPending ? <CircleNotch size={18} className="animate-spin" /> : <Sparkle size={18} />}
+                            Match occupations
+                        </Button>
+                    </Panel>
+                </aside>
+                <section className="min-w-0 space-y-4" aria-live="polite">
+                    {!run.data && !run.isPending && !run.error && (
+                        <EmptyState icon={<Compass size={40} weight="light" />} title="Matching occupations will appear here">
+                            Add a few skills and press Match.
+                        </EmptyState>
+                    )}
+                    {run.error && <ErrorState error={run.error} onRetry={() => run.mutate()} />}
+                    {run.isPending && <ResultSkeleton rows={5} />}
+                    {run.data && !run.isPending && (run.data.recommendations.length === 0 ? (
+                        <EmptyState title="No occupations matched">Try more skills or fewer filters.</EmptyState>
+                    ) : run.data.recommendations.map((rec, i) => (
+                        <motion.button
+                            key={rec.uri}
+                            type="button"
+                            onClick={() => setOpen(rec)}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.04, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="block w-full rounded-xl border bg-card p-5 text-left transition-colors hover:border-primary/40"
+                        >
+                            <div className="flex items-start justify-between gap-4">
+                                <div className="min-w-0">
+                                    <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, '0')}{rec.isco_code ? ` · ISCO ${rec.isco_code}` : ''}</p>
+                                    <h2 className="mt-1 text-lg font-semibold tracking-tight">{rec.label}</h2>
+                                </div>
+                                <Hint text={`Blend of embedding similarity (${rec.similarity_score.toFixed(2)}) and skill overlap with the ESCO profile.`}>
+                                    <span className="tabular text-2xl font-semibold text-primary">{Math.round(rec.match_percentage)}%</span>
+                                </Hint>
+                            </div>
+                            {rec.description && <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{rec.description}</p>}
+                            <div className="mt-3 flex flex-wrap gap-1.5">
+                                {rec.matched_skills.slice(0, 5).map((s) => <SkillChip key={s.uri} label={s.label} tone="have" />)}
+                                {rec.missing_skills.slice(0, 4).map((s) => <SkillChip key={s.uri} label={s.label} tone="gap" />)}
+                            </div>
+                        </motion.button>
+                    )))}
+                </section>
+            </div>
+            <Dialog.Root open={!!open} onOpenChange={(o) => !o && setOpen(null)}>
+                <Dialog.Portal>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-background/60 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed inset-y-0 right-0 z-50 w-full max-w-3xl overflow-y-auto border-l bg-background p-6 shadow-2xl">
+                        <div className="flex items-center justify-between pb-4">
+                            <Dialog.Title className="text-sm text-muted-foreground">Occupation profile</Dialog.Title>
+                            <Dialog.Close className="rounded-md p-1.5 hover:bg-muted" aria-label="Close"><X size={18} /></Dialog.Close>
+                        </div>
+                        <Dialog.Description className="sr-only">ESCO skills for the selected occupation</Dialog.Description>
+                        {open && <OccupationDetail occupationUri={open.uri} />}
+                    </Dialog.Content>
+                </Dialog.Portal>
+            </Dialog.Root>
         </div>
     );
 }

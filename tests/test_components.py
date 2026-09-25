@@ -141,7 +141,7 @@ def test_read_upload_text_docx_and_limits():
 
     from app.core.extract import MAX_UPLOAD_BYTES, read_upload
 
-    assert read_upload("cv.txt", "Python, SQL".encode()) == "Python, SQL"
+    assert read_upload("cv.txt", b"Python, SQL") == "Python, SQL"
     d = docx.Document()
     d.add_paragraph("Skills: Java")
     t = d.add_table(rows=1, cols=1)
@@ -335,3 +335,75 @@ def test_reporting_models_and_upskilling_sections():
           "assumptions": {"k": 3, "eligibility": "e", "person": "p", "pool": "q", "no_causal_claim": "no claim"},
           "illustration": {"label": "ILLUSTRATION", "per_1000_users_extra_reachable_postings": 2000}}
     assert "+2.00" in impact_section(im)
+
+
+# --- impact estimate ------------------------------------------------------------------------------------------
+
+def test_impact_estimate_on_small_market(monkeypatch):
+    import ml_pipeline.impact as impact
+    from tests.test_yojak_api import _market
+
+    monkeypatch.setattr(impact, "split_of", lambda g: "test")  # every posting may seed a pseudo-user
+    body = impact.estimate(_market(), n_users=8, min_pool=5, min_skills=2, ilp_seconds=1)
+    assert 0 < body["users"] <= 8
+    assert body["users_by_tier"]["2"] + body["users_by_tier"]["3"] == body["users"]
+    # the optimal plan is never worse than frequency advice
+    assert body["share_users_no_worse"] == 1.0
+    assert body["eligible_after_optimal_median"] >= body["eligible_after_frequency_median"]
+    assert body["assumptions"]["eligibility_is_not_hiring"] is True
+    assert "ILLUSTRATION ONLY" in body["illustration"]["label"]
+
+
+def test_impact_estimate_with_no_eligible_users():
+    import ml_pipeline.impact as impact
+    from tests.test_yojak_api import _market
+
+    body = impact.estimate(_market(), n_users=5, min_pool=10_000)
+    assert body["users"] == 0 and body["extra_postings_vs_frequency"]["mean"] is None
+
+
+# --- acquisition ----------------------------------------------------------------------------------------------
+
+def test_fetch_sends_extra_headers_and_rejects_html_for_pdf(tmp_path, monkeypatch):
+    import ml_pipeline.acquire as acquire
+
+    sent = {}
+
+    class Resp(io.BytesIO):
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+    def fake_urlopen(req, timeout):
+        sent.update(req.headers)
+        return Resp(b"%PDF-1.7 ok" if "good" in req.full_url else b"<html>blocked</html>")
+
+    monkeypatch.setattr(acquire.urllib.request, "urlopen", fake_urlopen)
+    ok = acquire.fetch("https://x.test/good.pdf", tmp_path / "a.pdf", False, {"Referer": "https://x.test/"})
+    assert ok.startswith("downloaded") and sent.get("Referer") == "https://x.test/" and "User-agent" in sent
+    bad = acquire.fetch("https://x.test/bad.pdf", tmp_path / "b.pdf", False)
+    assert bad.startswith("failed") and not (tmp_path / "b.pdf").exists()
+    assert acquire.fetch("https://x.test/good.pdf", tmp_path / "a.pdf", False) == "exists"
+    assert all(len(d) in (2, 3) for d in acquire.DOWNLOADS)
+
+
+# --- evaluation runner ----------------------------------------------------------------------------------------
+
+def test_evaluate_all_runs_selected_steps_in_order_and_reports_failures(monkeypatch):
+    import ml_pipeline.evaluate_all as ev
+
+    calls = []
+
+    def fake(step, quick):
+        calls.append(step)
+        if step == "gold":
+            raise SystemExit("no labels yet")
+        return 0
+
+    monkeypatch.setattr(ev, "run_step", fake)
+    assert ev.main(["--only", "docs", "gold", "impact"]) == 1  # gold failed
+    assert calls == ["gold", "impact", "docs"]                 # canonical order, not argument order
+    calls.clear()
+    assert ev.main(["--only", "impact"]) == 0 and calls == ["impact"]

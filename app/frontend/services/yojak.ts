@@ -283,4 +283,6 @@ export const yojak = {
 
     constellation: async () => (await api.get<Constellation>('/graph/constellation')).data,
     report: async <T = Record<string, unknown>>(name: string) => (await api.get<T>(`/reports/${name}`)).data,
+    reportIndex: async () =>
+        (await api.get<{ json: { name: string; available: boolean }[]; markdown: { name: string; available: boolean }[] }>('/reports')).data,
 };

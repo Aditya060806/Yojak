@@ -39,14 +39,18 @@ DOWNLOADS = [
      "https://ncvet.gov.in/wp-content/uploads/2025/05/Report-on-Mapping-of-Qualifications-with-NCO-Codes.pdf"),
     ("govt/aishe_2021_22.pdf",
      "https://cdnbbsr.s3waas.gov.in/s392049debbe566ca5782a3045cf300a3c/uploads/2024/02/20240719952688509.pdf"),
+    # MoSPI serves its PDFs only to requests that come from its own site (Referer check).
+    ("govt/AnnualReport_PLFS2023-24L2.pdf",
+     "https://www.mospi.gov.in/sites/default/files/publication_reports/AnnualReport_PLFS2023-24L2.pdf",
+     {"Referer": "https://www.mospi.gov.in/"}),
 ]
 
 
-def fetch(url: str, dest: Path, force: bool) -> str:
+def fetch(url: str, dest: Path, force: bool, headers: dict | None = None) -> str:
     if dest.exists() and not force:
         return "exists"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    req = urllib.request.Request(url, headers=UA)
+    req = urllib.request.Request(url, headers={**UA, **(headers or {})})
     with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
         f.write(r.read())
     if dest.suffix == ".pdf" and not dest.read_bytes()[:4] == b"%PDF":
@@ -86,9 +90,9 @@ def main(argv: list[str] | None = None) -> int:
             ok = False
             print(f"Naukri: failed ({e}). Put your Kaggle key in ~/.kaggle/kaggle.json.")
 
-    for rel, url in DOWNLOADS:
+    for rel, url, *extra in DOWNLOADS:
         try:
-            status = fetch(url, s.external_data_dir / rel, args.force)
+            status = fetch(url, s.external_data_dir / rel, args.force, extra[0] if extra else None)
         except Exception as e:  # noqa: BLE001
             status, ok = f"failed ({e})", False
         print(f"{rel}: {status}")

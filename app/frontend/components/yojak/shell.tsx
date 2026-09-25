@@ -148,6 +148,8 @@ export function SiteFooter() {
                     <p className="font-medium">Project</p>
                     <ul className="space-y-1.5 text-muted-foreground">
                         <li><Link className="hover:text-foreground" href="/evidence">Evidence and limitations</Link></li>
+                        <li><Link className="hover:text-foreground" href="/roadmap">ESCO roadmap to an occupation</Link></li>
+                        <li><Link className="hover:text-foreground" href="/recommendations">ESCO occupation matcher (SkillAlign)</Link></li>
                         <li>Fork of SkillAlign (MIT)</li>
                         <li>Graph model from our Vyuha project</li>
                         <li>No endorsement by the EU or the Government of India is implied</li>

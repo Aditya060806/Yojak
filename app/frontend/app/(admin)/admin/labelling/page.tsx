@@ -45,7 +45,7 @@ export default function LabellingPage() {
     return (
         <div className="space-y-6 max-w-5xl">
             <header className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tight">Gold labelling</h1>
+                <h1 className="text-3xl font-semibold tracking-tight">Gold labelling</h1>
                 <p className="text-muted-foreground max-w-2xl">
                     These labels measure how accurately Yojak links Indian job-posting text to ESCO. The samples are
                     fixed and stratified; every answer is saved with your name. The model&apos;s suggestions are only

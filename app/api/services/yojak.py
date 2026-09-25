@@ -342,9 +342,16 @@ def salary_estimate(occupation_uri: str | None, isco_code: str | None, state: st
         "title_clean": labels.get(occupation_uri, "") or "", "skill_uris": skills, "tags": [],
     }])
     p = srv.salary.predict(row).iloc[0]
+    n_support, sufficient = int(p["n_support"]), bool(p["sufficient"])
+    if not tier:
+        # No tier given: the estimate is for the occupation anywhere, so support is pooled over tiers.
+        from ml_pipeline.salary.model import MIN_SUPPORT
+
+        support = getattr(srv.salary, "support", {})
+        n_support = sum(int(support.get(srv.salary.support_key(isco_code, t), 0)) for t in (0, 1, 2, 3))
+        sufficient = n_support >= MIN_SUPPORT
     return {"salary": {"p10": round(float(p["p10"]), -3), "p50": round(float(p["p50"]), -3),
-                       "p90": round(float(p["p90"]), -3), "n_support": int(p["n_support"]),
-                       "sufficient": bool(p["sufficient"])},
+                       "p90": round(float(p["p90"]), -3), "n_support": n_support, "sufficient": sufficient},
             "basis": {"occupation_uri": occupation_uri, "isco_code": isco_code, "state": state, "tier": tier,
                       "exp_min": None if np.isnan(exp_min) else exp_min, "skills": len(skills)},
             "caveat": srv.salary_caveat}

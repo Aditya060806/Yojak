@@ -76,7 +76,7 @@ export default function NotesPage() {
     return (
         <div className="space-y-8">
             <div className="space-y-4">
-                <h1 className="text-3xl font-bold tracking-tight text-primary">Notes Manager</h1>
+                <h1 className="text-3xl font-semibold tracking-tight">Occupation notes</h1>
                 <p className="text-muted-foreground">
                     Attach private context and observations to occupations
                 </p>

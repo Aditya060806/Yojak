@@ -38,9 +38,13 @@ Everything else was written for this project, including:
 - The India data layer (Naukri cleaning, city→state→tier, skill and title linking to ESCO, NCO-2015 mapping, data-quality report)
 - Baselines, evaluation harness and model comparison
 - Optimal upskilling engine (lazy greedy, exact ILP, effort-aware budgeted variant)
-- Salary quantile models with conformal calibration and a selection-bias analysis
+- Salary quantile models with conformal calibration and a selection-bias analysis (conformalised quantile regression following Romano, Patterson and Candès, 2019, implemented here; Vyuha's conformal predictor was not reused)
 - Stakeholder views (student, recruiter, institution, workforce planner) and the evidence pages
-- The test suite, CI, and local setup scripts
+- Graduate-supply parsing (AISHE, PLFS), workforce analytics and the India map
+- The multilingual skill extractor (English, Hindi, Punjabi, romanised Hindi) and document upload
+- The labelled SYNTHETIC recruiter candidate pool
+- Report generation (`EVALUATION.md`, the README results block), the demo personas and the impact estimate
+- The test suite, CI, and local setup scripts (PowerShell and bash)
 
 ## Data
 

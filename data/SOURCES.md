@@ -12,6 +12,16 @@ Raw files live in `data/raw/` and are **not committed**; `.gitignore` excludes t
 | 6 | AISHE 2021-22 (Ministry of Education) | `data/raw/external/govt/aishe_2021_22.pdf` | <https://cdnbbsr.s3waas.gov.in/s392049debbe566ca5782a3045cf300a3c/uploads/2024/02/20240719952688509.pdf> | 2026-09-25 | Government of India publication | `c4400273cb2d574c` |
 | 7 | NCVET Report on Mapping of Qualifications with NCO Codes (22 Aug 2023), basis for NCO-2015 = ISCO-08 at 4-digit Family level | `data/raw/external/govt/ncvet_nco_mapping_2023.pdf` | <https://ncvet.gov.in/wp-content/uploads/2025/05/Report-on-Mapping-of-Qualifications-with-NCO-Codes.pdf> | 2026-09-25 | Government of India publication | `576301bc4b72b971` |
 | 7b | NCO-2015 Vol I family list (optional validation) | `data/reference/nco2015_families.csv` (team to transcribe) | <https://www.ncs.gov.in/documents/national%20classification%20of%20occupations%20_vol%20i-%202015.pdf> | not fetched: the server blocks scripted downloads | Government of India publication | |
-| 8 | PLFS Annual Report 2023-24 (MoSPI) | pending | <https://www.mospi.gov.in/annual-report-periodic-labour-force-survey-plfs-2023-24> | not yet: the direct download returned an HTML page | Government of India publication | |
+| 8 | PLFS Annual Report 2023-24 (MoSPI), Table 18: youth (15-29) unemployment rate by state | `data/raw/external/govt/AnnualReport_PLFS2023-24L2.pdf` | <https://www.mospi.gov.in/sites/default/files/publication_reports/AnnualReport_PLFS2023-24L2.pdf> (MoSPI serves it only with a `Referer: https://www.mospi.gov.in/` header; `acquire.py` sends it) | 2026-09-25 | Government of India publication | `ab4ead2cee181a13` |
+| 8b | PLFS 2023-24 press note (cross-check only, not parsed) | `data/raw/external/govt/Press_note_AR_PLFS_2023_24_22092024.pdf` | <https://www.mospi.gov.in/sites/default/files/press_release/Press_note_AR_PLFS_2023_24_22092024.pdf> | 2026-09-25 | Government of India publication | `969e90c48acef4c8` |
 
-Reference tables we write by hand (for example the city-tier list or the discipline→skill-family map) live in `data/reference/`. Each one cites its source in its own header.
+## Derived reference tables (`data/reference/`, committed)
+
+| File | How it is made | Source rows |
+|---|---|---|
+| `city_tiers.csv` | Transcribed from the 7th CPC HRA city classification (X = Tier 1, Y = Tier 2, all other places Tier 3); ambiguous names carry their state. Team to verify against the Ministry of Finance list | MoF Dept of Expenditure O.M. No. 2/5/2014-E.II(B), 21 July 2015, via the list on Wikipedia |
+| `city_aliases.csv` | Curated: renamed cities, spellings and localities → canonical city (`lookup` names the GeoNames entry). Team to verify | GeoNames plus common usage |
+| `aishe_2021_22_state_outturn.csv` | `ml_pipeline/supply/parse.py`: AISHE Table 33 grand-total out-turn by state (page 186) | #6; West Bengal is unreadable in the PDF and left empty |
+| `plfs_2023_24_youth_ur.csv` | `ml_pipeline/supply/parse.py`: PLFS Table 18, age 15-29, usual status (ps+ss), persons (page 133) | #8 |
+
+Each file cites its source in its own header. `data/gold/` holds the frozen stratified samples the team labels; the labels themselves are written there by the labelling tool.

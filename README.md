@@ -1,92 +1,341 @@
-<div align="center">
-
 # Yojak · योजक
 
-**Skill, job and workforce intelligence for India**
+### Skill, job and workforce intelligence for India
 
-*Built for **Build for Bharat 2.0**: Intelligent Talent and Workforce Ecosystem*
+**Understand your fit. Choose what to learn. See the evidence.**
 
-Yojak (Sanskrit/Hindi for *"the one who connects"*) links what people know to what Indian employers ask for, and tells each person the **smallest set of skills that opens the most jobs**.
+Built for **Build for Bharat 2.0: Intelligent Talent and Workforce Ecosystem**, Yojak connects Indian job-posting data with the ESCO skills taxonomy. It helps students explore roles, recruiters compare skill profiles, institutions assess curricula, and workforce planners inspect regional demand.
 
-[Problem](#the-problem) · [What Yojak does](#what-yojak-does) · [Judging chain](#how-the-project-maps-to-the-judging-chain) · [Results](#results) · [Methods](#methods) · [Run it](#run-it-locally) · [API](#api) · [Limitations](#limitations-and-honesty)
+Its central question is practical: **given the skills someone already has, which additional skills make more postings reachable?** Answers include the matching skills, remaining gaps, salary ranges, and the assumptions behind each result.
 
-</div>
+[Get started](#getting-started) · [Features](#features-and-use-cases) · [Architecture](#architecture) · [How it works](#how-it-works) · [Results](#measured-results) · [Benchmarks](#benchmark-design) · [API](#api-reference) · [Limitations](#limitations)
+
+> **Project status:** the code includes four stakeholder workflows, an ESCO explorer, admin tools, and an evidence view. Data-quality, salary, and workforce reports are available. Graph-model comparison, upskilling evaluation, multilingual evaluation, and impact reports are pending in the current report set. The dataset is a historical posting snapshot, not a live jobs feed.
 
 ---
 
-## The problem
+## Why Yojak
 
-India produces millions of graduates a year, and employers still report they can't find the skills they need. Four groups are working without shared, evidence-based information:
+A job title alone does not explain whether someone fits a role. A list of popular skills does not establish what they should learn next. A regional vacancy count does not explain how it relates to the local graduate supply.
 
-| Who | What they struggle with |
-|---|---|
-| **Students and job-seekers**, especially outside metros | Which roles fit my skills? What should I learn next, and which of those skills is actually worth the effort? What does this role pay in my city? |
-| **Recruiters** | Matching a job description to candidates by the skills behind the words, not just the keywords, and seeing each candidate's gaps. |
-| **Colleges and training providers** | Is our syllabus teaching what employers ask for today? Which high-demand skills are missing, and which taught skills have low current demand? |
-| **Workforce planners** | Where is skill demand concentrated by state and city tier, and where does demand outpace the local supply of graduates? |
+Yojak combines these questions around a shared vocabulary of skills:
 
-Job portals list postings, and taxonomies like ESCO list skills, but nothing connects Indian postings to a skills graph in a way these groups can act on.
-
-## What Yojak does
-
-Yojak builds a **knowledge graph of Indian job postings linked to the ESCO skills taxonomy**, learns from it, and serves four stakeholder views on top.
-
-| View | You give | You get |
+| Decision | Yojak's approach | What the result means |
 |---|---|---|
-| **Student** (`/student`) | Skills typed in English, Hindi, Punjabi or romanised Hindi, or an uploaded resume. Optional city tier, state, experience. | Matching roles and live postings, each with a **"why" panel** showing the graph path and the skills that drove the match. The skill gap. An **optimal k-skill learning plan** compared with the usual "most common skills" advice, showing how many more jobs each step unlocks. A salary **range** (P10 to P90), never a single number. A Tier-2/3 filter. |
-| **Recruiter** (`/recruiter`) | A pasted job description. | Extracted skills, which you can edit. Candidates ranked by fit, each with matched and missing skills and a "why" panel. Demo candidates are **clearly labelled synthetic**; real resumes can be uploaded and ranked alongside them. |
-| **College / training provider** (`/institution`) | A syllabus (PDF or text). | The skills it teaches, its coverage of current demand for chosen roles and regions, the **missing high-demand skills**, and the taught skills with **low current demand**. Exportable as CSV. |
-| **Workforce planner** (`/workforce`) | State, city tier, skill family. | An **India map** of skill demand, tier breakdowns, salary ranges by tier, and a **shortage index** (demand share ÷ graduate-supply share). The supply side is a clearly labelled coarse proxy from government data. |
+| Which roles fit my profile? | Rank postings by skill similarity, then aggregate promising postings into occupations | Evidence of skill alignment with the dataset |
+| What should I learn next? | Optimize the value of postings that cross a weighted skill-coverage threshold | A learning plan under an explicit eligibility definition |
+| Which candidates cover a job's requirements? | Rank extracted or synthetic profiles by rarity-weighted skill coverage | A transparent screening aid |
+| What is missing from our curriculum? | Compare syllabus skills with the most-demanded skills in a selected scope | A demand-weighted curriculum gap |
+| Where is demand concentrated? | Compare state posting shares with graduate-supply shares | A coarse planning indicator |
+| What does the role pay? | Estimate posted-salary quantiles and calibrate the interval | A range with support counts and disclosure-bias caveats |
 
-An **Evidence page** (`/evidence`) walks judges through the whole chain from data to impact. Every number on it is read live from `reports/*.json`.
+These are decision-support signals. Skill coverage is not a prediction of hiring, and posted salary is not a promise of earnings.
 
-An **admin area** has system health, occupation notes and the gold-labelling tool the team uses to measure linking accuracy.
+## Features and use cases
 
-## How the project maps to the judging chain
-
-| Link | What we did | Code | Evidence |
+| Workspace | Input and controls | Output | Example use case |
 |---|---|---|---|
-| **Problem identification** | Four stakeholders, and the decision each one needs to make | this README, `/` | |
-| **Data acquisition** | About 97.9K Naukri postings (Kaggle), ESCO v1.2 (13.9K skills, 3K occupations), GeoNames, Survey-of-India boundaries, AISHE, PLFS, NCVET/NCO-2015 | `ml_pipeline/acquire.py`, `data/SOURCES.md` | `reports/data_quality.json` |
-| **Data preparation** | Dedupe and near-duplicate grouping; salary rules; experience bands; multi-city parsing; city → state → HRA tier; skill-tag and job-title linking to ESCO; NCO-2015 family codes; a Neo4j load | `ml_pipeline/india/` | `reports/data_quality.json` |
-| **Analytical approach** | Link prediction on a heterogeneous graph: four baselines against a Heterogeneous Graph Transformer, on leakage-safe splits, with ablations | `ml_pipeline/graph/` | `reports/model_comparison.json` |
-| **Insights and predictions** | An optimal upskilling plan (weighted max coverage, lazy greedy compared with an exact ILP); salary quantiles with conformal intervals and a selection-bias test | `ml_pipeline/upskilling/`, `ml_pipeline/salary/` | `reports/upskilling_eval.json`, `reports/salary_eval.json` |
-| **Solution** | FastAPI with four stakeholder views and "why" panels on every recommendation | `app/api/`, `app/frontend/` | `/evidence`, `scripts/demo.py` |
-| **Real-world impact** | Extra eligible jobs for Tier-2/3 freshers from the optimal plan compared with frequency-based advice, with every assumption stated | `scripts/impact.py` | `reports/impact.json`, `reports/EVALUATION.md` |
+| **Student** · `/student` | ESCO skill search, free text, or a resume; state, city tier, and experience filters | Ranked roles and postings, skill gaps, explanation drawers, salary ranges, and learning plans | A fresher compares roles in Tier-2/3 cities and plans three additional skills |
+| **Recruiter** · `/recruiter` | Paste or upload a JD, edit extracted skills, upload resumes, optionally include the synthetic pool | Ranked profiles with matched/missing skills and weighted coverage | Compare applicants against the same explicit requirements |
+| **Institution** · `/institution` | Syllabus text or document; occupation group, skill family, state, and tier | Coverage of top-demand skills, missing skills, low-current-demand skills, CSV export | Review a course against postings in a chosen region |
+| **Workforce** · `/workforce` | Skill-family selector and demand/shortage/youth-unemployment map modes | India map, state rankings and details, tier summaries, source caveats | Compare where formal-sector demand sits relative to graduate production |
+| **Explore** · `/explore` | Occupation search and taxonomy filters | ESCO occupations and their essential/optional skills | Inspect the taxonomy behind a recommended role |
+| **Evidence** · `/evidence` | Generated report index | Available reports, benchmark visualizations when populated, salary results, provenance, and pending states | Walk through the project's measured evidence |
+| **Admin** · `/admin` | Diagnostics, occupation notes, and gold labelling | Graph counts, request latency, editable notes, and evaluation labels | Inspect operation and improve linking evaluation |
 
-## Results
+**Shared capabilities**
 
-> Every number in this section is **generated**, not typed. `scripts/render_readme.py` fills the block below from `reports/*.json`, and CI fails if the README no longer matches the reports. A report that hasn't been generated yet shows as *pending*, never as an estimate.
+- English, Hindi, Punjabi, and romanised-Hindi input paths.
+- PDF, DOCX, and plain-text extraction; the application does not persist uploaded resumes.
+- Reusable skill selection, region filters, explanation drawers, loading states, and error states.
+- Salary responses with `p10`, `p50`, `p90`, `n_support`, and `sufficient`.
+- Explicit `synthetic` labels for demo candidates.
+- Light/dark themes, responsive layouts, and reduced-motion configuration.
+
+The public UI focuses on the common controls. The API also exposes advanced options such as effort overrides and larger planning bounds.
+
+## Architecture
+
+Yojak has two complementary data paths: Neo4j for taxonomy exploration and graph queries, and precomputed files plus sparse matrices for the newer stakeholder analytics.
+
+```mermaid
+flowchart TB
+    subgraph Sources["Source data"]
+        E["ESCO English CSVs"]
+        J["Naukri posting snapshot"]
+        G["GeoNames and city reference tables"]
+        S["AISHE, PLFS and boundary data"]
+    end
+
+    subgraph Offline["Offline preparation"]
+        ETL["ESCO ETL and occupation embeddings"]
+        INDIA["Clean, geocode, link skills and titles"]
+        SAL["Salary training and calibration"]
+        MARKET["Posting-skill matrix and salary predictions"]
+        WF["Workforce aggregates"]
+        BENCH["Graph and upskilling evaluation"]
+    end
+
+    E --> ETL
+    E --> INDIA
+    J --> INDIA
+    G --> INDIA
+    INDIA --> SAL
+    INDIA --> MARKET
+    SAL --> MARKET
+    MARKET --> WF
+    S --> WF
+    INDIA --> BENCH
+    MARKET --> BENCH
+
+    ETL --> NEO[("Neo4j")]
+    INDIA --> NEO
+    ETL --> IDX[("FAISS occupation index")]
+    MARKET --> ART[("Cached market and models")]
+    WF --> ART
+    INDIA --> REP[("Generated JSON reports")]
+    SAL --> REP
+    WF --> REP
+    BENCH --> REP
+
+    subgraph Application["Application"]
+        API["FastAPI"]
+        WEB["Next.js stakeholder workspaces"]
+    end
+
+    NEO --> API
+    IDX --> API
+    ART --> API
+    REP --> API
+    API --> WEB
+```
+
+### Runtime boundaries
+
+| Layer | Responsibility | Key implementation |
+|---|---|---|
+| API entry point | Router registration, Neo4j lifecycle, CORS, generic error responses, latency middleware | [main.py](app/api/main.py) |
+| Routes and schemas | Request validation and response contracts | [routes](app/api/routes), [schemas](app/api/schemas) |
+| Stakeholder services | Student matching/planning, recruiter ranking, curriculum coverage, salary requests | [yojak.py](app/api/services/yojak.py) |
+| Serving state | Lazy market/model loading, ranker selection, labels, candidate pool, workforce tables | [serving.py](app/core/serving.py) |
+| Shared extraction | Document parsing, language detection, exact matches, embedding fallback | [extract.py](app/core/extract.py) |
+| Graph repositories | Parameterized Cypher for taxonomy, notes, and original recommendations | [repos](app/api/repos) |
+| Frontend services | Typed Axios requests, shared errors, admin header, multipart uploads | [services](app/frontend/services), [api.ts](app/frontend/lib/api.ts) |
+| Offline pipelines | Acquisition, preparation, evaluation, and artifact generation | [ml_pipeline](ml_pipeline) |
+
+The original `POST /recommendations` endpoint remains available: it embeds a profile, searches the FAISS occupation index, and enriches results from Neo4j. The newer `POST /student/match` endpoint uses a posting-skill matrix and its selected sparse ranker. These are different recommendation paths.
+
+### Knowledge graph
+
+```mermaid
+flowchart LR
+    COMPANY["Company"] -->|POSTS| JOB["Job"]
+    JOB -->|REQUIRES| SKILL["Skill"]
+    JOB -->|MAPS_TO| OCC["Occupation"]
+    OCC -->|REQUIRES| SKILL
+    JOB -->|LOCATED_IN| CITY["City"]
+    CITY -->|IN_STATE| STATE["State"]
+    JOB -->|NEEDS_EXP| EXP["ExperienceBand"]
+    JOB -->|TAGGED| TAG["Tag"]
+    TAG -->|SAME_AS| SKILL
+    OCC -->|IN_OCC_GROUP| OG["OccupationGroup"]
+    SKILL -->|IN_SKILL_GROUP| SG["SkillGroup"]
+    SKILL -->|IN_SCHEME| CS["ConceptScheme"]
+    OCC -->|IN_SCHEME| CS
+```
+
+Unlinked tags remain `Tag` nodes. They are not silently converted into a possibly incorrect ESCO skill. Occupations carry an NCO-2015 family mapping where supported.
+
+## How it works
+
+### 1. Acquire and normalize the data
+
+[acquire.py](ml_pipeline/acquire.py) downloads scriptable sources. ESCO's English CSV export is a manual prerequisite. Source locations and attribution are recorded in [data/SOURCES.md](data/SOURCES.md).
+
+The [India pipeline](ml_pipeline/india/run.py):
+
+1. Removes duplicate job IDs and normalizes skill tags.
+2. Assigns near-duplicate groups using company, normalized title, and tag set. These groups are the split unit for evaluation.
+3. Parses salary and experience fields. Zero salary is missing; one-sided ranges are completed; reversed bounds are normalized; implausible values are excluded from usable salary observations.
+4. Splits multi-city locations and resolves city, state, and HRA-based tier using GeoNames, curated aliases, and conservative fuzzy matching.
+5. Links tags and job titles to ESCO, maps eligible ISCO unit groups to four-digit NCO families, and writes Parquet tables.
+6. Loads the India graph layer into Neo4j and writes a data-quality report.
+
+USD-labelled salary rows are excluded by the configured pipeline policy rather than converted. City tiers use the reference table's HRA classification, not an inferred measure of city development.
+
+Posting-date prefixes are checked against relative ages. The current report places **88.43% of raw postings within 14 days of the inferred scrape date, 2025-10-03**, but includes older outliers. This is a concentrated snapshot, not a longitudinal forecasting dataset.
+
+### 2. Resolve text to a common skill vocabulary
+
+The shared linker accepts ESCO preferred labels, alternative labels, and shortened preferred labels such as `Python` for `Python (computer programming)`.
+
+| Step | Behavior |
+|---|---|
+| Document parsing | PDF text extraction, DOCX paragraphs/tables, or decoded text |
+| Language routing | Script detection for Hindi/Punjabi and a heuristic for romanised Hindi |
+| Exact lookup | Longest-match English n-grams over ESCO labels and accepted frequent posting tags |
+| Semantic linking | Normalized embeddings, FAISS inner-product search over labels, maximum label similarity per concept |
+| Acceptance | Thresholded linking with a stricter guard for ambiguous one-word English tags |
+| Explanation | Preserve the source phrase, method, similarity score, and unlinked phrases |
+
+The current default English skill threshold is **0.70**, with a **0.80** one-word embedding guard. Multilingual extraction uses the multilingual MPNet model and a provisional threshold derived from the English threshold. These values are configuration decisions, not measured accuracy.
+
+Job-title linking also uses the posting's skills to resolve near-ties between plausible occupations. Exact title matches are preserved. See [link.py](ml_pipeline/india/link.py).
+
+### 3. Rank jobs and explain the match
+
+A market artifact stores a sparse posting-by-skill matrix `R`, skill identifiers, integer IDF weights, posting metadata, and predicted salary ranges.
+
+For a candidate profile:
+
+1. Resolve input skills to ESCO URIs.
+2. Filter postings by state, tier, and experience band.
+3. Rank the filtered rows with TF-IDF cosine similarity or Adamic-Adar common-neighbour scoring.
+4. Calculate skill fit separately as the IDF-weighted fraction of a posting's skills covered.
+5. Return matched skills, the most important missing skills, and score changes when individual input skills are removed.
+6. Aggregate the best 500 postings by ESCO occupation to propose roles.
+
+**Score and fit are different.** A ranker's similarity score determines ordering; fit describes coverage of the job's listed skills. Neither is a hiring probability.
+
+**Model-selection behavior:** the benchmark compares six models, but the current runtime supports only **B1 TF-IDF kNN** and **B3a Adamic-Adar**. It serves the benchmark winner when supported, otherwise the best supported model by reported T3 NDCG@10. Without a benchmark report it defaults to B1. Responses disclose both the benchmark winner and the served model. HGT is implemented for evaluation; it is not currently an online serving option.
+
+### 4. Choose the next skills to learn
+
+Let `S` be the person's skills, `R_j` a posting's required skills, `w_s` a skill's rarity weight, and `tau` the eligibility threshold.
+
+```text
+w_s       = round(1000 * (log((1 + number_of_jobs) / (1 + jobs_with_skill_s)) + 1))
+fit(S, j) = sum(w_s for s in R_j intersect S) / sum(w_s for s in R_j)
+eligible  = fit(S, j) >= tau
+
+F(A) = sum_j value_j * indicator(fit(S union A, j) >= tau)
+G(A) = sum_j value_j * min(1, fit(S union A, j) / tau)
+```
+
+`F` is the actual objective: maximize eligible posting value after learning at most `k` skills. Value is either one per posting or its predicted median salary. `G` also rewards partial progress.
+
+| Method | Purpose | Guarantee or qualification |
+|---|---|---|
+| Frequency baseline | Choose commonly requested missing skills | No optimality guarantee; salary mode weights counts by posting value |
+| Lazy greedy on G | Efficient surrogate optimization | The `1 - 1/e` guarantee applies to G, not F |
+| Greedy on F | Prioritize skills that complete postings; break ties using G | Fast heuristic without a worst-case guarantee on F |
+| CP-SAT ILP | Optimize F subject to the skill count or effort budget | Proven optimum only when the solver reports optimality |
+| Effort-aware partial enumeration | Extend affordable seed sets with gain-per-effort greedy | Practical bounded search; effort is a heuristic, not learning time |
+| Brute force | Cross-check small instances | Exact for the enumerated instance |
+
+The student API starts with greedy on F, gives CP-SAT a **1.5-second solver limit**, and retains the better plan. Model construction and other request work are outside that solver limit. It compares the result with frequency advice and reports whether optimality was proven.
+
+Each step identifies newly eligible postings, cumulative eligibility, effort, and a salary-shift range where available. The API supports `k = 1..8`, `tau = 0.3..0.9`, optional effort budgets, and per-skill effort overrides. The UI offers a narrower set of common choices.
+
+F is **not submodular**: two skills may unlock a posting together while neither does alone. The mathematical distinction and solver formulation are documented in [docs/optimality.md](docs/optimality.md).
+
+### 5. Estimate salary with uncertainty
+
+[salary/model.py](ml_pipeline/salary/model.py) predicts the **annual INR midpoint of a posted salary range**, using only postings with a plausible disclosed salary.
+
+- Features include occupation group, state, tier, metro region, work mode, experience, rating, and compressed title/skill text features.
+- Three LightGBM models estimate log-salary quantiles at P10, P50, and P90.
+- Near-duplicate groups are assigned to train/calibration/test splits.
+- Split-conformal calibration adjusts the outer interval toward 80% coverage.
+- A support count tracks disclosed examples for the same ISCO unit group and tier; the salary-estimate endpoint pools support across tiers when no tier is supplied. The shared salary component suppresses individual estimates below **20** examples.
+- The API still returns numeric predictions with `sufficient: false`; API consumers must honor that flag.
+
+The evaluation also measures whether disclosure is predictable, and compares an inverse-propensity-weighted sensitivity model. This does not eliminate unobserved salary-selection bias.
+
+### 6. Answer recruiter, curriculum, and workforce questions
+
+**Recruiter ranking.** A JD defines the required skill set. Candidates receive IDF-weighted coverage plus a small logarithmic breadth term. This is a separate scoring rule from student job ranking. Demo profiles are explicitly synthetic; uploaded profiles are extracted for the request. The route processes up to 20 resumes.
+
+**Curriculum coverage.** Within the chosen scope, the service finds the top requested skills, defaulting to 40. Coverage is the share of their posting-frequency weight covered by syllabus skills. A taught skill appearing in fewer than **0.2%** of scoped postings is labelled “low current demand,” not “outdated.”
+
+**Workforce analytics.** ESCO knowledge concepts are mapped through their hierarchy to ISCED-F broad fields. A posting receives its most frequent mapped field, or `unassigned`. The shortage proxy is:
+
+```text
+shortage(field, state)
+    = [postings(field, state) / postings(field, India)]
+      / [graduates(state) / graduates(India)]
+```
+
+Supply uses **state-total AISHE graduate out-turn**, not field-specific graduate counts. PLFS youth unemployment is shown alongside the index; it is not the supply denominator. A value above one indicates disproportionate posting demand relative to graduate share, not a measured count of unfilled vacancies.
+
+### 7. Deliver the answer
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as Next.js
+    participant API as FastAPI
+    participant Linker as Skill extractor
+    participant Runtime as Cached market and ranker
+    User->>UI: Enter skills or upload a document
+    UI->>API: POST /extract/skills or /extract/file
+    API->>Linker: Parse and link phrases
+    Linker-->>UI: Skills, source phrases, unlinked items
+    User->>UI: Edit skills and choose filters
+    UI->>API: POST /student/match
+    API->>Runtime: Filter, score, explain, aggregate
+    Runtime-->>UI: Roles, postings, fit, gaps, salary ranges
+    User->>UI: Choose a target and skill budget
+    UI->>API: POST /student/plan
+    API->>Runtime: Build coverage problem and refine plan
+    Runtime-->>UI: Plan, frequency comparison, optimality status
+```
+
+## Measured results
+
+The block below is generated by [scripts/render_readme.py](scripts/render_readme.py). Its numbers come from the JSON reports, and CI checks that this block matches those reports. Missing reports remain pending.
+
+| Evidence | Current report set | What it establishes |
+|---|---|---|
+| [Data quality](reports/data_quality.json) | Available | Cleaning counts, geography, linking coverage, graph counts, stage timing |
+| [Salary evaluation](reports/salary_eval.json) | Available | Held-out errors, interval coverage, subgroup results, disclosure bias |
+| [Workforce summary](reports/workforce_summary.json) | Available | Field assignments, state supply coverage, shortage proxy, tier aggregates |
+| Graph comparison and ablations | Pending | No published winner or comparative latency yet |
+| Upskilling and impact | Pending | No published real-pool optimality-gap or impact estimate yet |
+| Gold and multilingual accuracy | Pending labels/evaluation | Implementation exists; accuracy is not established |
+
+**Reading the evidence:** reports record the generating script, timestamp, seed where applicable, Git state, and supplied input hashes. The available September 25, 2026 reports record a dirty working tree based on the pre-reset upstream commit. They are historical run evidence, not proof that every later edit has been reevaluated.
 
 <!-- results:start -->
 
 ### Data (from `reports/data_quality.json`)
 
-| | |
-|---|---|
+|  |  |
+| --- | ---: |
 | Raw postings | 97,929 |
 | After removing duplicate job IDs | 97,679 |
 | Jobs with at least one skill tag | 97,108 |
 | Non-remote jobs resolved to an Indian city | 99.7% (1,410 cities, 34 states/UTs) |
 | Jobs by primary city tier (1 / 2 / 3) | 60,353 / 26,131 / 8,813 |
-| Unique skill tags | 43,716 (754K mentions) |
-| Tag mentions linked to an ESCO skill | 65.6% (provisional threshold; tuned once gold labels exist) |
-| Jobs linked to an ESCO occupation | 77.1% (1,944 distinct occupations) |
+| Unique skill tags | 43,716 (753K mentions) |
+| Tag mentions linked to an ESCO skill | 54.6% (threshold 0.7, provisional) |
+| Jobs linked to an ESCO occupation | 77.0% (1,949 distinct occupations) |
 | Postings that disclose salary | 33.9% (Tier 1: 26.9%, Tier 2: 43.8%, Tier 3: 50.6%) |
 | Posting dates | real, from `jobId`; 86.9% agree with "N days ago"; inferred scrape date 2025-10-03 |
 | Skill-linking precision (team-labelled gold) | *pending team labels* |
 
 ### Models (from `reports/model_comparison.json`)
 
-*Pending:* T1 job-skill completion, T2 occupation-skill recovery and T3 candidate→job fit for B0 Popularity, B1 TF-IDF kNN, B2 SkillAlign (mpnet + FAISS), B3a Adamic-Adar, B3b LightGCN and the HGT. Each shows Recall@10, NDCG@10 and MRR with 95% CIs, p50/p95 latency and memory, plus the ablations and the shipped winner.
+*Pending:* T1 job-skill completion, T2 occupation-skill recovery and T3 candidate→job fit for B0 Popularity, B1 TF-IDF kNN, B2 SkillAlign (mpnet + FAISS), B3a Adamic-Adar, B3b LightGCN and the HGT.
 
 ### Upskilling (from `reports/upskilling_eval.json`)
 
-*Pending:* jobs unlocked by lazy greedy, plain greedy and top-k-by-frequency, compared with the exact optimum, for k ∈ {1, 3, 5} and τ ∈ {0.4, 0.6, 0.8}; the optimality gap (mean and p95); runtime.
+*Pending:* jobs unlocked by lazy greedy, greedy on F and top-k-by-frequency against the exact optimum, for k ∈ {1, 3, 5} and τ ∈ {0.4, 0.6, 0.8}.
 
 ### Salary (from `reports/salary_eval.json`)
 
-*Pending:* MAE and MdAPE of P50, pinball loss, 80% interval coverage before and after conformal calibration, and the disclosure-bias verdict.
+|  |  |
+| --- | ---: |
+| Model | LightGBM quantile regression + conformalised quantile regression |
+| Held-out postings (disclosed salary) | 4,953 |
+| P50 MAE / MdAPE | ₹2.73 L / 21.4% |
+| Baseline (ISCO sub-major × tier median) MAE / MdAPE | ₹4.73 L / 44.2% |
+| P10–P90 coverage (target 80%): raw → calibrated | 68.4% → 79.7% |
+| Median interval width (calibrated) | ₹4.24 L |
+| Disclosure predictable from job features (propensity AUC) | 0.89 |
+| Shown only when support ≥ | 20 similar disclosed postings |
+
+Salary is disclosed on only 33.9% of postings and disclosure is not random, so every figure is a range for *postings that disclose pay*, never a point estimate.
 
 ### Impact (from `reports/impact.json`)
 
@@ -94,288 +343,499 @@ An **admin area** has system health, occupation notes and the gold-labelling too
 
 <!-- results:end -->
 
-The full write-up (data, method, baselines, metrics, ablations, optimality gap, limitations) is generated at [`reports/EVALUATION.md`](reports/EVALUATION.md).
+### Salary comparison
 
-## Architecture
+The following charts are **fixed visual snapshots of the September 25, 2026 salary report**. The generated tables above remain the refreshable results source. The baseline predicts the training median for the same ISCO sub-major group and city tier.
 
 ```mermaid
-graph LR
-    subgraph Sources
-        ESCO[(ESCO v1.2)]
-        NK[(Naukri postings<br/>Kaggle)]
-        GOV[(GeoNames · Survey of India<br/>AISHE · PLFS · NCVET)]
-    end
-    subgraph Pipelines [ml_pipeline]
-        ACQ[acquire] --> IND[india: clean · geo · link · NCO]
-        IND --> GR[graph: splits · baselines · HGT]
-        IND --> UP[upskilling: max coverage]
-        IND --> SAL[salary: quantiles + CQR]
-        GR & UP & SAL --> REP[(reports/*.json)]
-    end
-    ESCO & NK & GOV --> ACQ
-    IND --> NEO[(Neo4j 5 graph)]
-    GR --> ART[(artifacts: models, indexes)]
-    SAL --> ART
-    subgraph Serving
-        API[FastAPI] --> NEO
-        API --> ART
-        API --> REP
-        WEB[Next.js 14] --> API
-    end
+xychart-beta
+    title "Posted-salary MAE on 4,953 held-out disclosed postings"
+    x-axis ["Group-and-tier median", "LightGBM P50"]
+    y-axis "Annual INR error - lower is better" 0 --> 500000
+    bar [473227, 273040]
 ```
 
-**The graph.** ESCO provides `Skill`, `Occupation`, `SkillGroup`, `OccupationGroup` and `ConceptScheme` nodes. The India layer adds `Job`, `Company`, `City`, `State`, `ExperienceBand` and `Tag`, connected by these edges:
-- `(Job)-[:REQUIRES]->(Skill)`
-- `(Job)-[:MAPS_TO]->(Occupation)`
-- `(Company)-[:POSTS]->(Job)`
-- `(Job)-[:LOCATED_IN]->(City)-[:IN_STATE]->(State)`
-- `(Job)-[:NEEDS_EXP]->(ExperienceBand)`
-- `(Job)-[:TAGGED]->(Tag)-[:SAME_AS]->(Skill)`
-
-Unlinked tags stay in the graph rather than being thrown away. `Occupation.ncoFamily` carries the Indian NCO-2015 family code.
-
-**Stack.**
-- **Backend:** Python 3.11, FastAPI, Neo4j 5 Community (runs natively; no Docker), PyTorch, sentence-transformers (`all-mpnet-base-v2` and `paraphrase-multilingual-mpnet-base-v2`), FAISS, scikit-learn, LightGBM, OR-Tools.
-- **Frontend:** Next.js 14, TypeScript, Tailwind, Radix/shadcn, React Query, Motion, visx, d3-geo and sigma.js.
-
-## Methods
-
-### 1. Data preparation (`ml_pipeline/india/`)
-
-- **Cleaning.**
-  - Duplicate `jobId`s are dropped.
-  - Near-duplicates (same company, normalised title and tag set) share a `dup_group_id`, so a posting repeated across cities never lands on both sides of a train/test split.
-  - Salary: zero means *not disclosed*, a missing min or max is filled from the other, min and max are swapped when reversed, and values outside ₹50K–₹5Cr a year are flagged implausible.
-  - **USD-labelled salaries are excluded, not converted.** Every one is an Indian role quoting rupee figures, for example a Nagpur trainee at "10,000–15,000 USD PA". Converting them would invent salaries.
-- **Posting dates.** Naukri job IDs begin with the posting date (DDMMYY). We *test* this rather than assume it: posting date + "N days ago" lands on one scrape date (2025-10-03) for 86.9% of rows, and volume dips on Sundays. The dates are real but span about two weeks, so Yojak makes **no forecasting or "emerging skill" claims**. The dates are used for a time-based robustness check and a with/without-time ablation.
-- **Geography.**
-  - Location strings are split into cities (`"Hybrid - Bengaluru"`, `"Hyderabad, Chennai, Bengaluru"`, `"Kolkata(Chinar Park)"`), plus a remote/hybrid work mode.
-  - Cities are resolved against GeoNames through a curated alias table (Gurgaon→Gurugram, Vasai→Vasai-Virar), with conservative fuzzy matching.
-  - **Tier = 7th CPC HRA class** (X→1, Y→2, else 3, per the Ministry of Finance order of 21 July 2015). A separate metro-region flag keeps NCR and MMR satellites together.
-- **Linking free text to ESCO** (tags, titles, resumes, JDs, syllabi) uses one shared linker:
-  - An exact match on ESCO preferred and alternative labels.
-  - Otherwise, embedding top-k over about 100K ESCO labels with a cosine threshold.
-  - Below the threshold, the tag goes to an *unlinked* table rather than being forced onto the taxonomy.
-- **Job titles** are cleaned (seniority and level noise removed, acronyms like AI/ML and HR expanded). The candidates are then **re-ranked with the job's own linked skills**, but only among near-ties in title similarity; an exact title match is never overridden.
-- **NCO-2015.** The ISCO-08 unit group becomes the NCO-2015 *Family* (4 digits), per NCVET (2023) §2.2.8. Armed forces are excluded (NCO has no division 0). The 8-digit occupation level is deliberately not attempted.
-- **Gold evaluation.**
-  - Stratified, frozen samples: 200 tags (score band × mention band) and 200 job titles.
-  - Labelled by the team in `/admin/labelling`, with model suggestions shown.
-  - Precision and recall are estimated with inverse-probability weights, using a **dev/test split**: the threshold is tuned on dev and reported on test, with bootstrap 95% CIs.
-  - Reported as *team-labelled, model-assisted*.
-- **Multilingual input.** Team-written Hindi, Punjabi and romanised-Hindi phrases for 60 common skills measure cross-lingual linking for both embedding models (`reports/multilingual_eval.json`). Non-English input always goes through the multilingual model.
-
-### 2. Link prediction (`ml_pipeline/graph/`)
-
-**Splits.** Jobs are split by near-duplicate group into train 70 / val 10 / test 10 / pool 10.
-- **Known edges:** everything models may see.
-- **Hidden edges:** the evaluation targets. These are half of each val/test job's skills and 20% of each ESCO occupation's skills.
-
-Automated checks confirm that no hidden edge is visible to any model and no group spans two splits.
-
-| Task | Question |
-|---|---|
-| **T1** job-skill completion | Given half of a posting's skills, which skills is it missing? |
-| **T2** occupation-skill recovery | Given 80% of an ESCO occupation's skills, what's the rest? |
-| **T3** candidate→job fit *(proxy)* | A pseudo-candidate (40–70% of a posting's skills plus 2 random skills) ranks about 9.5K pool jobs. The source job has grade 2 and jobs of the same occupation grade 1. **This is a proxy**: the data has no applications or hires. |
-
-**Models.** All models are trained on the same known edges and scored on the same queries.
-- **B0** popularity.
-- **B1** TF-IDF item-kNN.
-- **B2** SkillAlign's original method: mpnet + FAISS over ESCO occupations, rebuilt from known skills only so nothing leaks.
-- **B3a** Adamic-Adar.
-- **B3b** LightGCN.
-- **M: a Heterogeneous Graph Transformer** reused from our Vyuha project.
-  - Six node types: job, skill, occupation, company, city and experience band, with reverse relations.
-  - Text-embedding node features.
-  - A DistMult link head for (job, skill) and (occupation, skill).
-  - A contrastive head for (candidate, job).
-  - Inductive encoding for new candidates.
-  - A temperature-calibrated edge probability.
-
-**Protocol.**
-- **Metrics:** Recall@10, NDCG@10 and MRR, with 95% bootstrap CIs, 3 seeds, and paired bootstrap tests against the best baseline.
-- **Online cost:** p50/p95 latency and memory.
-- **Model selection:** every tuning decision (thresholds, fold-in rules, hyperparameters) is made on validation data or a *train-job* T3 dev set. The test pool is used only once, for the final numbers.
-- **Ablations:** raw tags instead of ESCO links; no company/city nodes; 1 vs 2 HGT layers; with vs without posting-time encoding.
-- **Shipping rule:** the API ships **whichever model wins on T3**. If the HGT doesn't beat the baselines, the report and this README say so.
-
-### 3. Optimal upskilling (`ml_pipeline/upskilling/`)
-
-For a person with skills *S* and a target pool of jobs, pick *k* skills *A* to learn.
-
-| | Definition |
-|---|---|
-| Fit of job *j* | `fit(S, j) = Σ w_s over R_j ∩ S / Σ w_s over R_j` (IDF-weighted share of the job's skills) |
-| Eligible | `fit ≥ τ` |
-| True objective | `F(A) = Σ_j v_j · 1[fit(S ∪ A, j) ≥ τ]`, with `v_j` = 1 or the job's median salary |
-| Surrogate | `G(A) = Σ_j v_j · min(1, fit(S ∪ A, j) / τ)` |
-
-- **F is not submodular.** Two skills can each unlock nothing alone and a job together; `docs/optimality.md` gives a counterexample.
-- **G is monotone submodular** (a concave function of a modular one), so **lazy greedy** on G carries the (1 − 1/e) guarantee on G.
-- **Exact optimum of F.** OR-Tools CP-SAT solves an ILP for F exactly, and brute force cross-checks it on small cases. We report the **real optimality gap** on F, not just a theoretical bound.
-- **Baseline:** top-k skills by raw frequency, which is what most career tools do.
-- **Effort-aware variant.** It maximises gain per unit effort under a budget, using cost-benefit greedy plus the best single skill. **The effort weight is a documented heuristic** (graph distance from what you know, skill type, breadth), not measured learning time, and users can override it.
-- **Output per recommended skill:** the jobs it unlocks (listed, for the "why" panel), the salary shift *as a range*, and the effort weight with its breakdown.
-
-### 4. Salary intelligence (`ml_pipeline/salary/`)
-
-- Only about 34% of postings disclose pay, so LightGBM **quantile models (P10, P50, P90)** are trained on disclosed rows only. The target is the posted salary midpoint, not realised pay.
-- **Conformalised quantile regression** on a calibration split targets 80% interval coverage.
-- Reported per tier and experience band: MAE, MdAPE, pinball loss, and coverage before and after calibration.
-- **Selection bias is tested, not assumed away.** We compare disclosed and undisclosed postings by occupation, state, tier and experience (χ², Cramér's V, standardised mean difference, KS), train a disclosure-propensity classifier (its AUC), and run an inverse-propensity-weighted sensitivity model. Disclosure already rises from 27% in Tier 1 to 51% in Tier 3.
-- **A salary is never shown without its interval.** When fewer than N similar disclosed postings back an estimate, Yojak says so instead of guessing.
-
-### 5. Workforce supply proxy
-
-- **Shortage index:** demand share ÷ supply share, per skill family and state.
-- **Supply:** AISHE graduate out-turn by discipline and state, and PLFS state labour force, mapped through `data/reference/discipline_to_skillfamily.csv`.
-- It's shown everywhere as a **coarse proxy**, with its formula and sources.
-
-## Honesty rules (enforced in code)
-
-1. **No fabricated numbers.**
-   - Every metric comes from a script that writes `reports/*.json` with provenance: git commit, input file hashes, seed, script and time.
-   - The UI and this README only *read* those files.
-   - CI checks that the README results block is up to date.
-2. **Synthetic data is labelled everywhere.**
-   - Demo candidates carry a required `synthetic: true` field in the API schema and in Neo4j, and the UI shows a badge.
-   - They have IDs such as `SC-0421`, never invented human names.
-3. **Salaries are always ranges:** `{p10, p50, p90, n_support}`. No API field carries a bare salary.
-4. **Proxies are called proxies:** T3 fit, the supply side of the shortage index, the effort weight, and "low current demand" (not "outdated").
-5. **When something can't be done honestly with this data, we say so and do the closest honest thing.** For example: USD salaries, forecasting, and NCO beyond 4 digits.
-
-## Limitations and honesty
-
-- **Representativeness.** Naukri postings are formal-sector, urban and white-collar. Tier-3 and informal work are under-represented, and results describe *posted* demand only.
-- **Time.** Posting dates are real but cover about two weeks: no trends and no forecasts.
-- **No outcome data.** There are no applications or hires, so candidate→job fit is evaluated with a stated proxy (T3), and eligibility is not a hiring prediction.
-- **Salary.** Posted midpoints from the 34% of postings that disclose, with measured selection bias. They are not realised pay.
-- **Taxonomy gap.** ESCO has no entries for many tools Indian employers ask for (React, Spring Boot, Kubernetes, AWS). These stay as tags and are reported as a gap.
-- **Reference lists.** The HRA city-tier list and the alias table were transcribed by the team and should be re-checked against the official order.
-- **Admin protection** is a demo-grade shared token, not user authentication.
-
-## Run it locally
-
-**Requirements:** Windows 10/11, Python 3.11, Node 18+, Java 17 (for Neo4j). A CUDA GPU is optional; it speeds up training. No Docker is needed.
-
-```powershell
-scripts/setup.ps1      # .venv, pip + npm installs, .env with a random Neo4j password, project-local Neo4j
+```mermaid
+xychart-beta
+    title "Held-out interval coverage"
+    x-axis ["Raw P10-P90", "Calibrated interval", "Target"]
+    y-axis "Coverage percent" 0 --> 100
+    bar [68.36, 79.65, 80]
 ```
 
-**Data:**
-1. Download **ESCO v1.2** (English, CSV, classification) from <https://esco.ec.europa.eu/en/use-esco/download> and unzip it into `data/raw/esco/`. The portal is form-gated.
-2. Put your Kaggle API key in `~/.kaggle/kaggle.json`.
-3. Fetch everything scriptable:
+The model's MAE is **42.3% lower than the baseline**, calculated as `1 - 273040 / 473227`. Calibration increases observed coverage by **11.29 percentage points**. These comparisons apply to the disclosed-salary test set only.
 
-```powershell
-scripts/run.ps1 data
+The uncertainty remains substantial: median calibrated interval width is **INR 423,787**, and the disclosure-propensity classifier's AUC is **0.8919**. A strong ability to predict who discloses pay is evidence that the labelled sample is not random. Source: [salary_eval.json](reports/salary_eval.json).
+
+### Data coverage is not linking accuracy
+
+```mermaid
+flowchart LR
+    RAW["97,929 raw postings"] --> DEDUP["97,679 after duplicate IDs"]
+    DEDUP --> TAGS["97,108 with at least one tag"]
+    TAGS --> LINKED["95,151 with at least one linked ESCO skill"]
 ```
 
-**Build and run:**
+This is a **September 25, 2026 data-quality snapshot**, not four independently filtered training sets. All cleaned postings remain in the India layer; the market used by stakeholder analytics keeps postings with linked skills.
 
-```powershell
-scripts/run.ps1 pipeline   # ESCO graph -> India layer -> models, indexes and reports
-scripts/run.ps1 eval       # benchmarks, upskilling and salary evaluations -> reports/
-scripts/run.ps1 up         # Neo4j + API (:8000) + web (http://localhost:3000)
-scripts/run.ps1 demo       # 5-minute scripted demo: three personas, saved to reports/demo_output/
-scripts/run.ps1 test       # pytest, ruff, tsc, eslint
-scripts/run.ps1 stop
-```
+The latest data report records 43,716 unique raw tags, 16,587 accepted unique tags, and 4,364 distinct linked ESCO skills. Many source phrases share a concept, and others remain unlinked. Coverage describes how much data can be mapped; precision still requires the pending gold labels. Source: [data_quality.json](reports/data_quality.json).
 
-Individual stages:
+## Benchmark design
 
-```powershell
-.venv\Scripts\python -m ml_pipeline.run_pipeline          # ESCO graph + FAISS index
-.venv\Scripts\python -m ml_pipeline.india.run             # India data layer + data_quality.json
-.venv\Scripts\python -m ml_pipeline.india.gold sample     # draw the frozen gold samples (once)
-.venv\Scripts\python -m ml_pipeline.india.gold tune       # tune linking thresholds on gold dev labels
-.venv\Scripts\python -m ml_pipeline.india.gold evaluate   # refresh gold precision in data_quality.json
-.venv\Scripts\python -m ml_pipeline.india.multilingual    # multilingual_eval.json
-.venv\Scripts\python -m ml_pipeline.graph.evaluate        # model_comparison.json
-```
+### Six models, three tasks
 
-**Key environment variables** (`.env`, see `.env.example`): `NEO4J_URI`, `NEO4J_PASSWORD`, `ADMIN_TOKEN`, `MODEL_NAME`, `MULTILINGUAL_MODEL_NAME`, `CORS_ORIGINS`. The frontend reads `NEXT_PUBLIC_API_URL`.
-
-## API
-
-Interactive docs are at <http://127.0.0.1:8000/docs>.
-
-| Area | Endpoints |
-|---|---|
-| Health and diagnostics | `GET /health` · `GET /admin/diagnostics/{nodes-by-label, rels-by-type, endpoints, metrics}` |
-| Catalogue | `GET /catalog/{skills, occupations, occupation-groups, skill-groups, concept-schemes}` |
-| Occupations and skills | `GET /occupations` · `GET /occupations/{uri}/skill-gap` · `GET /skills` |
-| Extraction | `POST /extract/skills`: text, resume or syllabus → linked ESCO skills (any supported language) |
-| Student | `POST /student/match` · `POST /student/plan` |
-| Recruiter | `POST /recruiter/rank` |
-| Institution | `POST /institution/coverage` |
-| Workforce | `GET /workforce/demand` · `GET /workforce/shortage` |
-| Salary | `GET /salary/estimate`, which always returns P10/P50/P90 plus support |
-| Evidence | `GET /reports/{name}` |
-| Admin | `/notes/admin/...` · `/admin/labelling/...` (writes need `X-Admin-Token`) |
-| Legacy (SkillAlign) | `POST /recommendations` |
-
-Every recommendation response carries a `why` object:
-- **Roles and jobs:** the graph path from your skill to the linked ESCO skill, to the job or occupation.
-- **Model scores:** occlusion attributions.
-- **Plan skills:** the jobs each one unlocks.
-- **Shortage cells:** the underlying counts and sources.
-
-## Testing
-
-- `pytest`: unit and API tests against a scripted fake Neo4j, so no database is needed.
-- `pytest -m neo4j`: integration tests against a **disposable** Neo4j (`NEO4J_TEST_URI`, `NEO4J_TEST_PASSWORD`). They refuse to wipe any database they didn't create.
-- **CI** (`.github/workflows/ci.yml`):
-  - ruff and pytest.
-  - Integration tests on a Neo4j tarball (no containers).
-  - Frontend typecheck, lint and build.
-  - A README-freshness check.
-- Regression tests cover every bug found in the [Phase 0 audit](reports/phase0_audit.md) of the inherited code, plus leakage checks on every data split.
-
-## Repository layout
-
-```
-app/
-  api/            FastAPI: routes -> services -> repos -> schemas
-  core/           settings, Neo4j client, ML engine, linker, admin guard, latency metrics
-  frontend/       Next.js 14 app: landing, student, recruiter, institution, workforce, evidence, admin
-ml_pipeline/
-  acquire.py      fetch all scriptable data sources
-  run_pipeline.py ESCO graph + FAISS index (from SkillAlign, fixed)
-  india/          Naukri cleaning, geography/tiers, ESCO linking, NCO-2015, gold evaluation, Neo4j load
-  graph/          splits, metrics, baselines, LightGCN, hgt/ (from Vyuha), evaluation
-  upskilling/     max-coverage objectives, lazy greedy, ILP, effort-aware variant
-  salary/         quantile models, conformal calibration, selection-bias analysis
-  synthetic/      labelled synthetic candidate pool for the recruiter demo
-  supply/         AISHE / PLFS supply proxy
-data/
-  SOURCES.md      every external file: URL, date, licence, hash
-  reference/      hand-curated tables (city tiers, aliases, discipline map), each citing its source
-  gold/           frozen evaluation samples and team labels
-reports/          generated JSON reports, EVALUATION.md, phase0_audit.md
-scripts/          setup / neo4j / run (PowerShell + bash), demo, impact, render_readme
-tests/            pytest suite and fixtures (ESCO mini-slice)
-```
-
-## Data and licences
-
-| Data | Licence | Notes |
+| Model | Method | Role in the codebase |
 |---|---|---|
-| ESCO v1.2 | CC BY 4.0 | "This service uses the ESCO classification of the European Commission." |
-| Indian Job Market Dataset 2025 (Naukri, Kaggle) | CC BY-NC-SA 4.0 | Not redistributed. Derived outputs are non-commercial and share-alike. |
-| GeoNames | CC BY 4.0 | |
-| Survey of India boundaries via DataMeet | DataMeet repository terms | Boundaries follow the official claims. |
-| AISHE, PLFS, NCVET / NCO-2015 | Government of India publications | |
+| B0 | Popularity | Frequency-based baseline |
+| B1 | TF-IDF kNN | Sparse similarity baseline; supported student runtime |
+| B2 | MPNet + FAISS | SkillAlign-derived semantic baseline; original recommender family |
+| B3a | Adamic-Adar | Rarity-weighted common-neighbour baseline; supported student runtime |
+| B3b | LightGCN | Learned graph-propagation baseline |
+| M | Heterogeneous Graph Transformer | Typed graph model adapted from Vyuha; benchmark implementation |
 
-Full attributions are in [NOTICE](NOTICE), and URLs, dates and hashes in [data/SOURCES.md](data/SOURCES.md).
+| Task | Query | Evaluation target |
+|---|---|---|
+| **T1: job-skill completion** | A held-out posting's known skills | Its hidden skills |
+| **T2: occupation-skill recovery** | An occupation's known ESCO skills | Its hidden occupation-skill edges |
+| **T3: candidate-to-job fit** | A pseudo-profile made from a posting's skills plus noise | Source posting and same-occupation postings in the evaluation pool |
 
-## Credits
+The split hashes near-duplicate groups into approximately **70% train / 10% validation / 10% test / 10% pool**. Validation/test jobs with sufficient skills hide half their edges; occupations with at least five skills hide approximately 20%. Separate train-job pseudo-profiles support T3 model tuning.
 
-- **SkillAlign** by Yasser Khattach (MIT). Yojak is a fork: the FastAPI layout, ESCO ETL and the original recommender came from there, and were audited and fixed.
-- **Vyuha**, our team's project. The Heterogeneous Graph Transformer layer and temporal encoder are reused verbatim, and the training loop and graph validation are adapted.
-- Everything else is new in Yojak. [CREDITS.md](CREDITS.md) lists exactly which files came from where.
+T3 profiles retain 40–70% of a source posting's skills and add two noise skills. The source job receives relevance grade 2, and same-occupation jobs grade 1. It is a **proxy task** because there are no applications, interviews, or hiring outcomes.
 
-## Licence
+### What the evaluation records
 
-Code: MIT (see [LICENSE](LICENSE)). Data: see the table above.
+| Dimension | Recorded measure |
+|---|---|
+| Retrieval quality | Recall@10, NDCG@10, MRR |
+| Uncertainty | Query-bootstrap 95% intervals and paired differences |
+| Stochastic variation | Three seeds by default for learned models |
+| Query cost | p50/p95 latency for profile-to-skills and profile-to-jobs scoring |
+| Memory | Process RSS; peak CUDA allocation when available |
+| Structural checks | Hidden/known edge overlap and near-duplicate split overlap |
+| Ablations | Raw tags instead of ESCO skills; removal of company/city context; one HGT layer; temporal encoding |
+| Planning quality | Objective value, gap against ILP, optimality status, runtime, and budget feasibility |
+
+T3 Recall@10 specifically asks whether the source posting appears in the top ten. Model selection uses T3 NDCG@10, with T1 NDCG@10 breaking the implemented confidence-interval-overlap tie. Runtime support is checked separately.
+
+The report averages stochastic-model metrics over seeds but takes query confidence intervals and latency/memory summaries from the last run. Paired comparisons also use the last run's per-query results. These intervals should not be presented as uncertainty over every seed.
+
+**No graph winner, model speedup, or measured upskilling advantage is claimed until the corresponding report exists.** Source: [graph/evaluate.py](ml_pipeline/graph/evaluate.py).
+
+### HGT implementation
+
+The HGT operates on job, skill, occupation, company, city, and experience-band nodes with reverse relations. It combines typed attention with a projected bag of skill features, uses DistMult-style job-skill/occupation-skill scoring, and learns a candidate-job correction over a text prior.
+
+Training uses BPR and contrastive objectives, AdamW, a cosine learning-rate schedule, early stopping, and context dropout. Known training edges are repartitioned into message-passing and supervision edges during training. Candidate nodes are encoded inductively against cached skill states. Posting-time encoding is an optional ablation.
+
+See [hgt/model.py](ml_pipeline/graph/hgt/model.py) and [CREDITS.md](CREDITS.md) for implementation and reuse boundaries.
+
+## Efficiency and feature compression
+
+### Where work is reduced
+
+| Mechanism | Implementation | Practical effect |
+|---|---|---|
+| Sparse posting-skill matrices | SciPy CSR for row operations; CSC for skill-column operations | Work follows observed edges instead of materializing every job-skill pair |
+| Cached serving state | Lazy singleton with cached market, ranker, labels, salary model, and candidate pool | Reuses loaded resources within a process |
+| Cached label embeddings | Text/model-derived cache key in the linker | Avoids regenerating unchanged label embeddings |
+| Precomputed salary predictions | Stored alongside market rows | Matching can attach salary ranges without fitting models per request |
+| Vectorized marginal gains | Sparse candidate-column pass in the planner | Computes gains together instead of a Python loop over every skill |
+| Lazy greedy | Priority queue with stale-gain recomputation | Avoids recomputing every surrogate gain each round |
+| Bounded ILP refinement | Greedy hint plus solver time limit | Limits the solver phase while preserving a feasible fallback |
+| Partial top-k selection | NumPy `argpartition` | Avoids fully sorting every candidate for a small result set |
+| Frontend query caching | React Query; reports have a 10-minute stale time | Reuses recent responses |
+| Request metrics | Last 500 durations per route template | Bounded, process-local latency observation |
+
+These are implementation mechanisms, not measured claims of end-to-end speedup. First-request loading, extraction, database work, and CPU contention still affect response time.
+
+### Compression visualization
+
+Yojak performs **feature dimensionality reduction**, not document or model-weight compression. The salary feature builder fits each text representation on training rows and projects it into 32 dimensions:
+
+```mermaid
+flowchart LR
+    TITLE["Normalized job titles"] --> TV["Title TF-IDF vocabulary"]
+    TV --> TS["Truncated SVD: 32 features"]
+    SKILLS["ESCO skill IDs and raw tags"] --> SV["Skill TF-IDF vocabulary"]
+    SV --> SS["Truncated SVD: 32 features"]
+    TS --> TEXT["64 dense text-derived features"]
+    SS --> TEXT
+    TEXT --> MODEL["Three LightGBM quantile models"]
+    STRUCT["Categorical and numeric job features"] --> MODEL
+```
+
+| Representation | Reduction or storage approach | What can be claimed |
+|---|---|---|
+| Salary text features | Two independent 32-component SVD projections | 64 text-derived features, plus structured inputs |
+| Job-skill relationships | Sparse CSR/CSC matrices | Storage of observed relationships and indexing metadata |
+| Skill vocabulary | Many accepted surface forms mapped to shared ESCO concepts | Semantic normalization with retained unlinked tags |
+| Original FAISS occupation index | Flat L2 search over normalized vectors | Exact flat-index search; no product quantization |
+| Linking FAISS index | Flat inner-product search | Similarity lookup; no measured index-compression ratio |
+
+The reports do not provide source vocabulary dimensions, dense-versus-sparse byte comparisons, explained-variance totals, or compression benchmarks. A percentage memory reduction or “times smaller” chart would therefore be unsupported. Source: [salary/model.py](ml_pipeline/salary/model.py).
+
+### Recorded processing time
+
+The data-quality report includes these stage durations from one run:
+
+| Stage | Recorded seconds |
+|---|---:|
+| Acquisition/read | 0.64 |
+| Cleaning | 3.30 |
+| Geography | 8.20 |
+| Skill linking | 159.59 |
+| Title linking | 87.84 |
+| NCO mapping | 0.10 |
+| Saving tables | 8.23 |
+| Neo4j loading | 139.33 |
+| Salary evaluation run, separate report | 195.30 |
+
+Sources: [data_quality.json](reports/data_quality.json), [salary_eval.json](reports/salary_eval.json). Hardware and cold-cache conditions are not fully recorded, so these are run observations, not portable performance guarantees. API throughput, cold-start latency, and graph-model p50/p95 comparisons are not yet published.
+
+## Technology stack
+
+| Area | Technology | Usage |
+|---|---|---|
+| Backend | Python 3.11, FastAPI, Pydantic, Uvicorn | Typed HTTP API and settings |
+| Graph database | Neo4j Community 5.26.31 in setup scripts | Taxonomy, graph relationships, and notes |
+| Numerical data | NumPy, pandas, SciPy, PyArrow, joblib | Preparation, sparse matrices, persisted artifacts |
+| Text representations | Sentence Transformers, English and multilingual MPNet, FAISS | Skill linking and semantic occupation retrieval |
+| Learned graph models | PyTorch, LightGCN, custom HGT | Offline comparison and ablations |
+| Salary | LightGBM, scikit-learn | Quantile prediction, text SVD, bias analysis |
+| Optimization | OR-Tools CP-SAT | Exact or time-bounded learning-plan refinement |
+| Document and place parsing | pdfplumber, python-docx, RapidFuzz | Resume/syllabus extraction and geography |
+| Web application | Next.js 14, React 18, TypeScript | App Router pages and typed services |
+| UI and state | Tailwind, Radix primitives, React Query, Axios, Motion, next-themes | Controls, requests, animation, themes |
+| Visualization | D3 geo/scale, Graphology, Sigma.js | India map and skill constellation |
+| Quality and automation | pytest, Ruff, TypeScript, ESLint, GitHub Actions | Unit/API tests, integration checks, lint and build |
+
+Python dependencies are specified in [requirements.txt](requirements.txt) and [requirements-dev.txt](requirements-dev.txt). Frontend dependencies and resolved versions are in [package.json](app/frontend/package.json) and [package-lock.json](app/frontend/package-lock.json).
+
+## Getting started
+
+### Prerequisites
+
+- Git, Python **3.11**, Node.js **20**, npm, and Java **17** are the documented setup/CI targets.
+- Network access for dependency installation, embedding models, and source downloads.
+- Kaggle credentials for the Naukri dataset.
+- The ESCO v1.2 English CSV export, placed directly in `data/raw/esco/`.
+- Sufficient memory and disk for the graph, data, embedding models, and artifacts. No validated minimum hardware specification is published; CUDA is optional for serving and useful for learned-model evaluation.
+
+```bash
+git clone https://github.com/Aditya060806/Yojak.git
+cd Yojak
+```
+
+### Windows / PowerShell
+
+```powershell
+# Install dependencies, create local configuration, and install Neo4j.
+./scripts/setup.ps1 -Torch cpu
+
+# Place the ESCO English CSVs in data/raw/esco/ before continuing.
+# Configure Kaggle credentials as required by the Kaggle CLI.
+./scripts/run.ps1 data
+./scripts/run.ps1 pipeline
+
+# Refresh documentation from reports already generated.
+./.venv/Scripts/python.exe -m ml_pipeline.evaluate_all --only docs
+
+# Start Neo4j, the API, and the production frontend.
+./scripts/run.ps1 up
+```
+
+Use `-Torch cuda` for the script's CUDA 12.1 PyTorch wheel, or `-Torch skip` to retain an existing installation.
+
+### Linux / macOS scripts
+
+Bash equivalents are included in the repository:
+
+```bash
+bash scripts/setup.sh --torch cpu
+# Place ESCO CSVs and configure Kaggle credentials.
+bash scripts/run.sh data
+bash scripts/run.sh pipeline
+.venv/bin/python -m ml_pipeline.evaluate_all --only docs
+bash scripts/run.sh up
+```
+
+The Bash scripts are provided for these platforms; CI exercises Linux components. macOS dependency installation is not independently established by the checked-in results. Source downloads may need manual handling when a publisher blocks scripted access; see the acquisition output and [source inventory](data/SOURCES.md).
+
+### Local services
+
+| Service | Address |
+|---|---|
+| Web application | [localhost:3000](http://localhost:3000) |
+| Interactive API docs | [127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) |
+| Neo4j browser | [127.0.0.1:7474](http://127.0.0.1:7474) |
+| Neo4j Bolt | `neo4j://127.0.0.1:7687` |
+
+The `up` runner uses ports 8000 and 3000 and stops existing listeners on those ports. It reuses an existing Next.js production build. After frontend edits, use the `web` task to rebuild or the `dev` task for development.
+
+### Pipeline stages and artifact dependencies
+
+```text
+graph -> index -> india -> salary -> supply -> synthetic -> serving
+```
+
+This is the runner's order, not a claim that every stage depends on every earlier stage.
+
+| Stage | Primary output | Required by |
+|---|---|---|
+| `graph` | ESCO nodes and relations in Neo4j | Explorer, catalog, notes, original recommender |
+| `index` | `data/processed/occupation.index` and metadata CSV | Original FAISS recommender |
+| `india` | `data/processed/india/*.parquet`, graph additions, data-quality report, initial gold samples | Matching, downstream models, evaluation |
+| `salary` | Salary model and evaluation report | Market construction and salary endpoints |
+| `supply` | Government reference tables, map GeoJSON, workforce tables and report | Workforce workspace |
+| `synthetic` | Explicitly labelled demo candidate pool | Optional recruiter demo |
+| `serving` | English and multilingual label-embedding caches | Extraction warm preparation |
+
+The market artifact at `artifacts/upskilling/market.joblib` is built when needed and refreshed against posting/salary artifact modification times. A fresh clone does not include the raw datasets, processed market, trained salary model, or local Neo4j installation.
+
+Run selected stages when their prerequisites already exist:
+
+```powershell
+./scripts/run.ps1 pipeline --stages india salary
+./scripts/run.ps1 api
+# In a second terminal:
+./scripts/run.ps1 dev
+```
+
+### Configuration
+
+Settings load from the repository-root `.env`; relative data paths resolve against the repository root. The browser reads `app/frontend/.env.local`.
+
+| Variable | Purpose |
+|---|---|
+| `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` | Graph connection |
+| `ESCO_DATA_DIR`, `NAUKRI_DATA_DIR`, `EXTERNAL_DATA_DIR` | Raw source locations |
+| `PROCESSED_DATA_DIR`, `ARTIFACTS_DIR`, `REPORTS_DIR` | Generated data, models, and reports |
+| `MODEL_NAME` | English embedding model |
+| `MULTILINGUAL_MODEL_NAME` | Multilingual embedding model |
+| `FAISS_INDEX_PATH` | Original occupation index |
+| `CORS_ORIGINS` | Allowed frontend origins |
+| `ENVIRONMENT`, `ADMIN_TOKEN` | Environment and admin-write guard |
+| `WARM_UP_MODELS` | Background warm-up of the original ML engine |
+| `NEXT_PUBLIC_API_URL` | Browser-visible API URL |
+
+See [.env.example](.env.example) for defaults. The admin UI stores its token in tab-scoped session storage and sends `X-Admin-Token`. With no token configured, guarded writes are allowed only in development; other environments return a configuration error. This is a demo-grade guard, not user authentication or role-based access control.
+
+### Troubleshooting
+
+| Symptom | Check |
+|---|---|
+| Catalog or graph routes fail | Neo4j is running, credentials match, and the graph stage completed |
+| Original recommendations return unavailable | The FAISS index and aligned metadata exist and match the embedding model |
+| Student or workforce routes report missing files | India, salary, and supply stages completed; report JSON alone is insufficient |
+| First extraction is slow | Model download/loading and label-index initialization may be occurring |
+| Evidence shows pending | Generate the corresponding report; missing evidence is not synthesized |
+| UI cannot reach the API | `NEXT_PUBLIC_API_URL`, API process, and CORS origins |
+| Admin writes fail | Token configuration and the UI's admin settings |
+| Production UI looks outdated | Rebuild with the `web` task; `up` may reuse the previous build |
+
+## API reference
+
+FastAPI's [local OpenAPI UI](http://127.0.0.1:8000/docs) is the authoritative request/response reference.
+
+| Area | Endpoints | Notes |
+|---|---|---|
+| Health | `GET /health` | Graph health |
+| Diagnostics | `GET /admin/diagnostics/nodes-by-label`, `/rels-by-type`, `/endpoints`, `/metrics` | Counts, route inventory, process-local latency |
+| Catalog | `GET /catalog/skills`, `/occupations`, `/occupation-groups`, `/skill-groups`, `/concept-schemes` | Search/filter choices |
+| Taxonomy | `GET /occupations`, `GET /occupations/{uri}/skill-gap`, `GET /skills` | URL-encode occupation URIs |
+| Extraction | `POST /extract/skills`, `POST /extract/file` | JSON text or multipart file |
+| Student | `POST /student/match`, `POST /student/plan` | JSON profiles and planning options |
+| Recruiter | `POST /recruiter/rank` | Multipart JD, JSON-encoded skill list, optional resumes |
+| Institution | `POST /institution/coverage` | Multipart syllabus and scope |
+| Jobs | `GET /jobs`, `GET /jobs/{job_id}`, `GET /jobs/{job_id}/path` | Search, details, graph explanation |
+| Workforce | `GET /workforce/fields`, `/demand`, `/shortage` | Aggregated demand and supply proxy |
+| Salary | `GET /salary/estimate` | Quantiles, support, basis, caveats |
+| Visualization | `GET /graph/constellation` | Skill co-occurrence and occupation graph |
+| Reports | `GET /reports`, `GET /reports/{name}` | Allowlisted JSON/Markdown reports |
+| Notes | `GET /notes`; `PUT`/`DELETE /notes/admin/occupations/{uri}/notes/{note_id}` | Writes require the admin guard |
+| Labelling | `GET /admin/labelling/{task}/items`, `POST /admin/labelling/{task}/labels`, `GET /admin/labelling/progress` | Skills, titles, and multilingual gold data |
+| Original recommender | `POST /recommendations` | FAISS + Neo4j occupation matching |
+
+**Example: match a text profile**
+
+```bash
+curl -X POST http://127.0.0.1:8000/student/match \
+  -H "Content-Type: application/json" \
+  -d '{"text":"Python, SQL, Excel","tiers":[2,3],"exp_bands":["0-1"],"limit":5}'
+```
+
+**Example: plan three additional skills**
+
+```bash
+curl -X POST http://127.0.0.1:8000/student/plan \
+  -H "Content-Type: application/json" \
+  -d '{"text":"Python, SQL","target_isco2":"25","k":3,"tau":0.6,"value":"count"}'
+```
+
+These are request examples, not fabricated response examples. Their results depend on locally generated artifacts.
+
+## Evaluation and verification
+
+### Generate evidence
+
+With the virtual environment activated and prerequisite artifacts built:
+
+```bash
+# Full evaluation sequence: benchmark, upskilling, multilingual, gold, impact, docs.
+python -m ml_pipeline.evaluate_all
+
+# Smaller evaluation run; the graph smoke report has a separate filename.
+python -m ml_pipeline.evaluate_all --quick
+
+# Individual evaluations.
+python -m ml_pipeline.graph.evaluate
+python -m ml_pipeline.upskilling.evaluate
+python -m ml_pipeline.india.multilingual
+
+# Gold-label workflow.
+python -m ml_pipeline.india.gold sample
+python -m ml_pipeline.india.gold tune
+python -m ml_pipeline.india.gold evaluate
+
+# Refresh documentation without retraining.
+python -m ml_pipeline.evaluate_all --only docs
+
+# Persona-based demo through the service layer; requires artifacts, not an API server.
+python scripts/demo.py
+```
+
+Label the frozen samples through `/admin/labelling` before tuning or interpreting gold accuracy. The intended workflow tunes on dev labels and reports held-out test labels. Model-assisted team labels are not an independent external annotation study.
+
+Run performance evaluations in isolation: concurrent training or heavy workloads distort latency measurements. Quick mode is a smoke test, not a replacement for the full benchmark.
+
+### Checks
+
+```bash
+python -m pytest
+python -m ruff check app ml_pipeline tests scripts
+python scripts/render_readme.py --check
+python scripts/build_evaluation.py --check
+
+cd app/frontend
+npx tsc --noEmit
+npm run lint
+npm run build
+```
+
+| Test area | Coverage in the suite |
+|---|---|
+| Original recommendation path | L2-to-cosine conversion, index consistency, skill gaps, filters |
+| India preparation | Salary/experience rules, tag cleanup, geography, aliases, linking |
+| API contracts | Real service code with a small in-memory market and substituted resources |
+| Optimization | ILP versus brute force, lazy versus naive greedy, eligibility, budgets |
+| Components | Ranking metrics, runtime rankers, model fallback, extraction helpers, calibration, reporting |
+| Neo4j integration | ETL relationships, idempotency, API queries, India-layer loading |
+
+Live integration tests require `NEO4J_TEST_URI`, `NEO4J_TEST_USER`, and `NEO4J_TEST_PASSWORD` targeting a **disposable database**. They can delete its data and refuse a nonempty database without their test marker. Without the URI, these tests are skipped.
+
+[GitHub Actions](.github/workflows/ci.yml) defines backend lint/tests, a separate live-Neo4j integration job, frontend typecheck/lint/build, shell parsing, and generated-document freshness checks. Defining these checks is not a claim that every current checkout passes them.
+
+## Repository map
+
+```text
+app/
+  api/
+    routes/                 HTTP endpoints
+    schemas/                Request and response models
+    services/               Business logic
+    repos/                  Neo4j data access
+  core/
+    settings.py             Repository-relative configuration
+    extract.py              Text/document-to-skill extraction
+    serving.py              Market, models, rankers, cached state
+    ml.py                   Original embedding + FAISS engine
+  frontend/
+    app/                    Public and admin App Router pages
+    components/yojak/       Shared stakeholder UI and visualizations
+    services/               Typed API clients
+ml_pipeline/
+  run_pipeline.py           Ordered artifact-building stages
+  evaluate_all.py           Evaluation orchestration
+  india/                    Cleaning, geography, linking, NCO, gold labels
+  graph/                    Splits, metrics, baselines, LightGCN, HGT
+  upskilling/               Coverage problem, solvers, effort, evaluation
+  salary/                   Quantile model, calibration, disclosure analysis
+  supply/                   Government parsing, map boundaries, workforce tables
+  synthetic/                Labelled demo candidates
+  reporting.py              Generated README results and evaluation document
+data/
+  SOURCES.md                Source inventory
+  reference/                Geography and government reference tables
+  gold/                     Frozen samples and collected labels
+docs/optimality.md           Planner objectives and guarantees
+reports/                    Generated reports and inherited-code audit
+scripts/                    Setup, service runners, demo, report rendering
+tests/                      Unit/API/integration tests and miniature ESCO fixture
+```
+
+Raw data, processed datasets, model artifacts, dependency directories, and the project-local Neo4j installation are excluded from Git.
+
+## Advantages and tradeoffs
+
+| Design choice | Advantage | Tradeoff |
+|---|---|---|
+| Shared ESCO vocabulary | Connects profiles, postings, and curricula through comparable skills | European taxonomy does not cover every Indian tool or role |
+| Explicit skill gaps and score-drop explanations | Lets users inspect why something matched | Shows model behavior, not causal evidence |
+| Eligibility-based planning | Optimizes a stated decision objective | Threshold and objective choice affect the plan |
+| Solver-backed refinement | Distinguishes proven optima from time-limited answers | Runtime grows with the pool and candidate skills |
+| Sparse supported runtime models | Straightforward serving and inspectable scores | HGT benchmark results do not automatically become a deployed model |
+| Salary intervals and support flags | Communicates uncertainty and thin evidence | Wider intervals may be less actionable |
+| Report-driven presentation | Results can be traced to files and generating scripts | Reports must be regenerated after relevant changes |
+| Separate source-data licensing | Makes reuse conditions explicit | Code licensing does not grant unrestricted dataset reuse |
+
+## Limitations
+
+- **Historical, selective sample.** Naukri postings emphasize formal, urban, often English-language work. The dataset does not represent the whole Indian labour market or current live vacancies.
+- **Linking coverage and accuracy differ.** Unlinked tools and ambiguous phrases remain; gold precision and multilingual accuracy are pending.
+- **No hiring outcomes.** T3, candidate coverage, and skill-based eligibility are proxies, not validated predictors of recruitment success.
+- **Salary selection bias.** Only about a third of postings disclose pay. Calibration is evaluated on disclosed salaries and does not establish coverage for all workers or every subgroup.
+- **Approximate online planning.** A time-limited plan may not be proven optimal; the guarantee for the surrogate does not transfer to eligible-job counts.
+- **Heuristic effort.** Effort scores are not measured learning hours. Salary shifts describe differences between posting groups, not causal returns to training.
+- **Coarse geography and supply.** Market filters use primary posting locations. Graduate supply is state-total and excludes unreadable source values; migration is not modelled.
+- **Map vintage.** The current boundary file predates the 2019 reorganisation and does not give Ladakh a separate shape.
+- **Aggregation scope.** Workforce field selection scopes state demand/shortage; tier summaries and top-skill tables remain overall summaries in the current endpoint.
+- **Document extraction.** No OCR is implemented for scanned-only PDFs. The parser caps PDFs at 40 pages and rejects files over 5 MB; upload handling is not a hardened document-processing service.
+- **Deployment maturity.** Admin tokens are not a full account system. There is no implemented tenant isolation, production rate limiting, or distributed metrics store.
+- **Artifact consistency.** Several runtime resources are process-cached. Restart services after rebuilding artifacts; generated reports can otherwise describe a different run from loaded models.
+- **Reproducibility boundaries.** Existing reports reference an earlier dirty working tree, and not every report supplies full input hashes or hardware details.
+
+## Future scope
+
+The following are proposed directions, **not implemented feature claims**:
+
+| Priority | Next step | Evidence needed |
+|---|---|---|
+| Evaluation | Complete gold labels, multilingual evaluation, graph benchmarks, and planning/impact reports | Published reports with reproducible inputs |
+| Runtime parity | Add validated serving paths for learned benchmark models | Quality, cold/warm latency, memory, and fallback comparisons |
+| Data freshness | Ingest repeated, dated snapshots | Stable longitudinal coverage before trend claims |
+| Indian skill coverage | Extend mappings for local terminology and modern tools | Labelled linking tests and taxonomy review |
+| Planning realism | Introduce validated prerequisites and learning-cost estimates | Learner data, expert review, and outcome studies |
+| Salary robustness | Improve subgroup calibration and support handling | More representative salary observations |
+| Workforce supply | Add field-level supply and migration-aware analysis | Reliable disaggregated source data |
+| Document support | Add OCR and richer multilingual parsing | Extraction accuracy and resource-limit tests |
+| Deployment | Authentication, roles, request limits, persistent telemetry, artifact versioning | Operational and security validation |
+| User outcomes | Evaluate with students, recruiters, and institutions | Consent-based, real-world studies beyond proxy metrics |
+
+## Attribution and licensing
+
+Yojak builds on **SkillAlign** by Yasser Khattach for the original ESCO application foundation and on the team's **Vyuha** graph-model work. The exact reuse and modification boundaries are in [CREDITS.md](CREDITS.md); the inherited-code review is in [phase0_audit.md](reports/phase0_audit.md).
+
+| Source | Recorded terms / attribution |
+|---|---|
+| SkillAlign foundation | MIT; preserve the copyright and license in [LICENSE](LICENSE) |
+| Vyuha graph components | Team-authored reuse documented in [CREDITS.md](CREDITS.md) |
+| ESCO | CC BY 4.0; European Commission classification |
+| Naukri dataset via Kaggle | CC BY-NC-SA 4.0; raw dataset is not redistributed |
+| GeoNames | CC BY 4.0 |
+| DataMeet / Survey of India boundaries | Source repository terms |
+| AISHE, PLFS, NCVET / NCO-2015 | Government publications with source attribution |
+
+**This service uses the ESCO classification of the European Commission.** No endorsement by the European Commission or the Government of India is implied.
+
+Code and data have separate reuse conditions. In particular, a permissive code license does not remove the source dataset's non-commercial and share-alike conditions. Consult [NOTICE](NOTICE), [LICENSE](LICENSE), and [data/SOURCES.md](data/SOURCES.md) before redistributing data-derived outputs.
