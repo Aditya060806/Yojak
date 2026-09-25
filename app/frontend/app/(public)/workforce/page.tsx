@@ -105,10 +105,9 @@ export default function WorkforcePage() {
                             <p className="text-sm font-medium">{t.tier_label === 'unknown' ? 'Location unknown' : t.tier_label}</p>
                             <Stat label="Postings" value={num(t.postings)} />
                             <p className="tabular text-sm">
-                                {inr(t.p10_median)} <span className="text-muted-foreground">–</span> <b>{inr(t.p50_median)}</b>{' '}
-                                <span className="text-muted-foreground">–</span> {inr(t.p90_median)}
+                                {inr(t.p10_median)} <span className="text-muted-foreground">to</span> {inr(t.p90_median)}
                             </p>
-                            <p className="text-xs text-muted-foreground">P10 – P50 – P90 (medians) · {pct(t.disclosed_share)} disclose pay</p>
+                            <p className="text-xs text-muted-foreground">Median P10 to P90 range, median P50 {inr(t.p50_median)}. {pct(t.disclosed_share)} disclose pay.</p>
                         </Panel>
                     ))}
                 </div>
@@ -116,7 +115,7 @@ export default function WorkforcePage() {
 
             <Section title="How to read this" className="pt-12">
                 <ProxyNote title="Shortage index">
-                    <code className="text-[12px]">{shortage.data?.formula ?? '…'}</code>. Above 1 means the state&apos;s share of these
+                    <code className="text-[12px]">{shortage.data?.formula ?? '...'}</code>. Above 1 means the state&apos;s share of these
                     postings is larger than its share of graduates.
                 </ProxyNote>
                 <ul className="grid gap-2 text-sm text-muted-foreground md:grid-cols-2">
@@ -154,7 +153,7 @@ function Ranking({ rows, metric, onSelect }: { rows: StateRow[]; metric: Metric;
                                     <span className={cn('block h-full rounded-full', metric === 'shortage' ? 'bg-caution' : 'bg-primary')}
                                           style={{ width: v !== null && v !== undefined ? `${Math.max(1, (v / max) * 100)}%` : 0 }} />
                                 </span>
-                                <span className="tabular text-right text-xs">{v !== null && v !== undefined ? METRIC[metric].format(v) : '–'}</span>
+                                <span className="tabular text-right text-xs">{v !== null && v !== undefined ? METRIC[metric].format(v) : '-'}</span>
                             </button>
                         </li>
                     );
@@ -181,10 +180,10 @@ function StateDetail({ row, top, onClose, field }: {
             <div className="grid grid-cols-2 gap-5">
                 <Stat label="Postings" value={num(row.postings)}
                       hint={row.demand_share_of_field !== undefined ? `${pct(row.demand_share_of_field, 1)} of this family in India` : row.demand_share !== undefined ? `${pct(row.demand_share, 1)} of India` : undefined} />
-                <Stat label="Shortage index (proxy)" value={row.shortage_index !== null ? row.shortage_index.toFixed(2) : '–'}
+                <Stat label="Shortage index (proxy)" value={row.shortage_index !== null ? row.shortage_index.toFixed(2) : '-'}
                       hint={row.graduate_share !== null ? `${pct(row.graduate_share, 1)} of India's graduates` : 'No graduate figure'} />
-                <Stat label="Graduate out-turn (AISHE 2021-22)" value={row.outturn_total !== null ? num(row.outturn_total) : '–'} />
-                <Stat label="Youth unemployment (PLFS 2023-24)" value={row.youth_ur_pct !== null ? `${row.youth_ur_pct.toFixed(1)}%` : '–'} hint="Age 15-29, usual status" />
+                <Stat label="Graduate out-turn (AISHE 2021-22)" value={row.outturn_total !== null ? num(row.outturn_total) : '-'} />
+                <Stat label="Youth unemployment (PLFS 2023-24)" value={row.youth_ur_pct !== null ? `${row.youth_ur_pct.toFixed(1)}%` : '-'} hint="Age 15-29, usual status" />
                 {row.salary_p50_median !== undefined && row.salary_p50_median !== null && (
                     <Stat label="Median predicted P50 salary" value={inr(row.salary_p50_median)} hint="Posted pay, not realised" />
                 )}

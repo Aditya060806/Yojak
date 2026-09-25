@@ -190,7 +190,7 @@ export function SalaryRange({ salary, compact = false }: { salary: Salary | null
                 <span className="absolute top-1/2 h-3 w-0.5 -translate-y-1/2 rounded bg-foreground" style={{ left: `${pos}%` }} />
             </div>
             <p className="text-[11px] text-muted-foreground">
-                Posted pay, P10 to P90 · {num(n_support)} disclosing postings
+                Posted pay, P10 to P90  -  {num(n_support)} disclosing postings
             </p>
         </div>
     );
@@ -348,5 +348,66 @@ export function FitBar({ value }: { value: number }) {
                 <span className="tabular text-xs text-muted-foreground">{pct(value)}</span>
             </span>
         </Hint>
+    );
+}
+
+// ---------- hosted demo (no live API) ----------
+
+/** True in the hosted demo (see lib/static.ts). Resolved after mount so server and client HTML match. */
+export function useStaticMode() {
+    const [demo, setDemo] = React.useState(false);
+    React.useEffect(() => {
+        import('@/lib/static').then((m) => setDemo(m.isStaticMode()));
+    }, []);
+    return demo;
+}
+
+export function DemoNotice({ children }: { children?: React.ReactNode }) {
+    return (
+        <div className="flex gap-3 rounded-xl border border-primary/25 bg-accent/60 px-4 py-3 text-sm leading-relaxed text-accent-foreground">
+            <Info size={18} weight="bold" className="mt-0.5 shrink-0" />
+            <div>
+                <p className="font-medium">Hosted demo: precomputed examples</p>
+                <p className="mt-0.5 text-accent-foreground/85">
+                    {children ?? 'Live analysis needs the Yojak API, which runs locally with Neo4j and the models. These results were produced by that API for example profiles and saved with the site.'}
+                </p>
+            </div>
+        </div>
+    );
+}
+
+export function ExamplePicker({ items, value, onChange }: {
+    items: { id: string; name: string; story: string }[]; value: string | null; onChange: (id: string) => void;
+}) {
+    return (
+        <div className="space-y-2" role="radiogroup" aria-label="Example">
+            {items.map((it) => (
+                <button
+                    key={it.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={value === it.id}
+                    onClick={() => onChange(it.id)}
+                    className={cn(
+                        'w-full rounded-lg border px-3.5 py-3 text-left transition-colors active:scale-[0.99]',
+                        value === it.id ? 'border-primary bg-accent/70' : 'bg-card hover:border-primary/40',
+                    )}
+                >
+                    <p className="text-sm font-medium">{it.name}</p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{it.story}</p>
+                </button>
+            ))}
+        </div>
+    );
+}
+
+/** For views that cannot run without the live API (graph queries, admin). */
+export function LiveOnly({ what }: { what: string }) {
+    return (
+        <EmptyState icon={<Info size={36} weight="light" />} title={`${what} needs the live API`}>
+            This hosted demo has no backend. Run Yojak locally with <code className="font-mono text-xs">scripts/run.ps1 up</code>{' '}
+            (or <code className="font-mono text-xs">scripts/run.sh up</code>) to use it. The Students, Recruiters, Institutions,
+            Workforce and Evidence pages work here from saved results.
+        </EmptyState>
     );
 }

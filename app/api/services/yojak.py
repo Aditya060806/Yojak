@@ -189,7 +189,14 @@ def _plan_steps(problem, rows, plan_skills, have, costs, overrides, value_kind) 
 
 
 def student_plan(req) -> dict:
-    from ml_pipeline.upskilling.engine import budgeted_partial, exact_ilp, frequency, greedy_F
+    from ml_pipeline.upskilling.engine import budgeted_partial, frequency, greedy_F
+
+    try:
+        from ml_pipeline.upskilling.engine import exact_ilp
+    except ModuleNotFoundError as exc:
+        if exc.name != "ortools":
+            raise
+        exact_ilp = None
 
     srv = _srv()
     m = srv.market
@@ -209,10 +216,18 @@ def student_plan(req) -> dict:
     problem = m.problem(rows, np.array(have, dtype=np.int64), req.tau, req.value)
     cands = problem.candidates()
     gf = greedy_F(problem, req.k, cands)
-    ilp = exact_ilp(problem, req.k, cands=cands, time_limit=1.5, hint=gf.skills)
-    best = ilp if ilp.F >= gf.F else gf
-    method = ("exact optimum (ILP, proven)" if best is ilp and ilp.optimal else
-              "best found: greedy on F refined by ILP (1.5 s limit; optimality not proven)")
+    try:
+        ilp = exact_ilp(problem, req.k, cands=cands, time_limit=1.5, hint=gf.skills) if exact_ilp else None
+    except ModuleNotFoundError as exc:
+        if exc.name != "ortools":
+            raise
+        ilp = None
+    best = ilp if ilp and ilp.F >= gf.F else gf
+    if ilp is None:
+        method = "best found: greedy on F (OR-Tools not installed; optimality not proven)"
+    else:
+        method = ("exact optimum (ILP, proven)" if best is ilp and ilp.optimal else
+                  "best found: greedy on F refined by ILP (1.5 s limit; optimality not proven)")
     fq = frequency(problem, req.k)
     overrides = req.effort_overrides or {}
     costs = srv.effort.costs(np.array(have, dtype=np.int64))

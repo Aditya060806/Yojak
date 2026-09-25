@@ -6,7 +6,9 @@ import { motion } from 'motion/react';
 import { BookOpenText, CircleNotch, DownloadSimple, FileText, GraduationCap, Trash, UploadSimple } from '@phosphor-icons/react';
 import { yojak, type CoverageItem, type InstitutionResult } from '@/services/yojak';
 import { StateSelect, TierToggle } from '@/components/yojak/filters';
-import { EmptyState, ErrorState, InfoHint, PageIntro, Panel, ProxyNote, ResultSkeleton, Section } from '@/components/yojak/bits';
+import {
+    DemoNotice, EmptyState, ErrorState, InfoHint, PageIntro, Panel, ProxyNote, ResultSkeleton, Section, SkillChip, useStaticMode,
+} from '@/components/yojak/bits';
 import { Button } from '@/components/ui/button';
 import { downloadCsv, ISCO2, num, pct, titleCase } from '@/lib/format';
 import { cn } from '@/lib/utils';
@@ -29,6 +31,8 @@ export default function InstitutionPage() {
         }),
     });
     const canRun = (text.trim().length > 0 || file) && !run.isPending;
+    const demo = useStaticMode();
+    if (demo) return <InstitutionDemo />;
 
     return (
         <div className="container">
@@ -40,13 +44,13 @@ export default function InstitutionPage() {
                 <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
                     <Panel className="space-y-6">
                         <div className="space-y-1.5">
-                            <label htmlFor="syllabus" className="text-sm font-semibold">1 · Syllabus</label>
+                            <label htmlFor="syllabus" className="text-sm font-semibold">1  -  Syllabus</label>
                             <textarea
                                 id="syllabus"
                                 rows={7}
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
-                                placeholder={'Unit 1: Programming in C\nUnit 2: Data structures\nUnit 3: Database management systems, SQL\n…'}
+                                placeholder={'Unit 1: Programming in C\nUnit 2: Data structures\nUnit 3: Database management systems, SQL\n...'}
                                 className="w-full resize-y rounded-md border border-input bg-card px-3 py-2 text-sm leading-relaxed placeholder:text-muted-foreground/80"
                             />
                             <input ref={fileRef} type="file" accept=".pdf,.docx,.txt" className="sr-only"
@@ -68,7 +72,7 @@ export default function InstitutionPage() {
                             <p className="text-xs text-muted-foreground">Read in memory, not stored.</p>
                         </div>
                         <div className="space-y-4 border-t pt-5">
-                            <p className="text-sm font-semibold">2 · Compare with postings for</p>
+                            <p className="text-sm font-semibold">2  -  Compare with postings for</p>
                             <div className="space-y-1.5">
                                 <label htmlFor="isco" className="text-sm font-medium">Occupation group</label>
                                 <select id="isco" value={isco2} onChange={(e) => setIsco2(e.target.value)}
@@ -181,7 +185,7 @@ function Report({ data }: { data: InstitutionResult }) {
                     <div className="flex flex-wrap gap-1.5">
                         {data.low_current_demand.map((c) => (
                             <span key={c.skill.uri} className="rounded-md border px-2 py-1 text-[13px] text-muted-foreground">
-                                {c.skill.label} <span className="tabular text-xs">· {num(c.demand_postings)}</span>
+                                {c.skill.label} <span className="tabular text-xs"> -  {num(c.demand_postings)}</span>
                             </span>
                         ))}
                     </div>
@@ -214,5 +218,42 @@ function Bars({ items, max, tone }: { items: CoverageItem[]; max: number; tone: 
                 </li>
             ))}
         </ul>
+    );
+}
+
+type InstitutionExample = { persona: { id: string; name: string; story: string; note: string; request: { text: string } }; result: InstitutionResult };
+
+/** Hosted demo: a precomputed coverage report for the example BCA course list. */
+function InstitutionDemo() {
+    const index = useQuery({ queryKey: ['examples'], queryFn: yojak.examples, staleTime: Infinity });
+    const file = index.data?.institution[0]?.file;
+    const ex = useQuery({ queryKey: ['example', file], queryFn: () => yojak.example<InstitutionExample>(file!), enabled: !!file, staleTime: Infinity });
+    return (
+        <div className="container">
+            <PageIntro
+                title="How well does your syllabus match what employers ask for?"
+                lead="Yojak finds the ESCO skills a syllabus teaches and compares them with the skills listed most often by postings in the region and sector you choose."
+            />
+            <div className="grid gap-8 lg:grid-cols-[400px_1fr]">
+                <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+                    <DemoNotice />
+                    {ex.data && (
+                        <Panel className="space-y-4">
+                            <p className="text-sm font-semibold">{ex.data.persona.name}</p>
+                            <p className="rounded-md bg-muted/60 px-3 py-2 text-sm leading-relaxed">{ex.data.persona.request.text}</p>
+                            <p className="text-xs leading-relaxed text-muted-foreground">{ex.data.persona.note}</p>
+                            <div className="flex flex-wrap gap-1.5 border-t pt-4">
+                                {ex.data.result.syllabus_skills.map((s) => <SkillChip key={s.uri} label={s.label} tone="have" />)}
+                            </div>
+                        </Panel>
+                    )}
+                </aside>
+                <section className="min-w-0 space-y-6">
+                    {(index.isLoading || ex.isLoading) && <ResultSkeleton rows={4} />}
+                    {(index.error || ex.error) && <ErrorState error={index.error || ex.error} />}
+                    {ex.data && <Report data={ex.data.result} />}
+                </section>
+            </div>
+        </div>
     );
 }

@@ -140,8 +140,8 @@ export function SiteFooter() {
                     <ul className="space-y-1.5 text-muted-foreground">
                         <li>ESCO v1.2, European Commission (CC BY 4.0)</li>
                         <li>Naukri postings via Kaggle (CC BY-NC-SA 4.0)</li>
-                        <li>AISHE 2021-22 · PLFS 2023-24 · NCVET</li>
-                        <li>GeoNames · Survey of India (DataMeet)</li>
+                        <li>AISHE 2021-22  -  PLFS 2023-24  -  NCVET</li>
+                        <li>GeoNames  -  Survey of India (DataMeet)</li>
                     </ul>
                 </div>
                 <div className="space-y-2">

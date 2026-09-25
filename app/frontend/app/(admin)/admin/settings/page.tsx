@@ -50,7 +50,7 @@ export default function SettingsPage() {
                     <p><span className="text-muted-foreground">Address: </span><code className="font-mono">{API_URL}</code></p>
                     <p className="flex items-center gap-2">
                         {health.data ? <CheckCircle size={16} weight="fill" className="text-primary" /> : <Warning size={16} className="text-caution" />}
-                        {health.isLoading ? 'Checking…' : health.data ? `Yojak API ${health.data.version}: ${health.data.status} · Neo4j ${health.data.neo4j.connected ? 'connected' : 'not connected'}` : 'API not reachable'}
+                        {health.isLoading ? 'Checking...' : health.data ? `Yojak API ${health.data.version}: ${health.data.status}  -  Neo4j ${health.data.neo4j.connected ? 'connected' : 'not connected'}` : 'API not reachable'}
                     </p>
                     <p className="text-xs text-muted-foreground">Set NEXT_PUBLIC_API_URL in app/frontend/.env.local to point the app at another server.</p>
                 </Panel>
@@ -58,8 +58,8 @@ export default function SettingsPage() {
 
             <Section title="Appearance">
                 {mounted && (
-                    <Segmented<string> label="Theme" value={theme ?? 'system'} onChange={setTheme}
-                                       options={[{ value: 'light', label: 'Light' }, { value: 'dark', label: 'Dark' }, { value: 'system', label: 'System' }]} />
+                    <Segmented<string> label="Theme" value={theme ?? 'light'} onChange={setTheme}
+                                       options={[{ value: 'light', label: 'Light' }, { value: 'dark', label: 'Dark' }]} />
                 )}
             </Section>
         </div>

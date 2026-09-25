@@ -193,7 +193,7 @@ function LinkLabeller({ task, labeller }: { task: 'skills' | 'titles'; labeller:
                                     <p className="text-xs uppercase text-muted-foreground">Job posting</p>
                                     <h2 className="text-2xl font-semibold">{(item as TitleItem).title}</h2>
                                     <p className="text-sm text-muted-foreground">
-                                        {(item as TitleItem).companyName} · skills: {(item as TitleItem).tags_preview || 'none listed'}
+                                        {(item as TitleItem).companyName}  -  skills: {(item as TitleItem).tags_preview || 'none listed'}
                                     </p>
                                 </>
                             )}

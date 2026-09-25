@@ -1,13 +1,14 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { motion } from 'motion/react';
 import { CircleNotch, FileText, MagnifyingGlass, Trash, UploadSimple, UsersThree } from '@phosphor-icons/react';
 import { yojak, type Candidate, type RecruiterResult, type SkillRef } from '@/services/yojak';
 import { SkillInput } from '@/components/yojak/skill-input';
 import {
-    EmptyState, ErrorState, Hint, PageIntro, Panel, ProxyNote, ResultSkeleton, SkillChip, SyntheticBadge, WhyDrawer,
+    DemoNotice, EmptyState, ErrorState, Hint, PageIntro, Panel, ProxyNote, ResultSkeleton, SkillChip, SyntheticBadge, useStaticMode,
+    WhyDrawer,
 } from '@/components/yojak/bits';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -26,6 +27,8 @@ export default function RecruiterPage() {
         mutationFn: () => yojak.recruiterRank('', skills.map((s) => s.uri), resumes, synthetic),
     });
     const canRun = skills.length > 0 && (synthetic || resumes.length > 0);
+    const demo = useStaticMode();
+    if (demo) return <RecruiterDemo />;
 
     return (
         <div className="container">
@@ -37,7 +40,7 @@ export default function RecruiterPage() {
                 <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
                     <Panel className="space-y-6">
                         <div className="space-y-1">
-                            <h2 className="text-sm font-semibold">1 · Skills the job needs</h2>
+                            <h2 className="text-sm font-semibold">1  -  Skills the job needs</h2>
                             <p className="text-xs text-muted-foreground">Remove anything that was misread; add what is missing.</p>
                         </div>
                         <SkillInput
@@ -46,12 +49,12 @@ export default function RecruiterPage() {
                             placeholder="Search ESCO skills, e.g. SQL"
                             textLabel="Paste the job description"
                             fileLabel="Upload a JD"
-                            textPlaceholder="We are hiring a data analyst in Indore with SQL, Excel and Power BI, and good communication skills…"
+                            textPlaceholder="We are hiring a data analyst in Indore with SQL, Excel and Power BI, and good communication skills..."
                             emptyLabel="The job's skills will appear here"
                             textRows={5}
                         />
                         <div className="space-y-3 border-t pt-5">
-                            <h2 className="text-sm font-semibold">2 · Candidates</h2>
+                            <h2 className="text-sm font-semibold">2  -  Candidates</h2>
                             <label className="flex cursor-pointer items-start gap-3 rounded-lg border p-3 text-sm">
                                 <input type="checkbox" checked={synthetic} onChange={(e) => setSynthetic(e.target.checked)}
                                        className="mt-0.5 h-4 w-4 accent-[hsl(var(--primary))]" />
@@ -167,7 +170,7 @@ function Row({ c, rank, top, jd }: { c: Candidate; rank: number; top: number; jd
                 <p className="truncate text-xs text-muted-foreground">{c.synthetic ? c.occupation_label : c.source.replace('uploaded: ', '')}</p>
             </div>
             <div className="col-start-2 hidden text-sm text-muted-foreground md:col-start-auto md:block">
-                {[c.city, c.tier ? TIER_LABEL[c.tier] : null, c.exp_band ? EXP_LABEL[c.exp_band] : null].filter(Boolean).join(' · ') || '—'}
+                {[c.city, c.tier ? TIER_LABEL[c.tier] : null, c.exp_band ? EXP_LABEL[c.exp_band] : null].filter(Boolean).join('  -  ') || '-'}
             </div>
             <div className="col-span-2 col-start-2 md:col-span-1 md:col-start-auto">
                 <Hint text={`Covers ${matched} of ${jd} required skills; rarer skills weigh more (${pct(c.coverage)} weighted).`}>
@@ -198,5 +201,44 @@ function Row({ c, rank, top, jd }: { c: Candidate; rank: number; top: number; jd
                 </WhyDrawer>
             </div>
         </motion.li>
+    );
+}
+
+type RecruiterExample = { persona: { id: string; name: string; story: string; text: string }; result: RecruiterResult };
+
+/** Hosted demo: a precomputed ranking of the SYNTHETIC pool for one example job description. */
+function RecruiterDemo() {
+    const index = useQuery({ queryKey: ['examples'], queryFn: yojak.examples, staleTime: Infinity });
+    const file = index.data?.recruiter[0]?.file;
+    const ex = useQuery({ queryKey: ['example', file], queryFn: () => yojak.example<RecruiterExample>(file!), enabled: !!file, staleTime: Infinity });
+    return (
+        <div className="container">
+            <PageIntro
+                title="Rank candidates by the skills the job actually needs"
+                lead="Yojak reads the ESCO skills in a job description, lets the recruiter correct them, and ranks candidates by weighted skill coverage, with every rank explained."
+            />
+            <div className="grid gap-8 lg:grid-cols-[400px_1fr]">
+                <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+                    <DemoNotice />
+                    {ex.data && (
+                        <Panel className="space-y-4">
+                            <div className="space-y-1.5">
+                                <p className="text-sm font-semibold">{ex.data.persona.name}</p>
+                                <p className="rounded-md bg-muted/60 px-3 py-2 text-sm leading-relaxed">{ex.data.persona.text}</p>
+                            </div>
+                            <div className="space-y-2">
+                                <p className="text-xs font-medium text-muted-foreground">Skills read from the job description</p>
+                                <div className="flex flex-wrap gap-1.5">{ex.data.result.jd_skills.map((s) => <SkillChip key={s.uri} label={s.label} tone="have" />)}</div>
+                            </div>
+                        </Panel>
+                    )}
+                </aside>
+                <section className="min-w-0 space-y-5">
+                    {(index.isLoading || ex.isLoading) && <ResultSkeleton rows={6} />}
+                    {(index.error || ex.error) && <ErrorState error={index.error || ex.error} />}
+                    {ex.data && <Results data={ex.data.result} />}
+                </section>
+            </div>
+        </div>
     );
 }

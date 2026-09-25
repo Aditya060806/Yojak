@@ -1,6 +1,6 @@
 /** Indian-style rupee amounts: 450000 -> "₹4.5 L", 12000000 -> "₹1.2 Cr". */
 export function inr(value: number | null | undefined, digits = 1): string {
-    if (value === null || value === undefined || !Number.isFinite(value)) return '–';
+    if (value === null || value === undefined || !Number.isFinite(value)) return '-';
     const abs = Math.abs(value);
     const sign = value < 0 ? '−' : '';
     if (abs >= 1e7) return `${sign}₹${(abs / 1e7).toFixed(digits)} Cr`;
@@ -10,12 +10,12 @@ export function inr(value: number | null | undefined, digits = 1): string {
 }
 
 export function pct(value: number | null | undefined, digits = 0): string {
-    if (value === null || value === undefined || !Number.isFinite(value)) return '–';
+    if (value === null || value === undefined || !Number.isFinite(value)) return '-';
     return `${(value * 100).toFixed(digits)}%`;
 }
 
 export function num(value: number | null | undefined, digits = 0): string {
-    if (value === null || value === undefined || !Number.isFinite(value)) return '–';
+    if (value === null || value === undefined || !Number.isFinite(value)) return '-';
     return value.toLocaleString('en-IN', { maximumFractionDigits: digits, minimumFractionDigits: digits });
 }
 

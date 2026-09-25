@@ -28,7 +28,7 @@ export function SkillInput({
     fileLabel = 'Upload a resume',
     allowText = true,
     allowFile = true,
-    textPlaceholder = 'Python aur Excel aata hai, customer service ka 2 saal ka anubhav · मुझे अकाउंटिंग आती है',
+    textPlaceholder = 'Python aur Excel aata hai, customer service ka 2 saal ka anubhav  -  मुझे अकाउंटिंग आती है',
     emptyLabel = 'Your skills will appear here',
     textRows = 3,
 }: {
@@ -154,7 +154,7 @@ export function SkillInput({
                                 </button>
                             </>
                         )}
-                        <span className="text-xs text-muted-foreground">PDF, DOCX or text · read in memory, not stored</span>
+                        <span className="text-xs text-muted-foreground">PDF, DOCX or text  -  read in memory, not stored</span>
                     </div>
                     {(extractText.error || extractFile.error) && (
                         <p role="alert" className="text-sm text-destructive">{((extractText.error || extractFile.error) as Error).message}</p>
@@ -167,7 +167,7 @@ export function SkillInput({
                     Read as <span className="font-medium text-foreground">{LANG_NAME[last.language] ?? last.language}</span>: linked{' '}
                     {last.skills.length} ESCO skill{last.skills.length === 1 ? '' : 's'}
                     {last.unlinked_phrases.length > 0 && (
-                        <> · couldn&apos;t link: {last.unlinked_phrases.slice(0, 6).join(', ')}{last.unlinked_phrases.length > 6 ? '…' : ''}</>
+                        <>  -  couldn&apos;t link: {last.unlinked_phrases.slice(0, 6).join(', ')}{last.unlinked_phrases.length > 6 ? '...' : ''}</>
                     )}
                 </p>
             )}

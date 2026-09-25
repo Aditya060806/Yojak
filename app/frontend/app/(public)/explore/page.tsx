@@ -8,7 +8,7 @@ import { ArrowUpRight, MagnifyingGlass, X } from '@phosphor-icons/react';
 import { occupationService } from '@/services/occupations';
 import { catalogService } from '@/services/catalog';
 import { FilterDropdown } from '@/components/ui/filter-dropdown';
-import { EmptyState, ErrorState, PageIntro, SkeletonBlock } from '@/components/yojak/bits';
+import { EmptyState, ErrorState, LiveOnly, PageIntro, SkeletonBlock, useStaticMode } from '@/components/yojak/bits';
 import { useDebounce } from '@/hooks/use-debounce';
 import { num } from '@/lib/format';
 
@@ -31,6 +31,7 @@ export default function ExplorePage() {
     });
     const toggle = (set: (f: (p: string[]) => string[]) => void) => (u: string) => set((p) => (p.includes(u) ? p.filter((x) => x !== u) : [...p, u]));
     const filtered = groups.length > 0 || schemes.length > 0 || q.length > 0;
+    const demo = useStaticMode();
 
     return (
         <div className="container">
@@ -38,6 +39,7 @@ export default function ExplorePage() {
                 title="Explore the ESCO occupations"
                 lead="Every ESCO occupation with its essential and optional skills, ISCO-08 codes and NCO-2015 families. Search by name, or filter by ISCO group and ESCO concept scheme."
             />
+            {demo ? <LiveOnly what="The ESCO explorer" /> : <>
             <div className="sticky top-16 z-30 -mx-4 border-b bg-background/85 px-4 py-3 backdrop-blur md:-mx-6 md:px-6 lg:-mx-8 lg:px-8">
                 <div className="flex flex-col gap-3 md:flex-row md:items-center">
                     <div className="relative flex-1 md:max-w-md">
@@ -107,6 +109,7 @@ export default function ExplorePage() {
                     </div>
                 )}
             </div>
+            </>}
         </div>
     );
 }

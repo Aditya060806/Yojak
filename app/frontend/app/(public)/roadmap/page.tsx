@@ -8,7 +8,7 @@ import { ArrowRight, Target, X } from '@phosphor-icons/react';
 import { occupationService } from '@/services/occupations';
 import { SkillInput } from '@/components/yojak/skill-input';
 import { OccupationSearch } from '@/components/yojak/occupation-search';
-import { EmptyState, ErrorState, PageIntro, Panel, ResultSkeleton, SkillChip } from '@/components/yojak/bits';
+import { EmptyState, ErrorState, PageIntro, Panel, ResultSkeleton, SkillChip, LiveOnly, useStaticMode } from '@/components/yojak/bits';
 import { Button } from '@/components/ui/button';
 import { pct } from '@/lib/format';
 import type { SkillRef } from '@/services/yojak';
@@ -20,6 +20,7 @@ import type { AutocompleteOption, SkillDetail } from '@/types';
  * ask for, and the few skills that open the most jobs), use the learning plan on /student.
  */
 export default function RoadmapPage() {
+    const demo = useStaticMode();
     const [target, setTarget] = useState<AutocompleteOption | null>(null);
     const [skills, setSkills] = useState<SkillRef[]>([]);
     const { data, isLoading, error, refetch } = useQuery({
@@ -41,6 +42,7 @@ export default function RoadmapPage() {
                 title="Roadmap to an occupation"
                 lead="Pick an occupation and add your skills to see which of its ESCO essential skills you already have and which to learn next. This follows the ESCO profile of the role; the learning plan on the Students page follows what Indian postings actually ask for."
             />
+            {demo ? <LiveOnly what="The ESCO roadmap" /> : (
             <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
                 <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
                     <Panel className="space-y-6">
@@ -93,6 +95,7 @@ export default function RoadmapPage() {
                     )}
                 </section>
             </div>
+            )}
         </div>
     );
 }

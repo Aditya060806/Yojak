@@ -36,17 +36,17 @@ def load_reports(reports_dir: Path | None = None) -> dict[str, dict | None]:
 
 def num(x: Any, digits: int = 0) -> str:
     if x is None:
-        return "–"
+        return "-"
     return f"{x:,.{digits}f}"
 
 
 def pct(x: Any, digits: int = 1) -> str:
-    return "–" if x is None else f"{x * 100:.{digits}f}%"
+    return "-" if x is None else f"{x * 100:.{digits}f}%"
 
 
 def inr(x: Any) -> str:
     if x is None:
-        return "–"
+        return "-"
     x = float(x)
     if x >= 1e7:
         return f"₹{x / 1e7:.2f} Cr"
@@ -247,7 +247,7 @@ def salary_section(se: dict | None, short: bool = True) -> str:
         ["Held-out postings (disclosed salary)", num(t["n"])],
         ["P50 MAE / MdAPE", f"{inr(t['mae_inr'])} / {t['mdape_pct']:.1f}%"],
         ["Baseline (ISCO sub-major × tier median) MAE / MdAPE", f"{inr(b['mae_inr'])} / {b['mdape_pct']:.1f}%"],
-        ["P10–P90 coverage (target 80%): raw → calibrated", f"{pct(t['coverage_raw'])} → {pct(t['coverage_cqr'])}"],
+        ["P10-P90 coverage (target 80%): raw → calibrated", f"{pct(t['coverage_raw'])} → {pct(t['coverage_cqr'])}"],
         ["Median interval width (calibrated)", inr(t["median_width_inr_cqr"])],
         ["Disclosure predictable from job features (propensity AUC)", f"{sb['propensity']['auc']:.2f}"],
         ["Shown only when support ≥", f"{se['display_rule']['min_support']} similar disclosed postings"],
@@ -265,7 +265,7 @@ def salary_section(se: dict | None, short: bool = True) -> str:
                     [label, "n", "MAE", "MdAPE", "Coverage", "Median width"], rows)
         cat = sb.get("categorical", {})
         rows = [[k, f"{v['chi2']:,.1f}", str(v["dof"]), f"{v['cramers_v']:.3f}"] for k, v in cat.items()]
-        rows += [[k, "–", "–", f"SMD {v['smd']:+.3f}, KS {v['ks_stat']:.3f}"] for k, v in sb.get("numeric", {}).items()]
+        rows += [[k, "-", "-", f"SMD {v['smd']:+.3f}, KS {v['ks_stat']:.3f}"] for k, v in sb.get("numeric", {}).items()]
         out += "\n\n**Who discloses salary**\n\n" + table(["Feature", "χ²", "dof", "Cramér's V / effect"], rows)
         out += f"\n\n{sb['propensity']['interpretation']}"
         ipw = sb.get("ipw_sensitivity", {})
@@ -379,14 +379,14 @@ def _models_eval(mc: dict | None) -> str:
         w = ab["without_skill_linking"]
         full = mc["models"]
         rows = [[v["name"], f"{v['t3']['ndcg@10']:.3f}",
-                 f"{full[k]['mean']['t3']['ndcg@10']:.3f}" if k in full and "t3" in full[k]["mean"] else "–"]
+                 f"{full[k]['mean']['t3']['ndcg@10']:.3f}" if k in full and "t3" in full[k]["mean"] else "-"]
                 for k, v in w["models"].items()]
         out += ["### Ablation: does ESCO linking help?", "", w["note"], "",
                 table(["Model", "T3 NDCG@10, raw tags", "T3 NDCG@10, ESCO skills"], rows), ""]
     if ab.get("hgt_variants"):
         base = mc["models"].get("hgt", {}).get("mean", {})
-        rows = [["HGT (full)"] + [f"{base[t]['ndcg@10']:.3f}" if t in base else "–" for t in ("t1", "t2", "t3")]]
-        rows += [[v["name"]] + [f"{v[t]['ndcg@10']:.3f}" if t in v else "–" for t in ("t1", "t2", "t3")]
+        rows = [["HGT (full)"] + [f"{base[t]['ndcg@10']:.3f}" if t in base else "-" for t in ("t1", "t2", "t3")]]
+        rows += [[v["name"]] + [f"{v[t]['ndcg@10']:.3f}" if t in v else "-" for t in ("t1", "t2", "t3")]
                  for v in ab["hgt_variants"].values()]
         out += ["### Ablation: HGT structure (NDCG@10)", "", table(["Variant", "T1", "T2", "T3"], rows), ""]
     return "\n".join(out)
@@ -410,7 +410,7 @@ def build_evaluation(r: dict[str, dict | None]) -> str:
         parts += ["", f"**Time.** {tmp.get('forecasting_note', '')}", "",
                   f"**Salary units.** {sal.get('usd_note', '')} Policy: {sal.get('usd_policy')}; "
                   f"{sal.get('implausible_salary_rows')} implausible rows dropped "
-                  f"(kept range {inr(sal['plausible_range_inr'][0])}–{inr(sal['plausible_range_inr'][1])}).", "",
+                  f"(kept range {inr(sal['plausible_range_inr'][0])} to {inr(sal['plausible_range_inr'][1])}).", "",
                   f"**NCO-2015.** {dq['nco2015']['basis']}. Level: {dq['nco2015']['level']}; "
                   f"{num(dq['jobs_with_nco_family'])} jobs carry an NCO family."]
     parts += ["", _linking_eval(dq, r["multilingual_eval"]), "", _models_eval(r["model_comparison"]), "",

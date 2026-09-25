@@ -201,7 +201,7 @@ export function Constellation({ className, interactive = true }: { className?: s
                         </p>
                         <p className="font-medium leading-snug">{hovered.label}</p>
                         <p className="mt-1 text-xs text-muted-foreground tabular">
-                            {num(hovered.postings)} postings · {hovered.degree} links
+                            {num(hovered.postings)} postings  -  {hovered.degree} links
                         </p>
                     </motion.div>
                 )}

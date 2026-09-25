@@ -10,7 +10,7 @@ const deva = Noto_Sans_Devanagari({ subsets: ['devanagari'], variable: '--font-d
 const guru = Noto_Sans_Gurmukhi({ subsets: ['gurmukhi'], variable: '--font-guru', display: 'swap', weight: ['400', '500', '600'] });
 
 export const metadata: Metadata = {
-    title: { default: 'Yojak · skill and job intelligence for India', template: '%s · Yojak' },
+    title: { default: 'Yojak  -  skill and job intelligence for India', template: '%s  -  Yojak' },
     description:
         'Yojak links Indian job postings to the ESCO skills taxonomy to show which roles fit you, the fewest skills that open the most jobs, and honest salary ranges.',
 };

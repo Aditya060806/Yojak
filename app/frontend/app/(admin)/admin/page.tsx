@@ -30,10 +30,10 @@ export default function AdminOverview() {
                 <p className="text-muted-foreground">The graph, the gold-label work still to do, and which reports exist.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <Panel><Stat label="Graph nodes" value={totalNodes !== undefined ? num(totalNodes) : '…'} /></Panel>
-                <Panel><Stat label="Relationships" value={totalRels !== undefined ? num(totalRels) : '…'} /></Panel>
-                <Panel><Stat label="Job postings" value={count('Job') !== undefined ? num(count('Job')) : '…'} /></Panel>
-                <Panel><Stat label="Synthetic candidates" value={count('Candidate') !== undefined ? num(count('Candidate')) : '–'} hint="labelled synthetic in the graph" /></Panel>
+                <Panel><Stat label="Graph nodes" value={totalNodes !== undefined ? num(totalNodes) : '...'} /></Panel>
+                <Panel><Stat label="Relationships" value={totalRels !== undefined ? num(totalRels) : '...'} /></Panel>
+                <Panel><Stat label="Job postings" value={count('Job') !== undefined ? num(count('Job')) : '...'} /></Panel>
+                <Panel><Stat label="Synthetic candidates" value={count('Candidate') !== undefined ? num(count('Candidate')) : '-'} hint="labelled synthetic in the graph" /></Panel>
             </div>
 
             <Section title="Gold labelling" description="Precision figures stay 'pending' until these frozen samples are labelled."
@@ -76,7 +76,7 @@ function LabelProgress({ task, label }: { task: LabelTask; label: string }) {
             <p className="flex items-center gap-2 text-sm font-medium"><Tag size={16} className="text-primary" /> {label}</p>
             {error ? <p className="text-xs text-muted-foreground">Set the admin token in Settings to see progress.</p> : (
                 <>
-                    <p className="tabular text-2xl font-semibold">{data ? `${num(data.done)} / ${num(data.total)}` : '…'}</p>
+                    <p className="tabular text-2xl font-semibold">{data ? `${num(data.done)} / ${num(data.total)}` : '...'}</p>
                     <div className="h-1.5 overflow-hidden rounded-full bg-muted"><div className="h-full rounded-full bg-primary" style={{ width: `${share * 100}%` }} /></div>
                     <p className="text-xs text-muted-foreground">{pct(share)} labelled</p>
                 </>

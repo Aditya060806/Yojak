@@ -36,11 +36,11 @@ export default function SystemHealthPage() {
             </div>
             {error && <ErrorState error={error} />}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <Panel><Stat label="Graph nodes" value={nodes.isLoading ? '…' : num(totalNodes)} hint={`${nodes.data?.labels.length ?? 0} labels`} /></Panel>
-                <Panel><Stat label="Relationships" value={rels.isLoading ? '…' : num(totalRels)} hint={`${rels.data?.types.length ?? 0} types`} /></Panel>
+                <Panel><Stat label="Graph nodes" value={nodes.isLoading ? '...' : num(totalNodes)} hint={`${nodes.data?.labels.length ?? 0} labels`} /></Panel>
+                <Panel><Stat label="Relationships" value={rels.isLoading ? '...' : num(totalRels)} hint={`${rels.data?.types.length ?? 0} types`} /></Panel>
                 <Panel><Stat label="API endpoints" value={num(endpoints.data?.endpoints.length ?? 0)} hint={`${Object.keys(byTag).length} groups`} /></Panel>
                 <Panel>
-                    <Stat label="Median p50 latency" value={m.length ? `${num(median(m.map((x) => x.p50_ms)), 1)} ms` : '–'}
+                    <Stat label="Median p50 latency" value={m.length ? `${num(median(m.map((x) => x.p50_ms)), 1)} ms` : '-'}
                           hint={`across ${m.length} endpoints (rolling window)`} />
                 </Panel>
             </div>

@@ -93,7 +93,7 @@ export function IndiaMap({ values, format, selected, onSelect, label, className 
                 {SWATCH.map((c, i) => (
                     <span key={c} className="flex items-center gap-1">
                         <span className={cn('h-2.5 w-4 rounded-sm', c)} />
-                        {i === 0 ? `< ${fmt(thresholds[0], format)}` : i === 4 ? `≥ ${fmt(thresholds[3], format)}` : `${fmt(thresholds[i - 1], format)}–${fmt(thresholds[i], format)}`}
+                        {i === 0 ? `< ${fmt(thresholds[0], format)}` : i === 4 ? `≥ ${fmt(thresholds[3], format)}` : `${fmt(thresholds[i - 1], format)}-${fmt(thresholds[i], format)}`}
                     </span>
                 ))}
                 <span className="flex items-center gap-1"><span className="h-2.5 w-4 rounded-sm bg-muted" /> no value</span>
@@ -103,5 +103,5 @@ export function IndiaMap({ values, format, selected, onSelect, label, className 
 }
 
 function fmt(v: number | undefined, format: (v: number) => string) {
-    return v === undefined || !Number.isFinite(v) ? '–' : format(v);
+    return v === undefined || !Number.isFinite(v) ? '-' : format(v);
 }

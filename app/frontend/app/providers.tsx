@@ -17,7 +17,7 @@ export default function Providers({ children }: { children: ReactNode }) {
     );
 
     return (
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
             <MotionConfig reducedMotion="user">
                 <Tooltip.Provider delayDuration={200}>
                     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

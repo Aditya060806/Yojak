@@ -1,14 +1,15 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useEffect, useMemo, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { motion } from 'motion/react';
 import { Briefcase, Compass, Path, Sparkle, CircleNotch, Buildings, MapPin } from '@phosphor-icons/react';
-import { yojak, type Filters, type Plan, type PlanRequest, type RoleMatch, type SkillRef, type StudentMatch, type StudentPlan } from '@/services/yojak';
+import { yojak, type Filters, type Plan, type PlanRequest, type RoleMatch, type SkillRef, type StudentExample, type StudentMatch, type StudentPlan } from '@/services/yojak';
 import { SkillInput } from '@/components/yojak/skill-input';
 import { ExpSelect, Segmented, StateSelect, TierToggle } from '@/components/yojak/filters';
 import {
-    EmptyState, ErrorState, FitBar, Hint, InfoHint, PageIntro, Panel, ResultSkeleton, SalaryRange, SkillChip, WhyDrawer,
+    DemoNotice, EmptyState, ErrorState, ExamplePicker, FitBar, Hint, InfoHint, PageIntro, Panel, ResultSkeleton, SalaryRange, SkillChip,
+    useStaticMode, WhyDrawer,
 } from '@/components/yojak/bits';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,8 @@ export default function StudentPage() {
     });
 
     const canRun = skills.length > 0;
+    const demo = useStaticMode();
+    if (demo) return <StudentDemo />;
 
     return (
         <div className="container">
@@ -81,9 +84,9 @@ export default function StudentPage() {
     );
 }
 
-function Results({ data, tab, setTab, target, setTarget, skills, filters }: {
+function Results({ data, tab, setTab, target, setTarget, skills, filters, savedPlan }: {
     data: StudentMatch; tab: Tab; setTab: (t: Tab) => void; target: RoleMatch | null; setTarget: (r: RoleMatch) => void;
-    skills: SkillRef[]; filters: Filters;
+    skills: SkillRef[]; filters: Filters; savedPlan?: StudentPlan;
 }) {
     return (
         <div className="space-y-5">
@@ -95,13 +98,13 @@ function Results({ data, tab, setTab, target, setTarget, skills, filters }: {
                     options={[{ value: 'roles', label: 'Roles' }, { value: 'jobs', label: 'Postings' }, { value: 'plan', label: 'Learning plan' }]}
                 />
                 <p className="text-xs text-muted-foreground">
-                    {num(data.pool_size)} postings in your filters · ranked by {data.model.served_name}{' '}
+                    {num(data.pool_size)} postings in your filters  -  ranked by {data.model.served_name}{' '}
                     <InfoHint text={data.model.note ?? `The model that won Yojak's benchmark (see Evidence).`} />
                 </p>
             </div>
             {tab === 'roles' && <Roles roles={data.roles} onPlan={(r) => { setTarget(r); setTab('plan'); }} />}
             {tab === 'jobs' && <Jobs data={data} />}
-            {tab === 'plan' && <PlanView skills={skills} filters={filters} roles={data.roles} target={target} setTarget={setTarget} />}
+            {tab === 'plan' && (savedPlan ? <PlanResult data={savedPlan} /> : <PlanView skills={skills} filters={filters} roles={data.roles} target={target} setTarget={setTarget} />)}
         </div>
     );
 }
@@ -122,7 +125,7 @@ function Roles({ roles, onPlan }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) =
                         <div>
                             <h3 className="text-[17px] font-semibold capitalize leading-snug">{r.occupation_label}</h3>
                             <p className="mt-1 text-xs text-muted-foreground">
-                                {num(r.postings)} postings{r.nco_family ? <> · NCO-2015 family {r.nco_family}</> : null}
+                                {num(r.postings)} postings{r.nco_family ? <>  -  NCO-2015 family {r.nco_family}</> : null}
                             </p>
                         </div>
                         {i === 0 && <Badge variant="accent">Best match</Badge>}
@@ -166,7 +169,7 @@ function Jobs({ data }: { data: StudentMatch }) {
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:justify-end">
                         <FitBar value={j.fit} />
                         <SalaryRange salary={j.salary} compact />
-                        <WhyDrawer title={j.title} subtitle={`${j.company}${j.city ? ` · ${j.city}` : ''}`} why={j.why} />
+                        <WhyDrawer title={j.title} subtitle={`${j.company}${j.city ? `  -  ${j.city}` : ''}`} why={j.why} />
                     </div>
                 </li>
             ))}
@@ -300,7 +303,7 @@ function PlanColumn({ title, plan, highlight = false, total }: { title: string; 
                                 </div>
                                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                                     <Hint text={s.effort.note ?? 'Heuristic: skill breadth and closeness to what you know.'}>
-                                        <span>Effort {s.effort.effort.toFixed(2)}{s.effort.proximity_factor && s.effort.proximity_factor < 1 ? ' · close to your skills' : ''}</span>
+                                        <span>Effort {s.effort.effort.toFixed(2)}{s.effort.proximity_factor && s.effort.proximity_factor < 1 ? '  -  close to your skills' : ''}</span>
                                     </Hint>
                                     {s.salary_shift_p50 && (
                                         <Hint text="Median posted pay of the postings this step unlocks, minus the median of postings you already reach. Shown as a range across those postings.">
@@ -314,7 +317,61 @@ function PlanColumn({ title, plan, highlight = false, total }: { title: string; 
                     ))}
                 </ol>
             )}
-            <p className="mt-4 text-xs text-muted-foreground">{plan.method} · {pct(plan.eligible_after / Math.max(1, total))} of postings reachable</p>
+            <p className="mt-4 text-xs text-muted-foreground">{plan.method}  -  {pct(plan.eligible_after / Math.max(1, total))} of postings reachable</p>
+        </div>
+    );
+}
+
+/** Hosted demo: precomputed runs of the example profiles in scripts/personas.yaml. */
+function StudentDemo() {
+    const index = useQuery({ queryKey: ['examples'], queryFn: yojak.examples, staleTime: Infinity });
+    const [id, setId] = useState<string | null>(null);
+    const [tab, setTab] = useState<Tab>('roles');
+    const items = useMemo(() => index.data?.student ?? [], [index.data]);
+    useEffect(() => { if (!id && items.length) setId(items[0].id); }, [id, items]);
+    const file = items.find((i) => i.id === id)?.file;
+    const ex = useQuery({
+        queryKey: ['example', file],
+        queryFn: () => yojak.example<StudentExample>(file!),
+        enabled: !!file,
+        staleTime: Infinity,
+    });
+    const [target, setTarget] = useState<RoleMatch | null>(null);
+    return (
+        <div className="container">
+            <PageIntro
+                title="Find the roles you fit, and the few skills that open the most jobs"
+                lead="Yojak matches skills written in English, Hindi, Punjabi or romanised Hindi against Indian job postings, explains every match, and plans what to learn next."
+            />
+            <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
+                <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+                    <DemoNotice />
+                    <Panel className="space-y-4">
+                        <p className="text-sm font-semibold">Example profiles</p>
+                        {index.error ? <ErrorState error={index.error} /> : <ExamplePicker items={items} value={id} onChange={(v) => { setId(v); setTab('roles'); }} />}
+                        {ex.data && (
+                            <div className="space-y-2 border-t pt-4">
+                                <p className="text-xs font-medium text-muted-foreground">What they typed</p>
+                                <p className="rounded-md bg-muted/60 px-3 py-2 text-sm leading-relaxed" lang={ex.data.match.extraction?.language === 'hi' ? 'hi' : undefined}>
+                                    {String(ex.data.persona.request.text ?? '')}
+                                </p>
+                                <p className="text-xs font-medium text-muted-foreground">Skills Yojak understood</p>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {ex.data.match.skills.map((s) => <SkillChip key={s.uri} label={s.label} tone="have" />)}
+                                </div>
+                            </div>
+                        )}
+                    </Panel>
+                </aside>
+                <section className="min-w-0 space-y-5" aria-live="polite">
+                    {(index.isLoading || ex.isLoading) && <ResultSkeleton rows={5} />}
+                    {ex.error && <ErrorState error={ex.error} onRetry={() => ex.refetch()} />}
+                    {ex.data && (
+                        <Results data={ex.data.match} tab={tab} setTab={setTab} target={target ?? ex.data.match.roles[0] ?? null}
+                                 setTarget={setTarget} skills={ex.data.match.skills} filters={{}} savedPlan={ex.data.plan} />
+                    )}
+                </section>
+            </div>
         </div>
     );
 }

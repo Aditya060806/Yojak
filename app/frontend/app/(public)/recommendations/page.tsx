@@ -10,7 +10,7 @@ import { catalogService } from '@/services/catalog';
 import { FilterDropdown } from '@/components/ui/filter-dropdown';
 import { OccupationDetail } from '@/components/features/occupations/occupation-detail';
 import { SkillInput } from '@/components/yojak/skill-input';
-import { EmptyState, ErrorState, Hint, PageIntro, Panel, ResultSkeleton, SkillChip } from '@/components/yojak/bits';
+import { EmptyState, ErrorState, Hint, PageIntro, Panel, ResultSkeleton, SkillChip, LiveOnly, useStaticMode } from '@/components/yojak/bits';
 import { Button } from '@/components/ui/button';
 import type { SkillRef } from '@/services/yojak';
 import type { OccupationRecommendation } from '@/types';
@@ -21,6 +21,7 @@ import type { OccupationRecommendation } from '@/types';
  * ranks real Indian postings instead; this page stays as the taxonomy-only baseline (B2).
  */
 export default function RecommendationsPage() {
+    const demo = useStaticMode();
     const [skills, setSkills] = useState<SkillRef[]>([]);
     const [groups, setGroups] = useState<string[]>([]);
     const [schemes, setSchemes] = useState<string[]>([]);
@@ -44,6 +45,7 @@ export default function RecommendationsPage() {
                 title="Match skills to ESCO occupations"
                 lead="The original SkillAlign matcher: your skills are compared with every ESCO occupation profile by meaning (sentence embeddings) and by overlap. It reads the European taxonomy, not Indian postings; for jobs in India, use the Students page."
             />
+            {demo ? <LiveOnly what="The ESCO occupation matcher" /> : (
             <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
                 <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
                     <Panel className="space-y-6">
@@ -95,7 +97,7 @@ export default function RecommendationsPage() {
                         >
                             <div className="flex items-start justify-between gap-4">
                                 <div className="min-w-0">
-                                    <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, '0')}{rec.isco_code ? ` · ISCO ${rec.isco_code}` : ''}</p>
+                                    <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, '0')}{rec.isco_code ? `  -  ISCO ${rec.isco_code}` : ''}</p>
                                     <h2 className="mt-1 text-lg font-semibold tracking-tight">{rec.label}</h2>
                                 </div>
                                 <Hint text={`Blend of embedding similarity (${rec.similarity_score.toFixed(2)}) and skill overlap with the ESCO profile.`}>
@@ -111,6 +113,7 @@ export default function RecommendationsPage() {
                     )))}
                 </section>
             </div>
+            )}
             <Dialog.Root open={!!open} onOpenChange={(o) => !o && setOpen(null)}>
                 <Dialog.Portal>
                     <Dialog.Overlay className="fixed inset-0 z-50 bg-background/60 backdrop-blur-sm" />

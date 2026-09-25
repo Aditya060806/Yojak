@@ -1,4 +1,5 @@
 import api from '@/lib/api';
+import { slug, staticGet, withSnapshot } from '@/lib/static';
 
 // ---------- shared ----------
 export interface SkillRef {
@@ -233,6 +234,19 @@ export interface Constellation {
     postings: number;
 }
 
+export interface ExampleIndex {
+    generated_at: string;
+    student: { id: string; name: string; story: string; file: string }[];
+    recruiter: { id: string; name: string; story: string; file: string }[];
+    institution: { id: string; name: string; story: string; file: string }[];
+}
+
+export interface StudentExample {
+    persona: { id: string; name: string; story: string; request: Record<string, unknown> };
+    match: StudentMatch;
+    plan: StudentPlan;
+}
+
 const form = (entries: Record<string, string | Blob | undefined | null>) => {
     const f = new FormData();
     for (const [k, v] of Object.entries(entries)) if (v !== undefined && v !== null) f.append(k, v);
@@ -277,12 +291,24 @@ export const yojak = {
         return (await api.post<InstitutionResult>('/institution/coverage', f, { headers: { 'Content-Type': 'multipart/form-data' } })).data;
     },
 
-    fields: async () => (await api.get<{ fields: { field: string; postings: number }[]; note: string }>('/workforce/fields')).data,
-    demand: async (field?: string | null) => (await api.get<Demand>('/workforce/demand', { params: { field: field || undefined } })).data,
-    shortage: async (field?: string | null) => (await api.get<Shortage>('/workforce/shortage', { params: { field: field || undefined } })).data,
+    fields: () => withSnapshot(
+        async () => (await api.get<{ fields: { field: string; postings: number }[]; note: string }>('/workforce/fields')).data,
+        'workforce/fields.json'),
+    demand: (field?: string | null) => withSnapshot(
+        async () => (await api.get<Demand>('/workforce/demand', { params: { field: field || undefined } })).data,
+        `workforce/demand-${slug(field)}.json`),
+    shortage: (field?: string | null) => withSnapshot(
+        async () => (await api.get<Shortage>('/workforce/shortage', { params: { field: field || undefined } })).data,
+        `workforce/shortage-${slug(field)}.json`),
 
-    constellation: async () => (await api.get<Constellation>('/graph/constellation')).data,
-    report: async <T = Record<string, unknown>>(name: string) => (await api.get<T>(`/reports/${name}`)).data,
-    reportIndex: async () =>
-        (await api.get<{ json: { name: string; available: boolean }[]; markdown: { name: string; available: boolean }[] }>('/reports')).data,
+    constellation: () => withSnapshot(async () => (await api.get<Constellation>('/graph/constellation')).data, 'constellation.json'),
+    report: <T = Record<string, unknown>>(name: string) =>
+        withSnapshot(async () => (await api.get<T>(`/reports/${name}`)).data, `reports/${name}.json`),
+    reportIndex: () => withSnapshot(
+        async () => (await api.get<{ json: { name: string; available: boolean }[]; markdown: { name: string; available: boolean }[] }>('/reports')).data,
+        'reports/index.json'),
+
+    /** Precomputed example runs shown in hosted-demo mode (scripts/export_static.py). */
+    examples: () => staticGet<ExampleIndex>('examples/index.json'),
+    example: <T,>(file: string) => staticGet<T>(`examples/${file}`),
 };

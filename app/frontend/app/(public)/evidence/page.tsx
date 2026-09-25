@@ -66,7 +66,7 @@ function ReportCard({ name, available, loading }: { name: string; available: boo
                 </div>
                 <p className="text-xs text-muted-foreground">{DESCRIPTIONS[name] ?? ''}</p>
                 <p className="text-[11px] text-muted-foreground">
-                    {available && p ? <>{p.generated_at_utc?.replace('T', ' ').replace('+00:00', ' UTC')} · {p.git?.commit?.slice(0, 7)}</> : <Pending what="not generated yet" />}
+                    {available && p ? <>{p.generated_at_utc?.replace('T', ' ').replace('+00:00', ' UTC')}  -  {p.git?.commit?.slice(0, 7)}</> : <Pending what="not generated yet" />}
                 </p>
             </button>
             {open && rep.data && (
@@ -81,7 +81,7 @@ function ReportCard({ name, available, loading }: { name: string; available: boo
 // ---------- link prediction ----------
 
 type Task = 't1' | 't2' | 't3';
-const TASK_LABEL: Record<Task, string> = { t1: 'T1 · complete a job’s skills', t2: 'T2 · recover occupation skills', t3: 'T3 · candidate → unseen jobs' };
+const TASK_LABEL: Record<Task, string> = { t1: 'T1  -  complete a job’s skills', t2: 'T2  -  recover occupation skills', t3: 'T3  -  candidate → unseen jobs' };
 
 function ModelsSection() {
     const { data, isLoading } = useReport<ModelComparisonReport>('model_comparison');
@@ -170,8 +170,8 @@ function LatencyTable({ data }: { data: ModelComparisonReport }) {
                     {Object.entries(data.models).map(([k, m]) => (
                         <tr key={k}>
                             <td className="px-3 py-2">{m.name}</td>
-                            <td className="tabular px-3 py-2 text-right">{m.mean.t3 ? m.mean.t3['recall@10'].toFixed(3) : '–'}</td>
-                            <td className="tabular px-3 py-2 text-right">{m.mean.t3 ? m.mean.t3.mrr.toFixed(3) : '–'}</td>
+                            <td className="tabular px-3 py-2 text-right">{m.mean.t3 ? m.mean.t3['recall@10'].toFixed(3) : '-'}</td>
+                            <td className="tabular px-3 py-2 text-right">{m.mean.t3 ? m.mean.t3.mrr.toFixed(3) : '-'}</td>
                             <td className="tabular px-3 py-2 text-right">{num(m.mean.latency?.jobs_for_profile?.p50_ms, 1)}</td>
                             <td className="tabular px-3 py-2 text-right">{num(m.mean.latency?.jobs_for_profile?.p95_ms, 1)}</td>
                             <td className="tabular px-3 py-2 text-right">{num(m.mean.memory?.rss_mb)}</td>
@@ -212,8 +212,8 @@ function UpskillingSection() {
                             const max = Math.max(1, ...gaps);
                             return (
                                 <div key={key} className="rounded-lg border p-3">
-                                    <p className="text-xs font-medium">k = {k} · τ = {tau}</p>
-                                    <p className="text-[11px] text-muted-foreground">optimum {cell.mean_optimum.toFixed(1)} postings · {cell.instances} cases</p>
+                                    <p className="text-xs font-medium">k = {k}  -  τ = {tau}</p>
+                                    <p className="text-[11px] text-muted-foreground">optimum {cell.mean_optimum.toFixed(1)} postings  -  {cell.instances} cases</p>
                                     <div className="mt-3 space-y-1.5">
                                         {METHODS.map((m, i) => (
                                             <div key={m.key} className="grid grid-cols-[1fr_48px] items-center gap-2">
@@ -250,12 +250,12 @@ function SalarySection() {
             ) : (
                 <div className="grid gap-4 md:grid-cols-3">
                     <Panel className="space-y-1">
-                        <p className="text-xs text-muted-foreground">P50 error (MAE · MdAPE)</p>
-                        <p className="tabular text-2xl font-semibold">{inr(data.test.mae_inr)} · {data.test.mdape_pct.toFixed(1)}%</p>
-                        <p className="text-xs text-muted-foreground">Baseline: {inr(data.baseline.mae_inr)} · {data.baseline.mdape_pct.toFixed(1)}%</p>
+                        <p className="text-xs text-muted-foreground">P50 error (MAE  -  MdAPE)</p>
+                        <p className="tabular text-2xl font-semibold">{inr(data.test.mae_inr)}  -  {data.test.mdape_pct.toFixed(1)}%</p>
+                        <p className="text-xs text-muted-foreground">Baseline: {inr(data.baseline.mae_inr)}  -  {data.baseline.mdape_pct.toFixed(1)}%</p>
                     </Panel>
                     <Panel className="space-y-2">
-                        <p className="text-xs text-muted-foreground">P10–P90 coverage (target 80%)</p>
+                        <p className="text-xs text-muted-foreground">P10-P90 coverage (target 80%)</p>
                         <div className="flex items-baseline gap-2">
                             <span className="tabular text-lg text-muted-foreground line-through decoration-1">{pct(data.test.coverage_raw, 1)}</span>
                             <span className="tabular text-2xl font-semibold">{pct(data.test.coverage_cqr, 1)}</span>
