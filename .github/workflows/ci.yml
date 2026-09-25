@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PYTHONWARNINGS: ignore
+      PYTHONPATH: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -44,6 +45,7 @@ jobs:
     needs: backend
     env:
       PYTHONWARNINGS: ignore
+      PYTHONPATH: ${{ github.workspace }}
       NEO4J_VERSION: "5.26.31"
       NEO4J_TEST_URI: neo4j://127.0.0.1:7687
       NEO4J_TEST_USER: neo4j
