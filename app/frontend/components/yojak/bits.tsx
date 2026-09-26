@@ -6,6 +6,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import { motion } from 'motion/react';
 import { ArrowRight, Info, Warning, X, CircleNotch, FlowArrow } from '@phosphor-icons/react';
 import { Badge } from '@/components/ui/badge';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { inr, num, pct } from '@/lib/format';
 import type { PathStep, SalaryRange as Salary, Why } from '@/services/yojak';
@@ -13,9 +14,12 @@ import type { PathStep, SalaryRange as Salary, Why } from '@/services/yojak';
 // ---------- page scaffolding ----------
 
 export function PageIntro({ title, lead, children }: { title: string; lead: string; children?: React.ReactNode }) {
+    const pathname = usePathname();
+    const workspace = ({ student: 'Career intelligence', recruiter: 'Talent discovery', institution: 'Education & development', workforce: 'Workforce planning', evidence: 'Evidence & methodology', network: 'Skill intelligence', explore: 'Occupation catalogue', roadmap: 'Career pathways', recommendations: 'Occupation matching' } as Record<string, string>)[pathname.split('/')[1]];
     return (
-        <div className="space-y-3 pb-8 pt-10 md:pt-14">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight md:text-[40px] md:leading-[1.1]">{title}</h1>
+        <div className="workspace-intro space-y-3 pb-7 pt-8 md:pt-10">
+            {workspace && <p className="flex items-center gap-2 text-xs font-medium text-muted-foreground"><span className="text-primary">Yojak</span><ArrowRight size={12} />{workspace}</p>}
+            <h1 className="max-w-[850px] text-balance text-[28px] font-semibold leading-tight md:text-[34px]">{title}</h1>
             <p className="max-w-[62ch] text-[15px] leading-relaxed text-muted-foreground md:text-base">{lead}</p>
             {children}
         </div>
@@ -42,7 +46,7 @@ export function Section({ title, description, children, className, action }: {
 }
 
 export function Panel({ className, children }: { className?: string; children: React.ReactNode }) {
-    return <div className={cn('rounded-xl border bg-card p-5', className)}>{children}</div>;
+    return <div className={cn('workspace-panel rounded-lg border bg-card p-5', className)}>{children}</div>;
 }
 
 // ---------- honesty labels ----------

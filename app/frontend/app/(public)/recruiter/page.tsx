@@ -33,7 +33,7 @@ export default function RecruiterPage() {
     return (
         <div className="container">
             <PageIntro
-                title="Rank candidates by the skills the job actually needs"
+                title="Find the skills your team needs."
                 lead="Paste a job description or upload it. Yojak reads the ESCO skills in it; you correct the list. Candidates are ranked by how much of that list they cover, with rarer skills counting more, and every rank can be explained."
             />
             <div className="grid gap-8 lg:grid-cols-[400px_1fr]">
@@ -214,7 +214,7 @@ function RecruiterDemo() {
     return (
         <div className="container">
             <PageIntro
-                title="Rank candidates by the skills the job actually needs"
+                title="Find the skills your team needs."
                 lead="Yojak reads the ESCO skills in a job description, lets the recruiter correct them, and ranks candidates by weighted skill coverage, with every rank explained."
             />
             <div className="grid gap-8 lg:grid-cols-[400px_1fr]">

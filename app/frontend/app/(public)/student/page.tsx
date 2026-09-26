@@ -44,7 +44,7 @@ export default function StudentPage() {
     return (
         <div className="container">
             <PageIntro
-                title="Find the roles you fit, and the few skills that open the most jobs"
+                title="Your skills. Your next career move."
                 lead="Add the skills you have in English, Hindi, Punjabi or romanised Hindi, or upload a resume. Yojak matches them against Indian job postings, explains every match, and plans what to learn next."
             />
             <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
@@ -102,14 +102,14 @@ function Results({ data, tab, setTab, target, setTarget, skills, filters, savedP
                     <InfoHint text={data.model.note ?? `The model that won Yojak's benchmark (see Evidence).`} />
                 </p>
             </div>
-            {tab === 'roles' && <Roles roles={data.roles} onPlan={(r) => { setTarget(r); setTab('plan'); }} />}
+            {tab === 'roles' && <Roles roles={data.roles} examplePlan={!!savedPlan} onPlan={(r) => { setTarget(r); setTab('plan'); }} />}
             {tab === 'jobs' && <Jobs data={data} />}
             {tab === 'plan' && (savedPlan ? <PlanResult data={savedPlan} /> : <PlanView skills={skills} filters={filters} roles={data.roles} target={target} setTarget={setTarget} />)}
         </div>
     );
 }
 
-function Roles({ roles, onPlan }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) => void }) {
+function Roles({ roles, onPlan, examplePlan = false }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) => void; examplePlan?: boolean }) {
     if (!roles.length) return <EmptyState title="No roles matched">Try removing filters or adding more skills.</EmptyState>;
     return (
         <div className="grid gap-3 md:grid-cols-2">
@@ -119,7 +119,7 @@ function Roles({ roles, onPlan }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) =
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className={cn('flex flex-col rounded-xl border bg-card p-5', i === 0 && 'md:col-span-2')}
+                    className={cn('flex min-w-0 flex-col rounded-xl border bg-card p-5', i === 0 && 'md:col-span-2')}
                 >
                     <div className="flex items-start justify-between gap-3">
                         <div>
@@ -139,10 +139,10 @@ function Roles({ roles, onPlan }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) =
                             </div>
                         </div>
                     )}
-                    <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+                    <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
                         <WhyDrawer title={r.occupation_label} subtitle="Why this role matches" why={r.why} />
                         <Button size="sm" variant="outline" onClick={() => onPlan(r)}>
-                            <Path size={15} /> Plan for this role
+                            <Path size={15} /> {examplePlan ? 'View example plan' : 'Plan for this role'}
                         </Button>
                     </div>
                 </motion.article>
@@ -257,7 +257,7 @@ function PlanResult({ data }: { data: StudentPlan }) {
                     <p className="text-xs text-muted-foreground">of {num(data.pool.postings)} postings in scope</p>
                 </div>
                 <div>
-                    <p className="text-xs text-muted-foreground">After the optimal plan</p>
+                    <p className="text-xs text-muted-foreground">After this learning plan</p>
                     <p className="tabular text-3xl font-semibold text-primary">{num(opt.eligible_after)}</p>
                     <p className="text-xs text-muted-foreground">{opt.method}</p>
                 </div>
@@ -268,7 +268,7 @@ function PlanResult({ data }: { data: StudentPlan }) {
                 </div>
             </Panel>
             <div className="grid gap-4 lg:grid-cols-2">
-                <PlanColumn title="Optimal plan" plan={opt} highlight total={data.pool.postings} />
+                <PlanColumn title={opt.optimal === true ? 'Optimal learning plan' : 'Recommended learning plan'} plan={opt} highlight total={data.pool.postings} />
                 <PlanColumn title="Most common skills" plan={fq} total={data.pool.postings} />
             </div>
             {data.effort_plan && <PlanColumn title="Effort-aware plan" plan={data.effort_plan} total={data.pool.postings} />}
@@ -340,7 +340,7 @@ function StudentDemo() {
     return (
         <div className="container">
             <PageIntro
-                title="Find the roles you fit, and the few skills that open the most jobs"
+                title="Your skills. Your next career move."
                 lead="Yojak matches skills written in English, Hindi, Punjabi or romanised Hindi against Indian job postings, explains every match, and plans what to learn next."
             />
             <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
@@ -348,7 +348,7 @@ function StudentDemo() {
                     <DemoNotice />
                     <Panel className="space-y-4">
                         <p className="text-sm font-semibold">Example profiles</p>
-                        {index.error ? <ErrorState error={index.error} /> : <ExamplePicker items={items} value={id} onChange={(v) => { setId(v); setTab('roles'); }} />}
+                        {index.error ? <ErrorState error={index.error} /> : <ExamplePicker items={items} value={id} onChange={(v) => { setId(v); setTab('roles'); setTarget(null); }} />}
                         {ex.data && (
                             <div className="space-y-2 border-t pt-4">
                                 <p className="text-xs font-medium text-muted-foreground">What they typed</p>

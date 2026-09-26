@@ -37,7 +37,7 @@ export default function InstitutionPage() {
     return (
         <div className="container">
             <PageIntro
-                title="How well does your syllabus match what employers ask for?"
+                title="Bring your curriculum closer to industry."
                 lead="Upload a syllabus or paste the course list. Yojak finds the ESCO skills it teaches and compares them with the skills listed most often by postings in the region and sector you choose."
             />
             <div className="grid gap-8 lg:grid-cols-[400px_1fr]">
@@ -231,7 +231,7 @@ function InstitutionDemo() {
     return (
         <div className="container">
             <PageIntro
-                title="How well does your syllabus match what employers ask for?"
+                title="Bring your curriculum closer to industry."
                 lead="Yojak finds the ESCO skills a syllabus teaches and compares them with the skills listed most often by postings in the region and sector you choose."
             />
             <div className="grid gap-8 lg:grid-cols-[400px_1fr]">

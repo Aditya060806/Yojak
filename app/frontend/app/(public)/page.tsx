@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
+import { useState } from 'react';
 import {
-    ArrowRight, Briefcase, Buildings, ChartLineUp, GraduationCap, MapTrifold, Scales, ShieldCheck, Student,
+    ArrowRight, ArrowUpRight, Briefcase, ChartLineUp, GraduationCap, MapTrifold, Scales, ShieldCheck, Student, Graph, Database, Path,
 } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Pending } from '@/components/yojak/bits';
@@ -47,8 +48,8 @@ export default function LandingPage() {
     return (
         <div className="overflow-x-clip">
             <Hero />
-            <Evidence />
             <Views />
+            <Evidence />
             <HowItWorks />
             <Honesty />
         </div>
@@ -56,59 +57,37 @@ export default function LandingPage() {
 }
 
 function Hero() {
+    const [workspace, setWorkspace] = useState(0);
+    const actions = ['Find my career matches', 'Discover the right talent', 'Evaluate a curriculum', 'Explore workforce demand'];
     return (
-        <section className="relative border-b">
-            <div className="container grid min-h-[calc(100dvh-4rem)] items-center gap-8 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:py-12">
+        <section className="relative border-b bg-card">
+            <div className="container relative min-h-[650px] md:min-h-[570px] lg:min-h-[600px]">
+                <div className="hero-scene" aria-label="Skill relationships">
+                    <Constellation className="h-full w-full" />
+                </div>
                 <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, ease }}
-                    className="space-y-6"
+                    className="relative z-10 w-full space-y-4 pb-[320px] pt-8 md:w-[40%] md:space-y-5 md:pb-12 md:pt-16 lg:pt-20"
                 >
-                    <p className="text-sm font-medium text-primary">Yojak for India&apos;s skill market</p>
-                    <h1 className="max-w-[12ch] text-balance text-5xl font-semibold leading-[0.98] tracking-tight md:text-6xl">
-                        Find the job fit. See the evidence.
-                    </h1>
-                    <p className="max-w-[50ch] text-base leading-relaxed text-muted-foreground">
-                        Skill matching, upskilling plans, salary ranges, and workforce signals from one transparent graph.
+                    <p className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground"><Graph size={16} className="text-primary" />Talent &amp; workforce intelligence</p>
+                    <h1 className="text-[48px] font-semibold leading-none md:text-[72px]">Yojak<span className="text-primary">.</span></h1>
+                    <h2 className="max-w-[360px] text-[25px] font-medium leading-[1.25] md:text-[30px]">Connect what you know to what comes next.</h2>
+                    <p className="max-w-[40ch] text-sm leading-relaxed text-muted-foreground">
+                        Find your fit in India&apos;s workforce. Turn skill gaps into focused learning plans and better decisions.
                     </p>
-                    <div className="flex flex-wrap gap-3">
-                        <Button asChild size="lg">
-                            <Link href="/student">Start matching <ArrowRight size={18} /></Link>
-                        </Button>
-                        <Button asChild size="lg" variant="outline">
-                            <Link href="/evidence">View evidence</Link>
-                        </Button>
+                    <div className="flex w-fit max-w-full gap-0.5 rounded-md border bg-background p-1" aria-label="Choose your workspace">
+                        {VIEWS.map((view, i) => <button key={view.href} onClick={() => setWorkspace(i)} aria-label={view.title} aria-pressed={workspace === i} title={view.title}
+                            className={`flex h-9 items-center gap-1.5 rounded px-2 text-xs font-medium transition-colors ${workspace === i ? 'bg-foreground text-background' : 'text-muted-foreground hover:bg-muted'}`}>
+                            <view.icon size={15} /><span className="hidden xl:inline">{view.title}</span><span className="md:hidden">{['Career', 'Talent', 'Study', 'Plan'][i]}</span>
+                        </button>)}
                     </div>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.55, ease, delay: 0.06 }}
-                    className="relative"
-                >
-                    <div className="overflow-hidden rounded-2xl border bg-card shadow-[0_24px_80px_-50px_hsl(var(--primary)/0.45)]">
-                        <div className="h-[340px] md:h-[500px]">
-                            <Constellation className="h-full w-full" />
-                        </div>
-                        <div className="grid gap-px border-t bg-border sm:grid-cols-3">
-                            <HeroStat label="Skills graph" value="ESCO" />
-                            <HeroStat label="Primary market" value="India" />
-                            <HeroStat label="Mode" value="Evidence first" />
-                        </div>
-                    </div>
+                    <Button asChild size="lg" className="max-w-full px-4"><Link href={VIEWS[workspace].href}>{actions[workspace]} <ArrowRight size={17} /></Link></Button>
+                    <Link href="/evidence" className="flex w-fit items-center gap-2 text-xs font-medium text-muted-foreground hover:text-primary"><ShieldCheck size={16} />Explore the evidence <ArrowUpRight size={13} /></Link>
                 </motion.div>
             </div>
         </section>
-    );
-}
-
-function HeroStat({ label, value }: { label: string; value: string }) {
-    return (
-        <div className="bg-card px-4 py-3">
-            <p className="text-[11px] text-muted-foreground">{label}</p>
-            <p className="mt-1 text-sm font-medium">{value}</p>
-        </div>
     );
 }
 
@@ -119,7 +98,7 @@ function Figure({ value, label, source, loading }: { value: React.ReactNode; lab
                 {loading ? <span className="inline-block h-9 w-24 animate-pulse rounded bg-muted" /> : value}
             </p>
             <p className="max-w-[18rem] text-sm leading-relaxed text-foreground/80">{label}</p>
-            <p className="font-mono text-[11px] text-muted-foreground">{source}</p>
+            <Link href="/evidence" className="inline-flex items-center gap-1 text-[11px] text-muted-foreground hover:text-primary" title={source}>Source &amp; methodology <ArrowUpRight size={12} /></Link>
         </div>
     );
 }
@@ -139,9 +118,10 @@ function Evidence() {
         <section className="bg-muted/35">
             <div className="container space-y-10 py-16">
                 <div className="max-w-[62ch] space-y-3">
-                    <h2 className="text-3xl font-semibold tracking-tight">Numbers with receipts</h2>
+                    <p className="text-xs font-medium uppercase text-primary">Measured, not assumed</p>
+                    <h2 className="text-[28px] font-semibold">Evidence behind every decision.</h2>
                     <p className="text-muted-foreground">
-                        The site reads generated reports. Missing evidence stays visibly pending instead of turning into marketing copy.
+                        Real posting data, evaluated models, and visible uncertainty. Explore the results and the limits of what they can tell us.
                     </p>
                 </div>
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -155,7 +135,7 @@ function Evidence() {
                             label="ESCO occupations the postings map to" source="data_quality.json" />
                 </div>
                 <div className="grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
-                    <Finding icon={<ChartLineUp size={22} />} title="Plans are compared with exact optimization" source="impact.json"
+                    <Finding icon={<ChartLineUp size={22} />} title="Learn fewer skills. Reach more opportunities." source="impact.json"
                              loading={imp.isLoading}>
                         {imp.data ? (
                             <>For Tier 2 and Tier 3 freshers, the 3-skill plan reaches a median of{' '}
@@ -164,7 +144,7 @@ function Evidence() {
                         ) : <Pending what="impact estimate not generated yet" />}
                     </Finding>
                     <div className="grid gap-4">
-                        <Finding icon={<Scales size={22} />} title="The served ranker is disclosed" source="model_comparison.json"
+                        <Finding icon={<Scales size={22} />} title="Matching, backed by evaluation" source="model_comparison.json"
                                  loading={mc.isLoading}>
                             {winner && mc.data ? (
                                 <><b className="text-foreground">{winner.name}</b> ranks first on unseen matching, with NDCG@10{' '}
@@ -192,7 +172,7 @@ function Finding({ icon, title, source, loading, children }: {
     icon: React.ReactNode; title: string; source: string; loading: boolean; children: React.ReactNode;
 }) {
     return (
-        <div className="flex h-full flex-col rounded-2xl border bg-card p-5">
+        <div className="flex h-full flex-col rounded-lg border bg-card p-5">
             <div className="flex items-center gap-3 text-primary">
                 {icon}
                 <h3 className="text-base font-semibold text-foreground">{title}</h3>
@@ -200,22 +180,24 @@ function Finding({ icon, title, source, loading, children }: {
             <div className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {loading ? <span className="block h-12 animate-pulse rounded bg-muted" /> : children}
             </div>
-            <p className="mt-5 font-mono text-[11px] text-muted-foreground">{source}</p>
+            <Link href="/evidence" className="mt-5 inline-flex w-fit items-center gap-1 text-[11px] text-muted-foreground hover:text-primary" title={source}>View evaluation <ArrowUpRight size={12} /></Link>
         </div>
     );
 }
 
 function Views() {
     return (
-        <section className="container py-20">
-            <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+        <section className="container py-8 md:py-16">
+            <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="max-w-[48ch] space-y-3">
-                    <h2 className="text-3xl font-semibold tracking-tight">Four workspaces, one vocabulary</h2>
-                    <p className="text-muted-foreground">
-                        Students, recruiters, institutions, and planners ask different questions. Yojak keeps the skill evidence consistent.
+                    <p className="text-xs font-medium uppercase text-primary">Your workspace</p>
+                    <h2 className="text-[28px] font-semibold leading-tight">A clearer next step.<br />For every stakeholder.</h2>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        Career decisions, hiring, curriculum alignment, and workforce planning share one foundation: the skills that connect people to opportunities.
                     </p>
+                    <Link href="/network" className="inline-flex items-center gap-2 pt-3 text-sm font-medium text-primary">Explore skill intelligence <ArrowUpRight size={16} /></Link>
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-x-8 sm:grid-cols-2">
                     {VIEWS.map((v, i) => (
                         <motion.div
                             key={v.href}
@@ -226,15 +208,15 @@ function Views() {
                         >
                             <Link
                                 href={v.href}
-                                className="group flex min-h-44 flex-col rounded-2xl border bg-card p-5 transition-colors hover:border-primary/35 hover:bg-accent/45"
+                                className="group flex min-h-36 flex-col border-b py-5 transition-colors hover:text-primary"
                             >
                                 <div className="flex items-center justify-between">
-                                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+                                    <span className={`flex h-9 w-9 items-center justify-center rounded-md ${['bg-emerald-100 text-emerald-800', 'bg-blue-100 text-blue-800', 'bg-amber-100 text-amber-800', 'bg-rose-100 text-rose-800'][i]}`}>
                                         <v.icon size={22} />
                                     </span>
                                     <ArrowRight size={18} className="text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
                                 </div>
-                                <h3 className="mt-5 text-lg font-semibold tracking-tight">{v.title}</h3>
+                                <h3 className="mt-3 text-base font-semibold">{v.title}</h3>
                                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
                             </Link>
                         </motion.div>
@@ -250,14 +232,15 @@ function HowItWorks() {
         <section className="border-y">
             <div className="container grid gap-10 py-20 lg:grid-cols-[1fr_1.5fr]">
                 <div className="max-w-[45ch] space-y-3">
-                    <h2 className="text-3xl font-semibold tracking-tight">From posting to answer</h2>
+                    <Database size={24} className="text-primary" />
+                    <h2 className="text-[28px] font-semibold">From data to a decision.</h2>
                     <p className="text-muted-foreground">
                         The pipeline is built for auditability. Each step can be rerun and checked against its report.
                     </p>
                 </div>
-                <div className="grid gap-px overflow-hidden rounded-2xl border bg-border sm:grid-cols-2">
+                <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
                     {PIPELINE.map((s) => (
-                        <div key={s.title} className="bg-card p-6">
+                        <div key={s.title} className="border-t pt-5">
                             <p className="font-semibold">{s.title}</p>
                             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
                         </div>
@@ -278,10 +261,10 @@ function Honesty() {
     ];
     return (
         <section className="container py-16">
-            <div className="grid gap-8 rounded-2xl border bg-card p-6 md:grid-cols-[1fr_1.35fr] md:p-10">
+            <div className="grid gap-8 md:grid-cols-[1fr_1.35fr]">
                 <div className="space-y-4">
-                    <Buildings size={30} className="text-primary" />
-                    <h2 className="text-3xl font-semibold tracking-tight">What Yojak does not claim</h2>
+                    <Path size={26} className="text-primary" />
+                    <h2 className="text-[28px] font-semibold">Useful evidence.<br />Honest boundaries.</h2>
                     <p className="text-sm leading-relaxed text-muted-foreground">
                         Limitations are part of the interface, because a planning tool should say where its evidence ends.
                     </p>
@@ -291,7 +274,8 @@ function Honesty() {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                     {items.map((t) => (
-                        <div key={t} className="rounded-xl border bg-background p-4 text-sm leading-relaxed text-muted-foreground">
+                        <div key={t} className="flex items-start gap-3 border-t py-4 text-sm leading-relaxed text-muted-foreground">
+                            <ShieldCheck size={17} className="mt-0.5 shrink-0 text-primary" />
                             {t}
                         </div>
                     ))}

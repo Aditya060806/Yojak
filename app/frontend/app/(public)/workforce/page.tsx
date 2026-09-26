@@ -46,7 +46,7 @@ export default function WorkforcePage() {
     return (
         <div className="container">
             <PageIntro
-                title="Where the jobs are, and where the graduates come from"
+                title="See where demand meets capability."
                 lead="Posting demand by state and skill family from the Naukri data, set against graduate out-turn (AISHE 2021-22) and youth unemployment (PLFS 2023-24). The shortage index is a coarse proxy; the caveats below explain exactly why."
             >
                 <div className="flex flex-wrap gap-2 pt-1">

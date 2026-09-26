@@ -5,22 +5,24 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { AnimatePresence, motion } from 'motion/react';
-import { List, Moon, Sun, X } from '@phosphor-icons/react';
+import { ArrowUpRight, Graph, List, Moon, Sun, X } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 export const NAV = [
+    { href: '/', label: 'Overview' },
     { href: '/student', label: 'Students' },
     { href: '/recruiter', label: 'Recruiters' },
     { href: '/institution', label: 'Institutions' },
     { href: '/workforce', label: 'Workforce' },
     { href: '/evidence', label: 'Evidence' },
-    { href: '/explore', label: 'Explore' },
+    { href: '/network', label: 'Skill graph' },
 ];
 
 export function Logo({ className }: { className?: string }) {
     return (
-        <Link href="/" className={cn('group flex items-baseline gap-2', className)} aria-label="Yojak home">
-            <span className="text-[19px] font-semibold tracking-tight">Yojak</span>
+        <Link href="/" className={cn('group flex shrink-0 items-center gap-2', className)} aria-label="Yojak home">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground"><Graph size={21} weight="bold" /></span>
+            <span className="text-[21px] font-semibold">Yojak</span>
             <span lang="hi" className="text-sm text-muted-foreground transition-colors group-hover:text-primary">
                 योजक
             </span>
@@ -39,6 +41,7 @@ export function ThemeToggle() {
             onClick={() => setTheme(dark ? 'light' : 'dark')}
             className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
             aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+            title={dark ? 'Switch to light theme' : 'Switch to dark theme'}
         >
             {mounted ? dark ? <Sun size={18} /> : <Moon size={18} /> : <span className="h-[18px] w-[18px]" />}
         </button>
@@ -49,9 +52,15 @@ export function SiteHeader() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
     useEffect(() => setOpen(false), [pathname]);
+    useEffect(() => {
+        if (!open) return;
+        const close = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false); };
+        window.addEventListener('keydown', close);
+        return () => window.removeEventListener('keydown', close);
+    }, [open]);
     return (
         <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
-            <div className="container flex h-16 items-center gap-8">
+            <div className="container flex h-[72px] items-center gap-6">
                 <Logo />
                 <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
                     {NAV.map((n) => {
@@ -60,16 +69,17 @@ export function SiteHeader() {
                             <Link
                                 key={n.href}
                                 href={n.href}
+                                aria-current={active ? 'page' : undefined}
                                 className={cn(
-                                    'relative rounded-md px-3 py-2 text-sm transition-colors',
-                                    active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
+                                    'relative rounded-md px-2.5 py-2 text-[13px] transition-colors',
+                                    active ? 'bg-accent text-primary font-medium' : 'text-muted-foreground hover:text-foreground',
                                 )}
                             >
                                 {n.label}
                                 {active && (
                                     <motion.span
                                         layoutId="nav-underline"
-                                        className="absolute inset-x-3 -bottom-[13px] h-0.5 rounded-full bg-primary"
+                                        className="absolute inset-x-3 -bottom-[19px] h-0.5 bg-primary"
                                         transition={{ type: 'spring', stiffness: 400, damping: 34 }}
                                     />
                                 )}
@@ -78,8 +88,8 @@ export function SiteHeader() {
                     })}
                 </nav>
                 <div className="ml-auto flex items-center gap-1">
-                    <Link href="/admin" className="hidden rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-foreground lg:block">
-                        Admin
+                    <Link href="/student" className="hidden items-center gap-1.5 rounded-md border px-3 py-2 text-xs font-medium hover:bg-muted xl:flex">
+                        My career <ArrowUpRight size={14} />
                     </Link>
                     <ThemeToggle />
                     <button
@@ -87,6 +97,7 @@ export function SiteHeader() {
                         className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-muted lg:hidden"
                         onClick={() => setOpen((o) => !o)}
                         aria-expanded={open}
+                        aria-controls="mobile-navigation"
                         aria-label="Menu"
                     >
                         {open ? <X size={20} /> : <List size={20} />}
@@ -96,6 +107,7 @@ export function SiteHeader() {
             <AnimatePresence>
                 {open && (
                     <motion.nav
+                        id="mobile-navigation"
                         initial={{ opacity: 0, y: -8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
@@ -110,7 +122,7 @@ export function SiteHeader() {
                                     href={n.href}
                                     className={cn(
                                         'rounded-md px-3 py-2.5 text-[15px]',
-                                        pathname.startsWith(n.href) ? 'bg-muted font-medium' : 'text-muted-foreground',
+                                        (pathname === n.href || (n.href !== '/' && pathname.startsWith(n.href + '/'))) ? 'bg-accent font-medium text-primary' : 'text-muted-foreground',
                                     )}
                                 >
                                     {n.label}
@@ -126,7 +138,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
     return (
-        <footer className="mt-24 border-t">
+        <footer className="mt-16 border-t bg-card">
             <div className="container grid gap-8 py-12 text-sm md:grid-cols-[1.4fr_1fr_1fr]">
                 <div className="space-y-3">
                     <Logo />
@@ -148,6 +160,9 @@ export function SiteFooter() {
                     <p className="font-medium">Project</p>
                     <ul className="space-y-1.5 text-muted-foreground">
                         <li><Link className="hover:text-foreground" href="/evidence">Evidence and limitations</Link></li>
+                        <li><Link className="hover:text-foreground" href="/network">3D skill intelligence</Link></li>
+                        <li><Link className="hover:text-foreground" href="/explore">Occupation catalogue</Link></li>
+                        <li><Link className="hover:text-foreground" href="/admin">Administration</Link></li>
                         <li><Link className="hover:text-foreground" href="/roadmap">ESCO roadmap to an occupation</Link></li>
                         <li><Link className="hover:text-foreground" href="/recommendations">ESCO occupation matcher (SkillAlign)</Link></li>
                         <li>Fork of SkillAlign (MIT)</li>

@@ -10,7 +10,7 @@
 */
 @layer base {
   :root {
-    --background: 60 9% 98%;
+    --background: 210 20% 98%;
     --foreground: 240 10% 8%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 8%;
@@ -45,7 +45,7 @@
     --viz-4: 184 72% 34%;
     --viz-5: 188 80% 20%;
 
-    --radius: 0.625rem;
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -94,7 +94,9 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "cv11";
+    letter-spacing: 0;
   }
+  h1, h2, h3, h4 { letter-spacing: 0 !important; }
   :lang(hi), :lang(pa) {
     font-family: var(--font-deva), var(--font-guru), var(--font-geist-sans), sans-serif;
   }
@@ -104,6 +106,34 @@
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+}
+
+@layer components {
+  .workspace-intro {
+    border-bottom: 1px solid hsl(var(--border));
+    margin-bottom: 2rem;
+  }
+  .workspace-panel {
+    box-shadow: 0 2px 8px hsl(var(--foreground) / 0.025);
+  }
+  .network-control {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40;
+  }
+  .network-label {
+    @apply absolute z-10 max-w-[160px] truncate rounded-md border bg-card/95 px-2.5 py-1.5 text-[11px] font-medium shadow-sm;
+    transform: translate(-50%, -50%);
+  }
+  .hero-scene {
+    position: absolute;
+    inset: 0 0 0 38%;
+  }
+  .workspace-link {
+    @apply flex items-center gap-4 border-b py-5 transition-colors hover:text-primary;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-scene { inset: auto 0 0; height: 300px; }
 }
 
 @layer utilities {
