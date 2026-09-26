@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import { Briefcase, Compass, Path, Sparkle, CircleNotch, Buildings, MapPin } from '@phosphor-icons/react';
 import { yojak, type Filters, type Plan, type PlanRequest, type RoleMatch, type SkillRef, type StudentExample, type StudentMatch, type StudentPlan } from '@/services/yojak';
 import { SkillInput } from '@/components/yojak/skill-input';
+import { RoleComparison } from '@/components/yojak/role-comparison';
 import { ExpSelect, Segmented, StateSelect, TierToggle } from '@/components/yojak/filters';
 import {
     DemoNotice, EmptyState, ErrorState, ExamplePicker, FitBar, Hint, InfoHint, PageIntro, Panel, ResultSkeleton, SalaryRange, SkillChip,
@@ -32,9 +33,10 @@ export default function StudentPage() {
         exp_bands: exp ? [exp] : undefined,
     }), [tiers, state, exp]);
 
+    const profileKey = JSON.stringify({ skills: skills.map((s) => s.uri), ...filters });
     const match = useMutation({
-        mutationFn: () => yojak.studentMatch({ skills: skills.map((s) => s.uri), ...filters, limit: 25 }),
-        onSuccess: (r) => { setTarget(r.roles[0] ?? null); },
+        mutationFn: async () => ({ result: await yojak.studentMatch({ skills: skills.map((s) => s.uri), ...filters, limit: 25 }), profileKey }),
+        onSuccess: ({ result }) => { setTarget(result.roles[0] ?? null); },
     });
 
     const canRun = skills.length > 0;
@@ -74,8 +76,9 @@ export default function StudentPage() {
                     )}
                     {match.error && <ErrorState error={match.error} onRetry={() => match.mutate()} />}
                     {match.isPending && <ResultSkeleton rows={5} />}
-                    {match.data && !match.isPending && (
-                        <Results data={match.data} tab={tab} setTab={setTab} target={target} setTarget={setTarget}
+                    {match.data && match.data.profileKey !== profileKey && !match.isPending && <EmptyState title="Your profile has changed">Find matches again to update your roles and learning plan.</EmptyState>}
+                    {match.data && match.data.profileKey === profileKey && !match.isPending && (
+                        <Results key={match.submittedAt} data={match.data.result} tab={tab} setTab={setTab} target={target} setTarget={setTarget}
                                  skills={skills} filters={filters} />
                     )}
                 </section>
@@ -88,6 +91,10 @@ function Results({ data, tab, setTab, target, setTarget, skills, filters, savedP
     data: StudentMatch; tab: Tab; setTab: (t: Tab) => void; target: RoleMatch | null; setTarget: (r: RoleMatch) => void;
     skills: SkillRef[]; filters: Filters; savedPlan?: StudentPlan;
 }) {
+    const [comparison, setComparison] = useState<string[]>([]);
+    const toggleComparison = (uri: string) => setComparison((current) => current.includes(uri)
+        ? current.filter((id) => id !== uri) : current.length < 3 ? [...current, uri] : current);
+    const selectedRoles = data.roles.filter((role) => comparison.includes(role.occupation_uri));
     return (
         <div className="space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -99,17 +106,20 @@ function Results({ data, tab, setTab, target, setTarget, skills, filters, savedP
                 />
                 <p className="text-xs text-muted-foreground">
                     {num(data.pool_size)} postings in your filters  -  ranked by {data.model.served_name}{' '}
-                    <InfoHint text={data.model.note ?? `The model that won Yojak's benchmark (see Evidence).`} />
+                    <InfoHint text={data.model.note ?? 'The serving model used for these results. See Evidence for available benchmark reports.'} />
                 </p>
             </div>
-            {tab === 'roles' && <Roles roles={data.roles} examplePlan={!!savedPlan} onPlan={(r) => { setTarget(r); setTab('plan'); }} />}
+            {tab === 'roles' && <>
+                {selectedRoles.length > 0 && <RoleComparison roles={selectedRoles} example={!!savedPlan} onRemove={toggleComparison} onClear={() => setComparison([])} />}
+                <Roles roles={data.roles} comparison={comparison} onCompare={toggleComparison} examplePlan={!!savedPlan} onPlan={(r) => { setTarget(r); setTab('plan'); }} />
+            </>}
             {tab === 'jobs' && <Jobs data={data} />}
             {tab === 'plan' && (savedPlan ? <PlanResult data={savedPlan} /> : <PlanView skills={skills} filters={filters} roles={data.roles} target={target} setTarget={setTarget} />)}
         </div>
     );
 }
 
-function Roles({ roles, onPlan, examplePlan = false }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) => void; examplePlan?: boolean }) {
+function Roles({ roles, onPlan, comparison, onCompare, examplePlan = false }: { roles: RoleMatch[]; onPlan: (r: RoleMatch) => void; comparison: string[]; onCompare: (uri: string) => void; examplePlan?: boolean }) {
     if (!roles.length) return <EmptyState title="No roles matched">Try removing filters or adding more skills.</EmptyState>;
     return (
         <div className="grid gap-3 md:grid-cols-2">
@@ -140,6 +150,10 @@ function Roles({ roles, onPlan, examplePlan = false }: { roles: RoleMatch[]; onP
                         </div>
                     )}
                     <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
+                        <label className="inline-flex items-center gap-2 text-xs">
+                            <input type="checkbox" checked={comparison.includes(r.occupation_uri)} disabled={comparison.length >= 3 && !comparison.includes(r.occupation_uri)} onChange={() => onCompare(r.occupation_uri)} aria-label={`Compare ${r.occupation_label}`} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                            Compare
+                        </label>
                         <WhyDrawer title={r.occupation_label} subtitle="Why this role matches" why={r.why} />
                         <Button size="sm" variant="outline" onClick={() => onPlan(r)}>
                             <Path size={15} /> {examplePlan ? 'View example plan' : 'Plan for this role'}
@@ -184,11 +198,12 @@ function PlanView({ skills, filters, roles, target, setTarget }: {
     const [tau, setTau] = useState(0.6);
     const [value, setValue] = useState<'count' | 'salary'>('count');
     const [budgeted, setBudgeted] = useState(false);
+    const planKey = JSON.stringify({ skills, filters, k, tau, value, target: target?.occupation_uri, budgeted });
     const plan = useMutation({
-        mutationFn: () => yojak.studentPlan({
+        mutationFn: async () => ({ result: await yojak.studentPlan({
             skills: skills.map((s) => s.uri), ...filters, k, tau, value,
             target_occupation: target?.occupation_uri ?? null, budget: budgeted ? 3 : null,
-        } as PlanRequest),
+        } as PlanRequest), planKey }),
     });
 
     return (
@@ -240,7 +255,8 @@ function PlanView({ skills, filters, roles, target, setTarget }: {
                     &ldquo;learn the most common skills&rdquo; advice.
                 </EmptyState>
             )}
-            {plan.data && !plan.isPending && <PlanResult data={plan.data} />}
+            {plan.data && plan.data.planKey !== planKey && !plan.isPending && <EmptyState title="Your plan settings have changed">Build a plan to see results for these settings.</EmptyState>}
+            {plan.data && plan.data.planKey === planKey && !plan.isPending && <PlanResult data={plan.data.result} />}
         </div>
     );
 }
@@ -367,7 +383,7 @@ function StudentDemo() {
                     {(index.isLoading || ex.isLoading) && <ResultSkeleton rows={5} />}
                     {ex.error && <ErrorState error={ex.error} onRetry={() => ex.refetch()} />}
                     {ex.data && (
-                        <Results data={ex.data.match} tab={tab} setTab={setTab} target={target ?? ex.data.match.roles[0] ?? null}
+                        <Results key={file} data={ex.data.match} tab={tab} setTab={setTab} target={target ?? ex.data.match.roles[0] ?? null}
                                  setTarget={setTarget} skills={ex.data.match.skills} filters={{}} savedPlan={ex.data.plan} />
                     )}
                 </section>

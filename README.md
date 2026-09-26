@@ -108,6 +108,8 @@ These are decision-support signals. Skill coverage is not a prediction of hiring
 - English, Hindi, Punjabi, and romanised-Hindi input paths.
 - PDF, DOCX, and plain-text extraction; the application does not persist uploaded resumes.
 - Reusable skill selection, region filters, explanation drawers, loading states, and error states.
+- Student role comparison for up to three roles, with posting counts, supported salary ranges, matched/missing skills, and CSV export. Saved-example exports identify their source; changing profiles clears the comparison.
+- Live matching and learning-plan results are tied to their submitted inputs. Changing skills, filters, or plan settings prompts a fresh analysis before results are shown again.
 - Salary responses with `p10`, `p50`, `p90`, `n_support`, and `sufficient`.
 - Explicit `synthetic` labels for demo candidates.
 - Light/dark themes, responsive layouts, and reduced-motion configuration.
