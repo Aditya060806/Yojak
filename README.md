@@ -2,17 +2,76 @@
 
 ### Skill, job and workforce intelligence for India
 
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![Next.js 14](https://img.shields.io/badge/Next.js-14-111111?logo=nextdotjs&logoColor=white)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
+![Neo4j](https://img.shields.io/badge/Graph-Neo4j-4581C3?logo=neo4j&logoColor=white)
+![Three.js](https://img.shields.io/badge/3D-Three.js-111111?logo=threedotjs&logoColor=white)
+
 **Understand your fit. Choose what to learn. See the evidence.**
 
 Built for **Build for Bharat 2.0: Intelligent Talent and Workforce Ecosystem**, Yojak connects Indian job-posting data with the ESCO skills taxonomy. It helps students explore roles, recruiters compare skill profiles, institutions assess curricula, and workforce planners inspect regional demand.
 
 Its central question is practical: **given the skills someone already has, which additional skills make more postings reachable?** Answers include the matching skills, remaining gaps, salary ranges, and the assumptions behind each result.
 
-[Get started](#getting-started) · [Features](#features-and-use-cases) · [Architecture](#architecture) · [How it works](#how-it-works) · [Results](#measured-results) · [Benchmarks](#benchmark-design) · [API](#api-reference) · [Limitations](#limitations)
+[Public demo](https://yojak01.vercel.app/) · [Screenshots](#product-screenshots) · [Get started](#getting-started) · [Architecture](#architecture) · [Results](#measured-results) · [Benchmarks](#benchmark-design) · [API](#api-reference)
 
 > **Project status:** the code includes four stakeholder workflows, an ESCO explorer, admin tools, and an evidence view. Data-quality, salary, and workforce reports are available. Graph-model comparison, upskilling evaluation, multilingual evaluation, and impact reports are pending in the current report set. The dataset is a historical posting snapshot, not a live jobs feed.
 
 ---
+
+## Project at a glance
+
+| Scope | Implemented foundation |
+|---|---|
+| Problem | Translate skills into explainable career, hiring, curriculum, and workforce decisions |
+| Stakeholders | Students/professionals, recruiters, educational institutions, workforce planners |
+| Data foundation | Historical Naukri postings, ESCO taxonomy, GeoNames, AISHE and PLFS reference data |
+| Analytical approach | Sparse retrieval, semantic linking, coverage optimization, calibrated salary quantiles, demand/supply proxies |
+| Delivery | Next.js workspaces, FastAPI services, Neo4j graph, offline artifacts, exported hosted-demo snapshots |
+| Evidence available | Data-quality, salary, and workforce reports; generated documentation checked by CI |
+| Evidence not yet available | Graph-model winner, gold linking accuracy, multilingual accuracy, planning benchmark and measured user impact |
+
+**Measured snapshot, not live counters:** 97,929 raw postings; 95,151 postings with linked skills; 4,364 distinct linked ESCO skills. Salary evaluation uses 4,953 held-out disclosed-salary postings. See [measured results](#measured-results) for sources and qualifications.
+
+### Presentation route
+
+1. **Frame the decision:** a skill list should lead to a defensible next action, not just a dashboard.
+2. **Show the common vocabulary:** inspect the interactive `/network` skill graph, then explain how ESCO connects profiles and postings.
+3. **Follow a student journey:** select the Tier-3 fresher example, inspect matched/missing skills, and compare its saved learning plan with frequency advice.
+4. **Change stakeholders:** open the recruiter example, curriculum coverage, and workforce map to show reuse of the same data foundation.
+5. **Finish with evidence:** show the salary baseline comparison, data coverage, and explicit pending evaluations. Example outputs demonstrate functionality, not validated real-world impact.
+
+## Product screenshots
+
+These are actual captures of the local production frontend in light-theme hosted-demo mode, not design mockups. They document the local implementation and do not assert that the public deployment already contains these changes. Node positions vary as the network rotates.
+
+### Desktop overview
+
+![Yojak desktop overview with stakeholder controls, a 3D skill network, and workspace navigation](docs/images/yojak-desktop.jpg)
+
+*Overview, scrolled to the stakeholder entry points and data-backed network.*
+
+### Interactive skill graph
+
+![Yojak searchable skill graph with skills and occupations, graph controls, and dataset attribution](docs/images/yojak-network.jpg)
+
+*Searchable graph workspace: the saved snapshot contains 170 nodes and 373 relationships from 95,151 historical postings. This is a selected visualization, not the full Neo4j graph.*
+
+### Mobile experience
+
+<img src="docs/images/yojak-mobile.jpg" alt="Yojak mobile overview with compact stakeholder navigation and an interactive 3D skill network" width="360" />
+
+*Responsive navigation and the same graph data on a phone-sized viewport.*
+
+### Reading guide
+
+| For | Start here |
+|---|---|
+| Product reviewers | [Features](#features-and-use-cases), [end-to-end workflow](#how-it-works), [evidence](#measured-results) |
+| Engineers | [Architecture](#architecture), [implementation](#runtime-boundaries), [setup](#getting-started), [API](#api-reference) |
+| ML reviewers | [Ranking and planning](#3-rank-jobs-and-explain-the-match), [benchmarks](#benchmark-design), [compression](#efficiency-and-feature-compression) |
+| Responsible deployment | [Deployment modes](#deployment-modes), [limitations](#limitations), [licensing](#attribution-and-licensing) |
 
 ## Why Yojak
 
@@ -39,6 +98,7 @@ These are decision-support signals. Skill coverage is not a prediction of hiring
 | **Recruiter** · `/recruiter` | Paste or upload a JD, edit extracted skills, upload resumes, optionally include the synthetic pool | Ranked profiles with matched/missing skills and weighted coverage | Compare applicants against the same explicit requirements |
 | **Institution** · `/institution` | Syllabus text or document; occupation group, skill family, state, and tier | Coverage of top-demand skills, missing skills, low-current-demand skills, CSV export | Review a course against postings in a chosen region |
 | **Workforce** · `/workforce` | Skill-family selector and demand/shortage/youth-unemployment map modes | India map, state rankings and details, tier summaries, source caveats | Compare where formal-sector demand sits relative to graduate production |
+| **Skill graph** · `/network` | Search, node selection, neighborhood inspection, rotate, zoom, reset | 3D view of co-listed skills and occupation-skill relationships with posting counts | Explore the evidence connecting a skill to roles and other skills |
 | **Explore** · `/explore` | Occupation search and taxonomy filters | ESCO occupations and their essential/optional skills | Inspect the taxonomy behind a recommended role |
 | **Evidence** · `/evidence` | Generated report index | Available reports, benchmark visualizations when populated, salary results, provenance, and pending states | Walk through the project's measured evidence |
 | **Admin** · `/admin` | Diagnostics, occupation notes, and gold labelling | Graph counts, request latency, editable notes, and evaluation labels | Inspect operation and improve linking evaluation |
@@ -53,6 +113,8 @@ These are decision-support signals. Skill coverage is not a prediction of hiring
 - Light/dark themes, responsive layouts, and reduced-motion configuration.
 
 The public UI focuses on the common controls. The API also exposes advanced options such as effort overrides and larger planning bounds.
+
+The table describes the full-stack application. On the hosted demo, custom extraction and analysis require a reachable backend; saved stakeholder examples are explicitly labelled. See [deployment modes](#deployment-modes).
 
 ## Architecture
 
@@ -124,6 +186,46 @@ flowchart TB
 | Offline pipelines | Acquisition, preparation, evaluation, and artifact generation | [ml_pipeline](ml_pipeline) |
 
 The original `POST /recommendations` endpoint remains available: it embeds a profile, searches the FAISS occupation index, and enriches results from Neo4j. The newer `POST /student/match` endpoint uses a posting-skill matrix and its selected sparse ranker. These are different recommendation paths.
+
+### Deployment modes
+
+```mermaid
+flowchart LR
+    ART["Offline artifacts and reports"] --> API["FastAPI + model caches"]
+    NEO["Neo4j"] --> API
+    API --> LIVE["Full-stack Next.js workspaces"]
+    ART --> EXPORT["scripts/export_static.py"]
+    EXPORT --> JSON["public/data JSON snapshots"]
+    JSON --> DEMO["Hosted Next.js demo on Vercel"]
+    DEMO -. "Custom analysis requires configured API" .-> API
+```
+
+| Capability | Full-stack mode | Hosted snapshot mode |
+|---|---|---|
+| Student, recruiter, curriculum workflows | Compute against the loaded market | Browse saved service-generated examples |
+| Custom text and document extraction | Available with models and source artifacts | Requires live API; examples are not fresh extraction |
+| Workforce and skill network | API-derived aggregates | Exported aggregate JSON |
+| Evidence | Allowlisted backend reports | Exported report JSON/Markdown; absent reports remain pending |
+| Taxonomy explorer, original matcher, roadmap, admin | Backend/Neo4j dependent | Backend-required notice rather than a simulated response |
+| Persistence | Neo4j notes and local gold-label files where implemented | No browser-side replacement for backend writes |
+
+`NEXT_PUBLIC_STATIC_MODE=1` forces snapshot mode; `0` disables automatic selection. Otherwise, [static.ts](app/frontend/lib/static.ts) selects hosted mode when a non-local page is configured to call a localhost API. Snapshot-enabled read services also fall back on network failures, not on every HTTP error. This is **not** automatic cloud backend provisioning.
+
+### 3D network implementation
+
+The graph is an inspection tool, not an embedding-space model explanation. [graph.py](app/api/routes/graph.py) selects frequently requested skills and occupations. Skill-skill edges rank positive log-lift over chance with at least 30 shared postings; occupation edges select characteristic skills with at least 10 supporting postings.
+
+[skill-network-scene.tsx](app/frontend/components/yojak/skill-network-scene.tsx) uses Graphology/ForceAtlas2 for the planar neighborhood layout, then adds deterministic depth for visual separation. The depth coordinate is **not a learned similarity or seniority score**.
+
+| Interaction / safeguard | Implementation |
+|---|---|
+| Inspect relationships | Raycast node picking, search/list selection, highlighted neighborhoods |
+| Navigate | Three.js OrbitControls, explicit zoom/reset/rotation buttons |
+| Inspect magnitude | Node size follows posting count; labels disclose counts |
+| Keep labels readable | Projected HTML buttons with collision and clipping checks |
+| Reduce rendering work | Pixel ratio capped at 1.75; offscreen/hidden-tab rendering skipped; stationary clean scenes avoid redraw |
+| Respect device constraints | Reduced-motion preference, responsive camera, WebGL-unavailable fallback |
+| Release resources | Dispose geometry/materials/renderer and remove observers, listeners, and animation frame |
 
 ### Knowledge graph
 
@@ -493,6 +595,28 @@ The data-quality report includes these stage durations from one run:
 
 Sources: [data_quality.json](reports/data_quality.json), [salary_eval.json](reports/salary_eval.json). Hardware and cold-cache conditions are not fully recorded, so these are run observations, not portable performance guarantees. API throughput, cold-start latency, and graph-model p50/p95 comparisons are not yet published.
 
+```mermaid
+xychart-beta
+    title "Recorded India preparation stages: one historical run"
+    x-axis ["Read", "Clean", "Geo", "Skill link", "Title link", "NCO", "Save", "Neo4j"]
+    y-axis "Seconds (lower is better; different tasks)" 0 --> 180
+    bar [0.64, 3.30, 8.20, 159.59, 87.84, 0.10, 8.23, 139.33]
+```
+
+This chart locates work within that run; it does not compare competing algorithms or establish a speedup. The separate salary evaluation duration is excluded from the preparation chart.
+
+### Performance evidence checklist
+
+| Claim | Evidence status | Interpretation |
+|---|---|---|
+| Salary error versus simple baseline | Measured | MAE 273,040 vs 473,227 annual INR on disclosed-salary test postings |
+| Calibrated salary interval coverage | Measured | 79.65% observed overall versus an 80% target; subgroup coverage differs |
+| Preparation stage duration | Recorded | One run with incomplete hardware/cold-cache metadata |
+| 32 + 32 salary text features | Implemented | Fixed dimensionality, not a measured byte-compression ratio |
+| Graph retrieval p50/p95 and RSS | Evaluator implemented; report pending | Do not infer online speed from architectural choices |
+| Production throughput, concurrency, uptime | Not published | No production SLA or capacity claim |
+| Hiring, placement, retention, learner outcomes | Not measured | Proxy eligibility and alignment do not establish causal impact |
+
 ## Technology stack
 
 | Area | Technology | Usage |
@@ -507,12 +631,27 @@ Sources: [data_quality.json](reports/data_quality.json), [salary_eval.json](repo
 | Document and place parsing | pdfplumber, python-docx, RapidFuzz | Resume/syllabus extraction and geography |
 | Web application | Next.js 14, React 18, TypeScript | App Router pages and typed services |
 | UI and state | Tailwind, Radix primitives, React Query, Axios, Motion, next-themes | Controls, requests, animation, themes |
-| Visualization | D3 geo/scale, Graphology, Sigma.js | India map and skill constellation |
+| Visualization | D3 geo/scale, Graphology/ForceAtlas2, Three.js + OrbitControls | India map, network layout, interactive 3D skill graph |
 | Quality and automation | pytest, Ruff, TypeScript, ESLint, GitHub Actions | Unit/API tests, integration checks, lint and build |
 
 Python dependencies are specified in [requirements.txt](requirements.txt) and [requirements-dev.txt](requirements-dev.txt). Frontend dependencies and resolved versions are in [package.json](app/frontend/package.json) and [package-lock.json](app/frontend/package-lock.json).
 
 ## Getting started
+
+### Frontend-only demo
+
+The committed snapshots allow presentation without downloading datasets, running Neo4j, or loading Python models. This mode uses saved examples, not custom inference.
+
+```powershell
+cd app/frontend
+npm ci
+$env:NEXT_PUBLIC_STATIC_MODE = '1'
+npm run dev
+```
+
+Open [localhost:3000](http://localhost:3000). For Bash, set `NEXT_PUBLIC_STATIC_MODE=1 npm run dev` after `npm ci`. For a production preview, set the same variable before `npm run build`, then run `npm run start`. Public Next.js variables are build-time configuration for production builds.
+
+For the full analytical system, follow the prerequisites and pipeline below.
 
 ### Prerequisites
 
@@ -618,6 +757,7 @@ Settings load from the repository-root `.env`; relative data paths resolve again
 | `ENVIRONMENT`, `ADMIN_TOKEN` | Environment and admin-write guard |
 | `WARM_UP_MODELS` | Background warm-up of the original ML engine |
 | `NEXT_PUBLIC_API_URL` | Browser-visible API URL |
+| `NEXT_PUBLIC_STATIC_MODE` | `1`: hosted examples/snapshots; `0`: live mode; unset: automatic hosted-mode selection |
 
 See [.env.example](.env.example) for defaults. The admin UI stores its token in tab-scoped session storage and sends `X-Admin-Token`. With no token configured, guarded writes are allowed only in development; other environments return a configuration error. This is a demo-grade guard, not user authentication or role-based access control.
 
@@ -633,6 +773,20 @@ See [.env.example](.env.example) for defaults. The admin UI stores its token in 
 | UI cannot reach the API | `NEXT_PUBLIC_API_URL`, API process, and CORS origins |
 | Admin writes fail | Token configuration and the UI's admin settings |
 | Production UI looks outdated | Rebuild with the `web` task; `up` may reuse the previous build |
+| Hosted page is configured to call localhost | Configure a reachable API and CORS, or use explicitly labelled snapshot mode |
+| README/evaluation freshness check fails | Run both documentation generators and include both generated documents in the commit |
+
+### Refresh hosted snapshots
+
+After building the required artifacts and refreshing reports:
+
+```bash
+python scripts/render_readme.py
+python scripts/build_evaluation.py
+python scripts/export_static.py
+```
+
+The exporter replaces `app/frontend/public/data/` with report snapshots, workforce aggregates, skill vocabulary, graph data, and saved persona results. It calls the actual service layer to generate examples; it does not hand-author answers. Inspect exported evidence and attribution before publishing. Rebuild the frontend after changing public environment variables.
 
 ## API reference
 
@@ -754,6 +908,7 @@ app/
     app/                    Public and admin App Router pages
     components/yojak/       Shared stakeholder UI and visualizations
     services/               Typed API clients
+    public/data/            Hosted reports, graph, workforce, and saved examples
 ml_pipeline/
   run_pipeline.py           Ordered artifact-building stages
   evaluate_all.py           Evaluation orchestration
@@ -769,6 +924,7 @@ data/
   reference/                Geography and government reference tables
   gold/                     Frozen samples and collected labels
 docs/optimality.md           Planner objectives and guarantees
+docs/images/                Actual desktop, graph, and mobile screenshots
 reports/                    Generated reports and inherited-code audit
 scripts/                    Setup, service runners, demo, report rendering
 tests/                      Unit/API/integration tests and miniature ESCO fixture
@@ -787,6 +943,8 @@ Raw data, processed datasets, model artifacts, dependency directories, and the p
 | Sparse supported runtime models | Straightforward serving and inspectable scores | HGT benchmark results do not automatically become a deployed model |
 | Salary intervals and support flags | Communicates uncertainty and thin evidence | Wider intervals may be less actionable |
 | Report-driven presentation | Results can be traced to files and generating scripts | Reports must be regenerated after relevant changes |
+| Hosted snapshot mode | Demonstrates key outputs without a Python/Neo4j deployment | Saved examples are not arbitrary personalized inference |
+| Data-backed 3D graph | Lets users inspect skill neighborhoods and posting support | Selected nodes and display depth are not the complete graph or learned coordinates |
 | Separate source-data licensing | Makes reuse conditions explicit | Code licensing does not grant unrestricted dataset reuse |
 
 ## Limitations
@@ -802,6 +960,7 @@ Raw data, processed datasets, model artifacts, dependency directories, and the p
 - **Aggregation scope.** Workforce field selection scopes state demand/shortage; tier summaries and top-skill tables remain overall summaries in the current endpoint.
 - **Document extraction.** No OCR is implemented for scanned-only PDFs. The parser caps PDFs at 40 pages and rejects files over 5 MB; upload handling is not a hardened document-processing service.
 - **Deployment maturity.** Admin tokens are not a full account system. There is no implemented tenant isolation, production rate limiting, or distributed metrics store.
+- **Hosted-demo boundary.** Vercel frontend snapshots do not run the Python inference service or Neo4j. Saved plans, profile matches, and synthetic candidates must not be presented as freshly computed answers for arbitrary user input.
 - **Artifact consistency.** Several runtime resources are process-cached. Restart services after rebuilding artifacts; generated reports can otherwise describe a different run from loaded models.
 - **Reproducibility boundaries.** Existing reports reference an earlier dirty working tree, and not every report supplies full input hashes or hardware details.
 
