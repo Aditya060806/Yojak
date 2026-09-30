@@ -336,3 +336,4 @@
 - 2026-09-28 21:10  wip: scratch note
 - 2026-09-29 21:15  chore: tidy up
 - 2026-09-29 22:54  chore: tidy up
+- 2026-09-30 12:53  docs: update notes
