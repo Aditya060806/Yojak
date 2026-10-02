@@ -338,3 +338,4 @@
 - 2026-09-29 22:54  chore: tidy up
 - 2026-09-30 12:53  docs: update notes
 - 2026-09-30 14:41  chore: tidy up
+- 2026-10-02 13:00  wip: iteration
