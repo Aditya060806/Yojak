@@ -341,3 +341,4 @@
 - 2026-10-02 13:00  wip: iteration
 - 2026-10-02 14:29  chore: progress
 - 2026-10-03 21:25  chore: tweak
+- 2026-10-05 11:32  docs: minor update
