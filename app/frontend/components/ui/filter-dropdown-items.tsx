@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Check, ChevronDown, Search } from 'lucide-react';
+import { CaretDown, Check, MagnifyingGlass } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -61,7 +61,7 @@ export const FilterDropdownTrigger = React.forwardRef<HTMLButtonElement, FilterD
                         <span className="text-muted-foreground text-sm">{placeholder}</span>
                     )}
                 </div>
-                <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                <CaretDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
         );
     }
@@ -78,7 +78,7 @@ export function FilterSearchInput({ value, onChange }: FilterSearchInputProps) {
     return (
         <div className="p-2 border-b bg-muted/30">
             <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <MagnifyingGlass className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                     placeholder="Search options..."
                     value={value}
@@ -117,7 +117,7 @@ export function FilterPagination({ start, end, total, currentPage, totalPages, o
                         onPrev();
                     }}
                 >
-                    <ChevronDown className="h-4 w-4 rotate-90" />
+                    <CaretDown className="h-4 w-4 rotate-90" />
                 </Button>
                 <Button
                     variant="ghost"
@@ -129,7 +129,7 @@ export function FilterPagination({ start, end, total, currentPage, totalPages, o
                         onNext();
                     }}
                 >
-                    <ChevronDown className="h-4 w-4 -rotate-90" />
+                    <CaretDown className="h-4 w-4 -rotate-90" />
                 </Button>
             </div>
         </div>
@@ -159,7 +159,7 @@ export function FilterOptionItem({ option, isSelected, onToggle }: FilterOptionI
                         : "opacity-50"
                 )}
             >
-                {isSelected && <Check className="h-3 w-3 bold" />}
+                {isSelected && <Check className="h-3 w-3" weight="bold" />}
             </div>
             <span className="flex-1 truncate">
                 {option.code && <span className="mr-3 font-mono text-xs opacity-60 bg-muted px-1.5 py-0.5 rounded uppercase tracking-tighter">{option.code}</span>}

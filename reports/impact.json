@@ -1,0 +1,54 @@
+{
+  "report": "impact",
+  "provenance": {
+    "schema_version": 1,
+    "script": "ml_pipeline/impact.py",
+    "generated_at_utc": "2026-10-02T11:39:00+00:00",
+    "git": {
+      "commit": "0d346334c3239b2d7e4e768fee681577e8604dc8",
+      "branch": "main",
+      "dirty": true
+    },
+    "python": "3.11.9",
+    "seed": 31,
+    "inputs": []
+  },
+  "question": "For a Tier-2/3 fresher, how many more postings does Yojak's optimal 3-skill plan make reachable than learning the 3 most common skills?",
+  "users": 300,
+  "users_by_tier": {
+    "2": 181,
+    "3": 119
+  },
+  "pool_size_median": 1332.0,
+  "eligible_before_median": 2.0,
+  "eligible_after_optimal_median": 124.0,
+  "eligible_after_frequency_median": 60.0,
+  "extra_postings_vs_frequency": {
+    "mean": 32.92,
+    "median": 22.0,
+    "iqr": [
+      10.75,
+      57.0
+    ]
+  },
+  "share_users_with_more_postings": 0.9667,
+  "share_users_no_worse": 1.0,
+  "relative_gain_median_pct": 60.0,
+  "assumptions": {
+    "k": 3,
+    "tau": 0.6,
+    "eligibility": "a posting is reachable when the person covers >= 60% of its ESCO skills, weighted by rarity (IDF)",
+    "eligibility_is_not_hiring": true,
+    "person": "a random half of a real held-out fresher posting's skills (pseudo-user, not a real student)",
+    "minimum_pool": 30,
+    "pool": "fresher (0-1 yrs) postings in Tier-2/3 cities in the same ISCO sub-major group",
+    "data": "Naukri postings over about two weeks around 2025-10-03; formal-sector and urban-skewed",
+    "learning": "each recommended skill is assumed learnable; effort and time are not modelled here",
+    "no_causal_claim": "this compares advice rules on the same data; it does not measure hiring outcomes"
+  },
+  "illustration": {
+    "per_1000_users_extra_reachable_postings": 32917.0,
+    "label": "ILLUSTRATION ONLY: 1,000 x mean extra reachable postings per user, under the assumptions above. Not a forecast of jobs or hires."
+  },
+  "seconds": 516.7
+}

@@ -211,7 +211,7 @@ function Views() {
                                 className="group flex min-h-36 flex-col border-b py-5 transition-colors hover:text-primary"
                             >
                                 <div className="flex items-center justify-between">
-                                    <span className={`flex h-9 w-9 items-center justify-center rounded-md ${['bg-emerald-100 text-emerald-800', 'bg-blue-100 text-blue-800', 'bg-amber-100 text-amber-800', 'bg-rose-100 text-rose-800'][i]}`}>
+                                    <span className="flex h-9 w-9 items-center justify-center rounded-md bg-accent text-accent-foreground">
                                         <v.icon size={22} />
                                     </span>
                                     <ArrowRight size={18} className="text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />

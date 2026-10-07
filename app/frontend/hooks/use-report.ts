@@ -6,7 +6,7 @@ import { yojak } from '@/services/yojak';
  * A generated report from reports/*.json. Resolves to `null` when the report has not been
  * generated yet (404), so pages can show "pending" instead of an error or a made-up number.
  */
-export function useReport<T = Record<string, unknown>>(name: string) {
+export function useReport<T = Record<string, unknown>>(name: string, enabled = true) {
     return useQuery<T | null>({
         queryKey: ['report', name],
         queryFn: async () => {
@@ -17,6 +17,7 @@ export function useReport<T = Record<string, unknown>>(name: string) {
                 throw e;
             }
         },
+        enabled,
         staleTime: 10 * 60 * 1000,
     });
 }

@@ -21,6 +21,7 @@ Raw files live in `data/raw/` and are **not committed**; `.gitignore` excludes t
 |---|---|---|
 | `city_tiers.csv` | Transcribed from the 7th CPC HRA city classification (X = Tier 1, Y = Tier 2, all other places Tier 3); ambiguous names carry their state. Team to verify against the Ministry of Finance list | MoF Dept of Expenditure O.M. No. 2/5/2014-E.II(B), 21 July 2015, via the list on Wikipedia |
 | `city_aliases.csv` | Curated: renamed cities, spellings and localities → canonical city (`lookup` names the GeoNames entry). Team to verify | GeoNames plus common usage |
+| `loanwords_hi_pa.csv` | Curated: English workplace terms as written in Devanagari and Gurmukhi → the English term, used by the skill extractor. Team to verify spellings | Common usage |
 | `aishe_2021_22_state_outturn.csv` | `ml_pipeline/supply/parse.py`: AISHE Table 33 grand-total out-turn by state (page 186) | #6; West Bengal is unreadable in the PDF and left empty |
 | `plfs_2023_24_youth_ur.csv` | `ml_pipeline/supply/parse.py`: PLFS Table 18, age 15-29, usual status (ps+ss), persons (page 133) | #8 |
 

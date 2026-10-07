@@ -48,6 +48,8 @@ STRATA = {"fresher": ["0-1"], "mid": ["1-3", "3-6"], "senior": ["6-10", "10+"]}
 POOL_CAP = 2000
 ILP_SECONDS = 5
 SEED = 11
+BRUTE_FORCE_CANDIDATES = 16
+POOL_DESCRIPTION = f"same ISCO sub-major group and experience band, <= {POOL_CAP} postings"
 
 
 def _h(x: str) -> str:
@@ -196,25 +198,64 @@ def _freq_budget(p, costs, budget):
     return Plan(chosen, p.F(chosen), p.G(chosen), time.perf_counter() - t0, cost=spent)
 
 
-def brute_force_check(market, instances, n=40) -> dict:
-    agree, checked = 0, 0
+def brute_force_check(market, instances, n=60, max_cands=BRUTE_FORCE_CANDIDATES) -> dict:
+    """
+    Does the ILP find the true optimum? Real pools have hundreds of candidate skills, too many to
+    enumerate, so both solvers are restricted to the same `max_cands` most-listed candidates and
+    every k-subset of those is enumerated.
+    """
+    agree, proven, checked = 0, 0, 0
+    ks = (1, 2, 3)
     for inst in instances:
         p = market.problem(inst["pool"], inst["have"], 0.6)
         cands = p.candidates()
-        if len(cands) > 22:
+        if len(cands) < max(ks):
             continue
-        for k in (1, 2):
+        listed = np.asarray(p.R[:, cands].sum(axis=0)).ravel()
+        sub = cands[np.argsort(-listed, kind="stable")[:max_cands]]
+        for k in ks:
+            ilp = exact_ilp(p, k, cands=sub, time_limit=20)
             checked += 1
-            agree += int(np.isclose(brute_force(p, k, cands).F, exact_ilp(p, k, cands=cands).F))
+            proven += int(bool(ilp.optimal))
+            agree += int(np.isclose(brute_force(p, k, sub).F, ilp.F))
         if checked >= n:
             break
-    return {"instances_checked": checked, "ilp_equals_brute_force": agree}
+    return {"instances_checked": checked, "ilp_equals_brute_force": agree, "ilp_proven_optimal": proven,
+            "candidate_skills_per_instance": max_cands, "k_values": list(ks),
+            "note": "Both solvers choose among the same most-listed candidate skills of a real pool (tau = 0.6); "
+                    "brute force enumerates every subset."}
+
+
+def refresh_brute_force() -> dict:
+    """Recompute only the ILP-vs-brute-force block of an existing report (minutes, not the hour the grid takes)."""
+    import datetime as dt
+    import json
+
+    from app.core.settings import get_settings
+    from ml_pipeline.common import read_report
+
+    report = read_report("upskilling_eval")
+    if report is None:
+        raise SystemExit("reports/upskilling_eval.json not found; run python -m ml_pipeline.upskilling.evaluate first.")
+    market = load_market()
+    block = brute_force_check(market, make_instances(market, report["instances"]["n"]))
+    report["ilp_vs_brute_force"] = block
+    report["instances"]["pool"] = POOL_DESCRIPTION
+    report["provenance"]["brute_force_refreshed_at_utc"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    path = get_settings().reports_dir / "upskilling_eval.json"
+    path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    return block
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--instances", type=int, default=150)
+    ap.add_argument("--refresh-brute-force", action="store_true",
+                    help="only recompute the ILP-vs-brute-force check in the existing report")
     args = ap.parse_args(argv)
+    if args.refresh_brute_force:
+        print(refresh_brute_force())
+        return 0
     t0 = time.time()
     market = load_market()
     instances = make_instances(market, args.instances)
@@ -231,7 +272,7 @@ def main(argv=None) -> int:
                       "IDF-weighted share of a posting's ESCO skills the person has. F is not submodular; "
                       "G(A) = sum min(1, fit/tau) is, and lazy greedy on G carries the (1-1/e) guarantee on G."),
         "instances": {"n": len(instances), "by_stratum": {s: sum(i["stratum"] == s for i in instances) for s in STRATA},
-                      "pool": "same ISCO sub-major group and experience band, <= 3000 postings",
+                      "pool": POOL_DESCRIPTION,
                       "person": "random half of a held-out posting's ESCO skills"},
         "grid": grid,
         "salary_weighted_k3_tau0.6": salary,

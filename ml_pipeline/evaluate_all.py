@@ -6,6 +6,7 @@ Run every evaluation, then regenerate reports/EVALUATION.md and the README resul
     python -m ml_pipeline.evaluate_all                  # everything (about an hour on one GPU)
     python -m ml_pipeline.evaluate_all --quick          # smoke test: small benchmark, fewer instances
     python -m ml_pipeline.evaluate_all --only impact docs
+    python -m ml_pipeline.evaluate_all --resume         # continue an interrupted benchmark
 
 Steps, in order (each writes reports/<name>.json):
   benchmark     link prediction: 6 models x T1/T2/T3 + ablations   -> model_comparison.json
@@ -28,11 +29,11 @@ import time
 STEPS = ("benchmark", "upskilling", "multilingual", "gold", "impact", "docs")
 
 
-def run_step(step: str, quick: bool) -> int:
+def run_step(step: str, quick: bool, resume: bool = False) -> int:
     if step == "benchmark":
         from ml_pipeline.graph.evaluate import main as bench
 
-        return bench(["--quick", "--seeds", "1"] if quick else [])
+        return bench((["--quick", "--seeds", "1"] if quick else []) + (["--resume"] if resume else []))
     if step == "upskilling":
         from ml_pipeline.upskilling.evaluate import main as up
 
@@ -67,6 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--only", nargs="+", choices=STEPS, default=list(STEPS))
     ap.add_argument("--quick", action="store_true", help="smoke test; quick benchmark writes model_comparison_quick.json")
+    ap.add_argument("--resume", action="store_true", help="continue an interrupted benchmark from its checkpoints")
     args = ap.parse_args(argv)
     t_all = time.time()
     failed = []
@@ -76,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"\n######## {step}", flush=True)
         t0 = time.time()
         try:
-            code = run_step(step, args.quick)
+            code = run_step(step, args.quick, args.resume)
         except SystemExit as e:  # sub-mains may raise SystemExit with a message
             code = e.code if isinstance(e.code, int) else 1
             if not isinstance(e.code, int):

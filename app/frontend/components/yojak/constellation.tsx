@@ -38,7 +38,7 @@ export function Constellation({ className, expanded = false }: { className?: str
             </div>
             <p className="my-4 text-xs text-muted-foreground">{num(visible.length)} results, ordered by posting count</p>
             <div className="max-h-[240px] overflow-y-auto lg:max-h-[420px]">
-                {visible.map((node) => <button key={node.id} onClick={() => setSelectedId(node.id)} aria-pressed={selectedId === node.id} className={cn('flex w-full items-center gap-3 rounded-md px-2 py-3 text-left text-sm hover:bg-muted', node.id === selectedId && 'bg-accent text-accent-foreground')}><span className={cn('h-2 w-2 shrink-0 rounded-full', node.kind === 'skill' ? 'bg-primary' : 'bg-amber-600')} /><span className="min-w-0 flex-1 break-words">{node.label}</span><span className="tabular text-xs text-muted-foreground">{num(node.postings)}</span></button>)}
+                {visible.map((node) => <button key={node.id} onClick={() => setSelectedId(node.id)} aria-pressed={selectedId === node.id} className={cn('flex w-full items-center gap-3 rounded-md px-2 py-3 text-left text-sm hover:bg-muted', node.id === selectedId && 'bg-accent text-accent-foreground')}><span className={cn('h-2 w-2 shrink-0 rounded-full', node.kind === 'skill' ? 'bg-viz-4' : 'bg-caution')} /><span className="min-w-0 flex-1 break-words">{node.label}</span><span className="tabular text-xs text-muted-foreground">{num(node.postings)}</span></button>)}
                 {!visible.length && <p className="py-6 text-sm text-muted-foreground">No matches. Try another skill or role.</p>}
             </div>
         </aside>}

@@ -7,7 +7,7 @@ import { catalogService } from '@/services/catalog';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plus, Trash2, Edit } from 'lucide-react';
+import { CircleNotch, PencilSimple, Plus, Trash } from '@phosphor-icons/react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 export default function NotesPage() {
@@ -68,7 +68,7 @@ export default function NotesPage() {
     if (isLoading) {
         return (
             <div className="flex justify-center items-center min-h-[400px]">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <CircleNotch className="h-8 w-8 animate-spin text-primary" />
             </div>
         );
     }
@@ -162,7 +162,7 @@ export default function NotesPage() {
                             onClick={handleSave}
                             disabled={!selectedOccupation || !noteText.trim() || upsertMutation.isPending}
                         >
-                            {upsertMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                            {upsertMutation.isPending && <CircleNotch className="mr-2 h-4 w-4 animate-spin" />}
                             {editingId ? 'Update' : 'Create'} Note
                         </Button>
                         {editingId && (
@@ -242,7 +242,7 @@ function NoteCard({ note, onEdit, onDelete, isDeleting }: {
                             size="sm"
                             onClick={() => onEdit(note.occupationUri, note.noteId, note.text, note.occupationLabel)}
                         >
-                            <Edit className="h-4 w-4" />
+                            <PencilSimple className="h-4 w-4" />
                         </Button>
                         <Button
                             variant="ghost"
@@ -250,7 +250,7 @@ function NoteCard({ note, onEdit, onDelete, isDeleting }: {
                             onClick={() => onDelete(note.occupationUri, note.noteId)}
                             disabled={isDeleting}
                         >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash className="h-4 w-4" />
                         </Button>
                     </div>
                 </div>

@@ -28,8 +28,9 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print("README.md is up to date with reports/*.json")
         return 0
-    path.write_text(fresh, encoding="utf-8", newline="\n")
-    print("README.md results block updated" if fresh != current else "README.md already up to date")
+    if fresh != current:
+        path.write_text(fresh, encoding="utf-8", newline="\n")
+    print("README.md generated blocks updated" if fresh != current else "README.md already up to date")
     return 0
 
 

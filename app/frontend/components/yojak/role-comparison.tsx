@@ -1,6 +1,6 @@
 'use client';
 
-import { Download, X } from 'lucide-react';
+import { DownloadSimple, X } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { SalaryRange, SkillChip, WhyDrawer } from './bits';
 import { downloadCsv, num } from '@/lib/format';
@@ -31,7 +31,7 @@ export function RoleComparison({ roles, example, onRemove, onClear }: {
                 <p className="text-xs text-muted-foreground">{roles.length} of 3 roles selected{example ? ' · Saved example' : ''}</p>
             </div>
             <div className="flex items-center gap-2">
-                <Button size="sm" variant="outline" onClick={exportComparison}><Download size={15} /> Export CSV</Button>
+                <Button size="sm" variant="outline" onClick={exportComparison}><DownloadSimple size={15} /> Export CSV</Button>
                 <Button size="sm" variant="ghost" onClick={onClear}>Clear</Button>
             </div>
         </div>

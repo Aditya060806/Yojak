@@ -38,7 +38,9 @@
         "bytes": 3047703
       }
     ],
-    "embedding_model": "sentence-transformers/all-mpnet-base-v2"
+    "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+    "gold_refreshed_at_utc": "2026-10-02T11:30:23+00:00",
+    "gold_label_files": []
   },
   "dataset": {
     "name": "Indian Job Market Dataset 2025 (Naukri.com)",

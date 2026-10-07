@@ -1,0 +1,39 @@
+{
+  "report": "multilingual_eval",
+  "provenance": {
+    "schema_version": 1,
+    "script": "ml_pipeline/india/multilingual.py",
+    "generated_at_utc": "2026-10-02T11:30:22+00:00",
+    "git": {
+      "commit": "0d346334c3239b2d7e4e768fee681577e8604dc8",
+      "branch": "main",
+      "dirty": true
+    },
+    "python": "3.11.9",
+    "seed": null,
+    "inputs": []
+  },
+  "question": "Can users enter skills in Hindi, Punjabi or romanised Hindi and still get correct ESCO links?",
+  "models": [
+    {
+      "model": "sentence-transformers/all-mpnet-base-v2",
+      "english": {
+        "status": "pending team labels"
+      },
+      "cross_lingual": {
+        "status": "pending team phrases"
+      }
+    },
+    {
+      "model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+      "english": {
+        "status": "pending team labels"
+      },
+      "cross_lingual": {
+        "status": "pending team phrases"
+      }
+    }
+  ],
+  "decision_rule": "Use the multilingual model for non-English input always; use it for English too only if its English precision is within the CI of the English model.",
+  "gold": "team-written phrases (data/gold/multilingual_phrases.csv) for 60 common ESCO skills"
+}

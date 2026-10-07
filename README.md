@@ -16,7 +16,7 @@ Its central question is practical: **given the skills someone already has, which
 
 [Public demo](https://yojak01.vercel.app/) · [Screenshots](#product-screenshots) · [Get started](#getting-started) · [Architecture](#architecture) · [Results](#measured-results) · [Benchmarks](#benchmark-design) · [API](#api-reference)
 
-> **Project status:** the code includes four stakeholder workflows, an ESCO explorer, admin tools, and an evidence view. Data-quality, salary, and workforce reports are available. Graph-model comparison, upskilling evaluation, multilingual evaluation, and impact reports are pending in the current report set. The dataset is a historical posting snapshot, not a live jobs feed.
+> **Project status:** the code includes four stakeholder workflows, an ESCO explorer, admin tools, and an evidence view. Data-quality, salary, workforce, graph-model comparison, upskilling, and impact reports are available (see [Measured results](#measured-results)). Linking accuracy on team-labelled gold data and multilingual accuracy are still pending labels. The dataset is a historical posting snapshot, not a live jobs feed.
 
 ---
 
@@ -30,7 +30,7 @@ Its central question is practical: **given the skills someone already has, which
 | Analytical approach | Sparse retrieval, semantic linking, coverage optimization, calibrated salary quantiles, demand/supply proxies |
 | Delivery | Next.js workspaces, FastAPI services, Neo4j graph, offline artifacts, exported hosted-demo snapshots |
 | Evidence available | Data-quality, salary, and workforce reports; generated documentation checked by CI |
-| Evidence not yet available | Graph-model winner, gold linking accuracy, multilingual accuracy, planning benchmark and measured user impact |
+| Evidence not yet available | Gold linking accuracy and multilingual accuracy (both need team labels); any measured real-user outcome |
 
 **Measured snapshot, not live counters:** 97,929 raw postings; 95,151 postings with linked skills; 4,364 distinct linked ESCO skills. Salary evaluation uses 4,953 held-out disclosed-salary postings. See [measured results](#measured-results) for sources and qualifications.
 
@@ -40,7 +40,7 @@ Its central question is practical: **given the skills someone already has, which
 2. **Show the common vocabulary:** inspect the interactive `/network` skill graph, then explain how ESCO connects profiles and postings.
 3. **Follow a student journey:** select the Tier-3 fresher example, inspect matched/missing skills, and compare its saved learning plan with frequency advice.
 4. **Change stakeholders:** open the recruiter example, curriculum coverage, and workforce map to show reuse of the same data foundation.
-5. **Finish with evidence:** show the salary baseline comparison, data coverage, and explicit pending evaluations. Example outputs demonstrate functionality, not validated real-world impact.
+5. **Finish with evidence:** show the model comparison, the planning gap to the exact optimum, the salary baseline comparison, data coverage, and the evaluations that are still pending labels. Example outputs demonstrate functionality, not validated real-world impact.
 
 ## Product screenshots
 
@@ -277,12 +277,13 @@ The shared linker accepts ESCO preferred labels, alternative labels, and shorten
 |---|---|
 | Document parsing | PDF text extraction, DOCX paragraphs/tables, or decoded text |
 | Language routing | Script detection for Hindi/Punjabi and a heuristic for romanised Hindi |
-| Exact lookup | Longest-match English n-grams over ESCO labels and accepted frequent posting tags |
+| Exact lookup | Longest-match n-grams on Latin-script words (in any language) over ESCO labels and accepted frequent posting tags |
+| Loanwords | English terms written in Devanagari or Gurmukhi are mapped to English with a curated lexicon, then matched exactly; filler words are trimmed from phrase edges |
 | Semantic linking | Normalized embeddings, FAISS inner-product search over labels, maximum label similarity per concept |
 | Acceptance | Thresholded linking with a stricter guard for ambiguous one-word English tags |
 | Explanation | Preserve the source phrase, method, similarity score, and unlinked phrases |
 
-The current default English skill threshold is **0.70**, with a **0.80** one-word embedding guard. Multilingual extraction uses the multilingual MPNet model and a provisional threshold derived from the English threshold. These values are configuration decisions, not measured accuracy.
+The current default English skill threshold is **0.70**, with a **0.80** one-word embedding guard. Multilingual extraction uses the multilingual MPNet model and a provisional threshold derived from the English threshold. Transliterated loanwords bypass that model, because it linked them to unrelated skills at high similarity; the lexicon is curated and still needs team verification. These values are configuration decisions, not measured accuracy.
 
 Job-title linking also uses the posting's skills to resolve near-ties between plausible occupations. Exact title matches are preserved. See [link.py](ml_pipeline/india/link.py).
 
@@ -387,18 +388,22 @@ sequenceDiagram
 
 ## Measured results
 
-The block below is generated by [scripts/render_readme.py](scripts/render_readme.py). Its numbers come from the JSON reports, and CI checks that this block matches those reports. Missing reports remain pending.
+The status table and the results block below are generated by [scripts/render_readme.py](scripts/render_readme.py). Their content comes from the JSON reports, and CI checks that both match those reports. Missing reports remain pending.
+
+<!-- evidence-status:start -->
 
 | Evidence | Current report set | What it establishes |
-|---|---|---|
+| --- | --- | --- |
 | [Data quality](reports/data_quality.json) | Available | Cleaning counts, geography, linking coverage, graph counts, stage timing |
 | [Salary evaluation](reports/salary_eval.json) | Available | Held-out errors, interval coverage, subgroup results, disclosure bias |
 | [Workforce summary](reports/workforce_summary.json) | Available | Field assignments, state supply coverage, shortage proxy, tier aggregates |
-| Graph comparison and ablations | Pending | No published winner or comparative latency yet |
-| Upskilling and impact | Pending | No published real-pool optimality-gap or impact estimate yet |
-| Gold and multilingual accuracy | Pending labels/evaluation | Implementation exists; accuracy is not established |
+| [Graph comparison and ablations](reports/model_comparison.json) | Available | Six models on three tasks with intervals, latency and memory; names the served model |
+| [Upskilling](reports/upskilling_eval.json) and [impact](reports/impact.json) | Available | Gap to the exact optimum per method, runtime, and the Tier-2/3 fresher estimate with its assumptions |
+| [Gold and multilingual accuracy](reports/multilingual_eval.json) | Evaluation run; team labels pending | Implementation exists; accuracy is not established until the team labels the frozen samples |
 
-**Reading the evidence:** reports record the generating script, timestamp, seed where applicable, Git state, and supplied input hashes. The available September 25, 2026 reports record a dirty working tree based on the pre-reset upstream commit. They are historical run evidence, not proof that every later edit has been reevaluated.
+**Reading the evidence:** reports record the generating script, timestamp, seed where applicable, Git state, and supplied input hashes. The current reports were generated on 2026-09-25 to 2026-10-02 from commits `0d34633`, `cf0681d`, with uncommitted changes in the working tree for at least one run. They are evidence for those runs, not proof that every later edit has been reevaluated.
+
+<!-- evidence-status:end -->
 
 <!-- results:start -->
 
@@ -420,11 +425,32 @@ The block below is generated by [scripts/render_readme.py](scripts/render_readme
 
 ### Models (from `reports/model_comparison.json`)
 
-*Pending:* T1 job-skill completion, T2 occupation-skill recovery and T3 candidate→job fit for B0 Popularity, B1 TF-IDF kNN, B2 SkillAlign (mpnet + FAISS), B3a Adamic-Adar, B3b LightGCN and the HGT.
+| Model | T1 NDCG@10 | T2 NDCG@10 | T3 Recall@10 | T3 NDCG@10 | T3 MRR | p50 ms | p95 ms | RSS MB |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| B0 Popularity | 0.105 | 0.027 | 0.002 | 0.024 | 0.001 | 0.0 | 0.0 | 680 |
+| B1 TF-IDF kNN | 0.373 | 0.409 | 0.825 | 0.474 | 0.571 | 1.7 | 3.0 | 693 |
+| B2 mpnet+FAISS (SkillAlign) | 0.029 | 0.317 | 0.405 | 0.228 | 0.239 | 43.7 | 62.3 | 1,277 |
+| B3a Adamic-Adar | 0.328 | 0.308 | 0.880 | 0.535 | 0.600 | 1.2 | 1.8 | 1,252 |
+| B3b LightGCN | 0.318 | 0.318 | 0.461 | 0.259 | 0.297 | 1.1 | 1.5 | 1,476 |
+| M HGT (Vyuha) | 0.225 | 0.115 | 0.697 | 0.387 | 0.457 | 7.7 | 8.5 | 485 |
+
+**Shipped:** B3a Adamic-Adar (highest T3 NDCG@10; T1 NDCG@10 breaks CI-overlap ties).
+The HGT does not beat the best baseline (B3a Adamic-Adar) on T3: paired NDCG@10 difference -0.1653 [-0.1785, -0.1531].
+
+T1 = hidden half of a held-out job's skills; T2 = hidden 20% of an ESCO occupation's skills; T3 = rank ~9.5K unseen pool jobs for a pseudo-candidate. Latency = ranking all pool jobs for one profile.
 
 ### Upskilling (from `reports/upskilling_eval.json`)
 
-*Pending:* jobs unlocked by lazy greedy, greedy on F and top-k-by-frequency against the exact optimum, for k ∈ {1, 3, 5} and τ ∈ {0.4, 0.6, 0.8}.
+**k = 3, τ = 0.6** (150 instances; mean optimum 71.78 postings; ILP proven optimal in 79.3%)
+
+| Method | Postings unlocked | Mean gap | p95 gap | Optimal | p50 ms | p95 ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Exact (CP-SAT ILP) | 71.74 | 0.10% | 0.00% | 99.3% | 2,251.4 | 5,439.7 |
+| Greedy on F (shipped with ILP) | 66.91 | 10.36% | 47.26% | 56.0% | 3.9 | 5.0 |
+| Lazy greedy on G (1−1/e on G) | 53.21 | 33.21% | 75.96% | 10.0% | 2.2 | 3.1 |
+| Top-k by frequency | 48.24 | 40.44% | 73.90% | 5.3% | 1.2 | 1.7 |
+
+Across all 9 (k, τ) cells, the frequency baseline's mean gap to the optimum reaches up to 51.3%; greedy on F stays within 13.63%. Full grid, salary-weighted and effort-aware results: `reports/EVALUATION.md`.
 
 ### Salary (from `reports/salary_eval.json`)
 
@@ -443,7 +469,15 @@ Salary is disclosed on only 33.9% of postings and disclosure is not random, so e
 
 ### Impact (from `reports/impact.json`)
 
-*Pending:* extra eligible postings for Tier-2/3 freshers from a 3-skill optimal plan compared with frequency advice, with every assumption listed.
+|  |  |
+| --- | ---: |
+| Tier-2/3 fresher profiles (held-out, pseudo-users) | 300 (Tier 2: 181, Tier 3: 119) |
+| Median reachable postings: now → frequency plan → optimal plan | 2 → 60 → 124 |
+| Extra postings, optimal vs frequency (mean; median [IQR]) | +32.92; +22 [+11, +57] |
+| Profiles where the optimal plan reaches more postings | 96.7% |
+| Profiles where it is no worse | 100.0% |
+
+Assumptions: k = 3 skills; reachable = a posting is reachable when the person covers >= 60% of its ESCO skills, weighted by rarity (IDF); person = a random half of a real held-out fresher posting's skills (pseudo-user, not a real student); pool = fresher (0-1 yrs) postings in Tier-2/3 cities in the same ISCO sub-major group. This compares advice rules on the same data; it does not measure hiring outcomes.
 
 <!-- results:end -->
 
@@ -524,7 +558,7 @@ T3 Recall@10 specifically asks whether the source posting appears in the top ten
 
 The report averages stochastic-model metrics over seeds but takes query confidence intervals and latency/memory summaries from the last run. Paired comparisons also use the last run's per-query results. These intervals should not be presented as uncertainty over every seed.
 
-**No graph winner, model speedup, or measured upskilling advantage is claimed until the corresponding report exists.** Source: [graph/evaluate.py](ml_pipeline/graph/evaluate.py).
+**The graph winner, latency, and upskilling results are stated only in the generated tables under [Measured results](#measured-results), which come from the reports; nothing is claimed for a report that does not exist.** Source: [graph/evaluate.py](ml_pipeline/graph/evaluate.py).
 
 ### HGT implementation
 
@@ -595,7 +629,7 @@ The data-quality report includes these stage durations from one run:
 | Neo4j loading | 139.33 |
 | Salary evaluation run, separate report | 195.30 |
 
-Sources: [data_quality.json](reports/data_quality.json), [salary_eval.json](reports/salary_eval.json). Hardware and cold-cache conditions are not fully recorded, so these are run observations, not portable performance guarantees. API throughput, cold-start latency, and graph-model p50/p95 comparisons are not yet published.
+Sources: [data_quality.json](reports/data_quality.json), [salary_eval.json](reports/salary_eval.json). Hardware and cold-cache conditions are not fully recorded, so these are run observations, not portable performance guarantees. API throughput and cold-start latency are not published. Graph-model p50/p95 scoring latency is in the generated Models table, measured on one machine.
 
 ```mermaid
 xychart-beta
@@ -615,7 +649,7 @@ This chart locates work within that run; it does not compare competing algorithm
 | Calibrated salary interval coverage | Measured | 79.65% observed overall versus an 80% target; subgroup coverage differs |
 | Preparation stage duration | Recorded | One run with incomplete hardware/cold-cache metadata |
 | 32 + 32 salary text features | Implemented | Fixed dimensionality, not a measured byte-compression ratio |
-| Graph retrieval p50/p95 and RSS | Evaluator implemented; report pending | Do not infer online speed from architectural choices |
+| Graph retrieval p50/p95 and RSS | Measured (see the generated Models table) | Offline scoring of one profile against the held-out pool on one machine; not an API latency or capacity figure |
 | Production throughput, concurrency, uptime | Not published | No production SLA or capacity claim |
 | Hiring, placement, retention, learner outcomes | Not measured | Proxy eligibility and alignment do not establish causal impact |
 

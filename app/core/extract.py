@@ -7,11 +7,17 @@ Pipeline
   1. read      PDF (pdfplumber) / DOCX (python-docx) / plain text, in memory only
   2. language  Devanagari -> "hi", Gurmukhi -> "pa", common romanised-Hindi words -> "hi-Latn",
                otherwise "en"
-  3. exact     English: longest-match n-gram lookup (1-6 words) over ESCO preferred /
-               alternative / short labels and Naukri tags already linked to ESCO
-  4. embedding the remaining short phrases (list items, comma-separated chunks) are linked
-               by embedding similarity with the same threshold as the pipeline; non-English
-               text always uses the multilingual model
+  3. exact     longest-match n-gram lookup (1-6 words) over ESCO preferred / alternative /
+               short labels and Naukri tags already linked to ESCO. Runs on Latin-script words
+               in any language, because Hindi and Punjabi speakers mix in English skill names
+  4. loanwords Hindi / Punjabi text: English terms written in Devanagari or Gurmukhi
+               ("एक्सेल", "ਟੈਲੀ") are mapped to English with a curated lexicon
+               (data/reference/loanwords_hi_pa.csv) and resolved by the English matcher.
+               Multilingual embeddings link such transliterations unreliably, at high cosine
+  5. embedding the remaining short phrases (list items, comma-separated chunks), with filler
+               words trimmed, are linked by embedding similarity with the pipeline threshold:
+               native-script phrases with the multilingual model, Latin-script ones with the
+               English model and its single-word guard
 
 Nothing is stored. Every linked skill carries the text span it came from, its score and
 the method, so the UI can show *why* a skill was picked up.
@@ -22,7 +28,9 @@ from __future__ import annotations
 import io
 import re
 import threading
+import unicodedata
 from dataclasses import dataclass
+from functools import lru_cache
 
 import numpy as np
 import pandas as pd
@@ -33,8 +41,20 @@ MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 MAX_PHRASES = 400
 ROMAN_HINDI = {"hai", "hain", "karna", "karta", "karti", "aata", "aati", "mujhe", "mein", "aur", "kaam", "ka", "ki",
                "ke", "seekha", "jaanta", "jaanti", "sakta", "sakti", "chalana", "banana", "likhna", "bolna", "nahi"}
-_SPLIT = re.compile(r"[\n\r;,•·●▪◦|/]+|\s+-\s+|\bऔर\b|\bਅਤੇ\b|\band\b", re.I)
+# Filler words trimmed from the edges of a phrase before linking ("मुझे एक्सेल आता है" -> "एक्सेल").
+HINDI_STOP = {"मुझे", "मैं", "मैंने", "मेरा", "मेरी", "मेरे", "हम", "को", "का", "की", "के", "में", "से", "पर", "या", "भी",
+              "है", "हैं", "हूँ", "हूं", "था", "थी", "थे", "आता", "आती", "आते", "जानता", "जानती", "सकता", "सकती", "कर",
+              "करना", "करता", "करती", "किया", "थोड़ी", "थोड़ा", "बहुत", "अच्छा", "अच्छी", "अनुभव", "साल", "वर्ष",
+              "काम", "बात", "ज्ञान", "जानकारी"}
+PUNJABI_STOP = {"ਮੈਨੂੰ", "ਮੈਂ", "ਮੇਰਾ", "ਮੇਰੀ", "ਤੇ", "ਦਾ", "ਦੀ", "ਦੇ", "ਵਿੱਚ", "ਹੈ", "ਹਾਂ", "ਹਨ", "ਆਉਂਦਾ", "ਆਉਂਦੀ", "ਕਰ",
+                "ਸਕਦਾ", "ਸਕਦੀ", "ਤਜਰਬਾ", "ਸਾਲ", "ਕੰਮ", "ਥੋੜ੍ਹੀ", "ਬਹੁਤ", "ਨੂੰ", "ਨਾਲ", "ਗੱਲ", "ਜਾਣਕਾਰੀ"}
+STOPWORDS = HINDI_STOP | PUNJABI_STOP | ROMAN_HINDI | {"thoda", "thodi", "bahut", "accha", "anubhav", "saal", "bhi", "se",
+                                                         "hoon", "hu", "main", "mera", "meri", "ko", "aata", "aati", "aate"}
+# Whitespace lookarounds, not \b: Indic vowel signs are not "word" characters, so \b misfires inside words.
+_SPLIT = re.compile(r"[\n\r;,•·●▪◦|/।॥]+|\s+-\s+|(?<!\S)(?:और|ਅਤੇ|and|aur)(?!\S)", re.I)
 _WORD = re.compile(r"[A-Za-z0-9+#.]+|[ऀ-ॿ]+|[਀-੿]+")
+_EDGE = " .:()[]{}\"'।॥"
+LOANWORD_MAX_WORDS = 3
 
 
 def read_upload(filename: str, content: bytes) -> str:
@@ -73,10 +93,26 @@ def detect_language(text: str) -> str:
     return "en"
 
 
-def candidate_phrases(text: str) -> list[str]:
+def trim_stopwords(phrase: str, stop: set[str]) -> str:
+    """Drop filler words from both ends of a phrase (never from the middle)."""
+    def filler(w: str) -> bool:
+        w = w.strip(_EDGE).lower()
+        return w in stop or w.isdigit()
+
+    words = phrase.split()
+    while words and filler(words[0]):
+        words.pop(0)
+    while words and filler(words[-1]):
+        words.pop()
+    return " ".join(words).strip(_EDGE)
+
+
+def candidate_phrases(text: str, stop: set[str] | None = None) -> list[str]:
     out, seen = [], set()
     for chunk in _SPLIT.split(text):
-        chunk = re.sub(r"\s+", " ", chunk).strip(" .:()[]{}\"'")
+        chunk = re.sub(r"\s+", " ", chunk).strip(_EDGE)
+        if stop:
+            chunk = trim_stopwords(chunk, stop)
         n_words = len(chunk.split())
         if 1 <= n_words <= 6 and 2 <= len(chunk) <= 60 and chunk.lower() not in seen:
             seen.add(chunk.lower())
@@ -84,12 +120,43 @@ def candidate_phrases(text: str) -> list[str]:
     return out[:MAX_PHRASES]
 
 
+@lru_cache(maxsize=1)
+def load_loanwords() -> dict[str, str]:
+    """Devanagari / Gurmukhi spelling of an English workplace term -> the English term."""
+    path = get_settings().reference_data_dir / "loanwords_hi_pa.csv"
+    if not path.exists():
+        return {}
+    df = pd.read_csv(path, comment="#", dtype=str, keep_default_na=False)
+    return {unicodedata.normalize("NFC", t.strip()): e.strip() for t, e in zip(df["term"], df["english"], strict=True)}
+
+
+def split_loanwords(phrase: str, lexicon: dict[str, str], stop: set[str] | None = None) -> tuple[list[tuple[str, str]], str]:
+    """
+    Longest-match lookup of transliterated English terms inside a phrase.
+    Returns [(source span, English term)] and what is left of the phrase (filler trimmed).
+    """
+    words = unicodedata.normalize("NFC", phrase).split()
+    hits, rest, i = [], [], 0
+    while i < len(words):
+        for n in range(min(LOANWORD_MAX_WORDS, len(words) - i), 0, -1):
+            span = " ".join(w.strip(_EDGE) for w in words[i:i + n])
+            if span in lexicon:
+                hits.append((span, lexicon[span]))
+                i += n
+                break
+        else:
+            rest.append(words[i])
+            i += 1
+    residual = " ".join(rest)
+    return hits, trim_stopwords(residual, stop) if stop else residual
+
+
 @dataclass
 class LinkedSkill:
     uri: str
     label: str
     score: float
-    method: str       # exact | embedding
+    method: str       # exact | transliteration | embedding
     source_text: str
 
     def as_dict(self) -> dict:
@@ -177,17 +244,48 @@ class SkillExtractor:
         text = text or ""
         lang = language or detect_language(text)
         found: dict[str, LinkedSkill] = {}
-        if lang == "en":
-            for h in self._exact_spans(text)[0]:
-                found.setdefault(h.uri, h)
-        phrases = candidate_phrases(text)
-        leftovers = [p for p in phrases if self._norm(p) not in self.exact
-                     and not any(self._norm(p) in self._norm(f.source_text) for f in found.values())]
+        # Latin-script skill names are matched exactly whatever the language of the sentence around them.
+        for h in self._exact_spans(text)[0]:
+            found.setdefault(h.uri, h)
         unlinked: list[str] = []
-        if use_embeddings and leftovers:
-            linker = self._linker(multilingual=lang != "en")
-            res = linker.link(leftovers, threshold=self.threshold if lang == "en" else self.multilingual_threshold,
-                              single_token_threshold=self.single_token_threshold if lang == "en" else None)
+        english: list[tuple[str, str]] = []      # (text to link with the English model, span shown to the user)
+        native: list[str] = []                   # phrases for the multilingual model
+        if lang == "en":
+            english = [(p, p) for p in candidate_phrases(text)]
+        else:
+            lexicon = load_loanwords()
+            for phrase in candidate_phrases(text, STOPWORDS):
+                hits, rest = split_loanwords(phrase, lexicon, STOPWORDS)
+                for span, term in hits:
+                    uri = self.exact.get(self._norm(term))
+                    if uri:
+                        found.setdefault(uri, LinkedSkill(uri, self.label_of.get(uri, term), 1.0, "transliteration", span))
+                    else:
+                        english.append((term, f"{span} ({term})"))
+                if len(rest) >= 2 and rest.isascii():
+                    english.append((rest, rest))
+                elif len(rest) >= 2:
+                    native.append(rest)
+        covered = [self._norm(f.source_text) for f in found.values()]
+
+        def adds_nothing(t: str) -> bool:
+            """Already matched exactly, inside a matched span, or a matched span plus at most one generic word."""
+            n = self._norm(t)
+            if n in self.exact or any(n in c for c in covered):
+                return True
+            return any(c in n and len(n.replace(c, " ").split()) <= 1 for c in covered if c)
+
+        english = [(t, src) for t, src in english if not adds_nothing(t)]
+        if use_embeddings and english:
+            res = self._linker(multilingual=False).link([t for t, _ in english], threshold=self.threshold,
+                                                        single_token_threshold=self.single_token_threshold)
+            for r, (_, src) in zip(res.itertuples(index=False), english, strict=True):
+                if r.accepted and r.uri not in found:
+                    found[r.uri] = LinkedSkill(r.uri, r.label, float(r.score), r.method, src)
+                elif not r.accepted:
+                    unlinked.append(src)
+        if use_embeddings and native:
+            res = self._linker(multilingual=True).link(native, threshold=self.multilingual_threshold)
             for r in res.itertuples(index=False):
                 if r.accepted and r.uri not in found:
                     found[r.uri] = LinkedSkill(r.uri, r.label, float(r.score), r.method, r.text)

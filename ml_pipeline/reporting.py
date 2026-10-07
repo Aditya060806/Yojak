@@ -20,6 +20,7 @@ from app.core.settings import get_settings
 REPORTS = ("data_quality", "model_comparison", "upskilling_eval", "salary_eval", "workforce_summary",
            "multilingual_eval", "impact")
 START, END = "<!-- results:start -->", "<!-- results:end -->"
+STATUS_START, STATUS_END = "<!-- evidence-status:start -->", "<!-- evidence-status:end -->"
 MODEL_ORDER = ("b0", "b1", "b2", "b3a", "b3b", "hgt")
 
 
@@ -217,8 +218,13 @@ def upskilling_section(ue: dict | None, short: bool = True) -> str:
                    "Full grid, salary-weighted and effort-aware results: `reports/EVALUATION.md`.")
     if not short:
         bf = ue.get("ilp_vs_brute_force", {})
-        out += [f"ILP vs brute force on small instances: {bf.get('ilp_equals_brute_force')} of "
-                f"{bf.get('instances_checked')} agree.", ""]
+        if bf.get("instances_checked"):
+            scope = (f" (both restricted to the same {bf['candidate_skills_per_instance']} most-listed candidate skills, "
+                     f"k in {{{', '.join(map(str, bf['k_values']))}}})" if "candidate_skills_per_instance" in bf else "")
+            out += [f"ILP vs brute-force enumeration{scope}: the ILP matches the enumerated optimum in "
+                    f"{bf['ilp_equals_brute_force']} of {bf['instances_checked']} cases.", ""]
+        else:
+            out += [pending("ILP vs brute-force cross-check."), ""]
         for label, key, methods in [
             ("Salary-weighted (k = 3, τ = 0.6)", "salary_weighted_k3_tau0.6",
              ("exact_ilp", "greedy_F", "lazy_greedy_G", "frequency")),
@@ -310,9 +316,65 @@ def readme_block(r: dict[str, dict | None]) -> str:
     return "\n\n".join(parts)
 
 
+def evidence_status(r: dict[str, dict | None]) -> str:
+    """Which reports exist, and what run they came from. Generated so it cannot drift from reports/."""
+    def link(label: str, name: str) -> str:
+        return f"[{label}](reports/{name}.json)" if r[name] else label
+
+    def state(*names: str) -> str:
+        have = [n for n in names if r[n]]
+        return "Available" if len(have) == len(names) else "Pending" if not have else "Partly available"
+
+    gold = (r["data_quality"] or {}).get("gold_evaluation", {}).get("skills", {}).get("status") == "evaluated"
+    ml = r["multilingual_eval"]
+    ml_done = bool(ml) and any(m.get("cross_lingual", {}).get("status") == "evaluated" for m in ml["models"])
+    accuracy = ("Available" if gold and ml_done else
+                "Evaluation run; team labels pending" if ml else "Pending labels and evaluation")
+    mc = r["model_comparison"]
+    rows = [
+        [link("Data quality", "data_quality"), state("data_quality"),
+         "Cleaning counts, geography, linking coverage, graph counts, stage timing"],
+        [link("Salary evaluation", "salary_eval"), state("salary_eval"),
+         "Held-out errors, interval coverage, subgroup results, disclosure bias"],
+        [link("Workforce summary", "workforce_summary"), state("workforce_summary"),
+         "Field assignments, state supply coverage, shortage proxy, tier aggregates"],
+        [link("Graph comparison and ablations", "model_comparison"),
+         "Available (quick mode: smoke test only)" if mc and mc.get("quick_mode") else state("model_comparison"),
+         "Six models on three tasks with intervals, latency and memory; names the served model" if mc
+         else "No published winner or comparative latency yet"],
+        [f"{link('Upskilling', 'upskilling_eval')} and {link('impact', 'impact')}", state("upskilling_eval", "impact"),
+         "Gap to the exact optimum per method, runtime, and the Tier-2/3 fresher estimate with its assumptions"
+         if r["upskilling_eval"] and r["impact"] else "No published real-pool optimality gap or impact estimate yet"],
+        [link("Gold and multilingual accuracy", "multilingual_eval"), accuracy,
+         "Linking precision and recall on team labels" if gold and ml_done
+         else "Implementation exists; accuracy is not established until the team labels the frozen samples"],
+    ]
+    out = table(["Evidence", "Current report set", "What it establishes"], rows, "lll")
+    runs = []
+    for name in REPORTS:
+        if r[name]:
+            pv = r[name].get("provenance", {})
+            git = pv.get("git", {})
+            runs.append((str(pv.get("generated_at_utc", ""))[:10], (git.get("commit") or "")[:7], bool(git.get("dirty"))))
+    if runs:
+        days = sorted({d for d, _, _ in runs if d})
+        commits = sorted({c for _, c, _ in runs if c})
+        when = days[0] if len(days) == 1 else f"{days[0]} to {days[-1]}"
+        out += ("\n\n**Reading the evidence:** reports record the generating script, timestamp, seed where applicable, "
+                f"Git state, and supplied input hashes. The current reports were generated on {when} from "
+                f"commit{'s' if len(commits) > 1 else ''} {', '.join(f'`{c}`' for c in commits)}"
+                + (", with uncommitted changes in the working tree for at least one run" if any(d for _, _, d in runs) else "")
+                + ". They are evidence for those runs, not proof that every later edit has been reevaluated.")
+    return out
+
+
 def render_readme(readme: str, r: dict[str, dict | None]) -> str:
     a, b = readme.index(START), readme.index(END)
-    return readme[: a + len(START)] + "\n\n" + readme_block(r) + "\n\n" + readme[b:]
+    readme = readme[: a + len(START)] + "\n\n" + readme_block(r) + "\n\n" + readme[b:]
+    if STATUS_START in readme and STATUS_END in readme:
+        a, b = readme.index(STATUS_START), readme.index(STATUS_END)
+        readme = readme[: a + len(STATUS_START)] + "\n\n" + evidence_status(r) + "\n\n" + readme[b:]
+    return readme
 
 
 # --- EVALUATION.md ------------------------------------------------------------------------------

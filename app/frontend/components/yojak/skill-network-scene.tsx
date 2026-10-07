@@ -10,6 +10,12 @@ import { ArrowsClockwise, Minus, Pause, Play, Plus } from '@phosphor-icons/react
 import { Hint } from './bits';
 import type { Constellation, ConstellationNode } from '@/services/yojak';
 
+/** A design token ("184 72% 34%") as a three.js colour, so the scene follows the active theme. */
+function tokenColor(name: string, fallback: number): THREE.Color {
+    const [h, s, l] = getComputedStyle(document.documentElement).getPropertyValue(name).trim().split(/s+/);
+    return h && s && l ? new THREE.Color(`hsl(${parseFloat(h)}, ${s}, ${l})`) : new THREE.Color(fallback);
+}
+
 interface SceneAPI { select: (id: string | null) => void; zoom: (factor: number) => void; reset: () => void; rotate: (enabled: boolean) => void }
 
 function layout(data: Constellation) {
@@ -59,6 +65,7 @@ export function SkillNetworkScene({ data, selectedId, onSelect }: {
         try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
         catch { setUnavailable(true); return; }
         const dark = resolvedTheme === 'dark';
+        const skillColor = tokenColor('--viz-4', 0x108b80), occupationColor = tokenColor('--caution', 0xd49a29);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -88,7 +95,7 @@ export function SkillNetworkScene({ data, selectedId, onSelect }: {
         const maxPostings = Math.max(...data.nodes.map((n) => n.postings), 1);
         data.nodes.forEach((node) => {
             const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                color: node.kind === 'occupation' ? 0xd49a29 : 0x108b80, metalness: 0.28, roughness: 0.28,
+                color: node.kind === 'occupation' ? occupationColor : skillColor, metalness: 0.28, roughness: 0.28,
             }));
             mesh.position.copy(positions.get(node.id)!);
             mesh.scale.setScalar(0.055 + Math.sqrt(node.postings / maxPostings) * 0.15);
@@ -113,12 +120,12 @@ export function SkillNetworkScene({ data, selectedId, onSelect }: {
             validEdges.forEach((e) => { if (e.source === id) neighbors.add(e.target); if (e.target === id) neighbors.add(e.source); });
             meshes.forEach((mesh, nodeId) => {
                 const focus = !id || nodeId === id || neighbors.has(nodeId);
-                mesh.material.color.set(focus ? (mesh.userData.node.kind === 'occupation' ? 0xd49a29 : 0x108b80) : (dark ? 0x334043 : 0xc8d2d7));
+                mesh.material.color.set(focus ? (mesh.userData.node.kind === 'occupation' ? occupationColor : skillColor) : (dark ? 0x334043 : 0xc8d2d7));
                 mesh.material.emissive.set(nodeId === id ? 0x06473e : 0x000000);
             });
             validEdges.forEach((e, i) => {
                 const connected = e.source === id || e.target === id;
-                const color = new THREE.Color(connected ? 0x108b80 : dark ? 0x536265 : id ? 0xdfe5e8 : 0x9baeb4);
+                const color = connected ? skillColor : new THREE.Color(dark ? 0x536265 : id ? 0xdfe5e8 : 0x9baeb4);
                 color.toArray(edgeColors, i * 6); color.toArray(edgeColors, i * 6 + 3);
             });
             edgeGeometry.attributes.color.needsUpdate = true;

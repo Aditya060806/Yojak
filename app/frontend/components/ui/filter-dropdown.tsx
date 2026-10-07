@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Filter } from 'lucide-react';
+import { Funnel } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import {
     Popover,
@@ -108,7 +108,7 @@ export function FilterDropdown({
                         <div className="p-1.5">
                             {filteredOptions.length === 0 ? (
                                 <div className="p-8 text-sm text-center text-muted-foreground flex flex-col items-center gap-2">
-                                    <Filter className="h-8 w-8 opacity-20" />
+                                    <Funnel className="h-8 w-8 opacity-20" />
                                     No options available
                                 </div>
                             ) : (

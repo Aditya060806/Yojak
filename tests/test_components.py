@@ -7,6 +7,7 @@ upskilling gains, and the report renderer.
 from __future__ import annotations
 
 import io
+import time
 from pathlib import Path
 
 import numpy as np
@@ -396,7 +397,7 @@ def test_evaluate_all_runs_selected_steps_in_order_and_reports_failures(monkeypa
 
     calls = []
 
-    def fake(step, quick):
+    def fake(step, quick, resume=False):
         calls.append(step)
         if step == "gold":
             raise SystemExit("no labels yet")
@@ -407,3 +408,129 @@ def test_evaluate_all_runs_selected_steps_in_order_and_reports_failures(monkeypa
     assert calls == ["gold", "impact", "docs"]                 # canonical order, not argument order
     calls.clear()
     assert ev.main(["--only", "impact"]) == 0 and calls == ["impact"]
+
+
+def test_benchmark_checkpoints_resume_and_reset(tmp_path):
+    from ml_pipeline.graph.evaluate import Checkpoints
+
+    calls = []
+
+    def work():
+        calls.append(1)
+        return {"mean": {"t3": 0.5}, "_raw": {"t3": np.arange(3)}}
+
+    first = Checkpoints(tmp_path / "bench", resume=False).run("b1", work)
+    again = Checkpoints(tmp_path / "bench", resume=True).run("b1", work)
+    assert len(calls) == 1 and again["mean"] == first["mean"] and again["_raw"]["t3"].tolist() == [0, 1, 2]
+    # a checkpoint older than the graph data is stale and recomputed
+    Checkpoints(tmp_path / "bench", resume=True, newer_than=time.time() + 60).run("b1", work)
+    assert len(calls) == 2
+    # without --resume the directory is cleared
+    Checkpoints(tmp_path / "bench", resume=False).run("b1", work)
+    assert len(calls) == 3
+
+
+# --- hosted-demo snapshot exporter ---------------------------------------------------------------------------
+
+def test_export_static_helpers_make_valid_json():
+    import importlib.util
+    import json
+
+    spec = importlib.util.spec_from_file_location("export_static", Path(__file__).parents[1] / "scripts" / "export_static.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.slug(None) == "all"
+    assert mod.slug("Information and Communication Technologies (ICTs)") == "information-and-communication-technologies-icts"
+    cleaned = mod.clean({"a": np.float64("nan"), 1: [np.int64(3), float("inf"), (np.bool_(True),)], "b": "x"})
+    assert cleaned == {"a": None, "1": [3, None, [True]], "b": "x"}
+    json.dumps(cleaned, allow_nan=False)
+
+
+def test_evidence_status_tracks_which_reports_exist():
+    from ml_pipeline.reporting import REPORTS, STATUS_END, STATUS_START, evidence_status, render_readme
+
+    empty = dict.fromkeys(REPORTS)
+    assert evidence_status(empty).count("| Pending") >= 5 and "Reading the evidence" not in evidence_status(empty)
+    prov = {"provenance": {"generated_at_utc": "2026-10-02T10:00:00+00:00", "git": {"commit": "abcdef123", "dirty": True}}}
+    some = {**empty, "data_quality": {**prov, "gold_evaluation": {"skills": {"status": "pending team labels"}}},
+            "model_comparison": {**prov, "models": {}, "quick_mode": False}, "upskilling_eval": prov}
+    out = evidence_status(some)
+    assert "[Graph comparison and ablations](reports/model_comparison.json) | Available" in out
+    assert "Partly available" in out                      # upskilling without impact
+    assert "`abcdef1`" in out and "uncommitted changes" in out and "2026-10-02" in out
+    readme = "\n".join(["a", "<!-- results:start -->", "x", "<!-- results:end -->", "b", STATUS_START, "STALE", STATUS_END, "c"])
+    rendered = render_readme(readme, empty)
+    assert "STALE" not in rendered and rendered.endswith("c") and render_readme(rendered, empty) == rendered
+
+
+# --- multilingual extraction: fillers, loanwords, mixed scripts ------------------------------------------------
+
+def test_trim_stopwords_and_hindi_sentence_splitting():
+    from app.core.extract import STOPWORDS, candidate_phrases, trim_stopwords
+
+    assert trim_stopwords("मुझे एक्सेल आता है", STOPWORDS) == "एक्सेल"
+    assert trim_stopwords("बिक्री का 2 साल का अनुभव", STOPWORDS) == "बिक्री"
+    assert trim_stopwords("मुझे है", STOPWORDS) == ""
+    text = "मुझे एक्सेल और अकाउंटिंग आती है। थोड़ी अंग्रेज़ी में बात कर सकती हूँ, ग्राहक सेवा का अनुभव है।"
+    assert candidate_phrases(text, STOPWORDS) == ["एक्सेल", "अकाउंटिंग", "अंग्रेज़ी", "ग्राहक सेवा"]
+    # Gurmukhi "and" ends in a vowel sign, where \b would not see a word boundary
+    assert candidate_phrases("ਮੈਨੂੰ ਐਕਸਲ ਅਤੇ ਟੈਲੀ ਆਉਂਦੀ ਹੈ", STOPWORDS) == ["ਐਕਸਲ", "ਟੈਲੀ"]
+    assert candidate_phrases("mujhe excel aur tally aata hai", STOPWORDS) == ["excel", "tally"]
+    # English behaviour is unchanged when no stopword set is given
+    assert candidate_phrases("Python, SQL and standing orders") == ["Python", "SQL", "standing orders"]
+
+
+def test_loanword_lexicon_is_clean_and_matches_longest_span():
+    from app.core.extract import STOPWORDS, load_loanwords, split_loanwords
+
+    raw = pd.read_csv(Path(__file__).parents[1] / "data" / "reference" / "loanwords_hi_pa.csv", comment="#", dtype=str)
+    assert not raw["term"].duplicated().any() and set(raw["script"]) == {"hi", "pa"}
+    assert raw["english"].str.fullmatch(r"[a-z ]+").all()
+    for term, script in zip(raw["term"], raw["script"], strict=True):   # every spelling is in its declared script
+        block = range(0x0900, 0x0980) if script == "hi" else range(0x0A00, 0x0A80)
+        assert all(ord(ch) in block or ch == " " for ch in term), term
+    lex = load_loanwords()
+    hits, rest = split_loanwords("मुझे एमएस एक्सेल और डेटा एंट्री का काम", lex, STOPWORDS)
+    assert hits == [("एमएस एक्सेल", "ms excel"), ("डेटा एंट्री", "data entry")] and rest == "और"
+    assert split_loanwords("ग्राहक सेवा", lex, STOPWORDS) == ([], "ग्राहक सेवा")
+
+
+def test_extract_routes_loanwords_latin_words_and_native_phrases():
+    from app.core.extract import SkillExtractor
+
+    class Linker:
+        def __init__(self, table):
+            self.table, self.seen = table, []
+
+        def link(self, texts, threshold, single_token_threshold=None, top_k=5):
+            self.seen.append(list(texts))
+            rows = [{"text": t, "uri": self.table.get(t, (None,))[0], "label": self.table.get(t, (None, None))[1],
+                     "score": 0.9 if t in self.table else 0.3, "method": "embedding", "accepted": t in self.table} for t in texts]
+            return pd.DataFrame(rows)
+
+    ex = object.__new__(SkillExtractor)
+    ex.exact = {"excel": "u:xl", "accounting": "u:acc"}
+    ex.label_of = {"u:xl": "use spreadsheets software", "u:acc": "accounting", "u:cs": "customer service"}
+    ex.threshold, ex.single_token_threshold, ex.threshold_status, ex.max_n = 0.7, 0.8, "test", 6
+    english, multi = Linker({}), Linker({"ग्राहक सेवा": ("u:cs", "customer service")})
+    ex._linker = lambda multilingual: multi if multilingual else english
+
+    out = ex.extract("मुझे एक्सेल, टैली और अकाउंटिंग आती है। ग्राहक सेवा का अनुभव है, Excel भी")
+    by = {s["source_text"]: s for s in out["skills"]}
+    assert out["language"] == "hi"
+    assert by["Excel"]["method"] == "exact"                         # Latin word inside Hindi text
+    assert by["अकाउंटिंग"]["method"] == "transliteration" and by["अकाउंटिंग"]["uri"] == "u:acc"
+    assert by["ग्राहक सेवा"]["uri"] == "u:cs"                       # native phrase, multilingual model
+    assert multi.seen == [["ग्राहक सेवा"]]                          # loanwords never reach the multilingual model
+    assert english.seen == [["tally"]] and out["unlinked_phrases"] == ["टैली (tally)"]   # honest: no ESCO skill
+
+
+def test_brute_force_check_runs_on_real_sized_pools():
+    from ml_pipeline.upskilling.evaluate import brute_force_check
+    from tests.test_yojak_api import _market
+
+    m = _market()
+    instances = [{"pool": m.pool(isco2="25"), "have": np.array([2])}, {"pool": m.pool(), "have": np.array([0])}]
+    out = brute_force_check(m, instances, n=6, max_cands=4)
+    assert out["instances_checked"] == 6 and out["ilp_equals_brute_force"] == 6 and out["ilp_proven_optimal"] == 6
+    assert out["candidate_skills_per_instance"] == 4 and out["k_values"] == [1, 2, 3]

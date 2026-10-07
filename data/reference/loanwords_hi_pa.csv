@@ -1,0 +1,120 @@
+# English workplace terms as they are commonly written in Devanagari (hi) and Gurmukhi (pa), with the English term they transliterate.
+# Used by app/core/extract.py: these words are resolved through the English matcher, because multilingual
+# embedding models link transliterated loanwords unreliably (measured: "एक्सेल" -> an unrelated ESCO skill at cosine 0.93).
+# Curated by hand (Claude, 2026-10-02); TEAM TO VERIFY spellings and add regional variants. One row per spelling.
+term,script,english
+एक्सेल,hi,excel
+एक्सल,hi,excel
+एमएस एक्सेल,hi,ms excel
+टैली,hi,tally
+टेली,hi,tally
+डेटा एंट्री,hi,data entry
+डाटा एंट्री,hi,data entry
+डेटा एन्ट्री,hi,data entry
+अकाउंटिंग,hi,accounting
+एकाउंटिंग,hi,accounting
+अकाउंट्स,hi,accounting
+जीएसटी,hi,gst
+कंप्यूटर,hi,computer
+कम्प्यूटर,hi,computer
+टाइपिंग,hi,typing
+एमएस ऑफिस,hi,ms office
+एमएस वर्ड,hi,ms word
+वर्ड,hi,ms word
+पावरपॉइंट,hi,powerpoint
+पावर पॉइंट,hi,powerpoint
+इंटरनेट,hi,internet
+ईमेल,hi,email
+मार्केटिंग,hi,marketing
+डिजिटल मार्केटिंग,hi,digital marketing
+सेल्स,hi,sales
+कस्टमर सर्विस,hi,customer service
+कस्टमर केयर,hi,customer service
+कॉल सेंटर,hi,call centre
+कम्युनिकेशन,hi,communication
+मैनेजमेंट,hi,management
+बैंकिंग,hi,banking
+बिलिंग,hi,billing
+इंग्लिश,hi,english
+पाइथन,hi,python
+जावा,hi,java
+जावास्क्रिप्ट,hi,javascript
+एसक्यूएल,hi,sql
+एचटीएमएल,hi,html
+सीएसएस,hi,css
+सॉफ्टवेयर,hi,software
+हार्डवेयर,hi,hardware
+नेटवर्किंग,hi,networking
+प्रोग्रामिंग,hi,programming
+कोडिंग,hi,programming
+वेब डिजाइन,hi,web design
+ग्राफिक डिजाइन,hi,graphic design
+डिजाइन,hi,design
+फोटोशॉप,hi,photoshop
+ऑटोकैड,hi,autocad
+वीडियो एडिटिंग,hi,video editing
+ड्राइविंग,hi,driving
+वेल्डिंग,hi,welding
+इलेक्ट्रीशियन,hi,electrician
+प्लंबिंग,hi,plumbing
+नर्सिंग,hi,nursing
+टीचिंग,hi,teaching
+ट्यूशन,hi,tutoring
+ट्रेनिंग,hi,training
+रिसेप्शन,hi,reception
+अकाउंटेंट,hi,accountant
+इन्वेंटरी,hi,inventory management
+लॉजिस्टिक्स,hi,logistics
+सप्लाई चेन,hi,supply chain management
+क्वालिटी कंट्रोल,hi,quality control
+मशीन ऑपरेटर,hi,machine operation
+सिक्योरिटी,hi,security
+हाउसकीपिंग,hi,housekeeping
+कुकिंग,hi,cooking
+ब्यूटीशियन,hi,beauty treatment
+टेलीकॉलिंग,hi,telemarketing
+सोशल मीडिया,hi,social media
+रिपोर्टिंग,hi,reporting
+प्रोजेक्ट मैनेजमेंट,hi,project management
+एचआर,hi,human resources
+टीम वर्क,hi,teamwork
+लीडरशिप,hi,leadership
+ਐਕਸਲ,pa,excel
+ਐਕਸੈਲ,pa,excel
+ਟੈਲੀ,pa,tally
+ਡਾਟਾ ਐਂਟਰੀ,pa,data entry
+ਡੇਟਾ ਐਂਟਰੀ,pa,data entry
+ਅਕਾਊਂਟਿੰਗ,pa,accounting
+ਅਕਾਉਂਟਿੰਗ,pa,accounting
+ਜੀਐਸਟੀ,pa,gst
+ਕੰਪਿਊਟਰ,pa,computer
+ਟਾਈਪਿੰਗ,pa,typing
+ਐਮਐਸ ਆਫਿਸ,pa,ms office
+ਇੰਟਰਨੈੱਟ,pa,internet
+ਈਮੇਲ,pa,email
+ਮਾਰਕੀਟਿੰਗ,pa,marketing
+ਸੇਲਜ਼,pa,sales
+ਕਸਟਮਰ ਸਰਵਿਸ,pa,customer service
+ਕਸਟਮਰ ਕੇਅਰ,pa,customer service
+ਕਾਲ ਸੈਂਟਰ,pa,call centre
+ਮੈਨੇਜਮੈਂਟ,pa,management
+ਬੈਂਕਿੰਗ,pa,banking
+ਬਿਲਿੰਗ,pa,billing
+ਇੰਗਲਿਸ਼,pa,english
+ਪਾਈਥਨ,pa,python
+ਜਾਵਾ,pa,java
+ਸਾਫਟਵੇਅਰ,pa,software
+ਹਾਰਡਵੇਅਰ,pa,hardware
+ਨੈੱਟਵਰਕਿੰਗ,pa,networking
+ਪ੍ਰੋਗਰਾਮਿੰਗ,pa,programming
+ਡਿਜ਼ਾਈਨ,pa,design
+ਡਰਾਈਵਿੰਗ,pa,driving
+ਵੈਲਡਿੰਗ,pa,welding
+ਇਲੈਕਟ੍ਰੀਸ਼ੀਅਨ,pa,electrician
+ਪਲੰਬਿੰਗ,pa,plumbing
+ਨਰਸਿੰਗ,pa,nursing
+ਟੀਚਿੰਗ,pa,teaching
+ਟਿਊਸ਼ਨ,pa,tutoring
+ਟ੍ਰੇਨਿੰਗ,pa,training
+ਸੋਸ਼ਲ ਮੀਡੀਆ,pa,social media
+ਲੀਡਰਸ਼ਿਪ,pa,leadership

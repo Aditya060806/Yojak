@@ -35,9 +35,9 @@ export default function EvidencePage() {
             />
             {index.error && <ErrorState error={index.error} onRetry={() => index.refetch()} />}
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {(index.data?.json ?? Array.from({ length: 7 }, (_, i) => ({ name: `loading-${i}`, available: false }))).map((r) => (
-                    <ReportCard key={r.name} name={r.name} available={r.available} loading={!index.data} />
-                ))}
+                {index.data
+                    ? index.data.json.map((r) => <ReportCard key={r.name} name={r.name} available={r.available} />)
+                    : !index.error && Array.from({ length: 7 }, (_, i) => <SkeletonBlock key={i} className="h-[108px] rounded-xl" />)}
             </div>
             <div className="space-y-16 pt-14">
                 <ModelsSection />
@@ -49,10 +49,9 @@ export default function EvidencePage() {
     );
 }
 
-function ReportCard({ name, available, loading }: { name: string; available: boolean; loading: boolean }) {
+function ReportCard({ name, available }: { name: string; available: boolean }) {
     const [open, setOpen] = useState(false);
-    const rep = useReport<{ provenance?: { generated_at_utc?: string; script?: string; git?: { commit?: string } } }>(name);
-    if (loading) return <SkeletonBlock className="h-[108px] rounded-xl" />;
+    const rep = useReport<{ provenance?: { generated_at_utc?: string; script?: string; git?: { commit?: string } } }>(name, available);
     const p = rep.data?.provenance;
     return (
         <div className="rounded-xl border bg-card">

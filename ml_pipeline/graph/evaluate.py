@@ -14,6 +14,10 @@ Protocol (identical for every model):
 Metrics: recall@10, NDCG@10, MRR (rank among all items), each with a 95% bootstrap CI;
 paired bootstrap differences against the best baseline; p50/p95 online latency; memory.
 Stochastic models run with 3 seeds; the table reports the mean over seeds.
+
+Each model's result is checkpointed to artifacts/graph/bench_*/ as soon as it finishes.
+`--resume` reuses checkpoints newer than the graph data, so an interrupted run continues
+from the model it stopped at; without it, checkpoints are cleared and everything is rerun.
 """
 
 from __future__ import annotations
@@ -21,8 +25,10 @@ from __future__ import annotations
 import argparse
 import gc
 import os
+import shutil
 import sys
 import time
+from pathlib import Path
 
 import numpy as np
 import psutil
@@ -205,6 +211,27 @@ def _mean_over_seeds(runs: list[dict]) -> dict:
     return out
 
 
+class Checkpoints:
+    """Per-model results on disk, so a long benchmark survives an interruption."""
+
+    def __init__(self, directory: Path, resume: bool, newer_than: float = 0.0):
+        self.dir, self.resume, self.newer_than = directory, resume, newer_than
+        if not resume and directory.exists():
+            shutil.rmtree(directory)
+        directory.mkdir(parents=True, exist_ok=True)
+
+    def run(self, key: str, fn):
+        import joblib
+
+        path = self.dir / f"{key}.joblib"
+        if self.resume and path.exists() and path.stat().st_mtime > self.newer_than:
+            print(f"    resumed from checkpoint {path.name}", flush=True)
+            return joblib.load(path)
+        out = fn()
+        joblib.dump(out, path)
+        return out
+
+
 class Factory:
     """Named zero-arg constructor so reports carry readable labels."""
 
@@ -226,6 +253,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--models", nargs="*", default=None, help="Subset of model keys to run")
     parser.add_argument("--skip-ablations", action="store_true")
     parser.add_argument("--seeds", type=int, default=3)
+    parser.add_argument("--resume", action="store_true", help="Reuse per-model checkpoints from an interrupted run")
     args = parser.parse_args(argv)
 
     from ml_pipeline.graph.hgt.model import HGTRecommender
@@ -234,6 +262,10 @@ def main(argv: list[str] | None = None) -> int:
     data = load_or_build("esco", SPLIT_SEED)
     leak = leakage_report(data)
     assert leak["hidden_edges_in_known"] == 0 and leak["groups_spanning_splits"] == 0, leak
+    from ml_pipeline.graph.data import cache_path
+
+    ckpt = Checkpoints(cache_path("esco", SPLIT_SEED).parent / f"bench_{'quick' if args.quick else 'full'}_seeds{args.seeds}",
+                       args.resume, newer_than=cache_path("esco", SPLIT_SEED).stat().st_mtime)
 
     models = {
         "b0": (Factory("B0 Popularity", Popularity), [0]),
@@ -248,10 +280,10 @@ def main(argv: list[str] | None = None) -> int:
     for key in selected:
         factory, model_seeds = models[key]
         print(f"\n== {factory.label}", flush=True)
-        results[key] = evaluate_model(factory, data, model_seeds, quick=args.quick)
+        results[key] = ckpt.run(key, lambda f=factory, ms=model_seeds: evaluate_model(f, data, ms, quick=args.quick))
 
     comparison = compare(results)
-    ablations = {} if args.skip_ablations else run_ablations(data, seeds, args.quick)
+    ablations = {} if args.skip_ablations else run_ablations(data, seeds, args.quick, ckpt)
     body = {
         "protocol": __doc__.strip(),
         "data": leak,
@@ -293,7 +325,7 @@ def compare(results: dict) -> dict:
     return out
 
 
-def run_ablations(data: GraphData, seeds: list[int], quick: bool) -> dict:
+def run_ablations(data: GraphData, seeds: list[int], quick: bool, ckpt: Checkpoints) -> dict:
     """Without skill linking (raw tags; T3 comparable) and HGT structure ablations."""
     from ml_pipeline.graph.baselines import AdamicAdar, TfidfKNN
     from ml_pipeline.graph.hgt.model import HGTRecommender
@@ -308,7 +340,7 @@ def run_ablations(data: GraphData, seeds: list[int], quick: bool) -> dict:
     }
     for key, fac in [("b1", Factory("B1 TF-IDF kNN", TfidfKNN)), ("b3a", Factory("B3a Adamic-Adar", AdamicAdar)),
                      ("b3b", Factory("B3b LightGCN", LightGCN)), ("hgt", Factory("M HGT (Vyuha)", HGTRecommender))]:
-        r = evaluate_model(fac, tags, seeds[:1], quick=quick, tasks=("t3",))
+        r = ckpt.run(f"ablation_tags_{key}", lambda f=fac: evaluate_model(f, tags, seeds[:1], quick=quick, tasks=("t3",)))
         out["without_skill_linking"]["models"][key] = {"name": r["name"], "t3": r["mean"]["t3"]}
 
     print("\n== Ablation: HGT structure", flush=True)
@@ -319,7 +351,7 @@ def run_ablations(data: GraphData, seeds: list[int], quick: bool) -> dict:
     }
     out["hgt_variants"] = {}
     for key, fac in variants.items():
-        r = evaluate_model(fac, data, seeds[:1], quick=quick)
+        r = ckpt.run(f"ablation_hgt_{key}", lambda f=fac: evaluate_model(f, data, seeds[:1], quick=quick))
         out["hgt_variants"][key] = {"name": r["name"], **{t: r["mean"][t] for t in ("t1", "t2", "t3") if t in r["mean"]}}
     return out
 
