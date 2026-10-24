@@ -353,3 +353,4 @@
 - 2026-10-22 14:29  wip: iteration
 - 2026-10-22 19:17  docs: update notes
 - 2026-10-24 10:05  wip: scratch note
+- 2026-10-24 11:15  wip: iteration
