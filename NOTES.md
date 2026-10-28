@@ -356,3 +356,4 @@
 - 2026-10-24 11:15  wip: iteration
 - 2026-10-26 09:29  docs: update notes
 - 2026-10-27 16:35  docs: update notes
+- 2026-10-28 18:30  notes: progress
