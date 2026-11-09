@@ -369,3 +369,4 @@
 - 2026-11-09 12:45  chore: bookkeeping
 - 2026-11-09 13:43  chore: tidy up
 - 2026-11-09 13:51  chore: tweak
+- 2026-11-09 19:39  wip: progress note
