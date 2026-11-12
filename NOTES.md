@@ -371,3 +371,4 @@
 - 2026-11-09 13:51  chore: tweak
 - 2026-11-09 19:39  wip: progress note
 - 2026-11-10 13:46  docs: clarify note
+- 2026-11-12 11:52  refactor: minor cleanup
