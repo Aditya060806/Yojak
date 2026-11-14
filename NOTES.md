@@ -373,3 +373,4 @@
 - 2026-11-10 13:46  docs: clarify note
 - 2026-11-12 11:52  refactor: minor cleanup
 - 2026-11-13 09:17  chore: bookkeeping
+- 2026-11-14 13:14  docs: clarify note
