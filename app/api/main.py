@@ -109,6 +109,7 @@ ROUTE_MODULES = [
     "app.api.routes.salary",
     "app.api.routes.labelling",
     "app.api.routes.graph",
+    "app.api.routes.sas",
 ]
 
 for _module in ROUTE_MODULES:

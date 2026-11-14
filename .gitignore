@@ -213,6 +213,14 @@ __marimo__/
 /data/processed/
 /data/gold/*.local.csv
 /artifacts/
+# Confidential hackathon inputs and all derived evidence stay local.
+/SAS Data Problem Statement/
+/private_sas/
+/catboost_info/
+/.chart-data-*/
+/Team_DeezNerdz.docx.pdf
+/Approach_Note_Team_Optiprime.pdf
+/Syntax_Squad_Approach_Note.docx.pdf
 # Project-local Neo4j install and downloads
 /tools/
 # Frontend dependencies and build output

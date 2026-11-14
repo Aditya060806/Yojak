@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 export const NAV = [
     { href: '/', label: 'Overview' },
     { href: '/student', label: 'Students' },
+    { href: '/career-ladder', label: 'Career ladder' },
     { href: '/recruiter', label: 'Recruiters' },
     { href: '/institution', label: 'Institutions' },
     { href: '/workforce', label: 'Workforce' },
@@ -160,6 +161,7 @@ export function SiteFooter() {
                     <p className="font-medium">Project</p>
                     <ul className="space-y-1.5 text-muted-foreground">
                         <li><Link className="hover:text-foreground" href="/evidence">Evidence and limitations</Link></li>
+                        <li><Link className="hover:text-foreground" href="/model-performance">SAS model performance</Link></li>
                         <li><Link className="hover:text-foreground" href="/network">3D skill intelligence</Link></li>
                         <li><Link className="hover:text-foreground" href="/explore">Occupation catalogue</Link></li>
                         <li><Link className="hover:text-foreground" href="/admin">Administration</Link></li>
